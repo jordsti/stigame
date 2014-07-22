@@ -11,8 +11,10 @@ namespace Gui
 
 Style::Style(void)
 {
-	foreground = Color(200, 250, 250);
-	background = Color(15, 15, 15);
+	//foreground = Color(200, 250, 250);
+	//background = Color(15, 15, 15);
+    foreground = Color(25, 25, 25);
+	background = Color(245, 245, 245);
 	highlightForeground = Color(255, 255, 255);
 	highlightBackground = Color(120, 120, 120);
 

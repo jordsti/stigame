@@ -5,5 +5,8 @@
 		<Project filename="Sample/Sample.cbp">
 			<Depends filename="StiGame/StiGame.cbp" />
 		</Project>
+		<Project filename="GuiTest/GuiTest.cbp">
+			<Depends filename="StiGame/StiGame.cbp" />
+		</Project>
 	</Workspace>
 </CodeBlocks_workspace_file>

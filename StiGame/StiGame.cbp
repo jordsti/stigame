@@ -20,7 +20,6 @@
 				</Compiler>
 				<ExtraCommands>
 					<Add after="cmd /c python post_build.py" />
-					<Mode after="always" />
 				</ExtraCommands>
 			</Target>
 			<Target title="Release">
@@ -43,8 +42,8 @@
 			</Target>
 		</Build>
 		<Compiler>
-			<Add option="-Wall" />
 			<Add option="-std=c++11" />
+			<Add option="-Wall" />
 			<Add directory="../include/SDL2" />
 		</Compiler>
 		<Linker>
