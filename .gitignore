@@ -4,6 +4,17 @@
 *.o
 *.obj
 
+#repos specific
+lib/*
+bin/*
+include/*
+*.zip
+*.rar
+
+#ide files
+*.depend
+*.layout
+
 # Compiled Dynamic libraries
 *.so
 *.dylib
@@ -19,3 +30,4 @@
 *.exe
 *.out
 *.app
+*.def
