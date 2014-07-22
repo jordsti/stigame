@@ -9,6 +9,8 @@
 lib/*
 bin/*
 include/*
+*/bin/*
+*/obj/*
 *.zip
 *.rar
 
