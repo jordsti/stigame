@@ -37,6 +37,9 @@
 				<Linker>
 					<Add option="-s" />
 				</Linker>
+				<ExtraCommands>
+					<Add after="cmd /c python post_build.py -m Release" />
+				</ExtraCommands>
 			</Target>
 		</Build>
 		<Compiler>

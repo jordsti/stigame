@@ -43,6 +43,10 @@ if __name__ == '__main__':
     for p in projects:
         print "Copying StiGame.dll to [%s]" % p
         project_path = os.path.join(parent_path, p, "bin", mode)
+
+        if not os.path.exists(project_path):
+            os.makedirs(project_path)
+        
         src_path = os.path.join(os.getcwd(), 'bin', mode, 'StiGame.dll')
         dst_path = os.path.join(project_path, 'StiGame.dll')
         shutil.copyfile(src_path, dst_path)
