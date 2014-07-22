@@ -2,6 +2,8 @@
 <CodeBlocks_workspace_file>
 	<Workspace title="Workspace">
 		<Project filename="StiGame/StiGame.cbp" />
-		<Project filename="Sample/Sample.cbp" />
+		<Project filename="Sample/Sample.cbp">
+			<Depends filename="StiGame/StiGame.cbp" />
+		</Project>
 	</Workspace>
 </CodeBlocks_workspace_file>

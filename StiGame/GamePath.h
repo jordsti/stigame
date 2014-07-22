@@ -26,6 +26,7 @@ class GamePath
 		/// \param p2 Second Path
 		/// \return Combined Path
         static std::string getFilepath(Paths p, std::string p2);
+
         virtual ~GamePath();
     protected:
     private:
