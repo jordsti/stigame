@@ -5,7 +5,7 @@ using namespace StiGame;
 
 int main(int argc, char ** argv)
 {
-    Viewport *vpt = new Viewport(1024, 768);
+    Viewport *vpt = new Viewport(900, 600);
 
     vpt->setTitle("Gui Test");
 

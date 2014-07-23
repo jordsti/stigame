@@ -28,7 +28,7 @@ void TestGui::initComponents()
     guiList.add(vo);
 
     guiList.setWidth(80);
-    guiList.setHeight(360);
+    guiList.setHeight(60);
     guiList.setX(10);
     guiList.setY(10);
 

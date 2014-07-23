@@ -34,6 +34,11 @@ void SelectionEventThrower::publish(SelectionEventThrower *src, SelectionEventAr
     }
 }
 
+bool SelectionEventThrower::containListeners()
+{
+    return selectionListeners.size() != 0;
+}
+
 }
 
 }

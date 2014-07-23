@@ -4,7 +4,7 @@
 #include "HighlightItem.h"
 #include "ValueObject.h"
 #include "SelectionEventThrower.h"
-#include <vector>
+#include <list>
 #include <map>
 
 namespace StiGame
@@ -27,6 +27,8 @@ public:
 
 	void add(ValueObject *vo);
 
+	void remove(ValueObject *vo);
+
 	int getSelectedIndex(void);
 	void setSelectedIndex(int index);
 
@@ -41,15 +43,17 @@ public:
 	void onClick(Point *relpt);
 
 protected:
-	std::vector<ValueObject*> values;
+	std::list<ValueObject*> values;
 	std::map<int, Surface*> strBuffers;
 	int selectedIndex;
-	int nbItems;
+	int viewIndex;
 	Surface *upArrow;
 	Surface *downArrow;
 	Font *font;
 	int lineHeight;
 	int mouseOverIndex;
+private:
+    bool _showScrollButtons;
 };
 
 }
