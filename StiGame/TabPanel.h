@@ -20,30 +20,29 @@ public:
 	static const int TAB_WIDTH_OFFSET;
 	TabPanel();
 	virtual ~TabPanel();
-	
+
 	void addTab(TabItem *item);
 	void clearTabs(void);
-	
+
 	int getSelectedTab(void);
 	void setSelectedTab(int m_selectedTab);
-	
+
 	int getNbTab(void);
 	int getTabHeight(void);
-	
+
 	void setTabHeight(int m_tabHeight);
-	
+
 	virtual void onClick(Point *relpt);
 	virtual void onMouseMotion(Point *relpt);
-	
+
 	virtual Surface* render(void);
-	
+
 protected:
 	Font *font;
 	std::vector<TabItem*> tabs;
 	std::vector<Surface*> tabsCaption;
 	int selectedTab;
 	int tabHeight;
-	int nbTab;
 	int tabHighlighted;
 	int tabWidthOffset;
 };

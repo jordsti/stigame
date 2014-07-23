@@ -1,7 +1,5 @@
 #include "List.h"
 #include "PRect.h"
-#include "SelectionEventArgs.h"
-#include <iostream>
 
 namespace StiGame
 {
@@ -111,6 +109,15 @@ Surface* List::render(void)
 	int cy = 0;
 	SDL_Rect *src = new SDL_Rect();
 	SDL_Rect *dst = new SDL_Rect();
+    PRect rect = PRect();
+    rect.setX(0);
+    rect.setWidth(width);
+    rect.setHeight(lineHeight);
+
+    if(_showScrollButtons)
+    {
+        rect.setWidth(width - upArrow->getWidth());
+    }
 
 	for(;lit!=lend;++lit)
 	{
@@ -124,11 +131,7 @@ Surface* List::render(void)
                 free_str = true;
                 str_sur = font->renderText(vo->getText(), highlightForeground);
 
-                PRect rect = PRect();
-                rect.setX(0);
                 rect.setY(cy);
-                rect.setWidth(width);
-                rect.setHeight(lineHeight);
 
                 rect.fill(buffer->getSDLSurface(), highlightBackground);
 
