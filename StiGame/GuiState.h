@@ -56,7 +56,7 @@ protected:
 	/// \brief Mouse Y Position
 	int mouse_y;
 	/// \brief Gui Style
-	Gui::Style *style;
+	Style *style;
 };
 
 }

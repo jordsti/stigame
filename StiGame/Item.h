@@ -56,11 +56,18 @@ public:
 	/// \brief Virtual method to override, called when the item is clicked
 	virtual void onClick(Point *relp);
 
+	virtual void onTextInput(char* text);
+
+	virtual void onKeyUp(SDL_KeyboardEvent *evt);
+
     void setWidth(int m_width);
 
     void setHeight(int m_height);
 
     void setDimension(int m_width, int m_height);
+
+    bool isHandleKey(void);
+
 protected:
 	/// \brief Name of the item
 	std::string name;
@@ -72,6 +79,8 @@ protected:
 	Style *style;
 	/// \brief is mouse over
 	bool mouseOver;
+
+	bool handleKey;
 
     virtual void resized(void);
 private:

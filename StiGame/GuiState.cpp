@@ -1,7 +1,7 @@
-
 #include "GuiState.h"
 #include "PLine.h"
 #include "MPoint.h"
+#include <iostream>
 
 namespace StiGame
 {
@@ -146,6 +146,30 @@ void GuiState::onEvent(SDL_Event* evt)
 			}
 		}
 	}
+	else if(evt->type == SDL_TEXTINPUT)
+    {
+        std::list<Item*>::iterator lit (items.begin()), lend(items.end());
+
+		for(;lit!=lend;++lit)
+		{
+			if((*lit)->isHandleKey())
+			{
+				(*lit)->onTextInput(evt->edit.text);
+			}
+		}
+    }
+    else if(evt->type == SDL_KEYUP)
+    {
+        std::list<Item*>::iterator lit (items.begin()), lend(items.end());
+
+		for(;lit!=lend;++lit)
+		{
+			if((*lit)->isHandleKey())
+			{
+				(*lit)->onKeyUp(&evt->key);
+			}
+		}
+    }
 }
 
 void GuiState::unload(void)

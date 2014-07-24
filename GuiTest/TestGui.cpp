@@ -45,7 +45,7 @@ void TestGui::initComponents()
     tabPanel = TabPanel();
     tabPanel.setWidth(300);
     tabPanel.setHeight(400);
-    tabPanel.set(110, 50);
+    tabPanel.set(210, 50);
 
     tab1 = TabItem("Tab 1");
 
@@ -69,9 +69,15 @@ void TestGui::initComponents()
     tab1.add(&tab1Label);
     tab1.add(&tab1Btn);
 
+    tbName = TextBox();
+    tbName.setX(10);
+    tbName.setY(200);
+    tbName.setDimension(120, 20);
+
     add(&guiList);
     add(&cb1);
     add(&tabPanel);
+    add(&tbName);
 }
 
 void TestGui::handleEvent(StiGame::Gui::SelectionEventThrower *src, StiGame::Gui::SelectionEventArgs *args)

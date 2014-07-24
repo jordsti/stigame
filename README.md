@@ -24,11 +24,12 @@ At the moment, these features are already implemented into StiGame.
 	- Label
 	- Combo Box
 	- Selection List
+	- Tab Panel
 	- etc...
 - Game Sprite
   - Directional Sprite
   - General Sprite
-  - Sprite Library for memory management
+  - Sprite Library for texture management
   
 ### Purpose
 This library will be used for StiCode game development and this library will be development for the need of StiCode Games.

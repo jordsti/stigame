@@ -8,6 +8,7 @@
 #include <TabPanel.h>
 #include <Label.h>
 #include <Button.h>
+#include <TextBox.h>
 #include "TestTabItem.h"
 
 class TestGui :
@@ -29,6 +30,7 @@ class TestGui :
         TestTabItem *tab3;
         StiGame::Gui::Label tab1Label;
         StiGame::Gui::Button tab1Btn;
+        StiGame::Gui::TextBox tbName;
     private:
         void initComponents(void);
 };

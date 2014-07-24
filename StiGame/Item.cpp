@@ -33,6 +33,7 @@ Item::~Item(void)
 void Item::init(void)
 {
 	mouseOver = false;
+	handleKey = false;
 	x = 0;
 	y = 0;
 	width = 0;
@@ -118,6 +119,21 @@ void Item::setDimension(int m_width, int m_height)
     width = m_width;
     height = m_height;
     resized();
+}
+
+bool Item::isHandleKey(void)
+{
+    return handleKey;
+}
+
+void Item::onKeyUp(SDL_KeyboardEvent *evt)
+{
+
+}
+
+void Item::onTextInput(char * text)
+{
+
 }
 
 }

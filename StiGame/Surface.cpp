@@ -201,7 +201,7 @@ namespace StiGame {
 	void Surface::fill(Color *c)
 	{
 		if(!c->isMapped())
-		{	
+		{
 			c->mapColor(sdlSurface->format);
 		}
 
@@ -340,17 +340,17 @@ namespace StiGame {
 			Logger::Error(SDL_GetError());
 		}
 	}
-	
+
 	void Surface::setClipRect(SDL_Rect *rect)
 	{
 		SDL_SetClipRect(sdlSurface, rect);
 	}
-	
+
 	void Surface::updateClipRect(SDL_Rect *rect)
 	{
 		SDL_GetClipRect(sdlSurface, rect);
 	}
-	
+
 	Surface::~Surface(void)
 	{
 		freeSurface();
