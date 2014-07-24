@@ -96,6 +96,30 @@ bool Item::getMouseOver(void)
 	return mouseOver;
 }
 
+void Item::setWidth(int m_width)
+{
+    width = m_width;
+    resized();
+}
+
+void Item::setHeight(int m_height)
+{
+    height = m_height;
+    resized();
+}
+
+void Item::resized(void)
+{
+    //to override
+}
+
+void Item::setDimension(int m_width, int m_height)
+{
+    width = m_width;
+    height = m_height;
+    resized();
+}
+
 }
 
 }

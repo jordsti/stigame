@@ -10,7 +10,7 @@ namespace StiGame
 namespace Gui
 {
 
-class TabItem : 
+class TabItem :
 	public Item
 {
 public:
@@ -20,14 +20,17 @@ public:
 
 	void add(Item *item);
 	void remove(Item *item);
-	
+
 	std::string getTabName(void);
-	
+
 	virtual void onClick(Point *relpt);
 	virtual void onMouseMotion(Point *relpt);
-	
-	virtual	Surface* render(void);
+
+	Surface* render(void);
+
+	virtual void setMouseOver(bool m_mouseOver);
 protected:
+
 	std::string tabName;
 	std::list<Item*> items;
 };

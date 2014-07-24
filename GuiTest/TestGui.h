@@ -8,6 +8,7 @@
 #include <TabPanel.h>
 #include <Label.h>
 #include <Button.h>
+#include "TestTabItem.h"
 
 class TestGui :
     public StiGame::Gui::GuiState,
@@ -25,6 +26,7 @@ class TestGui :
         StiGame::Gui::TabPanel tabPanel;
         StiGame::Gui::TabItem tab1;
         StiGame::Gui::TabItem tab2;
+        TestTabItem *tab3;
         StiGame::Gui::Label tab1Label;
         StiGame::Gui::Button tab1Btn;
     private:

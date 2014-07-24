@@ -11,8 +11,8 @@ class MDimension :
         MDimension();
         MDimension(int m_width, int m_height);
         MDimension(DimensionStruct *dim);
-        void setWidth(int m_width);
-        void setHeight(int m_height);
+        virtual void setWidth(int m_width);
+        virtual void setHeight(int m_height);
         virtual ~MDimension();
     protected:
     private:

@@ -52,6 +52,8 @@
 		</Linker>
 		<Unit filename="TestGui.cpp" />
 		<Unit filename="TestGui.h" />
+		<Unit filename="TestTabItem.cpp" />
+		<Unit filename="TestTabItem.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

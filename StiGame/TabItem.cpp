@@ -74,6 +74,18 @@ void TabItem::onMouseMotion(Point *relpt)
 	}
 }
 
+void TabItem::setMouseOver(bool m_mouseOver)
+{
+    if(!m_mouseOver)
+    {
+        std::list<Item*>::iterator lit(items.begin()), lend(items.end());
+        for(;lit!=lend;++lit)
+        {
+            (*lit)->setMouseOver(false);
+        }
+    }
+}
+
 Surface* TabItem::render(void)
 {
 	Surface *buffer = new Surface(width, height);

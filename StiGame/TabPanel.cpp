@@ -29,8 +29,8 @@ void TabPanel::addTab(TabItem *item)
 {
 	tabs.push_back(item);
 
-	item->setWidth(width-4);
-	item->setHeight(height-tabHeight-3);
+	item->setWidth(width - 4);
+	item->setHeight(height - (tabHeight + 4) );
 	item->setX(0);
 	item->setY(0);
 
@@ -82,6 +82,15 @@ int TabPanel::getTabHeight(void)
 void TabPanel::setTabHeight(int m_tabHeight)
 {
 	tabHeight = m_tabHeight;
+}
+
+void TabPanel::resized(void)
+{
+    std::vector<TabItem*>::iterator vit(tabs.begin()), vend(tabs.end());
+    for(;vit!=vend;++vit)
+    {
+        (*vit)->setDimension(width - 4, height - (tabHeight + 4));
+    }
 }
 
 void TabPanel::onClick(Point *relpt)
@@ -205,6 +214,22 @@ Surface* TabPanel::render(void)
 	}
 
 	return buffer;
+}
+
+void TabPanel::setMouseOver(bool m_mouseOver)
+{
+    if(mouseOver != m_mouseOver)
+    {
+        mouseOver = m_mouseOver;
+        if(!mouseOver)
+        {
+            if(selectedTab != NONE_SELECTED)
+            {
+                TabItem *tab = tabs[selectedTab];
+                tab->setMouseOver(false);
+            }
+        }
+    }
 }
 
 /*	Members

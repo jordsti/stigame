@@ -49,13 +49,18 @@ public:
 	/// \brief Get mouse over
 	bool getMouseOver(void);
 	/// \brief Set mouse over
-	void setMouseOver(bool);
+	virtual void setMouseOver(bool);
 	/// \brief Virtual method to override, provide mouse position, only over the GuiItem region
 	/// \param relp Relative position over the GuiItem
 	virtual void onMouseMotion(Point *relp);
 	/// \brief Virtual method to override, called when the item is clicked
 	virtual void onClick(Point *relp);
 
+    void setWidth(int m_width);
+
+    void setHeight(int m_height);
+
+    void setDimension(int m_width, int m_height);
 protected:
 	/// \brief Name of the item
 	std::string name;
@@ -67,6 +72,8 @@ protected:
 	Style *style;
 	/// \brief is mouse over
 	bool mouseOver;
+
+    virtual void resized(void);
 private:
 	/// \brief initialization
 	void init(void);

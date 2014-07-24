@@ -37,7 +37,10 @@ public:
 
 	virtual Surface* render(void);
 
+    virtual void setMouseOver(bool m_mouseOver);
 protected:
+    void resized(void);
+
 	Font *font;
 	std::vector<TabItem*> tabs;
 	std::vector<Surface*> tabsCaption;

@@ -12,7 +12,7 @@ Button::Button(void) : Item("button")
 	offsetWidth = DEFAULT_OFFSET;
 	offsetHeight = DEFAULT_OFFSET;
 	caption = " ";
-	stringBuffer = 0;
+	stringBuffer = nullptr;
 	highlightForeground = style->getHighlightForeground();
 	highlightBackground = style->getHighlightBackground();
 }
@@ -100,16 +100,16 @@ void Button::onClick(Point *relp)
 
 void Button::clear(void)
 {
-	if(stringBuffer != 0)
+	if(stringBuffer != nullptr)
 	{
 		delete stringBuffer;
-		stringBuffer = 0;
+		stringBuffer = nullptr;
 	}
 }
 
 void Button::autosize(void)
 {
-	if(stringBuffer == 0)
+	if(stringBuffer == nullptr)
 	{
 		renderCaption();
 	}
@@ -126,6 +126,11 @@ void Button::renderCaption(void)
 	}
 
 	stringBuffer = style->getNormalFont()->renderText(caption, foreground);
+
+	if(width == 0 && height == 0)
+    {
+        autosize();
+    }
 }
 
 

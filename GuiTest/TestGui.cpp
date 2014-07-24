@@ -51,8 +51,11 @@ void TestGui::initComponents()
 
     tab2 = TabItem("Tab 2");
 
+    tab3 = new TestTabItem();
+
     tabPanel.addTab(&tab1);
     tabPanel.addTab(&tab2);
+    tabPanel.addTab(tab3);
 
     tab1Label = Label();
     tab1Label.setCaption("This is this tab1!");
