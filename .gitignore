@@ -15,6 +15,7 @@ include/*
 *.rar
 
 #python tools
+*.pyc
 tools/*/*.pyc
 tools/*/.idea/*.xml
 tools/*/.idea/scopes/*
