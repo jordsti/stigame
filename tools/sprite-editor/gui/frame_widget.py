@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'frame_widget.ui'
 #
-# Created: Fri Jul 25 22:15:50 2014
+# Created: Sat Jul 26 16:43:08 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -29,15 +29,18 @@ class Ui_frame_widget(object):
         frame_widget.resize(400, 79)
         self.lbl_frame_img = QtGui.QLabel(frame_widget)
         self.lbl_frame_img.setGeometry(QtCore.QRect(0, 0, 71, 61))
+        self.lbl_frame_img.setStyleSheet(_fromUtf8("text-align: center;\n"
+"border: 1px solid white;\n"
+"background-color: black;"))
         self.lbl_frame_img.setObjectName(_fromUtf8("lbl_frame_img"))
         self.lbl_id = QtGui.QLabel(frame_widget)
         self.lbl_id.setGeometry(QtCore.QRect(80, 10, 46, 13))
         self.lbl_id.setObjectName(_fromUtf8("lbl_id"))
         self.lbl_width = QtGui.QLabel(frame_widget)
-        self.lbl_width.setGeometry(QtCore.QRect(80, 30, 46, 13))
+        self.lbl_width.setGeometry(QtCore.QRect(80, 30, 61, 16))
         self.lbl_width.setObjectName(_fromUtf8("lbl_width"))
         self.lbl_height = QtGui.QLabel(frame_widget)
-        self.lbl_height.setGeometry(QtCore.QRect(80, 50, 46, 13))
+        self.lbl_height.setGeometry(QtCore.QRect(80, 50, 61, 16))
         self.lbl_height.setObjectName(_fromUtf8("lbl_height"))
         self.btn_delete_frame = QtGui.QPushButton(frame_widget)
         self.btn_delete_frame.setGeometry(QtCore.QRect(220, 50, 75, 23))

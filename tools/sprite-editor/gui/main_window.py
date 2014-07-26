@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'main_window.ui'
 #
-# Created: Sat Jul 26 15:14:54 2014
+# Created: Sat Jul 26 16:55:23 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -48,9 +48,21 @@ class Ui_MainWindow(object):
         self.actionOpen.setObjectName(_fromUtf8("actionOpen"))
         self.actionQuit = QtGui.QAction(MainWindow)
         self.actionQuit.setObjectName(_fromUtf8("actionQuit"))
+        self.actionSave = QtGui.QAction(MainWindow)
+        self.actionSave.setEnabled(False)
+        self.actionSave.setObjectName(_fromUtf8("actionSave"))
+        self.actionSave_as = QtGui.QAction(MainWindow)
+        self.actionSave_as.setEnabled(False)
+        self.actionSave_as.setObjectName(_fromUtf8("actionSave_as"))
+        self.actionExport = QtGui.QAction(MainWindow)
+        self.actionExport.setEnabled(False)
+        self.actionExport.setObjectName(_fromUtf8("actionExport"))
         self.menuFile.addAction(self.actionNew_Sprite)
         self.menuFile.addAction(self.actionOpen)
+        self.menuFile.addAction(self.actionSave)
+        self.menuFile.addAction(self.actionSave_as)
         self.menuFile.addSeparator()
+        self.menuFile.addAction(self.actionExport)
         self.menuFile.addAction(self.actionQuit)
         self.menubar.addAction(self.menuFile.menuAction())
 
@@ -64,4 +76,7 @@ class Ui_MainWindow(object):
         self.actionNew_Sprite.setText(_translate("MainWindow", "New Sprite", None))
         self.actionOpen.setText(_translate("MainWindow", "Open...", None))
         self.actionQuit.setText(_translate("MainWindow", "Quit", None))
+        self.actionSave.setText(_translate("MainWindow", "Save", None))
+        self.actionSave_as.setText(_translate("MainWindow", "Save as", None))
+        self.actionExport.setText(_translate("MainWindow", "Export", None))
 

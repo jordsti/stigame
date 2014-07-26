@@ -20,7 +20,7 @@ class sprite_frame:
         return len(self.img_data)
 
 class sprite:
-
+    (FileExtension) = '.bspr'
     def __init__(self, sprite_path=None):
         self.path = sprite_path
         self.name = ""
@@ -31,6 +31,10 @@ class sprite:
 
         if self.path is not None:
             self.__read_file()
+
+    def add_frame(self, frame):
+        self.frames.append(frame)
+        self.nb_frames += 1
 
     def __read_file(self):
         fp = open(self.path, 'rb')
@@ -54,7 +58,7 @@ class sprite:
 
         fp.close()
 
-    def __write_file(self):
+    def write_file(self):
         fp = open(self.path, 'wb')
 
         header = sprite_header()

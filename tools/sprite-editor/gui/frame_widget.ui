@@ -22,6 +22,11 @@
      <height>61</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">text-align: center;
+border: 1px solid white;
+background-color: black;</string>
+   </property>
    <property name="text">
     <string>N/A</string>
    </property>
@@ -44,8 +49,8 @@
     <rect>
      <x>80</x>
      <y>30</y>
-     <width>46</width>
-     <height>13</height>
+     <width>61</width>
+     <height>16</height>
     </rect>
    </property>
    <property name="text">
@@ -57,8 +62,8 @@
     <rect>
      <x>80</x>
      <y>50</y>
-     <width>46</width>
-     <height>13</height>
+     <width>61</width>
+     <height>16</height>
     </rect>
    </property>
    <property name="text">
