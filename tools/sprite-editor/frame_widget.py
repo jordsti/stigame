@@ -31,8 +31,14 @@ class frame_widget(QtGui.QWidget, gui.Ui_frame_widget):
 
         self.btn_move_up.clicked.connect(self.move_up_action)
         self.btn_move_down.clicked.connect(self.move_down_action)
+        self.btn_delete_frame.clicked.connect(self.delete_frame_action)
 
         self.refresh_labels()
+
+    def delete_frame_action(self):
+
+        if self.delete_frame is not None:
+            self.delete_frame(self)
 
     def move_up_action(self):
 

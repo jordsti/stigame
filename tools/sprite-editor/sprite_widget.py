@@ -48,7 +48,6 @@ class sprite_widget(QtGui.QWidget, gui.Ui_SpriteWidget):
 
             self.sprite.frames[f_id] =  self.sprite.frames[f_id-1]
             self.sprite.frames[f_id-1] = tmp_frame
-            #todo refresh frames info
 
             tmp.refresh_labels()
             fwidget.refresh_labels()
@@ -73,9 +72,21 @@ class sprite_widget(QtGui.QWidget, gui.Ui_SpriteWidget):
             self.sprite.add_frame(frame)
             fw = frame_widget.frame_widget(len(self.sprite.frames) - 1, data)
 
+            fw.move_up = self.move_up_frame
+            fw.move_down = self.move_down_frame
+            fw.delete_frame = self.delete_frame
+
             self.frames_widget.append(fw)
             self.layout_frames.addWidget(fw)
 
+    def delete_frame(self, fwidget):
+        self.layout_frames.removeWidget(fwidget)
+        self.frames_widget.remove(fwidget)
+        self.sprite.frames.pop(fwidget.frame_id)
+
+        for i in range(len(self.sprite.frames)):
+            self.frames_widget[i].frame_id = i
+            self.frames_widget[i].refresh_labels()
 
     def move_down_frame(self, fwidget):
 
@@ -126,6 +137,26 @@ class sprite_widget(QtGui.QWidget, gui.Ui_SpriteWidget):
         if self.name_changed is not None:
             self.name_changed(new_name)
 
+    def dimension_changed(self, text):
+        #todo UnicodeEncodeError: 'ascii' codec can't encode character
+        width = str(self.le_width.text())
+        try:
+            width = int(width)
+        except ValueError:
+            self.le_width.setText(str(self.sprite.width))
+
+        height = str(self.le_height.text())
+        try:
+            height = int(height)
+        except ValueError:
+            self.le_height.setText(str(self.sprite.height))
+
+        if width is int:
+            self.sprite.width = width
+        if height is int:
+            self.sprite.height = height
+
+
     def __init_widget(self):
         self.preview_timer.setInterval(1000 / self.preview_fps)
         self.preview_timer.timeout.connect(self.preview_tick)
@@ -144,7 +175,7 @@ class sprite_widget(QtGui.QWidget, gui.Ui_SpriteWidget):
             self.frames_widget.append(fw)
             fw.move_up = self.move_up_frame
             fw.move_down = self.move_down_frame
-
+            fw.delete_frame = self.delete_frame
             #self.sa_frames.addWidget(fw)
             self.layout_frames.addWidget(fw)
             i += 1
@@ -153,6 +184,8 @@ class sprite_widget(QtGui.QWidget, gui.Ui_SpriteWidget):
 
         self.sp_fps.valueChanged.connect(self.change_fps)
         self.btn_add_frame.clicked.connect(self.add_frame)
+        self.le_height.textChanged.connect(self.dimension_changed)
+        self.le_width.textChanged.connect(self.dimension_changed)
 
     def change_fps(self, value):
         self.preview_fps = int(str(value))
