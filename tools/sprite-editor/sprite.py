@@ -33,7 +33,6 @@ class sprite:
             self.__read_file()
 
     def __read_file(self):
-
         fp = open(self.path, 'rb')
 
         header = sprite_header()
@@ -49,19 +48,37 @@ class sprite:
             marker = sprite_image_marker()
             fp.readinto(marker)
             frame_length = marker.length
-            print frame_length
             img_data = fp.read(frame_length)
             frame = sprite_frame(img_data)
             self.frames.append(frame)
 
         fp.close()
 
+    def __write_file(self):
+        fp = open(self.path, 'wb')
 
+        header = sprite_header()
+        header.sprite_name = self.name
+        header.width = self.width
+        header.height = self.height
+        header.nb_frames = self.nb_frames
+
+        fp.write(header)
+
+        for f in self.frames:
+            marker = sprite_image_marker()
+            marker.length = f.length()
+
+            fp.write(marker)
+            fp.write(f.img_data)
+
+
+        fp.close()
 
 if __name__ == '__main__':
     print "Sprite test"
 
     spr = sprite('C:\\Users\\JordSti\\git\\stiuniverse-transit\\assets\\sprites\\a0.bspr')
     print spr.name
-    for f in spr.frames:
-        print f.img_data
+
+
