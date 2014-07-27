@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>SpriteWidget</class>
- <widget class="QWidget" name="SpriteWidget">
+ <class>direction_sprite_widget</class>
+ <widget class="QWidget" name="direction_sprite_widget">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -30,9 +30,9 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>150</y>
+     <y>160</y>
      <width>531</width>
-     <height>291</height>
+     <height>281</height>
     </rect>
    </property>
    <property name="widgetResizable">
@@ -47,7 +47,7 @@
       <x>0</x>
       <y>0</y>
       <width>529</width>
-      <height>289</height>
+      <height>279</height>
      </rect>
     </property>
    </widget>
@@ -58,7 +58,7 @@
      <x>20</x>
      <y>130</y>
      <width>46</width>
-     <height>13</height>
+     <height>20</height>
     </rect>
    </property>
    <property name="text">
@@ -169,6 +169,29 @@
      </item>
     </layout>
    </widget>
+  </widget>
+  <widget class="QComboBox" name="cb_direction">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>130</y>
+     <width>91</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_direction">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>130</y>
+     <width>51</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Direction :</string>
+   </property>
   </widget>
  </widget>
  <resources/>

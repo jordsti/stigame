@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'sprite_widget.ui'
+# Form implementation generated from reading ui file 'direction_sprite_widget.ui'
 #
-# Created: Sun Jul 27 01:30:00 2014
+# Created: Sun Jul 27 01:29:59 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -23,26 +23,26 @@ except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
 
-class Ui_SpriteWidget(object):
-    def setupUi(self, SpriteWidget):
-        SpriteWidget.setObjectName(_fromUtf8("SpriteWidget"))
-        SpriteWidget.resize(566, 457)
-        self.btn_add_frame = QtGui.QPushButton(SpriteWidget)
+class Ui_direction_sprite_widget(object):
+    def setupUi(self, direction_sprite_widget):
+        direction_sprite_widget.setObjectName(_fromUtf8("direction_sprite_widget"))
+        direction_sprite_widget.resize(566, 457)
+        self.btn_add_frame = QtGui.QPushButton(direction_sprite_widget)
         self.btn_add_frame.setGeometry(QtCore.QRect(390, 20, 111, 23))
         self.btn_add_frame.setObjectName(_fromUtf8("btn_add_frame"))
-        self.sa_frames = QtGui.QScrollArea(SpriteWidget)
-        self.sa_frames.setGeometry(QtCore.QRect(20, 150, 531, 291))
+        self.sa_frames = QtGui.QScrollArea(direction_sprite_widget)
+        self.sa_frames.setGeometry(QtCore.QRect(20, 160, 531, 281))
         self.sa_frames.setWidgetResizable(True)
         self.sa_frames.setAlignment(QtCore.Qt.AlignJustify|QtCore.Qt.AlignVCenter)
         self.sa_frames.setObjectName(_fromUtf8("sa_frames"))
         self.scrollAreaWidgetContents = QtGui.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 529, 289))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 529, 279))
         self.scrollAreaWidgetContents.setObjectName(_fromUtf8("scrollAreaWidgetContents"))
         self.sa_frames.setWidget(self.scrollAreaWidgetContents)
-        self.lbl_frames = QtGui.QLabel(SpriteWidget)
-        self.lbl_frames.setGeometry(QtCore.QRect(20, 130, 46, 13))
+        self.lbl_frames = QtGui.QLabel(direction_sprite_widget)
+        self.lbl_frames.setGeometry(QtCore.QRect(20, 130, 46, 20))
         self.lbl_frames.setObjectName(_fromUtf8("lbl_frames"))
-        self.gp_preview = QtGui.QGroupBox(SpriteWidget)
+        self.gp_preview = QtGui.QGroupBox(direction_sprite_widget)
         self.gp_preview.setGeometry(QtCore.QRect(240, 10, 141, 111))
         self.gp_preview.setObjectName(_fromUtf8("gp_preview"))
         self.lbl_preview = QtGui.QLabel(self.gp_preview)
@@ -53,7 +53,7 @@ class Ui_SpriteWidget(object):
         self.sp_fps.setMinimum(15)
         self.sp_fps.setMaximum(150)
         self.sp_fps.setObjectName(_fromUtf8("sp_fps"))
-        self.gb_sprite = QtGui.QGroupBox(SpriteWidget)
+        self.gb_sprite = QtGui.QGroupBox(direction_sprite_widget)
         self.gb_sprite.setGeometry(QtCore.QRect(0, 10, 221, 111))
         self.gb_sprite.setObjectName(_fromUtf8("gb_sprite"))
         self.formLayoutWidget = QtGui.QWidget(self.gb_sprite)
@@ -80,20 +80,27 @@ class Ui_SpriteWidget(object):
         self.le_height = QtGui.QLineEdit(self.formLayoutWidget)
         self.le_height.setObjectName(_fromUtf8("le_height"))
         self.formLayout.setWidget(2, QtGui.QFormLayout.FieldRole, self.le_height)
+        self.cb_direction = QtGui.QComboBox(direction_sprite_widget)
+        self.cb_direction.setGeometry(QtCore.QRect(160, 130, 91, 22))
+        self.cb_direction.setObjectName(_fromUtf8("cb_direction"))
+        self.lbl_direction = QtGui.QLabel(direction_sprite_widget)
+        self.lbl_direction.setGeometry(QtCore.QRect(100, 130, 51, 21))
+        self.lbl_direction.setObjectName(_fromUtf8("lbl_direction"))
 
-        self.retranslateUi(SpriteWidget)
-        QtCore.QMetaObject.connectSlotsByName(SpriteWidget)
+        self.retranslateUi(direction_sprite_widget)
+        QtCore.QMetaObject.connectSlotsByName(direction_sprite_widget)
 
-    def retranslateUi(self, SpriteWidget):
-        SpriteWidget.setWindowTitle(_translate("SpriteWidget", "Form", None))
-        self.btn_add_frame.setText(_translate("SpriteWidget", "Add a frame...", None))
-        self.lbl_frames.setText(_translate("SpriteWidget", "Frame(s)", None))
-        self.gp_preview.setTitle(_translate("SpriteWidget", "Preview", None))
-        self.lbl_preview.setText(_translate("SpriteWidget", "P", None))
-        self.gb_sprite.setTitle(_translate("SpriteWidget", "Sprite Information", None))
-        self.lbl_name.setText(_translate("SpriteWidget", "Name :", None))
-        self.lbl_width.setText(_translate("SpriteWidget", "Width :", None))
-        self.le_width.setText(_translate("SpriteWidget", "0", None))
-        self.lbl_height.setText(_translate("SpriteWidget", "Height :", None))
-        self.le_height.setText(_translate("SpriteWidget", "0", None))
+    def retranslateUi(self, direction_sprite_widget):
+        direction_sprite_widget.setWindowTitle(_translate("direction_sprite_widget", "Form", None))
+        self.btn_add_frame.setText(_translate("direction_sprite_widget", "Add a frame...", None))
+        self.lbl_frames.setText(_translate("direction_sprite_widget", "Frame(s)", None))
+        self.gp_preview.setTitle(_translate("direction_sprite_widget", "Preview", None))
+        self.lbl_preview.setText(_translate("direction_sprite_widget", "P", None))
+        self.gb_sprite.setTitle(_translate("direction_sprite_widget", "Sprite Information", None))
+        self.lbl_name.setText(_translate("direction_sprite_widget", "Name :", None))
+        self.lbl_width.setText(_translate("direction_sprite_widget", "Width :", None))
+        self.le_width.setText(_translate("direction_sprite_widget", "0", None))
+        self.lbl_height.setText(_translate("direction_sprite_widget", "Height :", None))
+        self.le_height.setText(_translate("direction_sprite_widget", "0", None))
+        self.lbl_direction.setText(_translate("direction_sprite_widget", "Direction :", None))
 
