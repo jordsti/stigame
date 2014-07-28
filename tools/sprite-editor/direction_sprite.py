@@ -67,6 +67,25 @@ class direction_sprite:
                 self.frames[direction].append(frame)
                 rs = fp.readinto(_marker)
 
+    def write_file(self):
+        if self.path is not None:
+            fp = open(self.path, 'wb')
+
+            header = direction_sprite_header()
+            header.sprite_name = self.name
+            header.width = self.width
+            header.height = self.height
+
+            fp.write(header)
+
+            for k in self.frames:
+                for f in k:
+                    _marker = marker()
+                    _marker.length = f.length()
+                    _marker.direction = k
+
+                    fp.write(_marker)
+                    fp.write(f.img_data)
 
             fp.close()
 

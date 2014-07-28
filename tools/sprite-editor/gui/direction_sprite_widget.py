@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'direction_sprite_widget.ui'
 #
-# Created: Sun Jul 27 01:29:59 2014
+# Created: Mon Jul 28 18:49:54 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -46,10 +46,10 @@ class Ui_direction_sprite_widget(object):
         self.gp_preview.setGeometry(QtCore.QRect(240, 10, 141, 111))
         self.gp_preview.setObjectName(_fromUtf8("gp_preview"))
         self.lbl_preview = QtGui.QLabel(self.gp_preview)
-        self.lbl_preview.setGeometry(QtCore.QRect(20, 20, 31, 31))
+        self.lbl_preview.setGeometry(QtCore.QRect(10, 40, 61, 61))
         self.lbl_preview.setObjectName(_fromUtf8("lbl_preview"))
         self.sp_fps = QtGui.QSpinBox(self.gp_preview)
-        self.sp_fps.setGeometry(QtCore.QRect(80, 20, 41, 22))
+        self.sp_fps.setGeometry(QtCore.QRect(90, 10, 41, 22))
         self.sp_fps.setMinimum(15)
         self.sp_fps.setMaximum(150)
         self.sp_fps.setObjectName(_fromUtf8("sp_fps"))

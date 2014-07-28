@@ -80,10 +80,10 @@
    <widget class="QLabel" name="lbl_preview">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>20</y>
-      <width>31</width>
-      <height>31</height>
+      <x>10</x>
+      <y>40</y>
+      <width>61</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="text">
@@ -93,8 +93,8 @@
    <widget class="QSpinBox" name="sp_fps">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>20</y>
+      <x>90</x>
+      <y>10</y>
       <width>41</width>
       <height>22</height>
      </rect>

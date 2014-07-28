@@ -125,10 +125,14 @@ class sprite_widget(QtGui.QWidget, gui.Ui_SpriteWidget):
         if len(self.frames_widget) > 0:
             frame = self.frames_widget[self._tick % len(self.frames_widget)]
             self.lbl_preview.setPixmap(frame.pixmap)
-            if not self.lbl_preview.width() == frame.pixmap.width() and self.lbl_preview.height() == frame.pixmap.height():
+            if not self.lbl_preview.width() == frame.pixmap.width() and not self.lbl_preview.height() == frame.pixmap.height():
                 self.lbl_preview.setFixedSize(frame.pixmap.width(), frame.pixmap.height())
 
         self._tick += 1
+
+    def closing(self):
+        btn = QtGui.QMessageBox.question(self, "Are you sure", "Do you want to close this sprite ?", "Yes", "No")
+        return btn == 0
 
     def __name_changed(self):
         new_name = "Sprite : %s" % self.le_name.text()

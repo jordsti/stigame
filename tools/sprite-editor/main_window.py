@@ -23,6 +23,20 @@ class main_window(QtGui.QMainWindow, gui.Ui_MainWindow):
         self.actionSave.triggered.connect(self.save)
         self.actionClose.triggered.connect(self.close_tab)
 
+
+    def closeEvent(self, event):
+
+        if len(self.tabs) == 0:
+            event.accept()
+        else:
+            btn = QtGui.QMessageBox.question(self, "Are you sure ?", "Do you want to quit with %d tab(s) opened" % len(self.tabs), "Yes", "No")
+
+            if btn == 0:
+                event.accept()
+            else:
+                event.ignore()
+
+
     def resizeEvent(self, resizeEvent):
         self.tw_sprites.setGeometry(0, 0, self.width()- 6, self.height() - 20)
 
@@ -49,9 +63,11 @@ class main_window(QtGui.QMainWindow, gui.Ui_MainWindow):
 
     def close_tab(self):
         cur = self.tw_sprites.currentIndex()
-        self.tabs.remove(self.tw_sprites.pop(cur))
+        tab = self.tw_sprites.widget(cur)
+        if tab.closing():
+            self.tabs.remove(self.tw_sprites.pop(cur))
 
-        self.refresh_file_menu()
+            self.refresh_file_menu()
         #todo save handling..
 
     def open_sprite(self):
@@ -73,7 +89,7 @@ class main_window(QtGui.QMainWindow, gui.Ui_MainWindow):
 
     def add_tab_dsprite(self, dspr):
         tab = direction_sprite_widget.direction_sprite_widget(dspr)
-
+        tab.name_changed = self.name_changed
         if dspr.path is None:
             self.tw_sprites.addTab(tab, "dSprite : %s *" % dspr.name)
             self.tabs.append(tab)

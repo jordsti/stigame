@@ -79,10 +79,5 @@ class sprite:
 
         fp.close()
 
-if __name__ == '__main__':
-    print "Sprite test"
-
-    spr = sprite('C:\\Users\\JordSti\\git\\stiuniverse-transit\\assets\\sprites\\a0.bspr')
-    print spr.name
 
 
