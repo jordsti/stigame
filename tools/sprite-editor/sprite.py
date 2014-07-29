@@ -1,5 +1,6 @@
 __author__ = 'JordSti'
 import ctypes
+import os
 
 
 class sprite_header(ctypes.Structure):
@@ -21,6 +22,8 @@ class sprite_frame:
 
 class sprite:
     (FileExtension) = '.bspr'
+    (VarFileExtension) = '.spr'
+
     def __init__(self, sprite_path=None):
         self.path = sprite_path
         self.name = ""
@@ -31,6 +34,41 @@ class sprite:
 
         if self.path is not None:
             self.__read_file()
+
+    def from_var_file(self, var_file):
+
+        prefix = "sprite"
+        i = 0
+        names = var_file.get_vars_name()
+
+        while True:
+            vname = "%s%d" % (prefix, i)
+
+            if vname in names:
+                #loading image
+                #todo fix assets path
+                fpath = os.path.join(os.path.dirname(var_file.path), "..",var_file.get_var(vname))
+                fp = open(fpath, 'rb')
+                chunk = fp.read(1024)
+
+                img_data = chunk
+                while len(chunk) == 1024:
+                    chunk = fp.read(1024)
+                    img_data += chunk
+
+                fp.close()
+
+                frame = sprite_frame(img_data)
+                self.frames.append(frame)
+                self.nb_frames += 1
+
+            else:
+                break
+
+            i += 1
+
+
+
 
     def add_frame(self, frame):
         self.frames.append(frame)

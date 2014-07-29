@@ -6,6 +6,7 @@ import sprite
 import direction_sprite
 import direction_sprite_widget
 import sprite_widget
+import var_file
 
 class main_window(QtGui.QMainWindow, gui.Ui_MainWindow):
 
@@ -76,6 +77,13 @@ class main_window(QtGui.QMainWindow, gui.Ui_MainWindow):
             if filepath.endswith(sprite.sprite.FileExtension):
                 spr = sprite.sprite(filepath)
                 self.add_tab_sprite(spr)
+
+            elif filepath.endswith(sprite.sprite.VarFileExtension):
+                vf = var_file.var_file(filepath)
+                spr = sprite.sprite()
+                spr.from_var_file(vf)
+                self.add_tab_sprite(spr)
+
             elif filepath.endswith(direction_sprite.direction_sprite.FileExtension):
                 dspr = direction_sprite.direction_sprite(filepath)
                 self.add_tab_dsprite(dspr)
