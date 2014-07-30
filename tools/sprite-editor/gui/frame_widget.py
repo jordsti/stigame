@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'frame_widget.ui'
 #
-# Created: Sun Jul 27 01:25:46 2014
+# Created: Tue Jul 29 20:34:01 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,7 +26,7 @@ except AttributeError:
 class Ui_frame_widget(object):
     def setupUi(self, frame_widget):
         frame_widget.setObjectName(_fromUtf8("frame_widget"))
-        frame_widget.resize(533, 113)
+        frame_widget.resize(533, 114)
         self.horizontalLayoutWidget = QtGui.QWidget(frame_widget)
         self.horizontalLayoutWidget.setGeometry(QtCore.QRect(0, 10, 521, 91))
         self.horizontalLayoutWidget.setObjectName(_fromUtf8("horizontalLayoutWidget"))

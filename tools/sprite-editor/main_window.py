@@ -16,6 +16,9 @@ class main_window(QtGui.QMainWindow, gui.Ui_MainWindow):
         self.__assign_actions()
         self.tabs = []
 
+        self.tw_sprites = QtGui.QTabWidget(self)
+        self.setCentralWidget(self.tw_sprites)
+
     def __assign_actions(self):
         self.actionQuit.triggered.connect(self.close)
         self.actionNew_Sprite.triggered.connect(self.new_sprite)
@@ -105,6 +108,7 @@ class main_window(QtGui.QMainWindow, gui.Ui_MainWindow):
             self.tw_sprites.addTab(tab, "dSprite : %s" % dspr.name)
             self.tabs.append(tab)
 
+        self.tw_sprites.setCurrentIndex(self.tw_sprites.indexOf(tab))
         self.refresh_file_menu()
 
     def add_tab_sprite(self, spr):
@@ -117,6 +121,7 @@ class main_window(QtGui.QMainWindow, gui.Ui_MainWindow):
             self.tw_sprites.addTab(tab, "Sprite : %s" % spr.name)
             self.tabs.append(tab)
 
+        self.tw_sprites.setCurrentIndex(self.tw_sprites.indexOf(tab))
         self.refresh_file_menu()
 
 

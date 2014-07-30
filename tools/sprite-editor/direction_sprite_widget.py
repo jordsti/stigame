@@ -67,21 +67,25 @@ class direction_sprite_widget(QtGui.QWidget, gui.Ui_direction_sprite_widget):
         self.__name_changed()
 
     def add_frame(self):
-        imgpath = QtGui.QFileDialog.getOpenFileName(self, "Add a frame")
+        imgpath = str(QtGui.QFileDialog.getOpenFileName(self, "Add a frame"))
         direction = direction_sprite.get_direction(self.cb_direction.currentText())
 
-        fp = open(imgpath, 'rb')
-        img_data = fp.read(1024)
-        chunk = img_data
+        if len(imgpath) > 0:
+            fp = open(imgpath, 'rb')
+            img_data = fp.read(1024)
+            chunk = img_data
 
-        while len(chunk) == 1024:
-            chunk = fp.read(1024)
-            img_data += chunk
+            while len(chunk) == 1024:
+                chunk = fp.read(1024)
+                img_data += chunk
 
-        fp.close()
-        frame = direction_sprite.sprite_frame(direction, img_data)
-        self.sprite.frames[direction].append(frame)
-        self.__fill_frames()
+            fp.close()
+            frame = direction_sprite.sprite_frame(direction, img_data)
+            self.sprite.frames[direction].append(frame)
+            self.__fill_frames()
+        else:
+            #todo error message maybe
+            pass
 
     def save(self):
         if self.sprite.path is None:
@@ -101,6 +105,30 @@ class direction_sprite_widget(QtGui.QWidget, gui.Ui_direction_sprite_widget):
         fps = int(str(self.sp_fps.text()))
         self.timer.setInterval(100 / fps)
 
+    def move_down_frame(self, fwidget):
+        direction = direction_sprite.get_direction(self.cb_direction.currentText())
+        if fwidget.frame_id < len(self.frames_widget) - 1:
+
+            f_id = fwidget.frame_id
+
+            tmp_frame = self.sprite.frames[direction][f_id]
+
+            self.sprite.frames[direction][f_id] =  self.sprite.frames[direction][f_id+1]
+            self.sprite.frames[direction][f_id+1] = tmp_frame
+
+            self.__fill_frames()
+
+    def move_up_frame(self, fwidget):
+        direction = direction_sprite.get_direction(self.cb_direction.currentText())
+        if fwidget.frame_id > 0:
+            f_id = fwidget.frame_id
+
+            tmp_frame = self.sprite.frames[direction][f_id]
+
+            self.sprite.frames[direction][f_id] =  self.sprite.frames[direction][f_id-1]
+            self.sprite.frames[direction][f_id-1] = tmp_frame
+
+            self.__fill_frames()
 
     def preview_tick(self):
         if len(self.frames_widget) > 0:
@@ -118,6 +146,7 @@ class direction_sprite_widget(QtGui.QWidget, gui.Ui_direction_sprite_widget):
     def __fill_frames(self):
 
         for fw in self.frames_widget:
+            fw.deleteLater()
             self.layout_frames.removeWidget(fw)
 
         self.frames_widget = []
@@ -127,6 +156,9 @@ class direction_sprite_widget(QtGui.QWidget, gui.Ui_direction_sprite_widget):
         i = 0
         for f in frames:
             fw = frame_widget.frame_widget(i, f.img_data)
+            fw.move_down = self.move_down_frame
+            fw.move_up = self.move_up_frame
+            #todo handle delete
             self.frames_widget.append(fw)
             self.layout_frames.addWidget(fw)
             i += 1

@@ -6,7 +6,7 @@ import gui
 import os
 
 
-class sprite_widget(QtGui.QWidget, gui.Ui_SpriteWidget):
+class sprite_widget(QtGui.QScrollArea, gui.Ui_SpriteWidget):
 
     def __init__(self, sprite, parent=None):
         super(sprite_widget, self).__init__(parent)
@@ -19,6 +19,8 @@ class sprite_widget(QtGui.QWidget, gui.Ui_SpriteWidget):
         self.preview_fps = 15
         self._tick = 0
         self.name_changed = None
+        self.setWidgetResizable(True)
+        self.setLayout(self.layout_main)
         self.__init_widget()
 
     def save(self):
@@ -36,23 +38,13 @@ class sprite_widget(QtGui.QWidget, gui.Ui_SpriteWidget):
     def move_up_frame(self, fwidget):
         if fwidget.frame_id > 0:
             f_id = fwidget.frame_id
-            tmp = self.frames_widget[f_id-1]
-
-            fwidget.frame_id = f_id - 1
-            tmp.frame_id = f_id
-
-            self.frames_widget[f_id] = tmp
-            self.frames_widget[f_id-1] = fwidget
 
             tmp_frame = self.sprite.frames[f_id]
 
             self.sprite.frames[f_id] =  self.sprite.frames[f_id-1]
             self.sprite.frames[f_id-1] = tmp_frame
 
-            tmp.refresh_labels()
-            fwidget.refresh_labels()
-
-            self.refill_frames()
+            self.__fill_frames()
 
     def add_frame(self):
 
@@ -80,13 +72,8 @@ class sprite_widget(QtGui.QWidget, gui.Ui_SpriteWidget):
             self.layout_frames.addWidget(fw)
 
     def delete_frame(self, fwidget):
-        self.layout_frames.removeWidget(fwidget)
-        self.frames_widget.remove(fwidget)
         self.sprite.frames.pop(fwidget.frame_id)
-
-        for i in range(len(self.sprite.frames)):
-            self.frames_widget[i].frame_id = i
-            self.frames_widget[i].refresh_labels()
+        self.__fill_frames()
 
     def move_down_frame(self, fwidget):
 
@@ -94,31 +81,30 @@ class sprite_widget(QtGui.QWidget, gui.Ui_SpriteWidget):
 
             f_id = fwidget.frame_id
 
-            tmp = self.frames_widget[f_id+1]
-
-            self.frames_widget[f_id+1] = fwidget
-            self.frames_widget[f_id] = tmp
-
             tmp_frame = self.sprite.frames[f_id]
 
             self.sprite.frames[f_id] =  self.sprite.frames[f_id+1]
             self.sprite.frames[f_id+1] = tmp_frame
 
-            tmp.frame_id = f_id
-            fwidget.frame_id = f_id + 1
+            self.__fill_frames()
 
-            tmp.refresh_labels()
-            fwidget.refresh_labels()
-
-            self.refill_frames()
-
-    def refill_frames(self):
+    def __fill_frames(self):
 
         for fw in self.frames_widget:
+            fw.deleteLater()
             self.layout_frames.removeWidget(fw)
 
-        for fw in self.frames_widget:
+        self.frames_widget = []
+
+        i = 0
+        for f in self.sprite.frames:
+            fw = frame_widget.frame_widget(i, f.img_data)
+            fw.move_up = self.move_up_frame
+            fw.move_down = self.move_down_frame
+            fw.delete_frame = self.delete_frame
             self.layout_frames.addWidget(fw)
+            self.frames_widget.append(fw)
+            i += 1
 
     def preview_tick(self):
 

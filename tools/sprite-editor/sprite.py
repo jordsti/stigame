@@ -41,13 +41,34 @@ class sprite:
         i = 0
         names = var_file.get_vars_name()
 
-        while True:
+        vf_path = os.path.abspath(var_file.path)
+
+        dirs = vf_path.split(os.path.sep)
+
+        #rebuild path
+        asset_path = None
+        for d in dirs:
+            dirname = d
+
+            dirname = dirname.replace(':',':\\')
+
+            if len(d) > 0:
+                if asset_path is not None:
+                    asset_path = os.path.join(asset_path, dirname)
+                else:
+                    asset_path = dirname
+                if dirname == 'assets':
+                    break
+
+        while True and asset_path is not None:
             vname = "%s%d" % (prefix, i)
 
             if vname in names:
                 #loading image
                 #todo fix assets path
-                fpath = os.path.join(os.path.dirname(var_file.path), "..",var_file.get_var(vname))
+
+
+                fpath = os.path.join(asset_path, var_file.get_var(vname))
                 fp = open(fpath, 'rb')
                 chunk = fp.read(1024)
 
