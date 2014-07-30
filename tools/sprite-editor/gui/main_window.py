@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'main_window.ui'
 #
-# Created: Tue Jul 29 20:20:42 2014
+# Created: Wed Jul 30 17:58:20 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -36,12 +36,12 @@ class Ui_MainWindow(object):
         self.menubar.setObjectName(_fromUtf8("menubar"))
         self.menuFile = QtGui.QMenu(self.menubar)
         self.menuFile.setObjectName(_fromUtf8("menuFile"))
+        self.menuNew = QtGui.QMenu(self.menuFile)
+        self.menuNew.setObjectName(_fromUtf8("menuNew"))
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtGui.QStatusBar(MainWindow)
         self.statusbar.setObjectName(_fromUtf8("statusbar"))
         MainWindow.setStatusBar(self.statusbar)
-        self.actionNew_Sprite = QtGui.QAction(MainWindow)
-        self.actionNew_Sprite.setObjectName(_fromUtf8("actionNew_Sprite"))
         self.actionOpen = QtGui.QAction(MainWindow)
         self.actionOpen.setObjectName(_fromUtf8("actionOpen"))
         self.actionQuit = QtGui.QAction(MainWindow)
@@ -58,7 +58,13 @@ class Ui_MainWindow(object):
         self.actionClose = QtGui.QAction(MainWindow)
         self.actionClose.setEnabled(False)
         self.actionClose.setObjectName(_fromUtf8("actionClose"))
-        self.menuFile.addAction(self.actionNew_Sprite)
+        self.actionSprite = QtGui.QAction(MainWindow)
+        self.actionSprite.setObjectName(_fromUtf8("actionSprite"))
+        self.actionDirection_Sprite = QtGui.QAction(MainWindow)
+        self.actionDirection_Sprite.setObjectName(_fromUtf8("actionDirection_Sprite"))
+        self.menuNew.addAction(self.actionSprite)
+        self.menuNew.addAction(self.actionDirection_Sprite)
+        self.menuFile.addAction(self.menuNew.menuAction())
         self.menuFile.addAction(self.actionOpen)
         self.menuFile.addAction(self.actionSave)
         self.menuFile.addAction(self.actionSave_as)
@@ -74,11 +80,13 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(_translate("MainWindow", "StiGame::Sprite Editor", None))
         self.menuFile.setTitle(_translate("MainWindow", "File", None))
-        self.actionNew_Sprite.setText(_translate("MainWindow", "New Sprite", None))
+        self.menuNew.setTitle(_translate("MainWindow", "New...", None))
         self.actionOpen.setText(_translate("MainWindow", "Open...", None))
         self.actionQuit.setText(_translate("MainWindow", "Quit", None))
         self.actionSave.setText(_translate("MainWindow", "Save", None))
         self.actionSave_as.setText(_translate("MainWindow", "Save as", None))
         self.actionExport.setText(_translate("MainWindow", "Export", None))
         self.actionClose.setText(_translate("MainWindow", "Close", None))
+        self.actionSprite.setText(_translate("MainWindow", "Sprite", None))
+        self.actionDirection_Sprite.setText(_translate("MainWindow", "Direction Sprite", None))
 

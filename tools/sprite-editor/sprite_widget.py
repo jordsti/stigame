@@ -52,10 +52,12 @@ class sprite_widget(QtGui.QScrollArea, gui.Ui_SpriteWidget):
 
         if os.path.exists(filepath):
             fp = open(filepath, 'rb')
-            data = fp.read(1024)
+            chunk = fp.read(1024)
+            data = chunk
 
-            while len(data) == 1024:
-                data += fp.read(1024)
+            while len(chunk) == 1024:
+                chunk = fp.read(1024)
+                data += chunk
 
             fp.close()
 
@@ -176,6 +178,8 @@ class sprite_widget(QtGui.QScrollArea, gui.Ui_SpriteWidget):
         self.btn_add_frame.clicked.connect(self.add_frame)
         self.le_height.textChanged.connect(self.dimension_changed)
         self.le_width.textChanged.connect(self.dimension_changed)
+
+        self.gb_preview.setLayout(self.layout_preview)
 
     def change_fps(self, value):
         self.preview_fps = int(str(value))

@@ -22,6 +22,8 @@ class direction_sprite_widget(QtGui.QWidget, gui.Ui_direction_sprite_widget):
 
 
     def __init__widget(self):
+        self.setLayout(self.layout_main)
+        self.gb_preview.setLayout(self.layout_preview)
         self.le_width.setText(str(self.sprite.width))
         self.le_height.setText(str(self.sprite.width))
         self.le_name.setText(self.sprite.name)
@@ -57,6 +59,11 @@ class direction_sprite_widget(QtGui.QWidget, gui.Ui_direction_sprite_widget):
 
         self.btn_add_frame.clicked.connect(self.add_frame)
         self.le_name.textChanged.connect(self.sprite_name_changed)
+
+    def delete_frame(self, fwidget):
+        direction = direction_sprite.get_direction(self.cb_direction.currentText())
+        self.sprite.frames[direction].pop(fwidget.frame_id)
+        self.__fill_frames()
 
     def sprite_name_changed(self):
 
@@ -158,6 +165,7 @@ class direction_sprite_widget(QtGui.QWidget, gui.Ui_direction_sprite_widget):
             fw = frame_widget.frame_widget(i, f.img_data)
             fw.move_down = self.move_down_frame
             fw.move_up = self.move_up_frame
+            fw.delete_frame = self.delete_frame
             #todo handle delete
             self.frames_widget.append(fw)
             self.layout_frames.addWidget(fw)

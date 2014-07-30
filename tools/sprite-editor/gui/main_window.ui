@@ -33,7 +33,14 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionNew_Sprite"/>
+    <widget class="QMenu" name="menuNew">
+     <property name="title">
+      <string>New...</string>
+     </property>
+     <addaction name="actionSprite"/>
+     <addaction name="actionDirection_Sprite"/>
+    </widget>
+    <addaction name="menuNew"/>
     <addaction name="actionOpen"/>
     <addaction name="actionSave"/>
     <addaction name="actionSave_as"/>
@@ -45,11 +52,6 @@
    <addaction name="menuFile"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionNew_Sprite">
-   <property name="text">
-    <string>New Sprite</string>
-   </property>
-  </action>
   <action name="actionOpen">
    <property name="text">
     <string>Open...</string>
@@ -90,6 +92,16 @@
    </property>
    <property name="text">
     <string>Close</string>
+   </property>
+  </action>
+  <action name="actionSprite">
+   <property name="text">
+    <string>Sprite</string>
+   </property>
+  </action>
+  <action name="actionDirection_Sprite">
+   <property name="text">
+    <string>Direction Sprite</string>
    </property>
   </action>
  </widget>

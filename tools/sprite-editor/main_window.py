@@ -7,6 +7,8 @@ import direction_sprite
 import direction_sprite_widget
 import sprite_widget
 import var_file
+import resource_file
+import resource_file_widget
 
 class main_window(QtGui.QMainWindow, gui.Ui_MainWindow):
 
@@ -21,8 +23,9 @@ class main_window(QtGui.QMainWindow, gui.Ui_MainWindow):
 
     def __assign_actions(self):
         self.actionQuit.triggered.connect(self.close)
-        self.actionNew_Sprite.triggered.connect(self.new_sprite)
-        self.actionOpen.triggered.connect(self.open_sprite)
+        self.actionSprite.triggered.connect(self.new_sprite)
+        self.actionDirection_Sprite.triggered.connect(self.new_dsprite)
+        self.actionOpen.triggered.connect(self.open_file)
         self.actionSave_as.triggered.connect(self.save_as)
         self.actionSave.triggered.connect(self.save)
         self.actionClose.triggered.connect(self.close_tab)
@@ -65,17 +68,24 @@ class main_window(QtGui.QMainWindow, gui.Ui_MainWindow):
         spr.name = "Unnamed"
         self.add_tab_sprite(spr)
 
+    def new_dsprite(self):
+        dspr = direction_sprite.direction_sprite()
+        dspr.name = "Unnamed"
+        self.add_tab_dsprite(dspr)
+
     def close_tab(self):
         cur = self.tw_sprites.currentIndex()
         tab = self.tw_sprites.widget(cur)
         if tab.closing():
-            self.tabs.remove(self.tw_sprites.pop(cur))
+
+            self.tw_sprites.removeTab(cur)
+            self.tabs.remove(tab)
 
             self.refresh_file_menu()
         #todo save handling..
 
-    def open_sprite(self):
-        filepath = str(QtGui.QFileDialog.getOpenFileName(self, "Open a sprite"))
+    def open_file(self):
+        filepath = str(QtGui.QFileDialog.getOpenFileName(self, "Open a file", QtCore.QDir.homePath() ,"Sprite File (*.bspr);;Direction Sprite File (*.bdspr);;Resource File (*.res)"))
         if os.path.exists(filepath):
             if filepath.endswith(sprite.sprite.FileExtension):
                 spr = sprite.sprite(filepath)
@@ -87,6 +97,10 @@ class main_window(QtGui.QMainWindow, gui.Ui_MainWindow):
                 spr.from_var_file(vf)
                 self.add_tab_sprite(spr)
 
+            elif filepath.endswith(resource_file.resource_file.FileExtension):
+                rf = resource_file.resource_file(filepath)
+                self.add_tab_resfile(rf)
+
             elif filepath.endswith(direction_sprite.direction_sprite.FileExtension):
                 dspr = direction_sprite.direction_sprite(filepath)
                 self.add_tab_dsprite(dspr)
@@ -96,6 +110,18 @@ class main_window(QtGui.QMainWindow, gui.Ui_MainWindow):
     def name_changed(self, new_name):
         cur = self.tw_sprites.currentIndex()
         self.tw_sprites.setTabText(cur, new_name)
+
+    def add_tab_resfile(self, res_file):
+        tab = resource_file_widget.resource_file_widget(res_file)
+        if res_file.path is not None:
+            tab_name = os.path.basename(res_file.path)
+        else:
+            tab_name = 'Unnamed'
+
+        self.tw_sprites.addTab(tab, tab_name)
+        self.tabs.append(tab)
+
+        self.refresh_file_menu()
 
 
     def add_tab_dsprite(self, dspr):

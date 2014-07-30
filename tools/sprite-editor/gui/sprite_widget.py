@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'sprite_widget.ui'
 #
-# Created: Tue Jul 29 20:32:22 2014
+# Created: Wed Jul 30 17:56:26 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -67,18 +67,26 @@ class Ui_SpriteWidget(object):
         self.le_height.setObjectName(_fromUtf8("le_height"))
         self.formLayout.setWidget(2, QtGui.QFormLayout.FieldRole, self.le_height)
         self.layout_sprite_header.addWidget(self.gb_sprite)
-        self.gp_preview = QtGui.QGroupBox(self.verticalLayoutWidget)
-        self.gp_preview.setMinimumSize(QtCore.QSize(100, 0))
-        self.gp_preview.setObjectName(_fromUtf8("gp_preview"))
-        self.lbl_preview = QtGui.QLabel(self.gp_preview)
-        self.lbl_preview.setGeometry(QtCore.QRect(20, 20, 31, 31))
+        self.gb_preview = QtGui.QGroupBox(self.verticalLayoutWidget)
+        self.gb_preview.setMinimumSize(QtCore.QSize(100, 0))
+        self.gb_preview.setObjectName(_fromUtf8("gb_preview"))
+        self.horizontalLayoutWidget = QtGui.QWidget(self.gb_preview)
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(0, 10, 141, 101))
+        self.horizontalLayoutWidget.setObjectName(_fromUtf8("horizontalLayoutWidget"))
+        self.layout_preview = QtGui.QHBoxLayout(self.horizontalLayoutWidget)
+        self.layout_preview.setMargin(0)
+        self.layout_preview.setObjectName(_fromUtf8("layout_preview"))
+        self.lbl_preview = QtGui.QLabel(self.horizontalLayoutWidget)
         self.lbl_preview.setObjectName(_fromUtf8("lbl_preview"))
-        self.sp_fps = QtGui.QSpinBox(self.gp_preview)
-        self.sp_fps.setGeometry(QtCore.QRect(80, 20, 41, 22))
+        self.layout_preview.addWidget(self.lbl_preview)
+        self.sp_fps = QtGui.QSpinBox(self.horizontalLayoutWidget)
+        self.sp_fps.setMinimumSize(QtCore.QSize(40, 20))
+        self.sp_fps.setMaximumSize(QtCore.QSize(40, 20))
         self.sp_fps.setMinimum(15)
         self.sp_fps.setMaximum(150)
         self.sp_fps.setObjectName(_fromUtf8("sp_fps"))
-        self.layout_sprite_header.addWidget(self.gp_preview)
+        self.layout_preview.addWidget(self.sp_fps)
+        self.layout_sprite_header.addWidget(self.gb_preview)
         self.btn_add_frame = QtGui.QPushButton(self.verticalLayoutWidget)
         self.btn_add_frame.setObjectName(_fromUtf8("btn_add_frame"))
         self.layout_sprite_header.addWidget(self.btn_add_frame)
@@ -107,7 +115,7 @@ class Ui_SpriteWidget(object):
         self.le_width.setText(_translate("SpriteWidget", "0", None))
         self.lbl_height.setText(_translate("SpriteWidget", "Height :", None))
         self.le_height.setText(_translate("SpriteWidget", "0", None))
-        self.gp_preview.setTitle(_translate("SpriteWidget", "Preview", None))
+        self.gb_preview.setTitle(_translate("SpriteWidget", "Preview", None))
         self.lbl_preview.setText(_translate("SpriteWidget", "P", None))
         self.btn_add_frame.setText(_translate("SpriteWidget", "Add a frame...", None))
         self.lbl_frames.setText(_translate("SpriteWidget", "Frame(s)", None))

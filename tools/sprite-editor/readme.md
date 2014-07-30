@@ -11,6 +11,8 @@ This is only supporting PNG image at the moment.
  
  - Direction VarFile support
  
- - File filter for open and save dialog
+ - File filter for ~~open~~ and save dialog
  
+ - Resource file support
  
+ - File superclass ?
