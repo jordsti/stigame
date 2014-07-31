@@ -31,6 +31,9 @@ At the moment, these features are already implemented into StiGame.
   - General Sprite
   - Sprite Library for texture management
   
+- Tool(s)
+  - [Sprite Editor](tree/master/tools/sprite-editor)
+
 ### Purpose
 This library will be used for StiCode game development and this library will be development for the need of StiCode Games.
 But we will try to keep the library "general", so no game specific thing will be implemented in this library.
