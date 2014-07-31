@@ -60,6 +60,8 @@ public:
 
 	virtual void onKeyUp(SDL_KeyboardEvent *evt);
 
+	virtual void setRectangle(int m_x, int m_y, int m_width, int m_height);
+
     void setWidth(int m_width);
 
     void setHeight(int m_height);
@@ -67,6 +69,10 @@ public:
     void setDimension(int m_width, int m_height);
 
     bool isHandleKey(void);
+
+    virtual bool isFocus(void);
+
+    virtual void setFocus(bool m_focus);
 
 protected:
 	/// \brief Name of the item
@@ -83,6 +89,8 @@ protected:
 	bool handleKey;
 
     virtual void resized(void);
+
+    bool focus;
 private:
 	/// \brief initialization
 	void init(void);

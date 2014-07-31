@@ -152,9 +152,8 @@ namespace StiGame {
     Rectangle *Surface::getRectangle(int m_x, int m_y)
     {
         Rectangle *rect = new Rectangle();
-        rect->set(m_x, m_y);
-        rect->setWidth(width);
-        rect->setHeight(height);
+        rect->setPoint(m_x, m_y);
+        rect->setDimension(width, height);
         return rect;
     }
 

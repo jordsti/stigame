@@ -34,12 +34,23 @@ void Item::init(void)
 {
 	mouseOver = false;
 	handleKey = false;
+	focus = false;
 	x = 0;
 	y = 0;
 	width = 0;
 	height = 0;
 	background = style->getBackground();
 	foreground = style->getForeground();
+}
+
+bool Item::isFocus(void)
+{
+    return focus;
+}
+
+void Item::setFocus(bool m_focus)
+{
+    focus = m_focus;
 }
 
 void Item::onClick(Point *relp)
@@ -112,6 +123,12 @@ void Item::setHeight(int m_height)
 void Item::resized(void)
 {
     //to override
+}
+
+void Item::setRectangle(int m_x, int m_y, int m_width, int m_height)
+{
+    setPoint(m_x, m_y);
+    setDimension(m_width, m_height); //for resized call
 }
 
 void Item::setDimension(int m_width, int m_height)

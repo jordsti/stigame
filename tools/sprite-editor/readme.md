@@ -14,5 +14,10 @@ This is only supporting PNG image at the moment.
  - File filter for ~~open~~ and save dialog
  
  - Resource file support
+    - New resource
+    - delete resource
+    - Resource rename
+    - save support
  
  - File superclass ?
+ 

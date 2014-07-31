@@ -25,6 +25,7 @@ class main_window(QtGui.QMainWindow, gui.Ui_MainWindow):
         self.actionQuit.triggered.connect(self.close)
         self.actionSprite.triggered.connect(self.new_sprite)
         self.actionDirection_Sprite.triggered.connect(self.new_dsprite)
+        self.actionResource_File.triggered.connect(self.new_res_file)
         self.actionOpen.triggered.connect(self.open_file)
         self.actionSave_as.triggered.connect(self.save_as)
         self.actionSave.triggered.connect(self.save)
@@ -73,6 +74,10 @@ class main_window(QtGui.QMainWindow, gui.Ui_MainWindow):
         dspr.name = "Unnamed"
         self.add_tab_dsprite(dspr)
 
+    def new_res_file(self):
+        res_file = resource_file.resource_file()
+        self.add_tab_resfile(res_file)
+
     def close_tab(self):
         cur = self.tw_sprites.currentIndex()
         tab = self.tw_sprites.widget(cur)
@@ -85,7 +90,7 @@ class main_window(QtGui.QMainWindow, gui.Ui_MainWindow):
         #todo save handling..
 
     def open_file(self):
-        filepath = str(QtGui.QFileDialog.getOpenFileName(self, "Open a file", QtCore.QDir.homePath() ,"Sprite File (*.bspr);;Direction Sprite File (*.bdspr);;Resource File (*.res)"))
+        filepath = str(QtGui.QFileDialog.getOpenFileName(self, "Open a file", QtCore.QDir.homePath() ,"Sprite File (*.bspr);;Direction Sprite File (*.bdspr);;Resource File (*.res);;All Files (*.*)"))
         if os.path.exists(filepath):
             if filepath.endswith(sprite.sprite.FileExtension):
                 spr = sprite.sprite(filepath)

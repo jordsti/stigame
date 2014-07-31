@@ -66,7 +66,7 @@ void GuiState::onPaint(SDL_Renderer *renderer)
 	    if( (*lit)->contains(mouse_x, mouse_y) )
         {
             //assigning value to the relative point
-            relp->set( mouse_x - (*lit)->getX(),
+            relp->setPoint( mouse_x - (*lit)->getX(),
                        mouse_y - (*lit)->getY() );
             (*lit)->setMouseOver(true);
             (*lit)->onMouseMotion(relp);
@@ -144,6 +144,10 @@ void GuiState::onEvent(SDL_Event* evt)
 
 				delete relp;
 			}
+			else
+            {
+                (*lit)->setFocus(false);
+            }
 		}
 	}
 	else if(evt->type == SDL_TEXTINPUT)

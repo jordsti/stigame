@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'main_window.ui'
 #
-# Created: Wed Jul 30 17:58:20 2014
+# Created: Wed Jul 30 21:00:01 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -62,8 +62,11 @@ class Ui_MainWindow(object):
         self.actionSprite.setObjectName(_fromUtf8("actionSprite"))
         self.actionDirection_Sprite = QtGui.QAction(MainWindow)
         self.actionDirection_Sprite.setObjectName(_fromUtf8("actionDirection_Sprite"))
+        self.actionResource_File = QtGui.QAction(MainWindow)
+        self.actionResource_File.setObjectName(_fromUtf8("actionResource_File"))
         self.menuNew.addAction(self.actionSprite)
         self.menuNew.addAction(self.actionDirection_Sprite)
+        self.menuNew.addAction(self.actionResource_File)
         self.menuFile.addAction(self.menuNew.menuAction())
         self.menuFile.addAction(self.actionOpen)
         self.menuFile.addAction(self.actionSave)
@@ -89,4 +92,5 @@ class Ui_MainWindow(object):
         self.actionClose.setText(_translate("MainWindow", "Close", None))
         self.actionSprite.setText(_translate("MainWindow", "Sprite", None))
         self.actionDirection_Sprite.setText(_translate("MainWindow", "Direction Sprite", None))
+        self.actionResource_File.setText(_translate("MainWindow", "Resource File", None))
 

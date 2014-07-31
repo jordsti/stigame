@@ -49,15 +49,7 @@ void TextBox::setText(std::string m_text)
 
 void TextBox::onClick(Point *relpt)
 {
-    if(!focus)
-    {
-        setFocus(true);
-    }
-}
-
-bool TextBox::isFocus(void)
-{
-	return focus;
+    setFocus(!focus);
 }
 
 void TextBox::setFocus(bool m_focus)
@@ -80,6 +72,7 @@ void TextBox::onTextInput(char *m_text)
 {
     text += m_text;
     renderString();
+    //debug
     std::cout << m_text << std::endl;
     std::cout << text << std::endl;
 }
@@ -96,6 +89,13 @@ void TextBox::onKeyUp(SDL_KeyboardEvent *evt)
         else if(text.length() == 1)
         {
             text = "";
+        }
+    }
+    else if (evt->keysym.sym == SDLK_RETURN)
+    {
+        if(focus)
+        {
+            setFocus(false);
         }
     }
 }

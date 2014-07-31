@@ -20,6 +20,12 @@ MPoint::MPoint(PointStruct *pt) :
 
 }
 
+void MPoint::setPoint(int m_x, int m_y)
+{
+    x = m_x;
+    y = m_y;
+}
+
 void MPoint::setX(int m_x)
 {
     x = m_x;
@@ -27,12 +33,6 @@ void MPoint::setX(int m_x)
 
 void MPoint::setY(int m_y)
 {
-    y = m_y;
-}
-
-void MPoint::set(int m_x, int m_y)
-{
-    x = m_x;
     y = m_y;
 }
 

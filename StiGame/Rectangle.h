@@ -70,13 +70,15 @@ public:
 	/// \brief Get Right Bottom point
 	/// \return Point
 	Point *getRightBottom(void);
-	
+
 	virtual bool equals(int r_x, int r_y, int r_w, int r_h);
 	virtual bool equals(Rectangle *rect);
 	virtual bool equals(SDL_Rect *rect);
-	
+
+	virtual void setRectangle(int m_x, int m_y, int m_width, int m_height);
+
 	//Utils
-	
+
 	static void Copy(SDL_Rect *src, SDL_Rect *copy);
 	static void Copy(Rectangle *src, Rectangle *copy);
 };

@@ -58,6 +58,9 @@ Linux will be supported in an early future
 ### TO DO
 
 - Gui Test Project, to test all Gui Element
+	- Table
+	- Progress Bar test
+	- TextBox working, but need to handle unicode or transfert char into ascii
 
 - Viewport
   -	Save resolution information, to persist configuration
@@ -65,6 +68,9 @@ Linux will be supported in an early future
 - Controller Support
   - Map Controller and handle event
   - Persitant configuration of the default controller
+  
+ - SPhysic recode
+  
 
 and things that don't come to my mind at the moment...
 

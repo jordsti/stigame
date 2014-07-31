@@ -17,12 +17,12 @@ SPhysic::SPhysic()
 
 void SPhysic::setEndPoint(int m_x, int m_y)
 {
-    endPoint.set(m_x, m_y);
+    endPoint.setPoint(m_x, m_y);
 }
 
 void SPhysic::setStartPoint(int m_x, int m_y)
 {
-    startPoint.set(m_x, m_y);
+    startPoint.setPoint(m_x, m_y);
 }
 
 Point *SPhysic::getEndPoint(void)

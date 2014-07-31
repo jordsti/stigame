@@ -39,6 +39,7 @@
      </property>
      <addaction name="actionSprite"/>
      <addaction name="actionDirection_Sprite"/>
+     <addaction name="actionResource_File"/>
     </widget>
     <addaction name="menuNew"/>
     <addaction name="actionOpen"/>
@@ -102,6 +103,11 @@
   <action name="actionDirection_Sprite">
    <property name="text">
     <string>Direction Sprite</string>
+   </property>
+  </action>
+  <action name="actionResource_File">
+   <property name="text">
+    <string>Resource File</string>
    </property>
   </action>
  </widget>

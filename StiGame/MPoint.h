@@ -24,15 +24,18 @@ class MPoint :
         /// \brief Set the position
         /// \param m_x x position (px)
         /// \param m_y y position (px)
-        void set(int m_x,int m_y);
+        // this method will probably be deprecated
+        //void set(int m_x,int m_y);
+
+        virtual void setPoint(int m_x, int m_y);
 
         /// \brief Set the x position
         /// \param m_x x position (px)
-        void setX(int m_x);
+        virtual void setX(int m_x);
 
         /// \brief Set the y position
         /// \param m_y y position (px)
-        void setY(int m_y);
+        virtual void setY(int m_y);
     protected:
     private:
 };

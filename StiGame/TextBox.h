@@ -3,7 +3,9 @@
 
 #include "HighlightItem.h"
 
-//BIG WIP
+//todo
+//-cursor emplacement
+//
 namespace StiGame
 {
 
@@ -27,7 +29,6 @@ public:
 
 	void onClick(Point *relpt);
 
-	bool isFocus(void);
 	void setFocus(bool m_focus);
 
 	void onTextInput(char *m_text);
@@ -39,7 +40,7 @@ protected:
 	Surface *stringBuffer;
 	std::string text;
 	Font *font;
-	bool focus;
+
 private:
     unsigned int _tick;
 };

@@ -59,7 +59,7 @@ SDL_Rect *Rectangle::getSDLRect(void)
 
 bool Rectangle::equals(int r_x, int r_y, int r_w, int r_h)
 {
-	return ( 
+	return (
 		x == r_x && y == r_y &&
 		width == r_w && height == r_h
 	);
@@ -130,6 +130,15 @@ void Rectangle::Copy(Rectangle *src, Rectangle *copy)
 	copy->setWidth(src->getWidth());
 	copy->setHeight(src->getHeight());
 }
+
+void Rectangle::setRectangle(int m_x, int m_y, int m_width, int m_height)
+{
+    x = m_x;
+    y = m_y;
+    width = width;
+    height = height;
+}
+
 
 Rectangle::~Rectangle(void)
 {

@@ -38,14 +38,14 @@ void TestGui::initComponents()
     cb1 = CheckBox();
     cb1.setCaption("Check box 1");
 
-    cb1.set(10, 500);
+    cb1.setPoint(10, 500);
 
     //tab init
 
     tabPanel = TabPanel();
     tabPanel.setWidth(300);
     tabPanel.setHeight(400);
-    tabPanel.set(210, 50);
+    tabPanel.setPoint(210, 50);
 
     tab1 = TabItem("Tab 1");
 
@@ -62,7 +62,7 @@ void TestGui::initComponents()
 
     tab1Btn = Button();
     tab1Btn.setCaption("Test Button");
-    tab1Btn.set(0, 20);
+    tab1Btn.setPoint(0, 20);
 
     tab1Btn.subscribe(this);
 
@@ -70,8 +70,7 @@ void TestGui::initComponents()
     tab1.add(&tab1Btn);
 
     tbName = TextBox();
-    tbName.setX(10);
-    tbName.setY(200);
+    tbName.setPoint(10, 200);
     tbName.setDimension(120, 20);
 
     add(&guiList);

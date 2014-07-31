@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'resource_file_widget.ui'
 #
-# Created: Wed Jul 30 18:49:15 2014
+# Created: Wed Jul 30 19:41:44 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -31,13 +31,18 @@ class Ui_resource_file_widget(object):
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(30, 20, 491, 351))
         self.verticalLayoutWidget.setObjectName(_fromUtf8("verticalLayoutWidget"))
         self.layout_main = QtGui.QVBoxLayout(self.verticalLayoutWidget)
-        self.layout_main.setMargin(0)
+        self.layout_main.setMargin(5)
         self.layout_main.setObjectName(_fromUtf8("layout_main"))
+        self.btn_add_resource = QtGui.QPushButton(self.verticalLayoutWidget)
+        self.btn_add_resource.setMinimumSize(QtCore.QSize(80, 20))
+        self.btn_add_resource.setMaximumSize(QtCore.QSize(160, 25))
+        self.btn_add_resource.setObjectName(_fromUtf8("btn_add_resource"))
+        self.layout_main.addWidget(self.btn_add_resource)
         self.sa_resources = QtGui.QScrollArea(self.verticalLayoutWidget)
         self.sa_resources.setWidgetResizable(True)
         self.sa_resources.setObjectName(_fromUtf8("sa_resources"))
         self.scrollAreaWidgetContents = QtGui.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 487, 347))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 479, 310))
         self.scrollAreaWidgetContents.setObjectName(_fromUtf8("scrollAreaWidgetContents"))
         self.sa_resources.setWidget(self.scrollAreaWidgetContents)
         self.layout_main.addWidget(self.sa_resources)
@@ -47,4 +52,5 @@ class Ui_resource_file_widget(object):
 
     def retranslateUi(self, resource_file_widget):
         resource_file_widget.setWindowTitle(_translate("resource_file_widget", "Form", None))
+        self.btn_add_resource.setText(_translate("resource_file_widget", "New resource...", None))
 
