@@ -538,3 +538,15 @@ void Viewport::maximize(void)
 
 
 }
+
+
+#ifdef C_WRAPPER
+
+extern "C" {
+    void init_sdl()
+    {
+        SDL_Init(SDL_INIT_VIDEO);
+    }
+}
+
+#endif // C_WRAPPER

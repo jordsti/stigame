@@ -45,6 +45,55 @@ void GuiState::onStart(void)
 	running = true;
 }
 
+Surface* GuiState::render()
+{
+    //need to rework all this, maybe GUI will be generated with Surface and drawing with Texture..
+    if(sBuffer->getHeight() != width && sBuffer->getWidth() != height)
+    {
+        delete sBuffer;
+        sBuffer = new Surface(width, height);
+    }
+
+	//rendering items
+	sBuffer->fill(style->getBackground());
+
+	std::list<Item*>::iterator lit (items.begin()), lend(items.end());
+
+    MPoint *relp = new MPoint();
+
+	for(;lit!=lend;++lit)
+	{
+	    if( (*lit)->contains(mouse_x, mouse_y) )
+        {
+            //assigning value to the relative point
+            relp->setPoint( mouse_x - (*lit)->getX(),
+                       mouse_y - (*lit)->getY() );
+            (*lit)->setMouseOver(true);
+            (*lit)->onMouseMotion(relp);
+        }
+        else
+        {
+            (*lit)->setMouseOver(false);
+        }
+
+		Surface *igfx = (*lit)->render();
+
+		SDL_Rect *src = igfx->getRect();
+		SDL_Rect *dst = igfx->getRect((*lit)->getX(), (*lit)->getY());
+
+		sBuffer->blit(igfx, src, dst);
+
+		delete igfx;
+		delete src;
+		delete dst;
+	}
+
+	delete relp;
+
+    return sBuffer;
+
+}
+
 void GuiState::onPaint(SDL_Renderer *renderer)
 {
     //need to rework all this, maybe GUI will be generated with Surface and drawing with Texture..
@@ -189,3 +238,31 @@ void GuiState::unload(void)
 }
 
 }
+
+#ifdef C_WRAPPER
+
+extern "C" {
+    StiGame::Gui::GuiState* GuiState_new()
+    {
+        return new StiGame::Gui::GuiState;
+    }
+
+    void GuiState_add(StiGame::Gui::GuiState *state, StiGame::Gui::Item *item)
+    {
+        state->add(item);
+    }
+
+    void GuiState_onResize(StiGame::Gui::GuiState *state, int width, int height)
+    {
+        state->onResize(width, height);
+    }
+
+    StiGame::Surface* GuiState_render(StiGame::Gui::GuiState *state)
+    {
+        StiGame::Surface *surface = state->render();
+        return surface;
+    }
+
+}
+
+#endif

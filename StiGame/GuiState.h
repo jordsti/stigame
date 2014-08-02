@@ -44,6 +44,9 @@ public:
     /// \brief Get mouse y position
 	/// \return mouse y (px)
 	int getMouseY(void);
+
+	StiGame::Surface* render(void);
+
 protected:
 	/// \brief GuiItem list
 	std::list<Item*> items;

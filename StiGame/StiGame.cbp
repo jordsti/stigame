@@ -44,6 +44,7 @@
 		<Compiler>
 			<Add option="-std=c++11" />
 			<Add option="-Wall" />
+			<Add option="-DC_WRAPPER" />
 			<Add directory="../include/SDL2" />
 		</Compiler>
 		<Linker>

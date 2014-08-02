@@ -91,3 +91,15 @@ void Font::setFontStyle(int style)
 }
 
 }
+
+#ifdef C_WRAPPER
+
+extern "C"
+{
+    int init_ttf()
+    {
+        return TTF_Init();
+    }
+}
+
+#endif // C_WRAPPER

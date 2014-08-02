@@ -356,3 +356,37 @@ namespace StiGame {
 	}
 
 }
+
+#ifdef C_WRAPPER
+
+extern "C"
+{
+    StiGame::Surface* Surface_new()
+    {
+        return new StiGame::Surface();
+    }
+
+    void Surface_saveBmp(StiGame::Surface *surface, char* dest, int length)
+    {
+        std::string dest_string (dest, length);
+
+        surface->saveBmp(dest_string);
+    }
+
+    int Surface_getWidth(StiGame::Surface *surface)
+    {
+        return surface->getWidth();
+    }
+
+    int Surface_getHeight(StiGame::Surface *surface)
+    {
+        return surface->getHeight();
+    }
+
+    const unsigned char* Surface_getPixels(StiGame::Surface *surface)
+    {
+        return static_cast<unsigned char*>(surface->getSDLSurface()->pixels);
+    }
+}
+
+#endif // C_WRAPPER

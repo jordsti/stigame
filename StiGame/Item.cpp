@@ -156,3 +156,46 @@ void Item::onTextInput(char * text)
 }
 
 }
+
+#ifdef C_WRAPPER
+
+extern "C"
+{
+    int Item_getWidth(StiGame::Gui::Item *item)
+    {
+        return item->getWidth();
+    }
+
+    int Item_getHeight(StiGame::Gui::Item *item)
+    {
+        return item->getHeight();
+    }
+
+    void Item_setDimension(StiGame::Gui::Item *item, int width, int height)
+    {
+        item->setDimension(width, height);
+    }
+
+    int Item_getX(StiGame::Gui::Item *item)
+    {
+        return item->getX();
+    }
+
+    int Item_getY(StiGame::Gui::Item *item)
+    {
+        return item->getY();
+    }
+
+    void Item_setPoint(StiGame::Gui::Item *item, int x, int y)
+    {
+        item->setPoint(x, y);
+    }
+
+    StiGame::Surface* Item_render(StiGame::Gui::Item *item)
+    {
+        return item->render();
+    }
+
+#endif
+
+}

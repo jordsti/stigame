@@ -157,3 +157,27 @@ Surface* Label::render(void)
 }
 
 }
+
+#ifdef C_WRAPPER
+
+extern "C" {
+    StiGame::Gui::Label* Label_new()
+    {
+        return new StiGame::Gui::Label();
+    }
+
+    void Label_setCaption(StiGame::Gui::Label *label, char* text)
+    {
+        std::string text_string = text;
+
+        label->setCaption(text_string);
+    }
+
+    const char* Label_getCaption(StiGame::Gui::Label *label)
+    {
+        return label->getCaption().c_str();
+    }
+
+}
+
+#endif // C_WRAPPER

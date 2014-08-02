@@ -142,3 +142,24 @@ Button::~Button(void)
 }
 
 }
+
+
+#ifdef C_WRAPPER
+extern "C"
+{
+    StiGame::Gui::Button* Button_new()
+    {
+        return new StiGame::Gui::Button();
+    }
+
+    void Button_setCaption(StiGame::Gui::Button *button, char *text)
+    {
+        button->setCaption(text);
+    }
+
+    char* Button_getCaption(StiGame::Gui::Button *button)
+    {
+        return button->getCaption();
+    }
+}
+#endif // C_WRAPPER

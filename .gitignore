@@ -21,6 +21,7 @@ tools/*/.idea/*.xml
 tools/*/.idea/scopes/*
 tools/*/.idea/inspectionProfiles/*
 
+
 #ide files
 *.depend
 *.layout
