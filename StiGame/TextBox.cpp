@@ -170,3 +170,21 @@ void TextBox::renderString(void)
 }
 
 }
+
+#ifdef C_WRAPPER
+
+extern "C" {
+
+    StiGame::Gui::TextBox* TextBox_new()
+    {
+        return new StiGame::Gui::TextBox();
+    }
+
+    void TextBox_setText(StiGame::Gui::TextBox *textBox, char *text)
+    {
+        textBox->setText(text);
+    }
+
+}
+
+#endif // C_WRAPPER

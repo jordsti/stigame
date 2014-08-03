@@ -33,6 +33,7 @@ At the moment, these features are already implemented into StiGame.
   
 - Tool(s)
   - [Sprite Editor](tools/sprite-editor)
+  - [Gui Editor](tools/gui-editor)
 
 ### Purpose
 This library will be used for StiCode game development and this library will be development for the need of StiCode Games.
@@ -63,7 +64,8 @@ Linux will be supported in an early future
 - Gui Test Project, to test all Gui Element
 	- Table
 	- Progress Bar test
-	- TextBox working, but need to handle unicode or transfert char into ascii
+	- TextBox working, but need to handle unicode or transfert char into ascii.
+	- Need to add a BaseClass for Font Rendering Gui Item, to generalize setCaption and getCaption method.
 
 - Viewport
   -	Save resolution information, to persist configuration

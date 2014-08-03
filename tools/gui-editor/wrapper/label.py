@@ -9,7 +9,7 @@ class label(item.item):
         self.obj = self.lib.Label_new()
 
     def set_caption(self, text):
-        self.lib.Label_setCaption(self.obj, text)
+        self.lib.Label_setCaption(self.obj, text, len(text))
 
     def get_caption(self):
         return c_library.to_str(self.lib.Label_getCaption(self.obj))

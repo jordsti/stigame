@@ -124,3 +124,24 @@ CheckBox::~CheckBox()
 }
 
 }
+
+#ifdef C_WRAPPER
+extern "C"
+{
+    StiGame::Gui::CheckBox* CheckBox_new()
+    {
+        return new StiGame::Gui::CheckBox();
+    }
+
+    void CheckBox_setCaption(StiGame::Gui::CheckBox *checkBox, char *text)
+    {
+        checkBox->setCaption(text);
+    }
+
+    const char* CheckBox_getCaption(StiGame::Gui::CheckBox *checkBox)
+    {
+        return checkBox->getCaption().c_str();
+    }
+
+}
+#endif // C_WRAPPER

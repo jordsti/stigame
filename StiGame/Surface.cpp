@@ -383,9 +383,9 @@ extern "C"
         return surface->getHeight();
     }
 
-    const unsigned char* Surface_getPixels(StiGame::Surface *surface)
+    char* Surface_getPixels(StiGame::Surface *surface)
     {
-        return static_cast<unsigned char*>(surface->getSDLSurface()->pixels);
+        return static_cast<char*>(surface->getSDLSurface()->pixels);
     }
 }
 

@@ -168,7 +168,7 @@ extern "C" {
 
     void Label_setCaption(StiGame::Gui::Label *label, char* text)
     {
-        std::string text_string = text;
+        std::string text_string (text);
 
         label->setCaption(text_string);
     }

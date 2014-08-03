@@ -17,10 +17,12 @@ def get_lib():
         lib_stigame.init_sdl()
         lib_stigame.init_ttf()
 
+        print lib_stigame
+
     return lib_stigame
 
 def to_str(const_chars):
     return ctypes.cast(const_chars, ctypes.c_char_p).value
 
 def to_uchar_array(const_uchars):
-    return ctypes.cast(const_uchars, ctypes.c_char_p).value
+    return ctypes.cast(const_uchars, ctypes.POINTER(ctypes.c_ubyte))

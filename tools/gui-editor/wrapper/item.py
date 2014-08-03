@@ -13,6 +13,9 @@ class item(object_wrap.object_wrap):
     def set_point(self, x, y):
         self.lib.Item_setPoint(self.obj, x, y)
 
+    def set_rectangle(self, x, y , width, height):
+        self.lib.Item_setRectangle(self.obj, x, y, width, height)
+
     def get_x(self):
         return self.lib.Item_getX(self.obj)
 
@@ -29,3 +32,7 @@ class item(object_wrap.object_wrap):
         sdl_sur = self.lib.Item_render(self.obj)
         sur = surface.surface(sdl_sur)
         return sur
+
+    def get_style(self):
+        #todo style object wrapper, even mutable style
+        return self.lib.Item_getStyle(self.obj)

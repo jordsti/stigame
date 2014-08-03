@@ -4,3 +4,7 @@ from item import item
 from label import label
 from surface import surface
 from button import button
+from value_object import value_object
+from combobox import combobox
+from gui_list import gui_list
+from radiobutton import radiobutton

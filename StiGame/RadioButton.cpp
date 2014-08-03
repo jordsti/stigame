@@ -139,3 +139,25 @@ RadioButton::~RadioButton()
 }
 
 }
+
+#ifdef C_WRAPPER
+extern "C"
+{
+    StiGame::Gui::RadioButton* RadioButton_new()
+    {
+        return new StiGame::Gui::RadioButton();
+    }
+
+    void RadioButton_setCaption(StiGame::Gui::RadioButton *button, char *text)
+    {
+        button->setCaption(text);
+    }
+
+    const char* RadioButton_getCaption(StiGame::Gui::RadioButton *button)
+    {
+        return button->getCaption().c_str();
+    }
+
+
+}
+#endif // C_WRAPPER

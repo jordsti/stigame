@@ -234,3 +234,21 @@ Font* List::getFont(void)
 }
 
 }
+
+#ifdef C_WRAPPER
+
+extern "C" {
+
+    StiGame::Gui::List* List_new()
+    {
+        return new StiGame::Gui::List();
+    }
+
+    void add(StiGame::Gui::List *list, StiGame::Gui::ValueObject *vo)
+    {
+        list->add(vo);
+    }
+
+}
+
+#endif // C_WRAPPER

@@ -35,3 +35,26 @@ ValueObject::~ValueObject()
 }
 
 }
+
+#ifdef C_WRAPPER
+
+extern "C" {
+
+    StiGame::Gui::ValueObject* ValueObject_new(int id, char* text)
+    {
+
+        return new StiGame::Gui::ValueObject(id, text);
+    }
+
+    int ValueObject_getId(StiGame::Gui::ValueObject *vo)
+    {
+        return vo->getId();
+    }
+
+    const char* ValueObject_getText(StiGame::Gui::ValueObject *vo)
+    {
+        return vo->getText().c_str();
+    }
+}
+
+#endif // C_WRAPPER

@@ -337,3 +337,21 @@ ComboBox::~ComboBox()
 }
 
 }
+
+#ifdef C_WRAPPER
+
+extern "C" {
+
+    StiGame::Gui::ComboBox* ComboBox_new()
+    {
+        return new StiGame::Gui::ComboBox();
+    }
+
+    void ComboBox_add(StiGame::Gui::ComboBox *comboBox, StiGame::Gui::ValueObject *vo)
+    {
+        comboBox->add(vo);
+    }
+
+}
+
+#endif // C_WRAPPER

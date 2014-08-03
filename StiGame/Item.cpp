@@ -176,6 +176,11 @@ extern "C"
         item->setDimension(width, height);
     }
 
+    void Item_setRectangle(StiGame::Gui::Item *item, int x, int y, int width, int height)
+    {
+        item->setRectangle(x, y, width, height);
+    }
+
     int Item_getX(StiGame::Gui::Item *item)
     {
         return item->getX();
@@ -196,6 +201,11 @@ extern "C"
         return item->render();
     }
 
-#endif
+    StiGame::Gui::Style* Item_getStyle(StiGame::Gui::Item *item)
+    {
+        return item->getStyle();
+    }
 
 }
+#endif
+
