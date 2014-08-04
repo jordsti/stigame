@@ -385,6 +385,12 @@
 		<Unit filename="MPoint.h">
 			<Option virtualFolder="headers/core/" />
 		</Unit>
+		<Unit filename="MStyle.cpp">
+			<Option virtualFolder="src/gui/" />
+		</Unit>
+		<Unit filename="MStyle.h">
+			<Option virtualFolder="headers/gui/" />
+		</Unit>
 		<Unit filename="MVector2.cpp">
 			<Option virtualFolder="src/math/" />
 		</Unit>

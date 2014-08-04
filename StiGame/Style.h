@@ -11,7 +11,7 @@ namespace Gui
 /// \brief Default Color for Gui Element
 class Style
 {
-private:
+protected:
 	/// \brief Foreground Color
 	Color foreground;
 	/// \brief Background Color

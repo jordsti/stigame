@@ -41,5 +41,21 @@ class vp_widget(QtGui.QLabel):
         btn.set_point(100, 50)
         self.renderer.add_item(lab)
         self.renderer.add_item(btn)
+
+        cb = combobox()
+        cb.add(value_object(1, "Combo Box"))
+
+        cb.set_point(100, 80)
+
+        self.renderer.add_item(cb)
+
+        gl = gui_list()
+        gl.set_point(200, 20)
+        gl.set_dimension(120, 60)
+        gl.add(value_object(1, "Option 1"))
+        gl.add(value_object(2, "Option 2"))
+
+        self.renderer.add_item(gl)
+
         print "add label"
         self.renderer.force_draw()

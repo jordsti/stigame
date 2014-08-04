@@ -84,4 +84,49 @@ SDL_Color Color::getSDLColor(void)
 	return color;
 }
 
+void Color::setRGBA(Uint8 m_r, Uint8 m_g, Uint8 m_b, Uint8 m_a)
+{
+    red = m_r;
+    green = m_g;
+    blue = m_b;
+    alpha = m_a;
+    mapped = false;
 }
+
+}
+
+#ifdef C_WRAPPER
+
+extern "C"
+{
+    StiGame::Color* Color_new()
+    {
+        return new StiGame::Color();
+    }
+
+    Uint8 Color_getRed(StiGame::Color *color)
+    {
+        return color->getRed();
+    }
+    Uint8 Color_getGreen(StiGame::Color *color)
+    {
+        return color->getGreen();
+    }
+
+    Uint8 Color_getBlue(StiGame::Color *color)
+    {
+        return color->getBlue();
+    }
+
+    Uint8 Color_getAlpha(StiGame::Color *color)
+    {
+        return color->getAlpha();
+    }
+
+    void Color_setRGBA(StiGame::Color *color, Uint8 r, Uint8 g, Uint8 b, Uint8 a)
+    {
+        color->setRGBA(r, g, b, a);
+    }
+}
+
+#endif // C_WRAPPER

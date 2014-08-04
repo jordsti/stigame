@@ -100,3 +100,68 @@ Style::~Style(void)
 }
 
 }
+
+#ifdef C_WRAPPER
+extern "C"
+{
+    StiGame::Gui::Style* Style_new()
+    {
+        return new StiGame::Gui::Style();
+    }
+
+    StiGame::Color* Style_getForeground(StiGame::Gui::Style *style)
+    {
+        return style->getForeground();
+    }
+
+    StiGame::Color* Style_getBackground(StiGame::Gui::Style *style)
+    {
+        return style->getBackground();
+    }
+
+    StiGame::Color* Style_getHighlightForeground(StiGame::Gui::Style *style)
+    {
+        return style->getHighlightForeground();
+    }
+
+    StiGame::Color* Style_getHighlightBackground(StiGame::Gui::Style *style)
+    {
+        return style->getHighlightBackground();
+    }
+
+    StiGame::Surface* Style_getDropListArrow(StiGame::Gui::Style *style)
+    {
+        return style->getDropListArrow();
+    }
+
+    StiGame::Surface* Style_getUpArrow(StiGame::Gui::Style *style)
+    {
+        return style->getUpArrow();
+    }
+
+    StiGame::Surface* Style_getDownArrow(StiGame::Gui::Style *style)
+    {
+        return style->getDownArrow();
+    }
+
+    StiGame::Surface* Style_getCheckbox(StiGame::Gui::Style *style)
+    {
+        return style->getCheckbox();
+    }
+
+    StiGame::Surface* Style_getCheckboxChecked(StiGame::Gui::Style *style)
+    {
+        return style->getCheckboxChecked();
+    }
+
+    StiGame::Surface* Style_getRadio(StiGame::Gui::Style *style)
+    {
+        return style->getRadio();
+    }
+
+    StiGame::Surface* Style_getRadioChecked(StiGame::Gui::Style *style)
+    {
+        return style->getRadioChecked();
+    }
+}
+#endif // C_WRAPPER

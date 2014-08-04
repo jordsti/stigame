@@ -1,6 +1,7 @@
 __author__ = 'JordSti'
 import surface
 import object_wrap
+import style
 
 class item(object_wrap.object_wrap):
 
@@ -35,4 +36,4 @@ class item(object_wrap.object_wrap):
 
     def get_style(self):
         #todo style object wrapper, even mutable style
-        return self.lib.Item_getStyle(self.obj)
+        return style.style(self.lib.Item_getStyle(self.obj))

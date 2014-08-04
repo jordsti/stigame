@@ -244,7 +244,7 @@ extern "C" {
         return new StiGame::Gui::List();
     }
 
-    void add(StiGame::Gui::List *list, StiGame::Gui::ValueObject *vo)
+    void List_add(StiGame::Gui::List *list, StiGame::Gui::ValueObject *vo)
     {
         list->add(vo);
     }
