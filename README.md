@@ -1,6 +1,6 @@
 stigame
 =======
-StiGame is a C++ 2D game library using SDL2 in the background.
+StiGame is a C++ 2D game library using SDL2.
 You can fork this repository if you want to bootstrap your new game with this library and modify the library for the need of your game
 or you can use the pre-compiled binary and use this library for your project.
 
@@ -25,6 +25,7 @@ At the moment, these features are already implemented into StiGame.
 	- Combo Box
 	- Selection List
 	- Tab Panel
+	- Layout in the way...
 	- etc...
 - Game Sprite
   - Directional Sprite

@@ -93,3 +93,75 @@ void MStyle::setNormalFont(Font *font)
 }
 
 }
+
+#ifdef C_WRAPPER
+
+extern "C"
+{
+    StiGame::Gui::MStyle* MStyle_new()
+    {
+        return new StiGame::Gui::MStyle();
+    }
+
+    void MStyle_setForeground(StiGame::Gui::MStyle *style, StiGame::Color *color)
+    {
+        style->setForeground(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha());
+    }
+
+    void MStyle_setBackground(StiGame::Gui::MStyle *style, StiGame::Color *color)
+    {
+        style->setBackground(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha());
+    }
+
+    void MStyle_setHighlightForeground(StiGame::Gui::MStyle *style, StiGame::Color *color)
+    {
+        style->setHighlightForeground(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha());
+    }
+
+    void MStyle_setHighlightBackground(StiGame::Gui::MStyle *style, StiGame::Color *color)
+    {
+        style->setHighlightBackground(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha());
+    }
+
+    void MStyle_setDropListArrow(StiGame::Gui::MStyle *style, StiGame::Surface *surface)
+    {
+        style->setDropListArrow(surface);
+    }
+
+    void MStyle_setUpArrow(StiGame::Gui::MStyle *style, StiGame::Surface *surface)
+    {
+        style->setUpArrow(surface);
+    }
+
+    void MStyle_setDownArrow(StiGame::Gui::MStyle *style, StiGame::Surface *surface)
+    {
+        style->setDownArrow(surface);
+    }
+
+    void MStyle_setCheckbox(StiGame::Gui::MStyle *style, StiGame::Surface *surface)
+    {
+        style->setCheckBox(surface);
+    }
+
+    void MStyle_setCheckboxChecked(StiGame::Gui::MStyle *style, StiGame::Surface *surface)
+    {
+        style->setCheckBoxChecked(surface);
+    }
+
+    void MStyle_setRadio(StiGame::Gui::MStyle *style, StiGame::Surface *surface)
+    {
+        style->setRadio(surface);
+    }
+
+    void MStyle_setRadioChecked(StiGame::Gui::MStyle *style, StiGame::Surface *surface)
+    {
+        style->setRadioChecked(surface);
+    }
+
+    void MStyle_setNormalFont(StiGame::Gui::MStyle *style, StiGame::Font *font)
+    {
+        style->setNormalFont(font);
+    }
+}
+
+#endif // C_WRAPPER

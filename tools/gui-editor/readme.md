@@ -10,9 +10,13 @@ We intend to produce a WYSIWYG tools to create the view.
 
 #### TO DO
 
- - MStyle object
+ - MStyle object (C_WRAPPER ready)
  
  - Test all the others wrapped object
  
- - Editor gui structure
+ - Editor gui structure (TabWidget or one file only ?)
+ 
+ - GuiState widget
+ 
+ 
  

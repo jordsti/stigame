@@ -58,3 +58,18 @@ RadioGroup::~RadioGroup()
 }
 
 }
+
+#ifdef C_WRAPPER
+extern "C"
+{
+    StiGame::Gui::RadioGroup* RadioGroup_new()
+    {
+        return new StiGame::Gui::RadioGroup();
+    }
+
+    void RadioGroup_addItem(StiGame::Gui::RadioGroup *radioGroup, StiGame::Gui::RadioButton* radioButton)
+    {
+        radioGroup->addItem(radioButton);
+    }
+}
+#endif // C_WRAPPER

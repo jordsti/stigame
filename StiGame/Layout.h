@@ -14,7 +14,7 @@ class Layout :
     public Item
 {
     public:
-        Layout();
+        Layout(std::string name);
         virtual ~Layout();
 
         Item* getChildAt(int index);
@@ -25,13 +25,14 @@ class Layout :
         //need to override all the event stack
         virtual void onClick(Point *relp);
         virtual void onMouseMotion(Point *relp);
-
+        virtual void onKeyUp(SDL_KeyboardEvent *evt);
+        virtual void onTextInput(char* text);
         Surface* render(void);
 
     protected:
         void resized();
         virtual void setChildsPosition(void) = 0;
-
+        MPoint mouse;
         std::list<Item*> childs;
     private:
 };

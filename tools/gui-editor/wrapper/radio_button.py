@@ -3,7 +3,7 @@ import item
 import c_library
 
 
-class radiobutton(item.item):
+class radio_button(item.item):
 
     def __init__(self):
         item.item.__init__(self)

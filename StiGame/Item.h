@@ -16,6 +16,8 @@ class Item :
 	public Rectangle
 {
 public:
+    static const int MAX_WIDTH;
+    static const int MAX_HEIGHT;
 	/// \brief Create an GuiItem
 	Item(void);
 	/// \brief Create an GuiItem
@@ -74,6 +76,16 @@ public:
 
     virtual void setFocus(bool m_focus);
 
+    void setMinimumSize(int m_width, int m_height);
+
+    void setMaximumSize(int m_width, int m_height);
+
+    void setFixedSize(int m_width, int m_height);
+
+    Dimension* getMinimumSize(void);
+
+    Dimension* getMaximumSize(void);
+
 protected:
 	/// \brief Name of the item
 	std::string name;
@@ -91,6 +103,9 @@ protected:
     virtual void resized(void);
 
     bool focus;
+
+    MDimension minimumSize;
+    MDimension maximumSize;
 private:
 	/// \brief initialization
 	void init(void);

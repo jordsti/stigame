@@ -100,6 +100,21 @@ extern "C"
     {
         return TTF_Init();
     }
+
+    StiGame::Font* Font_new(const char* path, int m_size)
+    {
+        return new StiGame::Font(path, m_size);
+    }
+
+    int Font_getFontStyle(StiGame::Font *font)
+    {
+        return font->getFontStyle();
+    }
+
+    void Font_setFontStyle(StiGame::Font *font, int m_style)
+    {
+        font->setFontStyle(m_style);
+    }
 }
 
 #endif // C_WRAPPER

@@ -20,6 +20,12 @@ MPoint::MPoint(PointStruct *pt) :
 
 }
 
+void MPoint::setPoint(Point *pt)
+{
+    x = pt->getX();
+    y = pt->getY();
+}
+
 void MPoint::setPoint(int m_x, int m_y)
 {
     x = m_x;

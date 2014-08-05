@@ -361,8 +361,12 @@
 		<Unit filename="Label.h">
 			<Option virtualFolder="headers/gui/" />
 		</Unit>
-		<Unit filename="Layout.cpp" />
-		<Unit filename="Layout.h" />
+		<Unit filename="Layout.cpp">
+			<Option virtualFolder="src/gui/" />
+		</Unit>
+		<Unit filename="Layout.h">
+			<Option virtualFolder="headers/gui/" />
+		</Unit>
 		<Unit filename="List.cpp">
 			<Option virtualFolder="src/gui/" />
 		</Unit>
@@ -740,6 +744,12 @@
 		</Unit>
 		<Unit filename="Vector2.h">
 			<Option virtualFolder="headers/math/" />
+		</Unit>
+		<Unit filename="VerticalBoxLayout.cpp">
+			<Option virtualFolder="src/gui/" />
+		</Unit>
+		<Unit filename="VerticalBoxLayout.h">
+			<Option virtualFolder="headers/gui/" />
 		</Unit>
 		<Unit filename="Viewport.cpp">
 			<Option virtualFolder="src/core/" />

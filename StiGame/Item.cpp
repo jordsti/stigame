@@ -3,12 +3,15 @@
 #include "SDL.h"
 #include <string>
 #include "Runtime.h"
-
+#include <iostream>
 namespace StiGame
 {
 
 namespace Gui
 {
+
+const int Item::MAX_WIDTH = 2048;
+const int Item::MAX_HEIGHT = 2048;
 
 Item::Item(void)
 {
@@ -32,6 +35,8 @@ Item::~Item(void)
 
 void Item::init(void)
 {
+    minimumSize = MDimension(0 , 0);
+    maximumSize = MDimension(MAX_WIDTH, MAX_HEIGHT);
 	mouseOver = false;
 	handleKey = false;
 	focus = false;
@@ -110,14 +115,21 @@ bool Item::getMouseOver(void)
 
 void Item::setWidth(int m_width)
 {
-    width = m_width;
-    resized();
+
+    if(m_width <= maximumSize.getWidth() && m_width >= minimumSize.getWidth())
+    {
+        width = m_width;
+        resized();
+    }
 }
 
 void Item::setHeight(int m_height)
 {
-    height = m_height;
-    resized();
+    if(m_height <= maximumSize.getHeight() && m_height >= minimumSize.getHeight())
+    {
+        height = m_height;
+        resized();
+    }
 }
 
 void Item::resized(void)
@@ -133,8 +145,8 @@ void Item::setRectangle(int m_x, int m_y, int m_width, int m_height)
 
 void Item::setDimension(int m_width, int m_height)
 {
-    width = m_width;
-    height = m_height;
+    setWidth(m_width);
+    setHeight(m_height);
     resized();
 }
 
@@ -151,6 +163,33 @@ void Item::onKeyUp(SDL_KeyboardEvent *evt)
 void Item::onTextInput(char * text)
 {
 
+}
+
+void Item::setMinimumSize(int m_width, int m_height)
+{
+    minimumSize.setDimension(m_width, m_height);
+}
+
+void Item::setMaximumSize(int m_width, int m_height)
+{
+    maximumSize.setDimension(m_width, m_height);
+}
+
+void Item::setFixedSize(int m_width, int m_height)
+{
+    minimumSize.setDimension(m_width, m_height);
+    maximumSize.setDimension(m_width, m_height);
+    setPoint(m_width,m_height);
+}
+
+Dimension* Item::getMinimumSize()
+{
+    return &minimumSize;
+}
+
+Dimension* Item::getMaximumSize()
+{
+    return &maximumSize;
 }
 
 }
@@ -204,6 +243,21 @@ extern "C"
     StiGame::Gui::Style* Item_getStyle(StiGame::Gui::Item *item)
     {
         return item->getStyle();
+    }
+
+    void Item_setMinimumSize(StiGame::Gui::Item *item, int width, int height)
+    {
+        item->setMinimumSize(width, height);
+    }
+
+    void Item_setMaximumSize(StiGame::Gui::Item *item, int width, int height)
+    {
+        item->setMaximumSize(width, height);
+    }
+
+    void Item_setFixedSize(StiGame::Gui::Item *item, int width, int height)
+    {
+        item->setFixedSize(width, height);
     }
 
 }

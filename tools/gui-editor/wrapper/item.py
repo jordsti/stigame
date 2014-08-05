@@ -29,6 +29,15 @@ class item(object_wrap.object_wrap):
     def get_height(self):
         return self.lib.Item_getHeight(self.obj)
 
+    def set_minimum_size(self, width, height):
+        self.lib.Item_setMinimumSize(self.obj, width, height)
+
+    def set_maximum_size(self, width, height):
+        self.lib.Item_setMaximumSize(self.obj, width, height)
+
+    def set_fixed_size(self, width, height):
+        self.lib.Item_setFixedSize(self.obj, width, height)
+
     def render(self):
         sdl_sur = self.lib.Item_render(self.obj)
         sur = surface.surface(sdl_sur)

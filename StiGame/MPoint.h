@@ -28,6 +28,7 @@ class MPoint :
         //void set(int m_x,int m_y);
 
         virtual void setPoint(int m_x, int m_y);
+        virtual void setPoint(Point *pt);
 
         /// \brief Set the x position
         /// \param m_x x position (px)

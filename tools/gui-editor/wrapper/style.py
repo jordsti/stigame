@@ -2,7 +2,7 @@ __author__ = 'JordSti'
 import object_wrap
 import surface
 import color
-
+import font
 
 class style(object_wrap.object_wrap):
     def __init__(self, ptr=None):
@@ -44,3 +44,6 @@ class style(object_wrap.object_wrap):
 
     def get_radio_checked(self):
         return surface.surface(self.lib.Style_getRadioChecked(self.obj))
+
+    def get_normal_font(self):
+        return font.font(self.lib.Style_getNormalFont(self.obj))

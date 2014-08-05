@@ -3,17 +3,8 @@ from PyQt4 import QtGui, QtCore
 import sys
 import vp_widget
 import os
+import gui_editor_window
 
-
-class main_window(QtGui.QMainWindow):
-
-    def __init__(self):
-        super(main_window, self).__init__()
-
-        self.show()
-        self.vp = vp_widget.vp_widget(self)
-
-        self.setCentralWidget(self.vp)
 
 if __name__ == '__main__':
 
@@ -27,5 +18,5 @@ if __name__ == '__main__':
 
 
     app = QtGui.QApplication(sys.argv)
-    main_win = main_window()
+    main_win = gui_editor_window.gui_editor_window()
     sys.exit(app.exec_())

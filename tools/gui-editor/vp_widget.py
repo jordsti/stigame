@@ -7,7 +7,7 @@ class vp_widget(QtGui.QLabel):
 
     def __init__(self, parent=None):
         super(vp_widget, self).__init__(parent)
-
+        self.setMinimumSize(400, 400)
         self.__pixmap = QtGui.QPixmap()
 
         self.viewport = py_viewport(self.width(), self.height())
@@ -27,8 +27,6 @@ class vp_widget(QtGui.QLabel):
     def resizeEvent(self, args):
         self.viewport.set_dimension(args.size().width(), args.size().height())
         self.renderer.force_draw()
-
-
 
     def mousePressEvent(self, evt):
         lab = label()
@@ -57,5 +55,4 @@ class vp_widget(QtGui.QLabel):
 
         self.renderer.add_item(gl)
 
-        print "add label"
         self.renderer.force_draw()
