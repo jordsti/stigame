@@ -66,7 +66,11 @@ Linux will be supported in an early future
 	- Progress Bar test
 	- TextBox working, but need to handle unicode or transfert char into ascii.
 	- Need to add a BaseClass for Font Rendering Gui Item, to generalize setCaption and getCaption method.
-
+	- Layout Item
+		- HorizontalBoxLayout
+		- VerticalBoxLayout
+		- Item Minimum Size and MaxSize ?
+	
 - Viewport
   -	Save resolution information, to persist configuration
  

@@ -361,6 +361,8 @@
 		<Unit filename="Label.h">
 			<Option virtualFolder="headers/gui/" />
 		</Unit>
+		<Unit filename="Layout.cpp" />
+		<Unit filename="Layout.h" />
 		<Unit filename="List.cpp">
 			<Option virtualFolder="src/gui/" />
 		</Unit>
