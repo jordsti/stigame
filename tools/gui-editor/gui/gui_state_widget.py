@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'gui_state_widget.ui'
 #
-# Created: Tue Aug 05 19:12:33 2014
+# Created: Tue Aug 05 19:42:38 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -23,11 +23,11 @@ except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
 
-class Ui_Form(object):
-    def setupUi(self, Form):
-        Form.setObjectName(_fromUtf8("Form"))
-        Form.resize(547, 425)
-        self.horizontalLayoutWidget = QtGui.QWidget(Form)
+class Ui_gui_state_widget(object):
+    def setupUi(self, gui_state_widget):
+        gui_state_widget.setObjectName(_fromUtf8("gui_state_widget"))
+        gui_state_widget.resize(547, 425)
+        self.horizontalLayoutWidget = QtGui.QWidget(gui_state_widget)
         self.horizontalLayoutWidget.setGeometry(QtCore.QRect(9, 1, 531, 421))
         self.horizontalLayoutWidget.setObjectName(_fromUtf8("horizontalLayoutWidget"))
         self.layout_main = QtGui.QHBoxLayout(self.horizontalLayoutWidget)
@@ -39,9 +39,9 @@ class Ui_Form(object):
         self.lw_items.setObjectName(_fromUtf8("lw_items"))
         self.layout_main.addWidget(self.lw_items)
 
-        self.retranslateUi(Form)
-        QtCore.QMetaObject.connectSlotsByName(Form)
+        self.retranslateUi(gui_state_widget)
+        QtCore.QMetaObject.connectSlotsByName(gui_state_widget)
 
-    def retranslateUi(self, Form):
-        Form.setWindowTitle(_translate("Form", "Form", None))
+    def retranslateUi(self, gui_state_widget):
+        gui_state_widget.setWindowTitle(_translate("gui_state_widget", "Form", None))
 

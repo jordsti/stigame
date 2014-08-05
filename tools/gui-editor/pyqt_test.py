@@ -19,4 +19,5 @@ if __name__ == '__main__':
 
     app = QtGui.QApplication(sys.argv)
     main_win = gui_editor_window.gui_editor_window()
+    main_win.show()
     sys.exit(app.exec_())

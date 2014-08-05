@@ -40,7 +40,7 @@ class vp_widget(QtGui.QLabel):
         self.renderer.add_item(lab)
         self.renderer.add_item(btn)
 
-        cb = combobox()
+        cb = combo_box()
         cb.add(value_object(1, "Combo Box"))
 
         cb.set_point(100, 80)
