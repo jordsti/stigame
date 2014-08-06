@@ -73,10 +73,20 @@ void TestGui::initComponents()
     tbName.setPoint(10, 200);
     tbName.setDimension(120, 20);
 
+    vlayout = VerticalBoxLayout();
+    vlayout.setPoint(520, 20);
+    vlayout.setDimension(250, 400);
+
+    lbl_vlayout = Label();
+    lbl_vlayout.setCaption("test layout");
+
+    vlayout.addChild(&lbl_vlayout);
+
     add(&guiList);
     add(&cb1);
     add(&tabPanel);
     add(&tbName);
+    add(&vlayout);
 }
 
 void TestGui::handleEvent(StiGame::Gui::SelectionEventThrower *src, StiGame::Gui::SelectionEventArgs *args)

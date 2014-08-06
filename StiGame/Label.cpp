@@ -93,6 +93,8 @@ void Label::doAutosize(void)
 
 	width = stringBuffer->getWidth();
 	height = stringBuffer->getHeight();
+
+	minimumSize.setDimension(width, height);
 }
 
 void Label::setTransparent(bool m_transparent)

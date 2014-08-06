@@ -9,6 +9,7 @@
 #include <Label.h>
 #include <Button.h>
 #include <TextBox.h>
+#include <VerticalBoxLayout.h>
 #include "TestTabItem.h"
 
 class TestGui :
@@ -31,6 +32,8 @@ class TestGui :
         StiGame::Gui::Label tab1Label;
         StiGame::Gui::Button tab1Btn;
         StiGame::Gui::TextBox tbName;
+        StiGame::Gui::VerticalBoxLayout vlayout;
+        StiGame::Gui::Label lbl_vlayout;
     private:
         void initComponents(void);
 };

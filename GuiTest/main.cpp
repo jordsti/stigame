@@ -11,13 +11,13 @@ int main(int argc, char ** argv)
 
     vpt->setFps(50);
 
-    BaseGameState *gs = new TestGui();
+    TestGui *tg = new TestGui();
 
-    vpt->push(gs);
+    vpt->push(tg);
     vpt->startLoop();
 
     delete vpt;
-    delete gs;
+    delete tg;
 
     SDL_Quit();
 

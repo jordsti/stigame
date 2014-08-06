@@ -10,6 +10,20 @@ namespace StiGame
 namespace Gui
 {
 
+enum LayoutVerticalAlign
+{
+    LVA_Top,
+    LVA_Middle,
+    LVA_Bottom
+};
+
+enum LayoutHorizontalAlign
+{
+    LHA_Left,
+    LHA_Center,
+    LHA_Right
+};
+
 class Layout :
     public Item
 {
@@ -22,6 +36,14 @@ class Layout :
         virtual void removeChild(Item *to_remove);
         unsigned int childsCount();
 
+        virtual void setVerticalAlign(LayoutVerticalAlign m_verticalAlign);
+
+        virtual void setHorizontalAlign(LayoutHorizontalAlign m_horizontalAlign);
+
+        LayoutVerticalAlign getVerticalAlign(void);
+
+        LayoutHorizontalAlign getHorizontalAlign(void);
+
         //need to override all the event stack
         virtual void onClick(Point *relp);
         virtual void onMouseMotion(Point *relp);
@@ -32,8 +54,11 @@ class Layout :
     protected:
         void resized();
         virtual void setChildsPosition(void) = 0;
+
         MPoint mouse;
         std::list<Item*> childs;
+        LayoutVerticalAlign verticalAlign;
+        LayoutHorizontalAlign horizontalAlign;
     private:
 };
 

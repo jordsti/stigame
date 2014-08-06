@@ -145,9 +145,24 @@ void Item::setRectangle(int m_x, int m_y, int m_width, int m_height)
 
 void Item::setDimension(int m_width, int m_height)
 {
-    setWidth(m_width);
-    setHeight(m_height);
-    resized();
+    bool _resized = false;
+
+    if(m_width <= maximumSize.getWidth() && m_width >= minimumSize.getWidth())
+    {
+        width = m_width;
+        _resized = true;
+    }
+
+    if(m_height <= maximumSize.getHeight() && m_height >= minimumSize.getHeight())
+    {
+        height = m_height;
+        _resized = true;
+    }
+
+    if(_resized)
+    {
+        resized();
+    }
 }
 
 bool Item::isHandleKey(void)

@@ -11,6 +11,8 @@ Layout::Layout(std::string name)
     //ctor
     mouse = MPoint();
     handleKey = true;
+    verticalAlign = LVA_Middle;
+    horizontalAlign = LHA_Center;
 }
 
 Layout::~Layout()
@@ -166,6 +168,26 @@ void Layout::onTextInput(char *text)
             (*lit)->onTextInput(text);
         }
     }
+}
+
+void Layout::setVerticalAlign(LayoutVerticalAlign m_verticalAlign)
+{
+    verticalAlign = m_verticalAlign;
+}
+
+void Layout::setHorizontalAlign(LayoutHorizontalAlign m_horizontalAlign)
+{
+    horizontalAlign = m_horizontalAlign;
+}
+
+LayoutVerticalAlign Layout::getVerticalAlign(void)
+{
+    return verticalAlign;
+}
+
+LayoutHorizontalAlign Layout::getHorizontalAlign(void)
+{
+    return horizontalAlign;
 }
 
 }
