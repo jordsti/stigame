@@ -3,9 +3,24 @@ import sys
 import shutil
 
 
-exclude_dirs = ['include', 'lib', 'bin', 'StiGame', 'assets']
+exclude_dirs = ['include', 'lib', 'bin', 'StiGame', 'assets', 'tools']
 
 if __name__ == '__main__':
+
+    other_dests = []
+    
+    if os.path.exists('other_copy.pb'):
+        fp = open('other_copy.pb', 'r')
+        lines = fp.readlines()
+        fp.close()
+
+        for l in lines:
+            line = l.rstrip('\n')
+            line = line.rstrip('\r')
+            if len(line) > 0:
+                if os.path.exists(line):
+                    other_dests.append(line)
+
     mode = 'Debug'
 
     nb = len(sys.argv)
@@ -27,7 +42,6 @@ if __name__ == '__main__':
     print "StiGame Post Build Script"
     print "Mode : %s" % mode
     print "This is script is copying StiGame.dll into the other projects"
-
     print "Listing other projects..."
 
     parent_path = os.path.abspath('..')
@@ -50,4 +64,14 @@ if __name__ == '__main__':
         src_path = os.path.join(os.getcwd(), 'bin', mode, 'StiGame.dll')
         dst_path = os.path.join(project_path, 'StiGame.dll')
         shutil.copyfile(src_path, dst_path)
+
+    for o in other_dests:
+        print "Copying StiGame.dll to [%s]" % o
+        project_path = os.path.join(o, "bin", mode)
+
+        if not os.path.exists(project_path):
+            os.makedirs(project_path)
             
+        src_path = os.path.join(os.getcwd(), 'bin', mode, 'StiGame.dll')
+        dst_path = os.path.join(project_path, 'StiGame.dll')
+        shutil.copyfile(src_path, dst_path)

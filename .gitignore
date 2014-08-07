@@ -5,6 +5,9 @@
 *.obj
 *.txt
 
+#post build copy
+*.pb
+
 #repos specific
 lib/*
 bin/*
