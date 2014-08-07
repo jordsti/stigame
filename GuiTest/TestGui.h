@@ -34,6 +34,10 @@ class TestGui :
         StiGame::Gui::TextBox tbName;
         StiGame::Gui::VerticalBoxLayout vlayout;
         StiGame::Gui::Label lbl_vlayout;
+        StiGame::Gui::Label lbl_vlayout2;
+        StiGame::Gui::Label lbl_vlayout3;
+        StiGame::Gui::Label lbl_vlayout4;
+        StiGame::Gui::Label lbl_vlayout5;
     private:
         void initComponents(void);
 };

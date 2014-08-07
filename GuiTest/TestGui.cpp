@@ -79,9 +79,17 @@ void TestGui::initComponents()
 
     lbl_vlayout = Label();
     lbl_vlayout.setCaption("test layout");
+    lbl_vlayout2.setCaption("layout 2");
+    lbl_vlayout3.setCaption("layout 3");
+    lbl_vlayout4.setCaption("layout 4");
+    lbl_vlayout5.setCaption("layout 5");
+
 
     vlayout.addChild(&lbl_vlayout);
-
+    vlayout.addChild(&lbl_vlayout2);
+    vlayout.addChild(&lbl_vlayout3);
+    vlayout.addChild(&lbl_vlayout4);
+    vlayout.addChild(&lbl_vlayout5);
     add(&guiList);
     add(&cb1);
     add(&tabPanel);

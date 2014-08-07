@@ -13,6 +13,7 @@ Layout::Layout(std::string name)
     handleKey = true;
     verticalAlign = LVA_Middle;
     horizontalAlign = LHA_Center;
+    childsChanged = false;
 }
 
 Layout::~Layout()
@@ -24,13 +25,14 @@ Layout::~Layout()
 void Layout::addChild(Item *item)
 {
     childs.push_back(item);
-    setChildsPosition();
+    childsChanged = true;
+
 }
 
 void Layout::removeChild(Item *item)
 {
     childs.remove(item);
-    setChildsPosition();
+    childsChanged = true;
 }
 
 Item* Layout::getChildAt(int index)
@@ -130,6 +132,12 @@ void Layout::onKeyUp(SDL_KeyboardEvent *evt)
 Surface *Layout::render()
 {
     //todo
+    if(childsChanged)
+    {
+        setChildsPosition();
+        childsChanged = false;
+    }
+
     Surface *buffer = new Surface(width, height);
     buffer->fill(background);
 
@@ -215,6 +223,26 @@ extern "C"
     unsigned int Layout_childsCount(StiGame::Gui::Layout *layout)
     {
         return layout->childsCount();
+    }
+
+    int Layout_getVerticalAlign(StiGame::Gui::Layout *layout)
+    {
+        return layout->getVerticalAlign();
+    }
+
+    int Layout_getHorizontalAlign(StiGame::Gui::Layout *layout)
+    {
+        return layout->getHorizontalAlign();
+    }
+
+    void Layout_setVerticalAlign(StiGame::Gui::Layout *layout, int align)
+    {
+        layout->setVerticalAlign(static_cast<StiGame::Gui::LayoutVerticalAlign>(align));
+    }
+
+    void Layout_setHorizontalAlign(StiGame::Gui::Layout *layout, int align)
+    {
+        layout->setHorizontalAlign(static_cast<StiGame::Gui::LayoutHorizontalAlign>(align));
     }
 
 }

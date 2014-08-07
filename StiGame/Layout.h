@@ -59,7 +59,9 @@ class Layout :
         std::list<Item*> childs;
         LayoutVerticalAlign verticalAlign;
         LayoutHorizontalAlign horizontalAlign;
+        bool childsChanged;
     private:
+
 };
 
 }
