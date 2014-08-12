@@ -17,6 +17,7 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add option="-DDEBUG" />
+					<Add option="-DOS_WIN32" />
 				</Compiler>
 				<ExtraCommands>
 					<Add after="cmd /c python post_build.py" />
@@ -32,6 +33,7 @@
 				<Compiler>
 					<Add option="-O2" />
 					<Add option="-DRELEASE" />
+					<Add option="-DOS_WIN32" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -50,6 +52,7 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add option="-DDEBUG" />
+					<Add option="-DOS_LINUX" />
 				</Compiler>
 				<ExtraCommands>
 					<Add after="cmd /c python post_build.py" />
@@ -65,6 +68,7 @@
 				<Compiler>
 					<Add option="-O2" />
 					<Add option="-DRELEASE" />
+					<Add option="-DOS_LINUX" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -332,6 +336,12 @@
 			<Option virtualFolder="src/gui/" />
 		</Unit>
 		<Unit filename="HighlightItem.h">
+			<Option virtualFolder="headers/gui/" />
+		</Unit>
+		<Unit filename="HorizontalBoxLayout.cpp">
+			<Option virtualFolder="src/gui/" />
+		</Unit>
+		<Unit filename="HorizontalBoxLayout.h">
 			<Option virtualFolder="headers/gui/" />
 		</Unit>
 		<Unit filename="ISprite.cpp">
