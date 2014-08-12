@@ -537,6 +537,17 @@ void Viewport::maximize(void)
 }
 
 
+OperatingSystem Viewport::GetCurrentOS()
+{
+    #ifdef OS_WIN32
+    return OS_Win32;
+    #endif // OS_WIN32
+
+    #ifdef OS_LINUX
+    return OS_Linux;
+    #endif // OS_LINUX
+}
+
 }
 
 

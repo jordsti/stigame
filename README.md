@@ -23,10 +23,14 @@ At the moment, these features are already implemented into StiGame.
     - Button
 	- Label
 	- Combo Box
+	- Check Box and Radio Button
 	- Selection List
 	- Tab Panel
-	- Layout in the way...
-	- etc...
+	- Layout *on the way...*
+		- Vertical Box Layout **vertical align todo**
+		- Horizontal Box Layout **test and horizontal align todo**
+		- Form Layout **todo**
+		- Spacer Item for Layout **todo**
 - Game Sprite
   - Directional Sprite
   - General Sprite
@@ -62,15 +66,16 @@ Linux will be supported in an early future
 
 ### TO DO
 
+- Linux Support
+
 - Gui Test Project, to test all Gui Element
 	- Table
 	- Progress Bar test
 	- TextBox working, but need to handle unicode or transfert char into ascii.
 	- Need to add a BaseClass for Font Rendering Gui Item, to generalize setCaption and getCaption method.
 	- Layout Item
-		- HorizontalBoxLayout
-		- VerticalBoxLayout
-		- Item Minimum Size and MaxSize ?
+		- Form Layout
+		- ~~Item Minimum Size and MaxSize ?~~
 	
 - Viewport
   -	Save resolution information, to persist configuration
@@ -79,7 +84,7 @@ Linux will be supported in an early future
   - Map Controller and handle event
   - Persitant configuration of the default controller
   
- - SPhysic recode
+ - SPhysic *recode*
   
 
 and things that don't come to my mind at the moment...

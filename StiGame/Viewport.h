@@ -9,6 +9,9 @@
 
 namespace StiGame
 {
+
+enum OperatingSystem { OS_Win32, OS_Linux };
+
 /// \class Viewport
 /// \brief Engine Screen Viewport, handling the screen output
 class Viewport :
@@ -173,6 +176,8 @@ public:
     void showCursor(bool m_show);
 
 	Window* getWindow(void);
+
+	static OperatingSystem GetCurrentOS();
 };
 
 }
