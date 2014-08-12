@@ -4,6 +4,7 @@
 *.o
 *.obj
 *.txt
+*.directory
 
 #post build copy
 *.pb
