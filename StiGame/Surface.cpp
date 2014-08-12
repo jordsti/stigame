@@ -318,16 +318,16 @@ namespace StiGame {
 		return pc;
 	}
 
-    Pixel Surface::getPixel(Point *pt)
+    Pixel* Surface::getPixel(Point *pt)
     {
         return getPixel(pt->getX(), pt->getY());
     }
 
-    Pixel Surface::getPixel(int p_x, int p_y)
+    Pixel* Surface::getPixel(int p_x, int p_y)
     {
         Uint32 px = getPixelInt(p_x, p_y);
 
-        return Pixel(px, sdlSurface->format);
+        return new Pixel(px, sdlSurface->format);
     }
 
 	void Surface::saveBmp(std::string dest)

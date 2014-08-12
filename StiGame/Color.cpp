@@ -65,7 +65,7 @@ void Color::mapColor(SDL_PixelFormat *format)
 {
 	if(!mapped)
 	{
-		map = SDL_MapRGB(format, red, blue, green);
+		map = SDL_MapRGB(format, red, green, blue);
 		mapped = true;
 	}
 }
@@ -79,18 +79,32 @@ SDL_Color Color::getSDLColor(void)
 {
 	SDL_Color color = SDL_Color();
 	color.r = red;
-	color.b = blue;
 	color.g = green;
+	color.b = blue;
 	return color;
 }
 
 void Color::setRGBA(Uint8 m_r, Uint8 m_g, Uint8 m_b, Uint8 m_a)
 {
-    red = m_r;
-    green = m_g;
-    blue = m_b;
-    alpha = m_a;
-    mapped = false;
+    if(red != m_r || green != m_g || blue != m_b || alpha != m_a)
+    {
+        red = m_r;
+        green = m_g;
+        blue = m_b;
+        alpha = m_a;
+        mapped = false;
+    }
+}
+
+void Color::setRGB(Uint8 m_r, Uint8 m_g, Uint8 m_b)
+{
+    if(red != m_r || green != m_g || blue != m_b)
+    {
+        red = m_r;
+        green = m_g;
+        blue = m_b;
+        mapped = false;
+    }
 }
 
 }

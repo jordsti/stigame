@@ -50,7 +50,7 @@ public:
     Uint8 getAlpha(void);
 
     void setRGBA(Uint8 m_r, Uint8 m_g, Uint8 m_b, Uint8 m_a);
-
+    void setRGB(Uint8 m_r, Uint8 m_g, Uint8 m_b);
 protected:
 	/// \brief Red byte value
 	Uint8 red;

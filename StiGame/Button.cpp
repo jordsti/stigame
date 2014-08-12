@@ -1,6 +1,8 @@
 
 #include "Button.h"
 #include "PLine.h"
+
+#include <iostream>
 namespace StiGame
 {
 
@@ -44,6 +46,9 @@ Surface* Button::render(void)
 	Color *bg;
 	Color *fg;
 
+	Surface *_str = nullptr;
+	bool clean_str = false;
+
 	PLine l1 = PLine();
 	l1.set1(0,0);
 	l1.set2(width,0);
@@ -64,19 +69,26 @@ Surface* Button::render(void)
 	{
 		bg = highlightBackground;
 		fg = highlightForeground;
+		//need to use another caption
+		clean_str = true;
+		_str = style->getNormalFont()->renderText(caption, highlightForeground);
+		//_str->setTransparentColor(0, 0, 0);
+		//_str->makeTransparent();
+
 	}
 	else
 	{
 		bg = background;
 		fg = foreground;
+		_str = stringBuffer;
 	}
 
 	buffer->fill(bg);
 
-	SDL_Rect *src = stringBuffer->getRect();
-	SDL_Rect *dst = stringBuffer->getRect(offsetWidth, offsetHeight);
-
-	buffer->blit(stringBuffer, src, dst);
+	SDL_Rect *src = _str->getRect();
+	SDL_Rect *dst = _str->getRect(offsetWidth, offsetHeight);
+    //middle maybe todo
+	buffer->blit(_str, src, dst);
 
 	//drawing lines
 
@@ -87,6 +99,11 @@ Surface* Button::render(void)
 
 	delete src;
 	delete dst;
+
+	if(clean_str)
+    {
+        delete _str;
+    }
 
 	return buffer;
 }

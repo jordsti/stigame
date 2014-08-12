@@ -133,16 +133,16 @@ public:
 	void loadFromFile(char *m_path);
 
 	Uint32 getPixelInt(int p_x, int p_y);
-	Pixel getPixel(Point *pt);
-    Pixel getPixel(int p_x, int p_y);
+	Pixel* getPixel(Point *pt);
+    Pixel* getPixel(int p_x, int p_y);
 
 	void updateSDLRect(SDL_Rect *rect);
 	void updateSDLRect(SDL_Rect *rect, int m_x, int m_y);
 	void updateSDLRect(SDL_Rect *rect, Point *pt);
-	
+
 	void setClipRect(SDL_Rect *rect);
 	void updateClipRect(SDL_Rect *rect);
-	
+
 	void saveBmp(std::string dest);
 };
 
