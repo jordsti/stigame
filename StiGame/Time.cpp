@@ -1,5 +1,5 @@
 #include "Time.h"
-#include <chrono>
+
 namespace StiGame
 {
 
@@ -13,19 +13,17 @@ Time::~Time()
     //dtor
 }
 
-unsigned long long Time::GetMsTimestamp(void)
+std::chrono::time_point<std::chrono::high_resolution_clock> Time::time_start = std::chrono::high_resolution_clock::now();
+
+
+long long Time::GetMsTimestamp(void)
 {
-    #ifdef OS_WIN32
-    std::chrono::time_point<std::chrono::steady_clock> tp = std::chrono::steady_clock::now();
 
-    unsigned long long stamp = std::chrono::duration_cast<std::chrono::milliseconds>(tp.time_since_epoch()).count();
-
+    auto tp = std::chrono::high_resolution_clock::now();
+    auto diff = tp - time_start;
+    long long stamp = std::chrono::duration_cast<std::chrono::milliseconds>(diff).count();
     return stamp;
-    #endif  // OS_WIN32
 
-    #ifdef OS_LINUX
-    //todo
-    #endif // OS_LINUX
 }
 
 

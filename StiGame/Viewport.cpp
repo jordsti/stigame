@@ -178,11 +178,11 @@ void Viewport::startLoop(void)
             }
             else
             {
-                unsigned long long diff = Time::GetMsTimestamp() - lastTick;
+                long long diff = Time::GetMsTimestamp() - lastTick;
 
                 if(diff >= msWaitTime)
                 {
-                    unsigned long long over = diff - msWaitTime;
+                    long long over = diff - msWaitTime;
 
                     if(over > 0 && over > msTreshold)
                     {
@@ -265,7 +265,7 @@ SDL_Rect* Viewport::getHighestMode(void)
 void Viewport::setFps(int fps)
 {
 	target_fps = fps;
-	msWaitTime = CLOCKS_PER_SEC / fps;
+	msWaitTime = 1000 / fps;
 }
 
 int Viewport::getFps(void)

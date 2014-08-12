@@ -5,7 +5,7 @@
 		<Option title="StiGame" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="src\;src\sprites\;headers\;headers\gui\;src\gui\;headers\sprites\;src\bindings\;headers\bindings\;headers\core\;src\core\;headers\math\;src\math\;src\controller\;src\mouse\;headers\mouse\;headers\controller\;headers\primitives\;src\primitives\;" />
+		<Option virtualFolders="src/;src/sprites/;headers/;headers/gui/;src/gui/;headers/sprites/;src/bindings/;headers/bindings/;headers/core/;src/core/;headers/math/;src/math/;src/controller/;src/mouse/;headers/mouse/;headers/controller/;headers/primitives/;src/primitives/;" />
 		<Build>
 			<Target title="Debug (Win32)">
 				<Option output="bin/Debug/StiGame" imp_lib="$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).a" def_file="$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).def" prefix_auto="1" extension_auto="1" />
@@ -18,7 +18,16 @@
 					<Add option="-g" />
 					<Add option="-DDEBUG" />
 					<Add option="-DOS_WIN32" />
+					<Add directory="../include/SDL2" />
 				</Compiler>
+				<Linker>
+					<Add option="-lSDL2main" />
+					<Add option="-lSDL2" />
+					<Add option="-lSDL2_image" />
+					<Add option="-lSDL2_ttf" />
+					<Add option="-lSDL2_gfx" />
+					<Add directory="../lib" />
+				</Linker>
 				<ExtraCommands>
 					<Add after="cmd /c python post_build.py" />
 				</ExtraCommands>
@@ -34,9 +43,16 @@
 					<Add option="-O2" />
 					<Add option="-DRELEASE" />
 					<Add option="-DOS_WIN32" />
+					<Add directory="../include/SDL2" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add option="-lSDL2main" />
+					<Add option="-lSDL2" />
+					<Add option="-lSDL2_image" />
+					<Add option="-lSDL2_ttf" />
+					<Add option="-lSDL2_gfx" />
+					<Add directory="../lib" />
 				</Linker>
 				<ExtraCommands>
 					<Add after="cmd /c python post_build.py -m Release" />
@@ -51,12 +67,18 @@
 				<Option createStaticLib="1" />
 				<Compiler>
 					<Add option="-g" />
+					<Add option="-fPIC" />
 					<Add option="-DDEBUG" />
 					<Add option="-DOS_LINUX" />
+					<Add directory="/usr/include/SDL2" />
 				</Compiler>
-				<ExtraCommands>
-					<Add after="cmd /c python post_build.py" />
-				</ExtraCommands>
+				<Linker>
+					<Add option="-lSDL2main" />
+					<Add option="-lSDL2" />
+					<Add option="-lSDL2_image" />
+					<Add option="-lSDL2_ttf" />
+					<Add option="-lSDL2_gfx" />
+				</Linker>
 			</Target>
 			<Target title="Release (Linux)">
 				<Option output="bin/Release/StiGame" imp_lib="$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).a" def_file="$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).def" prefix_auto="1" extension_auto="1" />
@@ -67,31 +89,26 @@
 				<Option createStaticLib="1" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add option="-fPIC" />
 					<Add option="-DRELEASE" />
 					<Add option="-DOS_LINUX" />
+					<Add directory="/usr/include/SDL2" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add option="-lSDL2main" />
+					<Add option="-lSDL2" />
+					<Add option="-lSDL2_image" />
+					<Add option="-lSDL2_ttf" />
+					<Add option="-lSDL2_gfx" />
 				</Linker>
-				<ExtraCommands>
-					<Add after="cmd /c python post_build.py -m Release" />
-				</ExtraCommands>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-std=c++11" />
 			<Add option="-Wall" />
 			<Add option="-DC_WRAPPER" />
-			<Add directory="../include/SDL2" />
 		</Compiler>
-		<Linker>
-			<Add option="-lSDL2main" />
-			<Add option="-lSDL2" />
-			<Add option="-lSDL2_image" />
-			<Add option="-lSDL2_ttf" />
-			<Add option="-lSDL2_gfx" />
-			<Add directory="../lib" />
-		</Linker>
 		<Unit filename="ActionBind.cpp">
 			<Option virtualFolder="src/gui/" />
 		</Unit>

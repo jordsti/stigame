@@ -6,7 +6,7 @@
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
-			<Target title="Debug">
+			<Target title="Debug (Win32)">
 				<Option output="bin/Debug/GuiTest" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="bin/Debug/" />
 				<Option object_output="obj/Debug/" />
@@ -14,12 +14,20 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="../include/SDL2" />
 				</Compiler>
 				<Linker>
+					<Add option="-lmingw32" />
+					<Add option="-lSDL2main" />
+					<Add option="-lSDL2" />
+					<Add option="-lSDL2_image" />
+					<Add option="-lSDL2_ttf" />
+					<Add option="-lSDL2_gfx" />
+					<Add option="-lStiGame" />
 					<Add directory="../StiGame/bin/Debug" />
 				</Linker>
 			</Target>
-			<Target title="Release">
+			<Target title="Release (Win32)">
 				<Option output="bin/Release/GuiTest" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="bin/Release/" />
 				<Option object_output="obj/Release/" />
@@ -27,9 +35,60 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="../include/SDL2" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add option="-lmingw32" />
+					<Add option="-lSDL2main" />
+					<Add option="-lSDL2" />
+					<Add option="-lSDL2_image" />
+					<Add option="-lSDL2_ttf" />
+					<Add option="-lSDL2_gfx" />
+					<Add option="-lStiGame" />
+					<Add directory="../lib" />
+					<Add directory="../StiGame/bin/Release" />
+				</Linker>
+			</Target>
+			<Target title="Debug (Linux)">
+				<Option output="bin/Debug/GuiTest" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/Debug/" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-std=c++11" />
+					<Add option="-g" />
+					<Add directory="/usr/include/SDL2" />
+				</Compiler>
+				<Linker>
+					<Add option="-lSDL2main" />
+					<Add option="-lSDL2" />
+					<Add option="-lSDL2_image" />
+					<Add option="-lSDL2_ttf" />
+					<Add option="-lSDL2_gfx" />
+					<Add option="-lStiGame" />
+					<Add directory="../StiGame/bin/Debug" />
+				</Linker>
+			</Target>
+			<Target title="Release (Linux)">
+				<Option output="bin/Release/GuiTest" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/Release/" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="/usr/include/SDL2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-lSDL2main" />
+					<Add option="-lSDL2" />
+					<Add option="-lSDL2_image" />
+					<Add option="-lSDL2_ttf" />
+					<Add option="-lSDL2_gfx" />
+					<Add option="-lStiGame" />
 					<Add directory="../StiGame/bin/Release" />
 				</Linker>
 			</Target>
@@ -37,19 +96,8 @@
 		<Compiler>
 			<Add option="-std=c++11" />
 			<Add option="-Wall" />
-			<Add directory="../include/SDL2" />
 			<Add directory="../StiGame" />
 		</Compiler>
-		<Linker>
-			<Add option="-lmingw32" />
-			<Add option="-lSDL2main" />
-			<Add option="-lSDL2" />
-			<Add option="-lSDL2_image" />
-			<Add option="-lSDL2_ttf" />
-			<Add option="-lSDL2_gfx" />
-			<Add option="-lStiGame" />
-			<Add directory="../lib" />
-		</Linker>
 		<Unit filename="TestGui.cpp" />
 		<Unit filename="TestGui.h" />
 		<Unit filename="TestTabItem.cpp" />
