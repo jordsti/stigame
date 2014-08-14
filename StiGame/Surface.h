@@ -75,6 +75,9 @@ public:
 	/// \param rect Pointer to a SDL_Rect
 	/// \param color Pointer to a SColor
 	void fillRect(SDL_Rect *rect, Color *color);
+
+	void fillRect(Rectangle *rect, Color *color);
+
 	/// \brief Blit a SDL_Surface on this Surface
 	/// \param m_surface Pointer to the source SDL_Surface
 	/// \param src Pointer to source SDL_Rect

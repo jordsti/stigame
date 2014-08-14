@@ -1,4 +1,4 @@
-#include "Time.h"
+#include "TimeTools.h"
 
 namespace StiGame
 {
@@ -24,6 +24,15 @@ long long Time::GetMsTimestamp(void)
     long long stamp = std::chrono::duration_cast<std::chrono::milliseconds>(diff).count();
     return stamp;
 
+}
+
+int Time::GenerateSeed()
+{
+    auto tp = std::chrono::high_resolution_clock::now();
+    long long stamp = std::chrono::duration_cast<std::chrono::milliseconds>(tp.time_since_epoch()).count();
+    stamp = stamp % 1073741824;
+    int seed = static_cast<int>(stamp);
+    return seed;
 }
 
 

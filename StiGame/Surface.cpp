@@ -229,6 +229,24 @@ namespace StiGame {
 		fillRect(region, color->getMap());
 	}
 
+	void Surface::fillRect(Rectangle *rect, Color *color)
+	{
+	    if(!color->isMapped())
+        {
+            color->mapColor(sdlSurface->format);
+        }
+
+        SDL_Rect *region = new SDL_Rect();
+        region->x = rect->getX();
+        region->y = rect->getY();
+        region->w = rect->getWidth();
+        region->h = rect->getHeight();
+
+        fillRect(region, color);
+
+        delete region;
+	}
+
 	void Surface::updatePointer(SDL_Surface *surface)
 	{
 		if((sdlSurface != surface && surface != 0) ||

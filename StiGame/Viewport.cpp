@@ -7,7 +7,7 @@
 #include <iostream>
 #include <string>
 #include <ctime>
-#include "Time.h"
+#include "TimeTools.h"
 namespace StiGame
 {
 
