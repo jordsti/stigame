@@ -283,6 +283,12 @@
 		<Unit filename="Cursor.h">
 			<Option virtualFolder="headers/" />
 		</Unit>
+		<Unit filename="DecoratedButton.cpp">
+			<Option virtualFolder="src/gui/" />
+		</Unit>
+		<Unit filename="DecoratedButton.h">
+			<Option virtualFolder="headers/gui/" />
+		</Unit>
 		<Unit filename="Dimension.cpp">
 			<Option virtualFolder="src/core/" />
 		</Unit>

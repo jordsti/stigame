@@ -90,11 +90,17 @@ void TestGui::initComponents()
     vlayout.addChild(&lbl_vlayout3);
     vlayout.addChild(&lbl_vlayout4);
     vlayout.addChild(&lbl_vlayout5);
+
+    dbtn1.setCaption("Allo BTN");
+    dbtn1.setDimension(200, 30);
+    dbtn1.setPoint(220, 500);
+
     add(&guiList);
     add(&cb1);
     add(&tabPanel);
     add(&tbName);
     add(&vlayout);
+    add(&dbtn1);
 }
 
 void TestGui::handleEvent(StiGame::Gui::SelectionEventThrower *src, StiGame::Gui::SelectionEventArgs *args)

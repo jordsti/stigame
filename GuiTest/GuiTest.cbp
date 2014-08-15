@@ -25,6 +25,7 @@
 					<Add option="-lSDL2_gfx" />
 					<Add option="-lStiGame" />
 					<Add directory="../StiGame/bin/Debug" />
+					<Add directory="../lib" />
 				</Linker>
 			</Target>
 			<Target title="Release (Win32)">

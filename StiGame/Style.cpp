@@ -26,6 +26,12 @@ Style::Style(void)
 	checkboxChecked = new Surface(GamePath::getFilepath(AssetGui, "checkbox_checked.png").c_str());
 	radio = new Surface(GamePath::getFilepath(AssetGui, "radio.png").c_str());
 	radioChecked = new Surface(GamePath::getFilepath(AssetGui, "radio_true.png").c_str());
+	buttonLeft = new Surface(GamePath::getFilepath(AssetGui, "button_left.png").c_str());
+	buttonRight = new Surface(GamePath::getFilepath(AssetGui, "button_right.png").c_str());
+	buttonBackground = new Surface(GamePath::getFilepath(AssetGui, "button_bg.png").c_str());
+	buttonHighlightLeft = new Surface(GamePath::getFilepath(AssetGui, "hbutton_left.png").c_str());
+	buttonHighlightRight = new Surface(GamePath::getFilepath(AssetGui, "hbutton_right.png").c_str());
+	buttonHighlightBackground = new Surface(GamePath::getFilepath(AssetGui, "hbutton_bg.png").c_str());
 }
 
 Surface *Style::getRadio(void)
@@ -91,6 +97,36 @@ Surface *Style::getDownArrow(void)
 void Style::unload(void)
 {
 	delete normalFont;
+}
+
+Surface* Style::getButtonLeft(void)
+{
+    return buttonLeft;
+}
+
+Surface* Style::getButtonRight(void)
+{
+    return buttonRight;
+}
+
+Surface* Style::getButtonBackground(void)
+{
+    return buttonBackground;
+}
+
+Surface* Style::getHighlightButtonLeft(void)
+{
+    return buttonHighlightLeft;
+}
+
+Surface* Style::getHighlightButtonRight(void)
+{
+    return buttonHighlightRight;
+}
+
+Surface* Style::getHighlightButtonBackground(void)
+{
+    return buttonHighlightBackground;
 }
 
 Style::~Style(void)

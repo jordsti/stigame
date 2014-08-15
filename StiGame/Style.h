@@ -34,6 +34,19 @@ protected:
 	Surface *radio;
 	/// \brief Checked Radio Button Image
 	Surface *radioChecked;
+
+	Surface *buttonLeft;
+
+	Surface *buttonRight;
+
+	Surface *buttonBackground;
+
+	Surface *buttonHighlightLeft;
+
+	Surface *buttonHighlightRight;
+
+	Surface *buttonHighlightBackground;
+
 	/// \brief Normal Font
 	Font *normalFont;
 public:
@@ -64,6 +77,19 @@ public:
 	/// \brief Get Check Radio Button Pointer
 	Surface *getRadioChecked(void);
 	/// \brief Get Normal Font Pointer
+
+	Surface *getButtonLeft(void);
+
+	Surface *getButtonRight(void);
+
+	Surface *getButtonBackground(void);
+
+    Surface *getHighlightButtonLeft(void);
+
+	Surface *getHighlightButtonRight(void);
+
+	Surface *getHighlightButtonBackground(void);
+
 	Font *getNormalFont(void);
 	/// \brief Unload Ressources
 	void unload(void);

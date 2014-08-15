@@ -8,6 +8,7 @@
 #include <TabPanel.h>
 #include <Label.h>
 #include <Button.h>
+#include <DecoratedButton.h>
 #include <TextBox.h>
 #include <VerticalBoxLayout.h>
 #include "TestTabItem.h"
@@ -38,6 +39,7 @@ class TestGui :
         StiGame::Gui::Label lbl_vlayout3;
         StiGame::Gui::Label lbl_vlayout4;
         StiGame::Gui::Label lbl_vlayout5;
+        StiGame::Gui::DecoratedButton dbtn1;
     private:
         void initComponents(void);
 };

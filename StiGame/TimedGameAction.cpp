@@ -1,5 +1,5 @@
 #include "TimedGameAction.h"
-#include "Time.h"
+#include "TimeTools.h"
 namespace StiGame
 {
 
@@ -16,7 +16,7 @@ int TimedGameAction::getCooldown(void)
     return cooldown;
 }
 
-unsigned long long TimedGameAction::getLastAction(void)
+long long TimedGameAction::getLastAction(void)
 {
     return lastAction;
 }
@@ -25,8 +25,8 @@ void TimedGameAction::testKeycode(SDL_Keycode keycode)
 {
     if(actionMap->inputEquals(IT_KEYBOARD, keycode))
     {
-        unsigned long long nextAction = lastAction + cooldown;
-        unsigned long long timestamp = Time::GetMsTimestamp();
+        long long nextAction = lastAction + cooldown;
+        long long timestamp = Time::GetMsTimestamp();
 
         if(nextAction <= timestamp)
         {

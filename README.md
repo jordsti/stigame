@@ -70,6 +70,8 @@ Linux will be supported in an early future
 
 - Gui Test Project, to test all Gui Element
 	- Table
+	- Decorated Button *Python wrapper w/ (M)Style*
+		- Highlight button, graphics are there
 	- Progress Bar test
 	- TextBox working, but need to handle unicode or transfert char into ascii.
 	- Need to add a BaseClass for Font Rendering Gui Item, to generalize setCaption and getCaption method.

@@ -18,7 +18,7 @@ class TimedGameAction :
         void testMouseButton(MouseButtonEventArgs *mbEvt);
 
         int getCooldown(void);
-        unsigned long long getLastAction(void);
+        long long getLastAction(void);
 
     protected:
         //pure virtual!
@@ -26,7 +26,7 @@ class TimedGameAction :
 
     private:
         int cooldown;
-        unsigned long long lastAction;
+        long long lastAction;
 };
 
 }
