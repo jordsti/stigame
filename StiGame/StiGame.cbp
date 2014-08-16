@@ -605,6 +605,12 @@
 		<Unit filename="PRect.h">
 			<Option virtualFolder="headers/primitives/" />
 		</Unit>
+		<Unit filename="PacketBuffer.cpp">
+			<Option virtualFolder="src/net/" />
+		</Unit>
+		<Unit filename="PacketBuffer.h">
+			<Option virtualFolder="headers/net/" />
+		</Unit>
 		<Unit filename="Pixel.cpp">
 			<Option virtualFolder="src/" />
 		</Unit>

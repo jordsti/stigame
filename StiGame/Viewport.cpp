@@ -8,6 +8,8 @@
 #include <string>
 #include <ctime>
 #include "TimeTools.h"
+#include "SDL_net.h"
+
 namespace StiGame
 {
 
@@ -285,6 +287,8 @@ void Viewport::initialize(void)
 	currentState = 0;
 	SDL_Init(SDL_INIT_AUDIO | SDL_INIT_VIDEO);
 	TTF_Init();
+	SDLNet_Init();
+
 
 	listDimensions();
 

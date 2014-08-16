@@ -81,6 +81,8 @@ public:
 
 	static void Copy(SDL_Rect *src, SDL_Rect *copy);
 	static void Copy(Rectangle *src, Rectangle *copy);
+	static void Copy(Rectangle *src, SDL_Rect *copy);
+	static void Copy(SDL_Rect *src, Rectangle *copy);
 };
 }
 

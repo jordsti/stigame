@@ -131,6 +131,20 @@ void Rectangle::Copy(Rectangle *src, Rectangle *copy)
 	copy->setHeight(src->getHeight());
 }
 
+void Rectangle::Copy(Rectangle *src, SDL_Rect *copy)
+{
+    copy->x = src->getX();
+    copy->y = src->getY();
+    copy->w = src->getWidth();
+    copy->h = src->getHeight();
+}
+
+void Rectangle::Copy(SDL_Rect *src, Rectangle *copy)
+{
+    copy->setDimension(src->w, src->h);
+    copy->setPoint(src->x, src->y);
+}
+
 void Rectangle::setRectangle(int m_x, int m_y, int m_width, int m_height)
 {
     x = m_x;

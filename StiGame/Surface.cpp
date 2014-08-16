@@ -269,6 +269,36 @@ namespace StiGame {
 		}
 	}
 
+    void Surface::blit(Surface *m_surface, Rectangle *src, Rectangle *dst)
+    {
+        SDL_Rect sdl_src = SDL_Rect();
+        SDL_Rect sdl_dst = SDL_Rect();
+        Rectangle::Copy(src, &sdl_src);
+        Rectangle::Copy(dst, &sdl_dst);
+
+        blit(m_surface, &sdl_src, &sdl_dst);
+    }
+
+	void Surface::blit(Surface *m_surface, Rectangle *dst)
+	{
+	    SDL_Rect sdl_dst = SDL_Rect();
+	    Rectangle::Copy(dst, &sdl_dst);
+	    SDL_Rect src = SDL_Rect();
+	    src.w = m_surface->getWidth();
+	    src.h = m_surface->getHeight();
+
+	    blit(m_surface, &src, &sdl_dst);
+	}
+
+	void Surface::blit(Surface *m_surface, SDL_Rect *dst)
+	{
+        SDL_Rect src = SDL_Rect();
+	    src.w = m_surface->getWidth();
+	    src.h = m_surface->getHeight();
+
+	    blit(m_surface, &src, dst);
+	}
+
 	void Surface::blit(Surface *src, SDL_Rect *srcRect, SDL_Rect *dstRect)
 	{
 		int rs = SDL_BlitSurface( src->getSDLSurface(), srcRect, sdlSurface, dstRect);

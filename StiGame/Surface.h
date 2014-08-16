@@ -88,6 +88,13 @@ public:
 	/// \param src Pointer to source SDL_Rect
 	/// \param dst Pointer to destination SDL_Rect
 	void blit(Surface *m_surface, SDL_Rect *src, SDL_Rect *dst);
+
+	void blit(Surface *m_surface, Rectangle *src, Rectangle *dst);
+
+	void blit(Surface *m_surface, Rectangle *dst);
+
+	void blit(Surface *m_surface, SDL_Rect *dst);
+
 	/// \brief Draw a primitive object to this Surface
 	/// \param prim Pointer to primitive to draw
 	/// \param color Pointer to a SColor
