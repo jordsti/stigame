@@ -90,6 +90,8 @@ Tested on Linux (Ubuntu 14.04-64bit) with g++ and SDL2, SDL2-image, SDL2-ttf and
 
 - Sprite tick rework, not static anymore
 
+- Network Code (TcpSocket, UdpSocket, Socket Base Class, Packet, ...) all into Net namespace
+
 and things that don't come to my mind at the moment...
 
 

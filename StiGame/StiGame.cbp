@@ -5,7 +5,7 @@
 		<Option title="StiGame" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="src/;src/sprites/;headers/;headers/gui/;src/gui/;headers/sprites/;src/bindings/;headers/bindings/;headers/core/;src/core/;headers/math/;src/math/;src/controller/;src/mouse/;headers/mouse/;headers/controller/;headers/primitives/;src/primitives/;" />
+		<Option virtualFolders="src\;src\sprites\;headers\;headers\gui\;src\gui\;headers\sprites\;src\bindings\;headers\bindings\;headers\core\;src\core\;headers\math\;src\math\;src\controller\;src\mouse\;headers\mouse\;headers\controller\;headers\primitives\;src\primitives\;headers\net\;src\net\;" />
 		<Build>
 			<Target title="Debug (Win32)">
 				<Option output="bin/Debug/StiGame" imp_lib="$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).a" def_file="$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).def" prefix_auto="1" extension_auto="1" />
@@ -767,8 +767,12 @@
 		<Unit filename="TableRow.h">
 			<Option virtualFolder="headers/" />
 		</Unit>
-		<Unit filename="TcpSocket.cpp" />
-		<Unit filename="TcpSocket.h" />
+		<Unit filename="TcpSocket.cpp">
+			<Option virtualFolder="src/net/" />
+		</Unit>
+		<Unit filename="TcpSocket.h">
+			<Option virtualFolder="headers/net/" />
+		</Unit>
 		<Unit filename="TextBox.cpp">
 			<Option virtualFolder="src/gui/" />
 		</Unit>
