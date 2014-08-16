@@ -2,6 +2,7 @@
 #define DECORATEDBUTTON_H
 #include "Item.h"
 #include "StringRenderer.h"
+#include "EventThrower.h"
 
 namespace StiGame
 {
@@ -9,7 +10,8 @@ namespace Gui
 {
 
 class DecoratedButton :
-    public Item
+    public Item,
+    public EventThrower
 {
     public:
         DecoratedButton();
@@ -19,6 +21,7 @@ class DecoratedButton :
 
         std::string getCaption(void);
         void setCaption(std::string m_caption);
+        void onClick(Point *relp);
 
     protected:
         void resized(void);
@@ -26,7 +29,12 @@ class DecoratedButton :
         Surface *buttonRight;
         Surface *buttonBackground;
 
+        Surface *buttonHighlightLeft;
+        Surface *buttonHighlightRight;
+        Surface *buttonHighlightBackground;
+
         Surface *surfaceBackground;
+        Surface *surfaceHighlightBackground;
 
         StringRenderer stringBuffer;
 

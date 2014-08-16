@@ -9,31 +9,6 @@ namespace StiGame
 namespace Gui
 {
 
-	/// \brief Foreground Color
-	Color foreground;
-	/// \brief Background Color
-	Color background;
-	/// \brief Highlight Foreground Color
-	Color highlightForeground;
-	/// \brief Highlight Background Color
-	Color highlightBackground;
-	/// \brief Drop List Arrow Image
-	Surface *dropListArrow;
-	/// \brief Up Arrow Image
-	Surface *upArrow;
-	/// \brief Down Arrow Image
-	Surface *downArrow;
-	/// \brief Check Box Image
-	Surface *checkbox;
-	/// \brief Checked Check Box Image
-	Surface *checkboxChecked;
-	/// \brief Radio Button Image
-	Surface *radio;
-	/// \brief Checked Radio Button Image
-	Surface *radioChecked;
-	/// \brief Normal Font
-	Font *normalFont;
-
 class MStyle :
     public Style
 {
@@ -51,6 +26,13 @@ class MStyle :
         void setCheckBoxChecked(Surface *surface);
         void setRadio(Surface *surface);
         void setRadioChecked(Surface *surface);
+        void setButtonLeft(Surface *surface);
+        void setButtonRight(Surface *surface);
+        void setButtonBackground(Surface *surface);
+        void setHighlightButtonLeft(Surface *surface);
+        void setHighlightButtonRight(Surface *surface);
+        void setHighlightButtonBackground(Surface *surface);
+
         void setNormalFont(Font *font);
     protected:
     private:

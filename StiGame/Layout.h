@@ -37,11 +37,9 @@ class Layout :
         unsigned int childsCount();
 
         virtual void setVerticalAlign(LayoutVerticalAlign m_verticalAlign);
-
         virtual void setHorizontalAlign(LayoutHorizontalAlign m_horizontalAlign);
 
         LayoutVerticalAlign getVerticalAlign(void);
-
         LayoutHorizontalAlign getHorizontalAlign(void);
 
         //need to override all the event stack

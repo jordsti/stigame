@@ -23,6 +23,14 @@ MStyle::MStyle()
     radio = nullptr;
     radioChecked = nullptr;
     normalFont = nullptr;
+
+    buttonLeft = nullptr;
+    buttonRight = nullptr;
+    buttonBackground = nullptr;
+
+    buttonHighlightLeft = nullptr;
+    buttonHighlightRight = nullptr;
+    buttonHighlightBackground = nullptr;
 }
 
 MStyle::~MStyle()
@@ -88,6 +96,34 @@ void MStyle::setRadioChecked(Surface *surface)
 void MStyle::setNormalFont(Font *font)
 {
     normalFont = font;
+}
+
+void MStyle::setButtonLeft(Surface *surface)
+{
+    buttonLeft = surface;
+}
+void MStyle::setButtonRight(Surface *surface)
+{
+    buttonRight = surface;
+}
+void MStyle::setButtonBackground(Surface *surface)
+{
+    buttonBackground = surface;
+}
+
+void MStyle::setHighlightButtonLeft(Surface *surface)
+{
+    buttonHighlightLeft = surface;
+}
+
+void MStyle::setHighlightButtonRight(Surface *surface)
+{
+    buttonHighlightRight = surface;
+}
+
+void MStyle::setHighlightButtonBackground(Surface *surface)
+{
+    buttonHighlightBackground = surface;
 }
 
 }
@@ -162,6 +198,7 @@ extern "C"
     {
         style->setNormalFont(font);
     }
+
 }
 
 #endif // C_WRAPPER

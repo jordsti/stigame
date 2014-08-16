@@ -94,6 +94,7 @@ void TestGui::initComponents()
     dbtn1.setCaption("Allo BTN");
     dbtn1.setDimension(200, 30);
     dbtn1.setPoint(220, 500);
+    dbtn1.subscribe(this);
 
     add(&guiList);
     add(&cb1);
@@ -118,6 +119,10 @@ void TestGui::handleEvent(EventThrower *src, EventArgs *evt)
     if(src == &tab1Btn)
     {
         std::cout << "Tab 1 Button !!" << std::endl;
+    }
+    else if(src == &dbtn1)
+    {
+        std::cout << "Decorated Button !" << std::endl;
     }
 }
 

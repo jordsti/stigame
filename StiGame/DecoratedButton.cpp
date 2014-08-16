@@ -20,7 +20,12 @@ DecoratedButton::DecoratedButton()
     buttonRight = style->getButtonRight();
     buttonBackground = style->getButtonBackground();
 
+    buttonHighlightLeft = style->getHighlightButtonLeft();
+    buttonHighlightRight = style->getHighlightButtonRight();
+    buttonHighlightBackground = style->getHighlightButtonBackground();
+
     surfaceBackground = nullptr;
+    surfaceHighlightBackground = nullptr;
 }
 
 void DecoratedButton::resized()
@@ -28,11 +33,18 @@ void DecoratedButton::resized()
     drawBackground();
 }
 
+void DecoratedButton::onClick(Point *relp)
+{
+    EventArgs args = EventArgs();
+    publish(this, &args);
+}
+
 void DecoratedButton::drawBackground()
 {
     if(surfaceBackground != nullptr)
     {
         delete surfaceBackground;
+        delete surfaceHighlightBackground;
     }
 
     int min_width = stringBuffer.getWidth() + buttonLeft->getWidth() + buttonRight->getWidth();
@@ -47,6 +59,7 @@ void DecoratedButton::drawBackground()
     }
 
     surfaceBackground = new Surface(width, height);
+    surfaceHighlightBackground = new Surface(width, height);
 
     SDL_Rect src = SDL_Rect();
     SDL_Rect dst = SDL_Rect();
@@ -62,6 +75,7 @@ void DecoratedButton::drawBackground()
     int start_x = buttonLeft->getWidth();
 
     surfaceBackground->blit(buttonLeft, &src, &dst);
+    surfaceHighlightBackground->blit(buttonHighlightLeft, &src, &dst);
 
     src.x = 0;
     src.y = 0;
@@ -74,6 +88,7 @@ void DecoratedButton::drawBackground()
     dst.y = 0;
 
     surfaceBackground->blit(buttonRight, &src, &dst);
+    surfaceHighlightBackground->blit(buttonHighlightRight, &src, &dst);
 
     src.w = buttonBackground->getWidth();
     src.h = buttonBackground->getHeight();
@@ -86,6 +101,7 @@ void DecoratedButton::drawBackground()
     {
         dst.x = start_x + i;
         surfaceBackground->blit(buttonBackground, &src, &dst);
+        surfaceHighlightBackground->blit(buttonHighlightBackground, &src, &dst);
     }
 
 }
@@ -120,8 +136,14 @@ Surface* DecoratedButton::render()
     src.h = surfaceBackground->getHeight();
 
     Rectangle::Copy(&src, &dst);
-
-    buffer->blit(surfaceBackground, &src, &dst);
+    if(mouseOver)
+    {
+        buffer->blit(surfaceHighlightBackground, &src, &dst);
+    }
+    else
+    {
+        buffer->blit(surfaceBackground, &src, &dst);
+    }
 
     src.w = stringBuffer.getWidth();
     src.h = stringBuffer.getHeight();

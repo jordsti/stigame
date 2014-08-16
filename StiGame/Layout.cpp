@@ -103,6 +103,7 @@ void Layout::onMouseMotion(Point *relpt)
         {
             pt.setX(relpt->getX() - (*lit)->getX());
             pt.setY(relpt->getY() - (*lit)->getY());
+            (*lit)->setMouseOver(true);
             (*lit)->onMouseMotion(&pt);
         }
         else
