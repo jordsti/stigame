@@ -49,6 +49,8 @@ class Layout :
         virtual void onTextInput(char* text);
         Surface* render(void);
 
+        void setDrawBorder(bool m_drawBorder);
+
     protected:
         void resized();
         virtual void setChildsPosition(void) = 0;
@@ -58,6 +60,7 @@ class Layout :
         LayoutVerticalAlign verticalAlign;
         LayoutHorizontalAlign horizontalAlign;
         bool childsChanged;
+        bool drawBorder;
     private:
 
 };

@@ -4,6 +4,8 @@ import surface
 import color
 import font
 
+#todo decorated button method
+
 class style(object_wrap.object_wrap):
     def __init__(self, ptr=None):
         object_wrap.object_wrap(self)

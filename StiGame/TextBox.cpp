@@ -1,6 +1,6 @@
 #include "TextBox.h"
 #include "PRect.h"
-#include <iostream>
+
 namespace StiGame
 {
 
@@ -72,14 +72,12 @@ void TextBox::onTextInput(char *m_text)
 {
     text += m_text;
     renderString();
-    //debug
-    std::cout << m_text << std::endl;
-    std::cout << text << std::endl;
+    //todo unicode support
 }
 
 void TextBox::onKeyUp(SDL_KeyboardEvent *evt)
 {
-    if(evt->keysym.sym == SDLK_BACKSPACE)
+    if(evt->keysym.sym == SDLK_BACKSPACE && focus)
     {
         if(text.length() > 1)
         {
@@ -91,7 +89,7 @@ void TextBox::onKeyUp(SDL_KeyboardEvent *evt)
             text = "";
         }
     }
-    else if (evt->keysym.sym == SDLK_RETURN)
+    else if (evt->keysym.sym == SDLK_RETURN && focus)
     {
         if(focus)
         {

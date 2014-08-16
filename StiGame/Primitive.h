@@ -20,6 +20,7 @@ class Primitive
 public:
 	/// \brief Empty constructor
 	Primitive(void);
+
 	/// \brief Destructor
 	~Primitive(void);
 	void draw(Surface *surface, Color *color);

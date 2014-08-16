@@ -30,7 +30,7 @@ At the moment, these features are already implemented into StiGame.
 		- Vertical Box Layout **vertical align todo**
 		- Horizontal Box Layout **test and horizontal align todo**
 		- Form Layout **todo**
-		- Spacer Item for Layout **todo**
+		- Spacer Item for Layout **to test**
 - Game Sprite
   - Directional Sprite
   - General Sprite
@@ -62,11 +62,9 @@ After you can compile using Code::Blocks IDE.
 
 #### Linux
 
-Linux will be supported in an early future
+Tested on Linux (Ubuntu 14.04-64bit) with g++ and SDL2, SDL2-image, SDL2-ttf and SDL2-gfx
 
 ### TO DO
-
-- Linux Support
 
 - Gui Test Project, to test all Gui Element
 	- Table
@@ -86,8 +84,11 @@ Linux will be supported in an early future
   - Map Controller and handle event
   - Persitant configuration of the default controller
   
- - SPhysic *recode*
-  
+- SPhysic *recode*
+ 
+- GameUnit review *will be deleted*
+
+- Sprite tick rework, not static anymore
 
 and things that don't come to my mind at the moment...
 

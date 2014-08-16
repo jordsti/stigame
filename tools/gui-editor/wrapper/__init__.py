@@ -10,4 +10,5 @@ from gui_list import gui_list
 from radio_button import radio_button
 from text_box import text_box
 from vertical_box_layout import vertical_box_layout
+from decorated_button import decorated_button
 #m_style todo

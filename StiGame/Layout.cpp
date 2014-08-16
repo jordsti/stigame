@@ -1,4 +1,6 @@
 #include "Layout.h"
+#include "PRect.h"
+
 namespace StiGame
 {
 
@@ -14,11 +16,17 @@ Layout::Layout(std::string name)
     verticalAlign = LVA_Middle;
     horizontalAlign = LHA_Center;
     childsChanged = false;
+    drawBorder = true;
 }
 
 Layout::~Layout()
 {
     //dtor
+}
+
+void Layout::setDrawBorder(bool m_drawBorder)
+{
+    drawBorder = m_drawBorder;
 }
 
 
@@ -123,7 +131,7 @@ void Layout::onKeyUp(SDL_KeyboardEvent *evt)
     std::list<Item*>::iterator lit(childs.begin()), lend(childs.end());
     for(;lit!=lend;++lit)
     {
-        if((*lit)->contains(&mouse))
+        if((*lit)->isHandleKey())
         {
             (*lit)->onKeyUp(evt);
         }
@@ -162,6 +170,14 @@ Surface *Layout::render()
 
     delete src;
     delete dst;
+
+    if(drawBorder)
+    {
+        PRect border = PRect();
+        border.setDimension(width, height);
+
+        buffer->draw(&border, foreground);
+    }
 
 
     return buffer;

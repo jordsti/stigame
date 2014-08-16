@@ -8,6 +8,20 @@ PRect::PRect(void) : Rectangle()
 {
 }
 
+PRect::PRect(int m_x, int m_y, int m_width, int m_height) :
+    Rectangle(m_x, m_y, m_width, m_height)
+{
+
+}
+
+PRect::PRect(Rectangle *rect)
+{
+    x = rect->getX();
+    y = rect->getY();
+    width = rect->getWidth();
+    height = rect->getHeight();
+}
+
 void PRect::draw(SDL_Surface *surface, Color *color)
 {
 	if(!color->isMapped())

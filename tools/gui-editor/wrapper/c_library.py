@@ -1,7 +1,14 @@
 __author__ = 'JordSti'
 import ctypes
+import os
 
-lib_stigame = ctypes.cdll.LoadLibrary('./StiGame.dll')
+
+print os.name
+if os.name == 'posix':
+    lib_stigame = ctypes.cdll.LoadLibrary('./libStiGame.so')
+else:
+    #todo investigae for more os...
+    lib_stigame = ctypes.cdll.LoadLibrary('./StiGame.dll')
 
 #todo better file finding
 lib_init = False

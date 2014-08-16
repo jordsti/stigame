@@ -73,7 +73,7 @@ void TestGui::initComponents()
     tbName.setPoint(10, 200);
     tbName.setDimension(120, 20);
 
-    vlayout = VerticalBoxLayout();
+    //vlayout = VerticalBoxLayout();
     vlayout.setPoint(520, 20);
     vlayout.setDimension(250, 400);
 
@@ -90,6 +90,8 @@ void TestGui::initComponents()
     vlayout.addChild(&lbl_vlayout3);
     vlayout.addChild(&lbl_vlayout4);
     vlayout.addChild(&lbl_vlayout5);
+
+    vlayout.setDrawBorder(false);
 
     dbtn1.setCaption("Allo BTN");
     dbtn1.setDimension(200, 30);

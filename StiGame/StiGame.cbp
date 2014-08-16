@@ -596,7 +596,7 @@
 			<Option virtualFolder="headers/primitives/" />
 		</Unit>
 		<Unit filename="PRect.cpp">
-			<Option virtualFolder="src/primitives/" />
+			<Option virtualFolder="headers/gui/" />
 		</Unit>
 		<Unit filename="PRect.h">
 			<Option virtualFolder="headers/primitives/" />
@@ -683,6 +683,12 @@
 			<Option virtualFolder="src/gui/" />
 		</Unit>
 		<Unit filename="SelectionEventThrower.h">
+			<Option virtualFolder="headers/gui/" />
+		</Unit>
+		<Unit filename="Spacer.cpp">
+			<Option virtualFolder="src/gui/" />
+		</Unit>
+		<Unit filename="Spacer.h">
 			<Option virtualFolder="headers/gui/" />
 		</Unit>
 		<Unit filename="Sprite.cpp">

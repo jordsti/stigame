@@ -173,3 +173,23 @@ DecoratedButton::~DecoratedButton()
 
 }
 }
+
+#ifdef C_WRAPPER
+extern "C"
+{
+    StiGame::Gui::DecoratedButton* DecoratedButton_new()
+    {
+        return new StiGame::Gui::DecoratedButton();
+    }
+
+    void DecoratedButton_setCaption(StiGame::Gui::DecoratedButton *dbtn, char* text)
+    {
+        dbtn->setCaption(text);
+    }
+
+    const char* DecoratedButton_getCaption(StiGame::Gui::DecoratedButton *dbtn)
+    {
+        return dbtn->getCaption().c_str();
+    }
+}
+#endif
