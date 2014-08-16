@@ -26,6 +26,7 @@
 					<Add option="-lSDL2_image" />
 					<Add option="-lSDL2_ttf" />
 					<Add option="-lSDL2_gfx" />
+					<Add option="-lSDL2_net" />
 					<Add directory="../lib" />
 				</Linker>
 				<ExtraCommands>
@@ -52,6 +53,7 @@
 					<Add option="-lSDL2_image" />
 					<Add option="-lSDL2_ttf" />
 					<Add option="-lSDL2_gfx" />
+					<Add option="-lSDL2_net" />
 					<Add directory="../lib" />
 				</Linker>
 				<ExtraCommands>
@@ -78,6 +80,7 @@
 					<Add option="-lSDL2_image" />
 					<Add option="-lSDL2_ttf" />
 					<Add option="-lSDL2_gfx" />
+					<Add option="-lSDL2_net" />
 				</Linker>
 			</Target>
 			<Target title="Release (Linux)">
@@ -101,6 +104,7 @@
 					<Add option="-lSDL2_image" />
 					<Add option="-lSDL2_ttf" />
 					<Add option="-lSDL2_gfx" />
+					<Add option="-lSDL2_net" />
 				</Linker>
 			</Target>
 		</Build>
@@ -763,6 +767,8 @@
 		<Unit filename="TableRow.h">
 			<Option virtualFolder="headers/" />
 		</Unit>
+		<Unit filename="TcpSocket.cpp" />
+		<Unit filename="TcpSocket.h" />
 		<Unit filename="TextBox.cpp">
 			<Option virtualFolder="src/gui/" />
 		</Unit>
