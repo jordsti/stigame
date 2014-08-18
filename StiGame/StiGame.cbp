@@ -809,6 +809,12 @@
 		<Unit filename="TimedGameAction.h">
 			<Option virtualFolder="headers/bindings/" />
 		</Unit>
+		<Unit filename="UdpSocket.cpp">
+			<Option virtualFolder="src/net/" />
+		</Unit>
+		<Unit filename="UdpSocket.h">
+			<Option virtualFolder="headers/net/" />
+		</Unit>
 		<Unit filename="ValueObject.cpp">
 			<Option virtualFolder="src/gui/" />
 		</Unit>
