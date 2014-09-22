@@ -49,6 +49,8 @@ protected:
 
 	/// \brief Normal Font
 	Font *normalFont;
+
+	Font *bigFont;
 public:
 	/// \brief Create a new GuiStyle
 	Style(void);
@@ -91,6 +93,8 @@ public:
 	Surface *getHighlightButtonBackground(void);
 
 	Font *getNormalFont(void);
+
+	Font *getBigFont(void);
 	/// \brief Unload Ressources
 	void unload(void);
 };

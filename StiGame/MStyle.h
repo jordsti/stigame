@@ -34,6 +34,7 @@ class MStyle :
         void setHighlightButtonBackground(Surface *surface);
 
         void setNormalFont(Font *font);
+        void setBigFont(Font *font);
     protected:
     private:
 };

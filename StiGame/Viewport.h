@@ -21,7 +21,11 @@ private:
 	/// \brief List availabe video resolution
     void listDimensions(void);
 
+    static bool _sdlInitied;
+
 protected:
+    static void initSDL(void);
+
 	/// \brief Window title
     const char* title;
 
@@ -85,6 +89,10 @@ protected:
     Cursor* cursor;
 public:
     const int DEFAULT_MS_TRESHOLD = 4;
+
+    //static method
+    static std::list<Dimension> GetSupportedResolution(void);
+    static Dimension GetHighestResolution(void);
 
 	/// \brief Create a new viewport
 	Viewport(void);

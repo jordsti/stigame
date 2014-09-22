@@ -19,6 +19,8 @@ Style::Style(void)
 	highlightBackground = Color(120, 120, 120);
 
 	normalFont = new Font(GamePath::getFilepath(AssetRoot, "font.ttf").c_str(), 16);
+	bigFont = new Font(GamePath::getFilepath(AssetRoot, "font.ttf").c_str(), 32);
+
 	dropListArrow = new Surface(GamePath::getFilepath(AssetGui, "droplist_arrow.png").c_str());
 	upArrow = new Surface(GamePath::getFilepath(AssetGui, "uparrow.png").c_str());
 	downArrow = new Surface(GamePath::getFilepath(AssetGui, "downarrow.png").c_str());
@@ -127,6 +129,11 @@ Surface* Style::getHighlightButtonRight(void)
 Surface* Style::getHighlightButtonBackground(void)
 {
     return buttonHighlightBackground;
+}
+
+Font* Style::getBigFont(void)
+{
+    return bigFont;
 }
 
 Style::~Style(void)

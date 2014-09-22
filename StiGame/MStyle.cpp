@@ -23,6 +23,7 @@ MStyle::MStyle()
     radio = nullptr;
     radioChecked = nullptr;
     normalFont = nullptr;
+    bigFont = nullptr;
 
     buttonLeft = nullptr;
     buttonRight = nullptr;
@@ -124,6 +125,11 @@ void MStyle::setHighlightButtonRight(Surface *surface)
 void MStyle::setHighlightButtonBackground(Surface *surface)
 {
     buttonHighlightBackground = surface;
+}
+
+void MStyle::setBigFont(Font *m_bigFont)
+{
+    bigFont = m_bigFont;
 }
 
 }

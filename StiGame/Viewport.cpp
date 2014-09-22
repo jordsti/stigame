@@ -13,6 +13,59 @@
 namespace StiGame
 {
 
+bool Viewport::_sdlInitied = false;
+
+void Viewport::initSDL(void)
+{
+    if(!_sdlInitied)
+    {
+
+        SDL_Init(SDL_INIT_AUDIO | SDL_INIT_VIDEO);
+        TTF_Init();
+        SDLNet_Init();
+
+        _sdlInitied = true;
+    }
+
+}
+
+std::list<Dimension> Viewport::GetSupportedResolution(void)
+{
+    initSDL();
+    std::list<Dimension> dimensions;
+    int nb = SDL_GetNumDisplayModes(0);
+
+    for(int i=0; i<nb; i++)
+    {
+        SDL_DisplayMode mode = SDL_DisplayMode();
+        SDL_GetDisplayMode(0, i, &mode);
+
+        Dimension dim (mode.w, mode.h);
+
+        dimensions.push_back(dim);
+    }
+
+    return dimensions;
+
+}
+
+Dimension Viewport::GetHighestResolution(void)
+{
+    std::list<Dimension> dimensions = GetSupportedResolution();
+    std::list<Dimension>::iterator lit(dimensions.begin()), lend(dimensions.end());
+
+    int mw = 0;
+    int mh = 0;
+
+    if((*lit).getWidth() >= mw || (*lit).getHeight() >= mh)
+    {
+        mw = (*lit).getWidth();
+        mh = (*lit).getHeight();
+    }
+
+    return Dimension (mw, mh);
+}
+
 Viewport::Viewport(void)
 {
     msTreshold = DEFAULT_MS_TRESHOLD;
@@ -285,9 +338,9 @@ void Viewport::initialize(void)
 	lastTick = 0;
 	run = false;
 	currentState = 0;
-	SDL_Init(SDL_INIT_AUDIO | SDL_INIT_VIDEO);
-	TTF_Init();
-	SDLNet_Init();
+
+
+    initSDL();
 
 
 	listDimensions();

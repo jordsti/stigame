@@ -86,7 +86,7 @@ Surface* Button::render(void)
 	buffer->fill(bg);
 
 	SDL_Rect *src = _str->getRect();
-	SDL_Rect *dst = _str->getRect(offsetWidth, offsetHeight);
+	SDL_Rect *dst = _str->getRect((width - _str->getWidth())/2, (height - _str->getHeight())/2);
     //middle maybe todo
 	buffer->blit(_str, src, dst);
 

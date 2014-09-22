@@ -194,7 +194,7 @@ void Item::setFixedSize(int m_width, int m_height)
 {
     minimumSize.setDimension(m_width, m_height);
     maximumSize.setDimension(m_width, m_height);
-    setPoint(m_width,m_height);
+    setDimension(m_width,m_height);
 }
 
 Dimension* Item::getMinimumSize()

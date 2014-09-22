@@ -76,6 +76,7 @@ Tested on Linux (Ubuntu 14.04-64bit) with g++ and SDL2, SDL2-image, SDL2-ttf and
 	- Layout Item
 		- Form Layout
 		- ~~Item Minimum Size and MaxSize ?~~
+	- Normalize all *.setCaption method ; std::string text or const char* , to be determined!
 	
 - Viewport
   -	Save resolution information, to persist configuration
