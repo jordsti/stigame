@@ -19,7 +19,7 @@ public:
 	Surface *render(void);
 	/// \brief Set the image with the file path
 	/// \param m_imagePath Image path
-	void setImage(char* m_imagePath);
+	void setImage(std::string m_imagePath);
 	/// \brief Draw border
 	/// \param m_drawBorder draw it or not
 	void setDrawBorder(bool m_drawBorder);
@@ -32,7 +32,7 @@ protected:
 	/// \brief Image Buffer
     Surface *imageBuffer;
 	/// \brief Image Path
-    char* imagePath;
+    std::string imagePath;
 	/// \brief Draw the border
 	bool drawBorder;
 };

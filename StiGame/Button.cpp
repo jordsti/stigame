@@ -19,13 +19,13 @@ Button::Button(void) : Item("button")
 	highlightBackground = style->getHighlightBackground();
 }
 
-void Button::setCaption(char* m_caption)
+void Button::setCaption(std::string m_caption)
 {
 	caption = m_caption;
 	renderCaption();
 }
 
-char* Button::getCaption(void)
+std::string Button::getCaption(void)
 {
 	return caption;
 }
@@ -171,12 +171,13 @@ extern "C"
 
     void Button_setCaption(StiGame::Gui::Button *button, char *text)
     {
-        button->setCaption(text);
+        std::string text_string (text);
+        button->setCaption(text_string);
     }
 
-    char* Button_getCaption(StiGame::Gui::Button *button)
+    const char* Button_getCaption(StiGame::Gui::Button *button)
     {
-        return button->getCaption();
+        return button->getCaption().c_str();
     }
 }
 #endif // C_WRAPPER

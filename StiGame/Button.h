@@ -22,10 +22,10 @@ public:
 	virtual ~Button(void);
 	/// \brief Get Button Text Caption
 	/// \return String value
-	char* getCaption(void);
+	std::string getCaption(void);
 	/// \brief Set Button Text Caption
 	/// \param m_caption Text Caption
-	void setCaption(char* m_caption);
+	void setCaption(std::string m_caption);
 	/// \brief Render the Button
 	/// \return Rendered Button
 	virtual Surface* render(void);
@@ -42,7 +42,7 @@ protected:
 	/// \brief Caption Buffer
 	Surface *stringBuffer;
 	/// \brief Text Caption
-	char* caption;
+	std::string caption;
 	/// \brief Offset Width
 	int offsetWidth;
 	/// \brief Offset Height

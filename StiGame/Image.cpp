@@ -19,7 +19,7 @@ void Image::setDrawBorder(bool m_drawBorder)
     drawBorder = m_drawBorder;
 }
 
-void Image::setImage(char* m_imagePath)
+void Image::setImage(std::string m_imagePath)
 {
     imagePath = m_imagePath;
     loadImage();
@@ -33,7 +33,7 @@ void Image::loadImage(void)
         imageBuffer = 0;
     }
 
-    imageBuffer = new Surface(imagePath);
+    imageBuffer = new Surface(imagePath.c_str());
     width = imageBuffer->getWidth();
     height = imageBuffer->getHeight();
 }

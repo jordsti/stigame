@@ -55,7 +55,7 @@ public:
 	/// \brief Create a new GuiStyle
 	Style(void);
 	/// \brief Destructor
-	~Style(void);
+	virtual ~Style(void);
 	/// \brief Get Foreground Pointer
 	Color *getForeground(void);
 	/// \brief Get Background Pointer
