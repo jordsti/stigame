@@ -5,7 +5,7 @@ import zipfile
 import os
 import urllib2
 #hard coded url
-url = 'https://docs.google.com/uc?authuser=0&id=0B_P5byse05MmS01LUi1HcEdsZnc&export=download'
+url = 'http://sticode.com/~jordsti/stigame_extern_x86.zip'
 
 def download(url , output):
 

@@ -50,6 +50,8 @@ class Sprite :
 		/// \return Texture pointer
         Texture* getCurrentTexture(void);
 
+        Surface* getCurrentSurface(void);
+
 		/// \brief render sprite
         void render(void);
         //void move(int dx, int dy);
@@ -67,6 +69,9 @@ class Sprite :
         std::list<std::string> frame_images;
 		/// \brief frame textures
         std::vector<Texture*> frame_textures;
+
+        std::vector<Surface*> frame_surfaces;
+
         //Texture frame_textures[];
 		/// \brief number of frames
         int frame_count;

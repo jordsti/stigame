@@ -99,9 +99,13 @@ void Sprite::readSpriteFileObject(SpriteFile *sprite_file)
     for(int i=0; i<frame_count; i++)
     {
         SDL_Surface *surface = sprite_file->getSurface(i);
+        Surface *sur = new Surface(surface);
+        sur->setReleaseSurface(true);
+
         Texture *tx = new Texture(renderer, surface);
 
         frame_textures.push_back(tx);
+        frame_surfaces.push_back(sur);
     }
 }
 
@@ -111,9 +115,10 @@ void Sprite::loadImages()
     for(;lit!=lend;++lit)
     {
         std::string path =  GamePath::combine(GamePath::getPath(AssetRoot), (*lit) );
+        Surface *sur = new Surface(path.c_str());
+        Texture *tx = new Texture(renderer, sur);
 
-        Texture *tx = new Texture(renderer, path.c_str());
-
+        frame_surfaces.push_back(sur);
         frame_textures.push_back(tx);
 
         if(width == 0 && height == 0)
@@ -130,6 +135,14 @@ Texture* Sprite::getCurrentTexture(void)
     int id = (tick % frame_count);
 
     return frame_textures[id];
+}
+
+Surface* Sprite::getCurrentSurface(void)
+{
+    int id = (tick % frame_count);
+
+    return frame_surfaces[id];
+
 }
 
 void Sprite::render(void)
