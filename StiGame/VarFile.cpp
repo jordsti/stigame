@@ -99,6 +99,13 @@ std::string VarFile::getValue(std::string varname)
     return value;
 }
 
+int VarFile::getInt(std::string varname)
+{
+    std::string val = getValue(varname);
+    int i = atoi(val.c_str());
+    return i;
+}
+
 bool VarFile::isVarExists(std::string varname)
 {
     try
@@ -116,8 +123,14 @@ bool VarFile::isVarExists(std::string varname)
 void VarFile::parseLine(std::string line)
 {
     size_t sep_pos = line.find_first_of('=');
+    char first_char = ' ';
 
-    if(sep_pos != std::string::npos)
+    if(line.length() >= 1)
+    {
+        first_char = line.at(0);
+    }
+
+    if(sep_pos != std::string::npos && first_char != '#')
     {
         std::string varName = line.substr(0, sep_pos);
         std::string value = line.substr(sep_pos + 1, line.length() - sep_pos - 2);
@@ -129,6 +142,9 @@ void VarFile::parseLine(std::string line)
 void VarFile::write(void)
 {
     std::ofstream outfile (filepath, std::ios::out | std::ios::trunc);
+
+    //headers
+    outfile << "#StiGame varfile" << std::endl;
 
     std::map<std::string, std::string>::iterator lit(variables.begin()), lend(variables.end());
 

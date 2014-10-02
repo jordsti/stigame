@@ -26,6 +26,9 @@ class VarFile
 		/// \param varname Variable Name
 		/// \return Variable value
         std::string getValue(std::string varname);
+
+        int getInt(std::string varname);
+
 		/// \brief Put a new variable into VarFile
 		/// \param varname Variable name
 		/// \param value Variable value
@@ -34,7 +37,7 @@ class VarFile
 		/// \param varname Variable Name
 		/// \return Exists or not
         bool isVarExists(std::string varname);
-		
+
 		std::list<std::string> getKeys(void);
 
         static int ParseInt(std::string i_str);

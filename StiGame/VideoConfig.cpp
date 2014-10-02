@@ -1,5 +1,5 @@
 #include "VideoConfig.h"
-
+#include <string>
 namespace StiGame
 {
 VideoConfig::VideoConfig()
