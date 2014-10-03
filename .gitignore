@@ -5,6 +5,7 @@
 *.obj
 *.txt
 *.directory
+*.user
 
 #post build copy
 *.pb
@@ -17,6 +18,7 @@ include/*
 */obj/*
 *.zip
 *.rar
+build/*
 
 #python tools
 *.pyc

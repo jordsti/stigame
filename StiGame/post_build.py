@@ -61,8 +61,8 @@ if __name__ == '__main__':
         if not os.path.exists(project_path):
             os.makedirs(project_path)
         
-        src_path = os.path.join(os.getcwd(), 'bin', mode, 'StiGame.dll')
-        dst_path = os.path.join(project_path, 'StiGame.dll')
+        src_path = os.path.join(os.getcwd(), 'bin', mode, 'libStiGame.dll')
+        dst_path = os.path.join(project_path, 'libStiGame.dll')
         shutil.copyfile(src_path, dst_path)
 
     for o in other_dests:
@@ -72,6 +72,6 @@ if __name__ == '__main__':
         if not os.path.exists(project_path):
             os.makedirs(project_path)
             
-        src_path = os.path.join(os.getcwd(), 'bin', mode, 'StiGame.dll')
-        dst_path = os.path.join(project_path, 'StiGame.dll')
+        src_path = os.path.join(os.getcwd(), 'bin', mode, 'libStiGame.dll')
+        dst_path = os.path.join(project_path, 'libStiGame.dll')
         shutil.copyfile(src_path, dst_path)
