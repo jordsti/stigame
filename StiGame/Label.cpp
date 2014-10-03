@@ -97,6 +97,12 @@ void Label::doAutosize(void)
 	minimumSize.setDimension(width, height);
 }
 
+void Label::setForeground(Color *m_foreground)
+{
+    foreground = m_foreground;
+    renderCaption();
+}
+
 void Label::setTransparent(bool m_transparent)
 {
 	transparent = m_transparent;

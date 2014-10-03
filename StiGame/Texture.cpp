@@ -172,6 +172,27 @@ namespace StiGame
             handleError();
         }
     }
+
+    void Texture::renderCopy(Point *pt)
+    {
+        SDL_Rect src;
+        SDL_Rect dst;
+
+        src.x = 0;
+        src.y = 0;
+        src.w = width;
+        src.h = height;
+
+        dst.x = pt->getX();
+        dst.y = pt->getY();
+        dst.w = width;
+        dst.h = height;
+
+        if(SDL_RenderCopy(renderer, sdlTexture, &src, &dst) != 0)
+        {
+            handleError();
+        }
+    }
 																// use angle class ? or just use Math:: static method
     void Texture::renderCopyEx(SDL_Rect *src, SDL_Rect *dst, double angle, SDL_Point *center, SDL_RendererFlip flip)
     {

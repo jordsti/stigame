@@ -1,7 +1,7 @@
 #include "TestGui.h"
 #include <ValueObject.h>
 #include <iostream>
-
+#include <Version.h>
 using namespace StiGame;
 using namespace Gui;
 
@@ -82,7 +82,7 @@ void TestGui::initComponents()
     lbl_vlayout2.setCaption("layout 2");
     lbl_vlayout3.setCaption("layout 3");
     lbl_vlayout4.setCaption("layout 4");
-    lbl_vlayout5.setCaption("layout 5");
+    lbl_vlayout5.setCaption(Version().getVersion());
 
 
     vlayout.addChild(&lbl_vlayout);

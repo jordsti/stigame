@@ -1,6 +1,7 @@
 #ifndef TEXTURE_H
 #define TEXTURE_H
 #include "Dimension.h"
+#include "Point.h"
 #include "SDL.h"
 #include "SDL_image.h"
 #include "Surface.h"
@@ -96,6 +97,8 @@ class Texture :
 		/// \param src Source rectangle
 		/// \param dst Destination rectangle
         void renderCopy(SDL_Rect *src, SDL_Rect *dst);
+
+        void renderCopy(Point *dst);
 
 		/// \brief Render the Texture with an angle
 		/// \param src Source rectangle

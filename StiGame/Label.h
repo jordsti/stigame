@@ -41,6 +41,8 @@ public:
 	bool getDrawBorder(void);
 	void setDrawBorder(bool m_drawBorder);
 
+    virtual void setForeground(Color *m_foreground);
+
 protected:
 	/// \brief Render the caption text
 	void renderCaption(void);
