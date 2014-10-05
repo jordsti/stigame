@@ -95,10 +95,10 @@ namespace StiGame {
 		}
 	}
 
-	Surface::Surface(const char* path)
+    Surface::Surface(std::string m_path)
 	{
 		releaseSurface = true;
-		sdlSurface = IMG_Load(path);
+        sdlSurface = IMG_Load(m_path.c_str());
 
 		if(sdlSurface)
 		{
@@ -114,7 +114,7 @@ namespace StiGame {
 		}
 	}
 
-	void Surface::loadFromFile(char* path)
+    void Surface::loadFromFile(const char* path)
 	{
 		freeSurface();
 
@@ -277,6 +277,18 @@ namespace StiGame {
         Rectangle::Copy(dst, &sdl_dst);
 
         blit(m_surface, &sdl_src, &sdl_dst);
+    }
+
+    void Surface::blit(Surface *m_surface, Point *pt)
+    {
+        SDL_Rect sdl_dst;
+
+        sdl_dst.x = pt->getX();
+        sdl_dst.y = pt->getY();
+        sdl_dst.w = m_surface->getWidth();
+        sdl_dst.h = m_surface->getHeight();
+
+        blit(m_surface, &sdl_dst);
     }
 
 	void Surface::blit(Surface *m_surface, Rectangle *dst)

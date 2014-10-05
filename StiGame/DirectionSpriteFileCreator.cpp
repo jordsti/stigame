@@ -186,19 +186,19 @@ namespace StiGame
 				switch(i)
 				{
 					case 0:
-						surface = new Surface(frames_pathUp[0].c_str());
+                        surface = new Surface(frames_pathUp[0]);
 						break;
 					case 1:
-						surface = new Surface(frames_pathDown[0].c_str());
+                        surface = new Surface(frames_pathDown[0]);
 						break;
 					case 2:
-						surface = new Surface(frames_pathLeft[0].c_str());
+                        surface = new Surface(frames_pathLeft[0]);
 						break;
 					case 3:
-						surface = new Surface(frames_pathRight[0].c_str());
+                        surface = new Surface(frames_pathRight[0]);
 						break;
                     case 4:
-                        surface = new Surface(frames_pathIdle[0].c_str());
+                        surface = new Surface(frames_pathIdle[0]);
 				}
 			}
 		}

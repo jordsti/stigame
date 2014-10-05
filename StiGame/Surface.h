@@ -47,7 +47,7 @@ public:
 	/// \brief Constructor
 	/// Create a new Surface from a file
 	/// \param m_path Path to image
-	Surface(const char *m_path);
+    Surface(std::string m_path);
 	/// \brief Return the SDL_Surface
 	/// \return Encapsulated SDL_Surface
 	SDL_Surface *getSDLSurface(void);
@@ -95,6 +95,8 @@ public:
 
 	void blit(Surface *m_surface, SDL_Rect *dst);
 
+    void blit(Surface *m_surface, Point *pt);
+
 	/// \brief Draw a primitive object to this Surface
 	/// \param prim Pointer to primitive to draw
 	/// \param color Pointer to a SColor
@@ -140,7 +142,7 @@ public:
 	virtual ~Surface(void);
 	/// \brief Load a image file
 	/// \param m_path Path to image
-	void loadFromFile(char *m_path);
+    void loadFromFile(const char *m_path);
 
 	Uint32 getPixelInt(int p_x, int p_y);
 	Pixel* getPixel(Point *pt);

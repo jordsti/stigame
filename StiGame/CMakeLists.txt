@@ -33,6 +33,7 @@ set(SOURCE_FILES
     Cursor.cpp
     DecoratedButton.cpp
     Dimension.cpp
+    DimensionF.cpp
     DirectionSprite.cpp
     DirectionSpriteFile.cpp
     DirectionSpriteFileCreator.cpp
@@ -60,6 +61,7 @@ set(SOURCE_FILES
     Logger.cpp
     MathTK.cpp
     MDimension.cpp
+    MDimensionF.cpp
     MessageBox.cpp
     MissileDictionary.cpp
     Motion.cpp
