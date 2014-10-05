@@ -153,6 +153,7 @@ namespace StiGame
     {
         if(SDL_SetTextureAlphaMod(sdlTexture, alpha) != 0)
         {
+            std::cout <<"alpha error" << std::endl;
             handleError();
         }
     }
