@@ -138,7 +138,9 @@ set(SOURCE_FILES
     WindowEventThrower.cpp
 )
 
+if(WIN32)
 set(CMAKE_SHARED_LINKER_FLAGS "-Wl,--export-all-symbols")
+endif(WIN32)
 
 configure_file(VersionConfig.h.in ${CMAKE_BINARY_DIR}/generated/VersionConfig.h)
 include_directories(${CMAKE_BINARY_DIR}/generated/)
@@ -146,5 +148,4 @@ include_directories(${CMAKE_BINARY_DIR}/generated/)
 add_library(StiGame SHARED ${SOURCE_FILES})
 target_link_libraries(StiGame PUBLIC ${SDL2} ${SDL2_image} ${SDL2_ttf} ${SDL2_net} ${SDL2_gfx})
 
-install(TARGETS StiGame RUNTIME DESTINATION ${INSTALL_DIR})
-install(TARGETS StiGame ARCHIVE DESTINATION ${INSTALL_DIR})
+install(TARGETS StiGame LIBRARY DESTINATION ${INSTALL_DIR} RUNTIME DESTINATION ${INSTALL_DIR} ARCHIVE DESTINATION ${INSTALL_DIR} COMPONENT library)
