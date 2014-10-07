@@ -71,6 +71,11 @@ ClonedSprite* SpriteLibrary::clone(std::string sprite_name)
 SpriteLibrary::~SpriteLibrary()
 {
     //dtor
+    auto mit(sprites.begin()), mend(sprites.end());
+    for(;mit!=mend;++mit)
+    {
+        delete mit->second;
+    }
 }
 
 }

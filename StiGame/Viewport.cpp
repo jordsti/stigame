@@ -268,6 +268,12 @@ void Viewport::push(BaseGameState* state)
 	    if(currentState != 0)
         {
             currentState->unload();
+            /*Gui::OverlayMenu *omenu = currentState->getGameMenu();
+            if(omenu != nullptr)
+            {
+                delete omenu;
+            }*/
+            oldStates.push_back(currentState);
         }
 
 		currentState = state;
@@ -275,6 +281,17 @@ void Viewport::push(BaseGameState* state)
 		currentState->onResize(width, height);
 		currentState->onStart();
 	}
+}
+
+void Viewport::clearPreviousStates(void)
+{
+    auto lit(oldStates.begin()), lend(oldStates.end());
+    for(;lit!=lend;++lit)
+    {
+        delete (*lit);
+    }
+
+    oldStates.clear();
 }
 
 SDL_Rect* Viewport::getLowestMode(void)

@@ -53,6 +53,7 @@ public:
 	/// Called for each SDL_Event throwed
 	/// \param evt SDL_Event pointer
 	virtual void onEvent(SDL_Event *evt);
+
 	/// \brief Virtual method to override
 	/// Called when the state is quiting or replacing
 	virtual void unload(void);
@@ -75,6 +76,8 @@ public:
 	Gui::OverlayMenu* getGameMenu(void);
 
 protected:
+    void clearActions(void);
+
     void tickActions(void);
 
     void renderOverlayFrames(SDL_Renderer *renderer);

@@ -24,6 +24,8 @@ private:
     static bool _sdlInitied;
 
 protected:
+    std::list<BaseGameState*> oldStates;
+
     static void initSDL(void);
 
 	/// \brief Window title
@@ -164,6 +166,8 @@ public:
 	void setGrab(bool grab);
 
 	bool isGrabbed(void);
+
+    void clearPreviousStates(void);
 
 	/// \brief Get SDL_Window pointer
 	/// \return SDL_Window pointer

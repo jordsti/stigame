@@ -15,7 +15,7 @@ BaseGameState::BaseGameState(void)
 	height = 0;
 	running = false;
 	viewport = 0;
-	gameMenu = 0;
+    gameMenu = nullptr;
 }
 
 void BaseGameState::setViewport(Viewport *m_viewport)
@@ -57,6 +57,15 @@ void BaseGameState::onResize(int n_width, int n_height)
 	{
 		gameMenu->fixPosition(width, height);
 	}
+}
+
+void BaseGameState::clearActions(void)
+{
+    auto lit(actions.begin()), lend(actions.end());
+    for(;lit!=lend;++lit)
+    {
+        delete (*lit);
+    }
 }
 
 void BaseGameState::unload(void)
