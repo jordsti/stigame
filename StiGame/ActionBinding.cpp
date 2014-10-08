@@ -7,10 +7,10 @@ const std::string ActionBinding::FILENAME = "bindings.cfg";
 
 ActionBinding::ActionBinding()
 {
-    filepath = "";
+    filepath = FILENAME;
 }
 
-ActionBinding::ActionBinding(const char* m_filepath)
+ActionBinding::ActionBinding(std::string m_filepath)
     : VarFile(m_filepath)
 {
     //ctor
@@ -19,6 +19,11 @@ ActionBinding::ActionBinding(const char* m_filepath)
 void ActionBinding::addBinding(std::string bname, ActionMap *amap)
 {
     bindings.insert(std::make_pair(bname, amap));
+}
+
+void ActionBinding::addBinding(ActionMap *amap)
+{
+    addBinding(amap->getName(), amap);
 }
 
 void ActionBinding::overwrite(std::string bname, ActionMap *nmap)
@@ -78,6 +83,8 @@ std::string ActionBinding::getActionByKeyCode(SDL_Keycode keycode)
 
 ActionMap* ActionBinding::getBinding(std::string bname)
 {
+    //todo
+    //try/catch
     return bindings[bname];
 }
 

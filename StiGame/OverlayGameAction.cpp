@@ -41,7 +41,7 @@ BaseGameState* OverlayGameAction::getState(void)
 
 void OverlayGameAction::doAction(void)
 {
-    std::cout << "OVERLAY ACTION" << std::endl;
+    //std::cout << "OVERLAY ACTION" << std::endl;
 
 	Gui::OverlayMenu *gameMenu = state->getGameMenu();
 	if(gameMenu == 0)

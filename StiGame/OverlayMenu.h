@@ -19,10 +19,11 @@ enum OverlayPosition { OP_MIDDLE,
 					OP_CUSTOM };
 
 class OverlayMenu :
-    public Item,
-    public KeyEventListener
+    public Item/*,
+    public KeyEventListener*/
 {
     public:
+        static const int DEFAULT_TIME_VISIBILITY;
 		static const int DEFAULT_OFFSET;
         OverlayMenu();
         virtual ~OverlayMenu();
@@ -35,7 +36,7 @@ class OverlayMenu :
 		void setPosition(OverlayPosition m_position);
 		void fixPosition(int m_width, int m_height);
 		void add(Item *item);
-		virtual void handleEvent(KeyEventThrower *src, KeyEventArgs *args);
+        /*virtual void handleEvent(KeyEventThrower *src, KeyEventArgs *args);*/
     protected:
 		Item* getLastItem(void);
 		OverlayPosition position;

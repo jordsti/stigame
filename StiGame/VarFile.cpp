@@ -11,7 +11,7 @@ VarFile::VarFile()
     filepath = "";
 }
 
-VarFile::VarFile(const char* m_filepath)
+VarFile::VarFile(std::string m_filepath)
 {
     //ctor
     filepath = m_filepath;
@@ -49,7 +49,7 @@ bool VarFile::ParseBool(std::string b_str)
 void VarFile::read(void)
 {
     std::string line;
-    std::ifstream infile (filepath);
+    std::ifstream infile (filepath.c_str());
 
     if(infile.is_open())
     {
@@ -141,7 +141,7 @@ void VarFile::parseLine(std::string line)
 
 void VarFile::write(void)
 {
-    std::ofstream outfile (filepath, std::ios::out | std::ios::trunc);
+    std::ofstream outfile (filepath.c_str(), std::ios::out | std::ios::trunc);
 
     //headers
     outfile << "#StiGame varfile" << std::endl;
@@ -156,6 +156,11 @@ void VarFile::write(void)
     outfile.close();
 }
 
+
+int VarFile::getCount()
+{
+    return variables.size();
+}
 
 VarFile::~VarFile()
 {

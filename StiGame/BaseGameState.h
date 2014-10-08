@@ -12,6 +12,7 @@
 #include "OverlayMenu.h"
 #include "OverlayFrame.h"
 #include <list>
+#include <set>
 
 namespace StiGame
 {
@@ -100,8 +101,8 @@ protected:
 	std::list<Gui::OverlayFrame*> frames;
 
 private:
-    std::list<SDL_Keycode> keyDowns;
-    std::list<Uint8> mouseButtons;
+    std::set<SDL_Keycode> keyDowns;
+    std::set<Uint8> mouseButtons;
 };
 
 }

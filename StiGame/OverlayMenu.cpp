@@ -9,6 +9,7 @@ namespace Gui
 
 
 const int OverlayMenu::DEFAULT_OFFSET = 4;
+const int OverlayMenu::DEFAULT_TIME_VISIBILITY = 32;
 
 OverlayMenu::OverlayMenu() : Item("Overlay")
 {
@@ -164,16 +165,16 @@ void OverlayMenu::setVisible(bool m_visible)
     visible = m_visible;
 }
 
-void OverlayMenu::handleEvent(KeyEventThrower *src, KeyEventArgs *args)
+/*void OverlayMenu::handleEvent(KeyEventThrower *src, KeyEventArgs *args)
 {
-    if(visible && _tick >= 10)
+    if(visible && _tick >= DEFAULT_TIME_VISIBILITY)
     {
         if(args->getKeyboardEvent()->keysym.sym == SDLK_ESCAPE && args->getState() == KS_UP)
         {
             visible = false;
         }
     }
-}
+}*/
 
 Surface* OverlayMenu::render(void)
 {

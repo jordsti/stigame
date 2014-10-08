@@ -115,7 +115,7 @@ void BaseGameState::renderOverlayFrames(SDL_Renderer *renderer)
 
 void BaseGameState::tickActions(void)
 {
-    std::list<SDL_Keycode>::iterator klit(keyDowns.begin()), klend(keyDowns.end());
+    std::set<SDL_Keycode>::iterator klit(keyDowns.begin()), klend(keyDowns.end());
     for(;klit!=klend;++klit)
     {
         std::list<BaseGameAction*>::iterator glit(actions.begin()), glend(actions.end());
@@ -125,7 +125,7 @@ void BaseGameState::tickActions(void)
         }
     }
 
-    std::list<Uint8>::iterator mlit(mouseButtons.begin()), mlend(mouseButtons.end());
+    std::set<Uint8>::iterator mlit(mouseButtons.begin()), mlend(mouseButtons.end());
     for(;mlit!=mlend;++mlit)
     {
         std::list<BaseGameAction*>::iterator glit(actions.begin()), glend(actions.end());
@@ -142,21 +142,21 @@ void BaseGameState::onEvent(SDL_Event *evt)
     if(evt->type == SDL_KEYDOWN)
     {
         KeyEventArgs *args = new KeyEventArgs(evt);
-        keyDowns.push_back(evt->key.keysym.sym);
+        keyDowns.insert(evt->key.keysym.sym);
         KeyEventThrower::publish(this, args);
         delete args;
     }
     else if(evt->type == SDL_KEYUP)
     {
         KeyEventArgs *args = new KeyEventArgs(evt);
-        keyDowns.remove(evt->key.keysym.sym);
+        keyDowns.erase(evt->key.keysym.sym);
         KeyEventThrower::publish(this, args);
         delete args;
     }
     else if(evt->type == SDL_MOUSEBUTTONDOWN)
     {
         Uint8 mbutton = evt->button.button;
-        mouseButtons.push_back(mbutton);
+        mouseButtons.insert(mbutton);
 
 		MouseButtonEventArgs mevt = MouseButtonEventArgs(evt);
 		MouseButtonEventThrower::publish(this, &mevt);
@@ -184,7 +184,7 @@ void BaseGameState::onEvent(SDL_Event *evt)
         }
 
         Uint8 mbutton = evt->button.button;
-        mouseButtons.remove(mbutton);
+        mouseButtons.erase(mbutton);
 
 		MouseButtonEventArgs mevt = MouseButtonEventArgs(evt);
 		MouseButtonEventThrower::publish(this, &mevt);

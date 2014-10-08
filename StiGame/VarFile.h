@@ -15,7 +15,7 @@ class VarFile
         VarFile();
 
 		/// \brief Create a new VarFile with specified path
-        VarFile(const char* m_filepath);
+        VarFile(std::string m_filepath);
 		/// \brief Destructor
         virtual ~VarFile();
 		/// \brief Read the file
@@ -40,12 +40,14 @@ class VarFile
 
 		std::list<std::string> getKeys(void);
 
+        int getCount(void);
+
         static int ParseInt(std::string i_str);
 		static bool ParseBool(std::string b_str);
 		static std::string BoolToString(bool b_val);
     protected:
 		/// \brief File path
-        const char* filepath;
+        std::string filepath;
 		/// \brief Parse a line
 		/// \param line Line
         void parseLine(std::string line);

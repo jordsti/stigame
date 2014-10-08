@@ -18,7 +18,7 @@ class ActionBinding :
 		ActionBinding();
 		/// \brief Constructor of a existing file
 		/// \param m_filepath Filepath
-        ActionBinding(const char* m_filepath);
+        ActionBinding(std::string m_filepath);
 		/// \brief Read the file
         void read(void);
 		/// \brief Write the file
@@ -27,6 +27,9 @@ class ActionBinding :
 		/// \param bname Action Name
 		/// \param amap Action Map
         void addBinding(std::string bname, ActionMap *amap);
+
+        void addBinding(ActionMap *amap);
+
 		/// \brief Overwrite a binding
 		/// \param bname Action Name
 		/// \param nmap New Action Map
