@@ -10,9 +10,9 @@ before_install:
    - curl -O http://www.ferzkopp.net/Software/SDL2_gfx/SDL2_gfx-1.0.1.tar.gz
    - tar -xzvf SDL2_gfx-1.0.1.tar.gz
    - cd SDL2_gfx-1.0.1
-   - cd ..
    - ./autogen.sh
    - ./configure
    - make
    - sudo make install
+   - cd ..
 script: mkdir build && cd build && cmake ../ -DCMAKE_BUILD_TYPE:STRING=Debug && make
