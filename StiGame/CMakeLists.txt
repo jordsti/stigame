@@ -146,6 +146,6 @@ configure_file(VersionConfig.h.in ${CMAKE_BINARY_DIR}/generated/VersionConfig.h)
 include_directories(${CMAKE_BINARY_DIR}/generated/)
 
 add_library(StiGame SHARED ${SOURCE_FILES})
-target_link_libraries(StiGame PUBLIC ${SDL2} ${SDL2_image} ${SDL2_ttf} ${SDL2_net} ${SDL2_gfx})
+target_link_libraries(StiGame ${SDL2} ${SDL2_image} ${SDL2_ttf} ${SDL2_net} ${SDL2_gfx})
 
 install(TARGETS StiGame LIBRARY DESTINATION ${INSTALL_DIR} RUNTIME DESTINATION ${INSTALL_DIR} ARCHIVE DESTINATION ${INSTALL_DIR} COMPONENT library)
