@@ -24,6 +24,10 @@ if(TRAVIS_BUILD)
 	include_directories(${PROJECT_SOURCE_DIR}/SDL2_gfx-1.0.1)
 endif(TRAVIS_BUILD)
 
+if(SDL2_GFX_PATH)
+	include_directories(${SDL2_GFX_PATH})
+endif(SDL2_GFX_PATH)
+
 include_directories(${SDL2_INCLUDE})
 
 
