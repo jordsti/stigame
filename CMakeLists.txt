@@ -17,6 +17,7 @@ elseif(UNIX)
     set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
     set(SDL2_LIBS "/usr/lib/")
     set(SDL2_INCLUDE "/usr/include/SDL2")
+	include_directories("../SDL2_gfx-1.0.1")
 endif(WIN32)
 
 
