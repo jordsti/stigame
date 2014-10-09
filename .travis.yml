@@ -18,4 +18,8 @@ before_install:
    - make
    - sudo make install
    - cd ..
-script: mkdir build && cd build && cmake ../ -DCMAKE_BUILD_TYPE:STRING=Debug && make
+script: 
+   - mkdir build
+   - cd build
+   - cmake ../ -DCMAKE_BUILD_TYPE:STRING=Debug -DTRAVIS_BUILD:STRING=Yes
+   - make
