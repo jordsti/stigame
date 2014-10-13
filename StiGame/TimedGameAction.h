@@ -10,7 +10,6 @@ class TimedGameAction :
     public BaseGameAction
 {
     public:
-        TimedGameAction();
         virtual ~TimedGameAction();
 
         void testKeycode(SDL_Keycode keycode);
@@ -21,11 +20,12 @@ class TimedGameAction :
         long long getLastAction(void);
 
     protected:
+        TimedGameAction();
         //pure virtual!
         virtual void doAction(void) = 0;
-
-    private:
         int cooldown;
+    private:
+
         long long lastAction;
 };
 

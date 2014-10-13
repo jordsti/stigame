@@ -247,6 +247,8 @@ void Viewport::startLoop(void)
                     tick();
                     lastTick = Time::GetMsTimestamp();
                 }
+
+                current_fps = 1000 / diff;
             }
 
 			//ending time
@@ -342,7 +344,7 @@ void Viewport::setFps(int fps)
 
 int Viewport::getFps(void)
 {
-	return target_fps;
+    return current_fps;
 }
 
 void Viewport::initialize(void)

@@ -76,16 +76,19 @@ Surface* GuiState::render()
             (*lit)->setMouseOver(false);
         }
 
-		Surface *igfx = (*lit)->render();
+        if((*lit)->isVisible())
+        {
+            Surface *igfx = (*lit)->render();
 
-		SDL_Rect *src = igfx->getRect();
-		SDL_Rect *dst = igfx->getRect((*lit)->getX(), (*lit)->getY());
+            SDL_Rect *src = igfx->getRect();
+            SDL_Rect *dst = igfx->getRect((*lit)->getX(), (*lit)->getY());
 
-		sBuffer->blit(igfx, src, dst);
+            sBuffer->blit(igfx, src, dst);
 
-		delete igfx;
-		delete src;
-		delete dst;
+            delete igfx;
+            delete src;
+            delete dst;
+        }
 	}
 
 	delete relp;
@@ -125,16 +128,19 @@ void GuiState::onPaint(SDL_Renderer *renderer)
             (*lit)->setMouseOver(false);
         }
 
-		Surface *igfx = (*lit)->render();
+        if((*lit)->isVisible())
+        {
+            Surface *igfx = (*lit)->render();
 
-		SDL_Rect *src = igfx->getRect();
-		SDL_Rect *dst = igfx->getRect((*lit)->getX(), (*lit)->getY());
+            SDL_Rect *src = igfx->getRect();
+            SDL_Rect *dst = igfx->getRect((*lit)->getX(), (*lit)->getY());
 
-		sBuffer->blit(igfx, src, dst);
+            sBuffer->blit(igfx, src, dst);
 
-		delete igfx;
-		delete src;
-		delete dst;
+            delete igfx;
+            delete src;
+            delete dst;
+        }
 	}
 
 	delete relp;

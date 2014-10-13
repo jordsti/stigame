@@ -86,6 +86,10 @@ public:
 
     Dimension* getMaximumSize(void);
 
+    bool isVisible(void);
+
+    void setVisible(bool m_visible);
+
 protected:
 	/// \brief Name of the item
 	std::string name;
@@ -103,6 +107,8 @@ protected:
     virtual void resized(void);
 
     bool focus;
+
+    bool visible;
 
     MDimension minimumSize;
     MDimension maximumSize;

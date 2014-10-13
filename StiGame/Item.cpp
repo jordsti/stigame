@@ -46,6 +46,7 @@ void Item::init(void)
 	height = 0;
 	background = style->getBackground();
 	foreground = style->getForeground();
+    visible = true;
 }
 
 bool Item::isFocus(void)
@@ -53,9 +54,20 @@ bool Item::isFocus(void)
     return focus;
 }
 
+
 void Item::setFocus(bool m_focus)
 {
     focus = m_focus;
+}
+
+bool Item::isVisible(void)
+{
+    return visible;
+}
+
+void Item::setVisible(bool m_visible)
+{
+    visible = m_visible;
 }
 
 void Item::onClick(Point *relp)

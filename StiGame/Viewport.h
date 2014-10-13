@@ -53,6 +53,8 @@ protected:
 	/// \brief targeted fps
 	int target_fps;
 
+    int current_fps;
+
 	int msTreshold;
 
 	/// \brief is running
