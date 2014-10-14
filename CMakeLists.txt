@@ -26,6 +26,9 @@ if(NOT SDL2_INCLUDE)
 	endif(WIN32)
 endif(NOT SDL2_INCLUDE)
 
+message("Using SDL2 Libs : ${SDL2_LIBS}")
+message("Using SDL2 Include : ${SDL2_INCLUDE}")
+
 #if(WIN32)
     #set(SDL2_LIBS "${PROJECT_SOURCE_DIR}/lib/")
     #set(SDL2_INCLUDE "include/SDL2")
