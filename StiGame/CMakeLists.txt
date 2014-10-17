@@ -127,7 +127,6 @@ set(SOURCE_FILES
     VarFile.cpp
     Vector.cpp
     Vector2.cpp
-    Version.cpp
     VerticalBoxLayout.cpp
     VideoConfig.cpp
     Viewport.cpp
