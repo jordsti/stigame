@@ -136,13 +136,16 @@ set(SOURCE_FILES
     WindowEventArgs.cpp
     WindowEventListener.cpp
     WindowEventThrower.cpp
+
+
+    StiGameVersion.cpp
 )
 
 if(WIN32)
 set(CMAKE_SHARED_LINKER_FLAGS "-Wl,--export-all-symbols")
 endif(WIN32)
 
-configure_file(VersionConfig.h.in ${CMAKE_BINARY_DIR}/generated/VersionConfig.h)
+configure_file(StiGameVersion.cpp.in ${PROJECT_SOURCE_DIR}/StiGameVersion.cpp)
 include_directories(${CMAKE_BINARY_DIR}/generated/)
 
 add_library(StiGame SHARED ${SOURCE_FILES})
