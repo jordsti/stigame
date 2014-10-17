@@ -2,7 +2,7 @@
 
 StiGameVersion StiGameVersion::CurrentVersion(void)
 {
-    StiGameVersion v (0, 0, 1, 0, "alpha");
+    StiGameVersion v (0, 0, 1, 0, "");
     return v;
 }
 
