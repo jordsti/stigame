@@ -18,6 +18,7 @@ include/*
 *.zip
 *.rar
 build/*
+StiGame/StiGameVersion.cpp
 
 #python tools
 *.pyc
