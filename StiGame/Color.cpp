@@ -65,7 +65,8 @@ void Color::mapColor(SDL_PixelFormat *format)
 {
 	if(!mapped)
 	{
-		map = SDL_MapRGB(format, red, green, blue);
+        //map = SDL_MapRGB(format, red, green, blue);
+        map = SDL_MapRGBA(format, red, green, blue, alpha);
 		mapped = true;
 	}
 }

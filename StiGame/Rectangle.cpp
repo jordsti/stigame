@@ -149,8 +149,8 @@ void Rectangle::setRectangle(int m_x, int m_y, int m_width, int m_height)
 {
     x = m_x;
     y = m_y;
-    width = width;
-    height = height;
+    width = m_width;
+    height = m_height;
 }
 
 
