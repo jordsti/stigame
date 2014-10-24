@@ -21,7 +21,7 @@ class TestGui :
     public:
         TestGui();
         virtual ~TestGui();
-        void handleEvent(StiGame::EventThrower *src, StiGame::EventArgs *evt);
+        bool handleEvent(StiGame::EventThrower *src, StiGame::EventArgs *evt);
         void handleEvent(StiGame::Gui::SelectionEventThrower *src, StiGame::Gui::SelectionEventArgs *args);
     protected:
         StiGame::Gui::List guiList;

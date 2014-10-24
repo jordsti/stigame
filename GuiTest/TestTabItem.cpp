@@ -40,7 +40,7 @@ void TestTabItem::initComponents(void)
     add(listOptions);
 }
 
-void TestTabItem::handleEvent(StiGame::EventThrower *src, StiGame::EventArgs *args)
+bool TestTabItem::handleEvent(StiGame::EventThrower *src, StiGame::EventArgs *args)
 {
     if(src == btnOk)
     {

@@ -15,7 +15,7 @@ class SampleState :
     public:
         SampleState();
         virtual ~SampleState();
-        void handleEvent(StiGame::EventThrower *src, StiGame::EventArgs *evt);
+        bool handleEvent(StiGame::EventThrower *src, StiGame::EventArgs *evt);
     protected:
         StiGame::Gui::Button btnQuit;
         StiGame::Gui::Label lblTitle;

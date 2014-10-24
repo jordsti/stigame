@@ -23,6 +23,7 @@ GuiState::GuiState(void) : BaseGameState()
 
 GuiState::~GuiState(void)
 {
+    delete sBuffer;
 }
 
 int GuiState::getMouseX(void)
@@ -177,6 +178,11 @@ void GuiState::onEvent(SDL_Event* evt)
 {
     BaseGameState::onEvent(evt);
 
+    if(!running)
+    {
+        return;
+    }
+
 	if(evt->type == SDL_MOUSEMOTION)
 	{
 		mouse_x = evt->motion.x;
@@ -239,6 +245,7 @@ void GuiState::unload(void)
 	{
 		(*lit)->clear();
 	}
+
 }
 
 }

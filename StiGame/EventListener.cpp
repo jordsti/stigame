@@ -12,9 +12,9 @@ EventListener::~EventListener(void)
 {
 }
 
-void EventListener::handleEvent(EventThrower *src, EventArgs *evt)
+bool EventListener::handleEvent(EventThrower *src, EventArgs *evt)
 {
-
+    return false;
 }
 
 }

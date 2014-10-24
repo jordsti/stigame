@@ -23,7 +23,7 @@ class TestTabItem :
         StiGame::Gui::ValueObject *vo_4;
 
         void resized(void);
-        void handleEvent(StiGame::EventThrower *src, StiGame::EventArgs *args);
+        bool handleEvent(StiGame::EventThrower *src, StiGame::EventArgs *args);
     private:
         void initComponents(void);
 };

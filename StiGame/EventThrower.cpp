@@ -22,7 +22,10 @@ void EventThrower::publish(EventThrower *source, EventArgs *evt)
 	std::list<EventListener*>::iterator lit = (listeners.begin()), lend(listeners.end());
 	for(; lit!=lend; ++lit)
 	{
-		(*lit)->handleEvent(source, evt);
+        if((*lit)->handleEvent(source, evt))
+        {
+            break;
+        }
 	}
 }
 

@@ -19,7 +19,7 @@ public:
 	/// \brief Method to override to handle your event
 	/// \param src Event source
 	/// \param evt Event args
-	virtual void handleEvent(EventThrower *src, EventArgs *evt);
+    virtual bool handleEvent(EventThrower *src, EventArgs *evt);
 };
 
 }

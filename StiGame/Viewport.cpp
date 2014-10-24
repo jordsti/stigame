@@ -180,29 +180,32 @@ void Viewport::tick(void)
 
 	while(SDL_PollEvent(&evt))
 	{
-		switch(evt.type)
-		{
-		    //temporary need to let the state choose
-			case SDL_QUIT:
+        if(currentState->isRunning())
+        {
+            switch(evt.type)
+            {
+                //temporary need to let the state choose
+                case SDL_QUIT:
 
-			    if(currentState->isHandleQuit())
-                {
+                    if(currentState->isHandleQuit())
+                    {
+                        currentState->onEvent(&evt);
+                    }
+                    else
+                    {
+                        run = false;
+                    }
+
+                    break;
+                case SDL_WINDOWEVENT:
+                    handleWindowEvent(&evt);
+                    break;
+
+                default:
                     currentState->onEvent(&evt);
-                }
-                else
-                {
-                    run = false;
-                }
-
-				break;
-            case SDL_WINDOWEVENT:
-                handleWindowEvent(&evt);
-                break;
-
-			default:
-				currentState->onEvent(&evt);
-				break;
-		}
+                    break;
+            }
+        }
 	}
 
 	if(!currentState->isRunning())
@@ -280,20 +283,30 @@ void Viewport::push(BaseGameState* state)
 
 		currentState = state;
 		currentState->setViewport((Viewport*)this);
-		currentState->onResize(width, height);
 		currentState->onStart();
+        currentState->onResize(width, height);
 	}
 }
 
 void Viewport::clearPreviousStates(void)
 {
     auto lit(oldStates.begin()), lend(oldStates.end());
+    //dont delete the last item now
+    int i=0;
     for(;lit!=lend;++lit)
     {
-        delete (*lit);
+        if(i < oldStates.size() -1)
+        {
+            delete (*lit);
+            i++;
+        }
+
     }
 
-    oldStates.clear();
+    if(i > 0)
+    {
+        oldStates.erase(oldStates.begin(), --lit);
+    }
 }
 
 SDL_Rect* Viewport::getLowestMode(void)

@@ -25,7 +25,15 @@ List::List()
 
 List::~List()
 {
+    auto mit(strBuffers.begin()), mend(strBuffers.end());
 
+    for(;mit!=mend;++mit)
+    {
+        delete mit->second;
+    }
+
+    strBuffers.clear();
+    values.clear();
 }
 
 void List::setDrawBorder(bool m_drawBorder)

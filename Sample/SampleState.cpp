@@ -32,7 +32,7 @@ void SampleState::initComponents(void)
     add(&lblTitle);
 }
 
-void SampleState::handleEvent(EventThrower *src, EventArgs *evt)
+bool SampleState::handleEvent(EventThrower *src, EventArgs *evt)
 {
     if(src == &btnQuit)
     {

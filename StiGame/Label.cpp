@@ -1,4 +1,3 @@
-
 #include "Label.h"
 #include "PLine.h"
 
@@ -13,7 +12,7 @@ Label::Label(void)  : Item("Label")
 	caption = " ";
 	font = style->getNormalFont();
 	transparent = true;
-	stringBuffer = 0;
+    stringBuffer = nullptr;
 	x = 0;
 	y = 0;
 	width = 0;
@@ -25,7 +24,10 @@ Label::Label(void)  : Item("Label")
 
 Label::~Label(void)
 {
-
+    if(stringBuffer != nullptr)
+    {
+        delete stringBuffer;
+    }
 }
 
 bool Label::getDrawBorder(void)
@@ -76,7 +78,7 @@ void Label::setFont(Font *m_font)
 
 void Label::renderCaption(void)
 {
-	if(stringBuffer != 0)
+    if(stringBuffer != nullptr)
 	{
 		delete stringBuffer;
 	}
@@ -86,7 +88,7 @@ void Label::renderCaption(void)
 
 void Label::doAutosize(void)
 {
-	if(stringBuffer == 0)
+    if(stringBuffer == nullptr)
 	{
 		renderCaption();
 	}
@@ -120,7 +122,7 @@ Surface* Label::render(void)
 		doAutosize();
 	}
 
-	if(stringBuffer == 0)
+    if(stringBuffer == nullptr)
 	{
 		renderCaption();
 	}

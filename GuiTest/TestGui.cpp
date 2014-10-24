@@ -116,7 +116,7 @@ void TestGui::handleEvent(StiGame::Gui::SelectionEventThrower *src, StiGame::Gui
 
 }
 
-void TestGui::handleEvent(EventThrower *src, EventArgs *evt)
+bool TestGui::handleEvent(EventThrower *src, EventArgs *evt)
 {
     if(src == &tab1Btn)
     {
