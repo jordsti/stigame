@@ -73,7 +73,11 @@ std::string Label::getCaption(void)
 
 void Label::setFont(Font *m_font)
 {
-	font = m_font;
+    if(font != m_font)
+    {
+        font = m_font;
+        renderCaption();
+    }
 }
 
 void Label::renderCaption(void)

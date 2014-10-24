@@ -298,6 +298,8 @@ void Viewport::clearPreviousStates(void)
         if(i < oldStates.size() -1)
         {
             delete (*lit);
+            //todo debug output
+            std::cout << "Deleting state.." << std::endl;
             i++;
         }
 

@@ -137,7 +137,7 @@ void Button::autosize(void)
 
 void Button::renderCaption(void)
 {
-	if(stringBuffer != 0)
+    if(stringBuffer != nullptr)
 	{
 		delete stringBuffer;
 	}

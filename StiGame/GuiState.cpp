@@ -23,7 +23,10 @@ GuiState::GuiState(void) : BaseGameState()
 
 GuiState::~GuiState(void)
 {
-    delete sBuffer;
+    if(sBuffer != nullptr)
+    {
+        delete sBuffer;
+    }
 }
 
 int GuiState::getMouseX(void)
@@ -101,7 +104,7 @@ Surface* GuiState::render()
 void GuiState::onPaint(SDL_Renderer *renderer)
 {
     //need to rework all this, maybe GUI will be generated with Surface and drawing with Texture..
-    if(sBuffer->getHeight() != viewport->getHeight() && sBuffer->getWidth() != viewport->getWidth())
+    if(sBuffer->getHeight() != viewport->getHeight() || sBuffer->getWidth() != viewport->getWidth())
     {
         delete sBuffer;
         sBuffer = new Surface(viewport->getWidth(), viewport->getHeight());
@@ -245,6 +248,12 @@ void GuiState::unload(void)
 	{
 		(*lit)->clear();
 	}
+
+    if(sBuffer != nullptr)
+    {
+        delete sBuffer;
+        sBuffer = nullptr;
+    }
 
 }
 
