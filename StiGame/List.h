@@ -4,7 +4,7 @@
 #include "HighlightItem.h"
 #include "ValueObject.h"
 #include "SelectionEventThrower.h"
-#include <list>
+#include <vector>
 #include <map>
 
 namespace StiGame
@@ -32,6 +32,8 @@ public:
 	int getSelectedIndex(void);
 	void setSelectedIndex(int index);
 
+    ValueObject* getSelectedItem(void);
+
 	int getNbItems(void);
 
 	void setFont(Font *m_font);
@@ -42,8 +44,12 @@ public:
 
 	void onClick(Point *relpt);
 
+    void setDrawBorder(bool m_drawBorder);
+    bool isDrawBorder(void);
+
 protected:
-	std::list<ValueObject*> values;
+    bool drawBorder;
+    std::vector<ValueObject*> values;
 	std::map<int, Surface*> strBuffers;
 	int selectedIndex;
 	int viewIndex;

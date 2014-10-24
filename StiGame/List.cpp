@@ -19,6 +19,7 @@ List::List()
 	font = style->getNormalFont();
 	lineHeight = DEFAULT_LINE_HEIGHT;
 	mouseOverIndex = -1;
+    drawBorder = false;
 	_showScrollButtons = false;
 }
 
@@ -26,6 +27,17 @@ List::~List()
 {
 
 }
+
+void List::setDrawBorder(bool m_drawBorder)
+{
+    drawBorder = m_drawBorder;
+}
+
+bool List::isDrawBorder(void)
+{
+    return drawBorder;
+}
+
 
 void List::onClick(Point *relpt)
 {
@@ -67,7 +79,7 @@ void List::onClick(Point *relpt)
 
                 ValueObject *vo;
 
-                std::list<ValueObject*>::iterator lit(values.begin()), lend(values.end());
+                std::vector<ValueObject*>::iterator lit(values.begin()), lend(values.end());
                 int vo_i=0;
                 for(;lit!=lend;++lit)
                 {
@@ -104,7 +116,7 @@ Surface* List::render(void)
 	Surface *buffer = new Surface(width, height);
 	buffer->fill(background);
 
-	std::list<ValueObject*>::iterator lit(values.begin()), lend(values.end());
+    std::vector<ValueObject*>::iterator lit(values.begin()), lend(values.end());
 	int i=0;
 	int cy = 0;
 	SDL_Rect *src = new SDL_Rect();
@@ -183,6 +195,12 @@ Surface* List::render(void)
 
     }
 
+    if(drawBorder)
+    {
+        PRect border = PRect(0, 0, width, height);
+        buffer->draw(&border, foreground);
+    }
+
 	delete src;
 	delete dst;
 
@@ -195,7 +213,7 @@ void List::add(ValueObject *vo)
 	Surface *str = font->renderText(vo->getText(), foreground);
 
 	strBuffers.insert(std::make_pair(id, str));
-	values.push_back(vo);
+    values.push_back(vo);
 }
 
 void List::remove(ValueObject *vo)
@@ -203,12 +221,30 @@ void List::remove(ValueObject *vo)
     int id = vo->getId();
     //todo memory handling need to destroy surface!!
     strBuffers.erase(id);
-    values.remove(vo);
+    //values.erase(vo);
+    auto vit(values.begin()), vend(values.end());
+    for(;vit!=vend;++vit)
+    {
+        if((*vit)->getId() == id || vo == (*vit))
+        {
+            values.erase(vit);
+            break;
+        }
+
+    }
 }
 
 int List::getSelectedIndex(void)
 {
 	return selectedIndex;
+}
+
+ValueObject* List::getSelectedItem(void)
+{
+    if(selectedIndex != -1)
+        return values[selectedIndex];
+
+    return nullptr;
 }
 
 void List::setSelectedIndex(int index)
