@@ -64,4 +64,3 @@ std::string GamePath::getPath(Paths p)
 }
 
 }
-

@@ -3,7 +3,7 @@ project(StiGameRoot)
 
 set(STIGAME_MAJOR 0)
 set(STIGAME_MINOR 0)
-set(STIGAME_RELEASE 1)
+set(STIGAME_RELEASE 2)
 
 if(NOT STIGAME_BUILD)
     set(STIGAME_BUILD 0)
@@ -70,9 +70,16 @@ endif("${STIGAME_NAME}" STREQUAL "")
 
 add_subdirectory(StiGame)
 
-
 include_directories(StiGame)
 
+include_directories(StiGame/core)
+include_directories(StiGame/bindings)
+include_directories(StiGame/events)
+include_directories(StiGame/gui)
+include_directories(StiGame/events)
+include_directories(StiGame/primitives)
+include_directories(StiGame/network)
+include_directories(StiGame/sprites)
 
 add_subdirectory(Sample)
 

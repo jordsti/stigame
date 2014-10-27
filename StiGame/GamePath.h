@@ -36,4 +36,4 @@ class GamePath
 
 }
 
-#endif // GAMEPATH_H
+#endif

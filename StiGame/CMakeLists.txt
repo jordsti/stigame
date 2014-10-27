@@ -2,143 +2,153 @@ cmake_minimum_required(VERSION 2.8.4)
 project(StiGame)
 
 set(SOURCE_FILES
-    ActionBind.cpp
-    ActionBinding.cpp
-    ActionMap.cpp
-    Angle.cpp
-    BaseGameAction.cpp
-    BaseGameState.cpp
-    BaseMissile.cpp
-    Button.cpp
-    CheckBox.cpp
-    CheckEventArgs.cpp
-    CheckEventListener.cpp
-    CheckEventThrower.cpp
-    Clipboard.cpp
-    ClonedSprite.cpp
-    Color.cpp
-    ComboBox.cpp
-    CompActionMap.cpp
-    Computer.cpp
-    Controller.cpp
-    ControllerAxisEventArgs.cpp
-    ControllerAxisEventListener.cpp
-    ControllerAxisEventThrower.cpp
-    ControllerButtonEventArgs.cpp
-    ControllerButtonEventListener.cpp
-    ControllerButtonEventThrower.cpp
-    ControllerDeviceEventArgs.cpp
-    ControllerDeviceEventListener.cpp
-    ControllerDeviceEventThrower.cpp
-    Cursor.cpp
-    DecoratedButton.cpp
-    Dimension.cpp
-    DimensionF.cpp
-    DirectionSprite.cpp
-    DirectionSpriteFile.cpp
-    DirectionSpriteFileCreator.cpp
-    EventArgs.cpp
-    EventListener.cpp
-    EventThrower.cpp
-    Font.cpp
+    core/Angle.cpp
+    core/BaseGameState.cpp
+    core/Color.cpp
+    core/Computer.cpp
+    core/Controller.cpp
+    core/Cursor.cpp
+    core/Dimension.cpp
+    core/DimensionF.cpp
+    core/Font.cpp
+    core/Logger.cpp
+    core/MathTK.cpp
+    core/MDimension.cpp
+    core/MDimensionF.cpp
+    core/Motion.cpp
+    core/MPoint.cpp
+    core/MPointF.cpp
+    core/MultiRect.cpp
+    core/MVector2.cpp
+    core/Pixel.cpp
+    core/Point.cpp
+    core/PointF.cpp
+    core/Rectangle.cpp
+    core/ResourceFile.cpp
+    core/StringRenderer.cpp
+    core/Surface.cpp
+    core/TextLogger.cpp
+    core/Texture.cpp
+    core/TimeTools.cpp
+    core/VarFile.cpp
+    core/Vector.cpp
+    core/Vector2.cpp
+    core/VideoConfig.cpp
+    core/Viewport.cpp
+    core/ViewportArea.cpp
+    core/Window.cpp
+
+    bindings/ActionBind.cpp
+    bindings/ActionBinding.cpp
+    bindings/ActionMap.cpp
+    bindings/BaseGameAction.cpp
+    bindings/CompActionMap.cpp
+    bindings/MouseActionMap.cpp
+    bindings/OverlayGameAction.cpp
+    bindings/TimedGameAction.cpp
+    bindings/KeyActionMap.cpp
+    bindings/KeyBind.cpp
+
+    gui/Button.cpp
+    gui/CheckBox.cpp
+    gui/Clipboard.cpp
+    gui/ComboBox.cpp
+    gui/DecoratedButton.cpp
+    gui/GuiState.cpp
+    gui/HighlightItem.cpp
+    gui/HorizontalBoxLayout.cpp
+    gui/Image.cpp
+    gui/ImageButton.cpp
+    gui/Item.cpp
+    gui/Label.cpp
+    gui/Layout.cpp
+    gui/List.cpp
+    gui/MessageBox.cpp
+    gui/MStyle.cpp
+    gui/OverlayFrame.cpp
+    gui/OverlayMenu.cpp
+    gui/ProgressBar.cpp
+    gui/RadioButton.cpp
+    gui/RadioGroup.cpp
+    gui/Runtime.cpp
+    gui/Spacer.cpp
+    gui/Style.cpp
+    gui/TabItem.cpp
+    gui/Table.cpp
+    gui/TableCell.cpp
+    gui/TableRow.cpp
+    gui/TabPanel.cpp
+    gui/TextBox.cpp
+    gui/ValueObject.cpp
+    gui/VerticalBoxLayout.cpp
+
+    events/CheckEventArgs.cpp
+    events/CheckEventListener.cpp
+    events/CheckEventThrower.cpp
+    events/ControllerAxisEventArgs.cpp
+    events/ControllerAxisEventListener.cpp
+    events/ControllerAxisEventThrower.cpp
+    events/ControllerButtonEventArgs.cpp
+    events/ControllerButtonEventListener.cpp
+    events/ControllerButtonEventThrower.cpp
+    events/ControllerDeviceEventArgs.cpp
+    events/ControllerDeviceEventListener.cpp
+    events/ControllerDeviceEventThrower.cpp
+    events/EventArgs.cpp
+    events/EventListener.cpp
+    events/EventThrower.cpp
+    events/KeyEventArgs.cpp
+    events/KeyEventListener.cpp
+    events/KeyEventThrower.cpp
+    events/MouseButtonEventArgs.cpp
+    events/MouseButtonEventListener.cpp
+    events/MouseButtonEventThrower.cpp
+    events/MouseMotionEventArgs.cpp
+    events/MouseMotionEventListener.cpp
+    events/MouseMotionEventThrower.cpp
+    events/MouseWheelEventArgs.cpp
+    events/MouseWheelEventListener.cpp
+    events/MouseWheelEventThrower.cpp
+    events/SelectionEventArgs.cpp
+    events/SelectionEventListener.cpp
+    events/SelectionEventThrower.cpp
+    events/WindowEventArgs.cpp
+    events/WindowEventListener.cpp
+    events/WindowEventThrower.cpp
+
+    sprites/ClonedSprite.cpp
+    sprites/DirectionSprite.cpp
+    sprites/DirectionSpriteFile.cpp
+    sprites/DirectionSpriteFileCreator.cpp
+    sprites/ISprite.cpp
+    sprites/Sprite.cpp
+    sprites/SpriteFile.cpp
+    sprites/SpriteFileCreator.cpp
+    sprites/SpriteLibrary.cpp
+
+    network/PacketBuffer.cpp
+    network/TcpSocket.cpp
+    network/UdpSocket.cpp
+
+    primitives/PCircle.cpp
+    primitives/PEllipse.cpp
+    primitives/PLine.cpp
+    primitives/PRect.cpp
+    primitives/Primitive.cpp
+
     GamePath.cpp
-    GameUnit.cpp
-    GuiState.cpp
-    HighlightItem.cpp
-    HorizontalBoxLayout.cpp
-    Image.cpp
-    ImageButton.cpp
-    ISprite.cpp
-    Item.cpp
-    KeyActionMap.cpp
-    KeyBind.cpp
-    KeyEventArgs.cpp
-    KeyEventListener.cpp
-    KeyEventThrower.cpp
-    Label.cpp
-    Layout.cpp
-    List.cpp
-    Logger.cpp
-    MathTK.cpp
-    MDimension.cpp
-    MDimensionF.cpp
-    MessageBox.cpp
-    MissileDictionary.cpp
-    Motion.cpp
-    MouseActionMap.cpp
-    MouseButtonEventArgs.cpp
-    MouseButtonEventListener.cpp
-    MouseButtonEventThrower.cpp
-    MouseMotionEventArgs.cpp
-    MouseMotionEventListener.cpp
-    MouseMotionEventThrower.cpp
-    MouseWheelEventArgs.cpp
-    MouseWheelEventListener.cpp
-    MouseWheelEventThrower.cpp
-    MPoint.cpp
-    MPointF.cpp
-    MStyle.cpp
-    MultiRect.cpp
-    MVector2.cpp
-    OverlayFrame.cpp
-    OverlayGameAction.cpp
-    OverlayMenu.cpp
-    PacketBuffer.cpp
-    PCircle.cpp
-    PEllipse.cpp
-    Pixel.cpp
-    PLine.cpp
-    Point.cpp
-    PointF.cpp
-    PRect.cpp
-    Primitive.cpp
-    ProgressBar.cpp
-    RadioButton.cpp
-    RadioGroup.cpp
-    Rectangle.cpp
-    ResourceFile.cpp
-    Runtime.cpp
-    SBMissile.cpp
-    SelectionEventArgs.cpp
-    SelectionEventListener.cpp
-    SelectionEventThrower.cpp
-    Spacer.cpp
-    SPhysic.cpp
-    Sprite.cpp
-    SpriteFile.cpp
-    SpriteFileCreator.cpp
-    SpriteLibrary.cpp
-    StringRenderer.cpp
-    Style.cpp
-    Surface.cpp
-    TabItem.cpp
-    Table.cpp
-    TableCell.cpp
-    TableRow.cpp
-    TabPanel.cpp
-    TcpSocket.cpp
-    TextBox.cpp
-    TextLogger.cpp
-    Texture.cpp
-    TimedGameAction.cpp
-    TimeTools.cpp
-    UdpSocket.cpp
-    ValueObject.cpp
-    VarFile.cpp
-    Vector.cpp
-    Vector2.cpp
-    VerticalBoxLayout.cpp
-    VideoConfig.cpp
-    Viewport.cpp
-    ViewportArea.cpp
-    Window.cpp
-    WindowEventArgs.cpp
-    WindowEventListener.cpp
-    WindowEventThrower.cpp
-
-
     StiGameVersion.cpp
 )
+
+include_directories(".")
+include_directories(core)
+include_directories(bindings)
+include_directories(events)
+include_directories(gui)
+include_directories(events)
+include_directories(primitives)
+include_directories(network)
+include_directories(sprites)
 
 if(WIN32)
 set(CMAKE_SHARED_LINKER_FLAGS "-Wl,--export-all-symbols")
