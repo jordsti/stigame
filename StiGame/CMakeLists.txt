@@ -116,6 +116,11 @@ set(SOURCE_FILES
     events/WindowEventListener.cpp
     events/WindowEventThrower.cpp
 
+    files/Entry.cpp
+    files/Directory.cpp
+    files/File.cpp
+    files/FileSystem.cpp
+
     sprites/ClonedSprite.cpp
     sprites/DirectionSprite.cpp
     sprites/DirectionSpriteFile.cpp
@@ -144,6 +149,7 @@ include_directories(".")
 include_directories(core)
 include_directories(bindings)
 include_directories(events)
+include_directories(files)
 include_directories(gui)
 include_directories(events)
 include_directories(primitives)
