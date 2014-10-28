@@ -156,14 +156,22 @@ include_directories(primitives)
 include_directories(network)
 include_directories(sprites)
 
-if(WIN32)
-set(CMAKE_SHARED_LINKER_FLAGS "-Wl,--export-all-symbols")
-endif(WIN32)
+if(NOT STIGAME_STATIC)
+    if(WIN32)
+        set(CMAKE_SHARED_LINKER_FLAGS "-Wl,--export-all-symbols")
+    endif(WIN32)
+endif(STIGAME_STATIC)
 
 configure_file(StiGameVersion.cpp.in ${PROJECT_SOURCE_DIR}/StiGameVersion.cpp)
-include_directories(${CMAKE_BINARY_DIR}/generated/)
 
-add_library(StiGame SHARED ${SOURCE_FILES})
+if(STIGAME_STATIC)
+    add_library(StiGame STATIC ${SOURCE_FILES})
+else(STIGAME_STATIC)
+    add_library(StiGame SHARED ${SOURCE_FILES})
+endif(STIGAME_STATIC)
+
 target_link_libraries(StiGame ${SDL2} ${SDL2_image} ${SDL2_ttf} ${SDL2_net} ${SDL2_gfx})
 
 install(TARGETS StiGame LIBRARY DESTINATION ${INSTALL_DIR} RUNTIME DESTINATION ${INSTALL_DIR} ARCHIVE DESTINATION ${INSTALL_DIR} COMPONENT library)
+install(DIRECTORY "${PROJECT_SOURCE_DIR}/" DESTINATION "${INSTALL_DIR}/include" FILES_MATCHING PATTERN "*.h")
+

@@ -31,18 +31,6 @@ if(NOT SDL2_INCLUDE)
 	endif(WIN32)
 endif(NOT SDL2_INCLUDE)
 
-message("Using SDL2 Libs : ${SDL2_LIBS}")
-message("Using SDL2 Include : ${SDL2_INCLUDE}")
-
-#if(WIN32)
-    #set(SDL2_LIBS "${PROJECT_SOURCE_DIR}/lib/")
-    #set(SDL2_INCLUDE "include/SDL2")
-#elseif(UNIX)
-    #set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
-    #set(SDL2_LIBS "/usr/lib/")
-    #set(SDL2_INCLUDE "/usr/include/SDL2")
-#endif(WIN32)
-
 if(TRAVIS_BUILD)
 	#sdl2_gfx headers
 	include_directories(${PROJECT_SOURCE_DIR}/SDL2_gfx-1.0.1)
