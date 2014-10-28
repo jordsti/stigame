@@ -160,7 +160,7 @@ if(NOT STIGAME_STATIC)
     if(WIN32)
         set(CMAKE_SHARED_LINKER_FLAGS "-Wl,--export-all-symbols")
     endif(WIN32)
-endif(STIGAME_STATIC)
+endif(NOT STIGAME_STATIC)
 
 configure_file(StiGameVersion.cpp.in ${PROJECT_SOURCE_DIR}/StiGameVersion.cpp)
 
