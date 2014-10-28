@@ -156,6 +156,16 @@ public:
 	void updateClipRect(SDL_Rect *rect);
 
 	void saveBmp(std::string dest);
+
+    void setBlendMode(SDL_BlendMode mode);
+    SDL_BlendMode getBlendMode(void);
+
+    void setAlphaMod(Uint8 alpha);
+    Uint8 getAlphaMod(void);
+
+    void setColorMod(Uint8 r, Uint8 g, Uint8 b);
+    void setColorMod(Color *color);
+    Color getColotMod(void);
 };
 
 }

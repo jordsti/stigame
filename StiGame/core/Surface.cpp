@@ -410,6 +410,66 @@ namespace StiGame {
 		SDL_GetClipRect(sdlSurface, rect);
 	}
 
+    void Surface::setBlendMode(SDL_BlendMode mode)
+    {
+        if(SDL_SetSurfaceBlendMode(sdlSurface, mode) != 0)
+        {
+            Logger::Error(SDL_GetError());
+        }
+    }
+
+    SDL_BlendMode Surface::getBlendMode(void)
+    {
+        SDL_BlendMode mode;
+        if(SDL_GetSurfaceBlendMode(sdlSurface, &mode) == 0)
+        {
+            Logger::Error(SDL_GetError());
+        }
+
+        return mode;
+    }
+
+    void Surface::setAlphaMod(Uint8 alpha)
+    {
+        if(SDL_SetSurfaceAlphaMod(sdlSurface, alpha))
+        {
+            Logger::Error(SDL_GetError());
+        }
+    }
+
+    Uint8 Surface::getAlphaMod(void)
+    {
+        Uint8 alpha = 255;
+        if(SDL_GetSurfaceAlphaMod(sdlSurface, &alpha) == 0)
+        {
+            Logger::Error(SDL_GetError());
+        }
+        return alpha;
+    }
+
+    void Surface::setColorMod(Uint8 r, Uint8 g, Uint8 b)
+    {
+        if(SDL_SetSurfaceColorMod(sdlSurface, r, g, b) == 0)
+        {
+                Logger::Error(SDL_GetError());
+        }
+    }
+
+    void Surface::setColorMod(Color *color)
+    {
+        setColorMod(color->getRed(), color->getGreen(), color->getBlue());
+    }
+
+    Color Surface::getColotMod(void)
+    {
+        Uint8 r,g,b;
+        if(SDL_GetSurfaceColorMod(sdlSurface, &r, &g, &b) == 0)
+        {
+            Logger::Error(SDL_GetError());
+        }
+        return Color(r, g, b);
+    }
+
 	Surface::~Surface(void)
 	{
 		freeSurface();
