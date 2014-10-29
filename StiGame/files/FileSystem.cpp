@@ -77,7 +77,7 @@ void FileSystem::CreateDir(std::string d_path)
     struct stat st = {0};
 
     if (stat(d_path.c_str(), &st) == -1) {
-        mkdir(d_path.c_str(), 0755)
+        mkdir(d_path.c_str(), 0755);
     }
 }
 
