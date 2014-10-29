@@ -15,7 +15,7 @@ class FileSystem
 {
 public:
     static std::vector<Entry*> ListDirectory(std::string m_path);
-
+    static void CreateDir(std::string d_path);
 private:
     FileSystem();
 };

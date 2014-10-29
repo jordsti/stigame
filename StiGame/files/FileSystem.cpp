@@ -6,6 +6,8 @@
 
 #ifdef __unix__
 #include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
 #include <dirent.h>
 #endif
 
@@ -69,6 +71,16 @@ std::vector<Entry*> FileSystem::ListDirectory(std::string m_path)
 
     return root;
 }
+
+void FileSystem::CreateDir(std::string d_path)
+{
+    struct stat st = {0};
+
+    if (stat(d_path.c_str(), &st) == -1) {
+        mkdir(d_path.c_str(), 0755)
+    }
+}
+
 #endif
 
 #ifdef _WIN32
@@ -118,6 +130,24 @@ std::vector<Entry*> FileSystem::ListDirectory(std::string m_path)
 
     return root;
 }
+
+void FileSystem::CreateDir(std::string d_path)
+{
+    if (CreateDirectory(d_path.c_str(), NULL))
+    {
+
+    }
+    else if (ERROR_ALREADY_EXISTS == GetLastError())
+    {
+
+    }
+    else
+    {
+        //todo
+        //error message
+    }
+}
+
 #endif
 
 }
