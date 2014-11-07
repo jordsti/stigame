@@ -66,6 +66,8 @@ Tested on Linux (Ubuntu 14.04-64bit) with g++ and SDL2, SDL2-image, SDL2-ttf and
 
 ### TO DO
 
+- Change the create angle method to return a reference and not a pointer !
+
 - Gui Test Project, to test all Gui Element
 	- Table
 	- Decorated Button *Python wrapper w/ (M)Style*

@@ -283,8 +283,8 @@ void Viewport::push(BaseGameState* state)
 
 		currentState = state;
 		currentState->setViewport((Viewport*)this);
-		currentState->onStart();
         currentState->onResize(width, height);
+		currentState->onStart();
 	}
 }
 
