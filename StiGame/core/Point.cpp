@@ -76,4 +76,10 @@ bool Point::equals(SDL_Point *pt)
 	);
 }
 
+Point Point::diffPoint(Point *pt)
+{
+    Point diffPt (pt->getX() - x, pt->getY() - y);
+    return diffPt;
+}
+
 }

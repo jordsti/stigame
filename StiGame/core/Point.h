@@ -45,6 +45,10 @@ public:
 	virtual bool equals(int m_x, int m_y);
 	virtual bool equals(Point *pt);
 	virtual bool equals(SDL_Point *pt);
+
+    virtual Point diffPoint(Point *pt);
+
 };
+
 }
 
