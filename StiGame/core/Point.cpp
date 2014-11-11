@@ -1,4 +1,5 @@
 #include "Point.h"
+#include "MathTK.h"
 
 namespace StiGame
 {
@@ -80,6 +81,11 @@ Point Point::diffPoint(Point *pt)
 {
     Point diffPt (pt->getX() - x, pt->getY() - y);
     return diffPt;
+}
+
+double Point::distanceWith(Point *pt)
+{
+    return Math::TK::DistanceBetween(this, pt);
 }
 
 }

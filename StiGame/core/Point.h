@@ -51,6 +51,7 @@ public:
 	virtual bool equals(SDL_Point *pt);
 
     virtual Point diffPoint(Point *pt);
+    virtual double distanceWith(Point *pt);
 
 };
 
