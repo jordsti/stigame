@@ -46,6 +46,10 @@ public:
 	SDL_Point* getSDLPoint(void);
 	void updateSDLPoint(SDL_Point *sdlPt);
 
+    Point& operator+(Point& pt);
+
+    Point& operator-(Point& pt);
+
 	virtual bool equals(int m_x, int m_y);
 	virtual bool equals(Point *pt);
 	virtual bool equals(SDL_Point *pt);
