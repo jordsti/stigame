@@ -66,7 +66,6 @@ Tested on Linux (Ubuntu 14.04-64bit) with g++ and SDL2, SDL2-image, SDL2-ttf and
 
 ### TO DO
 
-- Change the create angle method to return a reference and not a pointer !
 
 - Gui Test Project, to test all Gui Element
 	- Table
@@ -92,6 +91,8 @@ Tested on Linux (Ubuntu 14.04-64bit) with g++ and SDL2, SDL2-image, SDL2-ttf and
 - GameUnit review *will be deleted*
 
 - Sprite tick rework, not static anymore
+
+- float matrix for point transformation
 
 - Network Code (TcpSocket, UdpSocket, Socket Base Class, Packet, ...) all into Net namespace
 

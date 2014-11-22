@@ -13,6 +13,7 @@ set(SOURCE_FILES
     core/Font.cpp
     core/Logger.cpp
     core/MathTK.cpp
+    core/Matrix.cpp
     core/MDimension.cpp
     core/MDimensionF.cpp
     core/Motion.cpp
