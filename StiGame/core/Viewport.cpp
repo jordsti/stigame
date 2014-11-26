@@ -257,10 +257,31 @@ void Viewport::startLoop(void)
 			//ending time
 			//SDL_Delay(diff);
 			SDL_Delay(1);
-		}
+
+            //pending state verification
+
+            if(stateWaiting)
+            {
+                currentState->unload();
+                oldStates.push_back(currentState);
+
+                currentState = pendingState;
+
+                currentState->setViewport(this);
+                currentState->onResize(width, height);
+                currentState->onStart();
+
+                stateWaiting = false;
+                pendingState = nullptr;
+
+            }
+        }
 
 		//quitting, unloading
-		currentState->unload();
+        if(currentState != nullptr)
+        {
+            currentState->unload();
+        }
 		//quick hack
 		Gui::Runtime::getInstance()->getStyle()->unload();
 	}
@@ -268,47 +289,56 @@ void Viewport::startLoop(void)
 
 void Viewport::push(BaseGameState* state)
 {
-	if(state != 0)
+    /*
+     * Refactoring this method
+     * Problems :
+     *        - The state is unloaded while this method is called in this state
+     *          SEGFAULT error are generated because of this
+     * Solution :
+     *        1 - Put the new state into pending mode
+     *        2 - Finish the current state rendering
+     *        3 - After the rendering, unload the last state and push the new one
+     */
+    if(state != nullptr)
 	{
-	    if(currentState != 0)
+        if(currentState != nullptr)
         {
-            currentState->unload();
+            //currentState->unload();
             /*Gui::OverlayMenu *omenu = currentState->getGameMenu();
             if(omenu != nullptr)
             {
                 delete omenu;
             }*/
-            oldStates.push_back(currentState);
-        }
+            //oldStates.push_back(currentState);
 
-		currentState = state;
-		currentState->setViewport((Viewport*)this);
-        currentState->onResize(width, height);
-		currentState->onStart();
+            pendingState = state;
+            stateWaiting = true;
+        }
+        else
+        {
+            //first state pushed
+            currentState = state;
+            currentState->setViewport((Viewport*)this);
+            currentState->onResize(width, height);
+            currentState->onStart();
+
+        }
 	}
 }
 
 void Viewport::clearPreviousStates(void)
 {
     auto lit(oldStates.begin()), lend(oldStates.end());
-    //dont delete the last item now
-    int i=0;
+
     for(;lit!=lend;++lit)
     {
-        if(i < oldStates.size() -1)
-        {
-            delete (*lit);
-            //todo debug output
-            std::cout << "Deleting state.." << std::endl;
-            i++;
-        }
+        delete (*lit);
+        //todo debug output
+        std::cout << "Deleting state.." << std::endl;
 
     }
 
-    if(i > 0)
-    {
-        oldStates.erase(oldStates.begin(), --lit);
-    }
+    oldStates.clear();
 }
 
 SDL_Rect* Viewport::getLowestMode(void)
@@ -371,8 +401,9 @@ void Viewport::initialize(void)
 
 	lastTick = 0;
 	run = false;
-	currentState = 0;
-
+    currentState = nullptr;
+    pendingState = nullptr;
+    stateWaiting = false;
 
     initSDL();
 

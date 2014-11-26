@@ -71,6 +71,10 @@ protected:
 	SDL_Surface *screen;
 	/// \brief Current state running
 	BaseGameState *currentState;
+
+    BaseGameState *pendingState;
+    bool stateWaiting;
+
 	/// \brief SDL Error
 	std::string error;
 	/// \brief SDL Video Flags
