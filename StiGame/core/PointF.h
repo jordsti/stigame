@@ -2,6 +2,7 @@
 #define POINTF_H
 
 #include "MPoint.h"
+#include "Matrix.h"
 
 namespace StiGame
 {
@@ -21,6 +22,9 @@ public:
 
     virtual Point toPoint(void);
     virtual MPoint toMPoint(void);
+
+    Math::Matrix homogenousMatrix(void);
+
 protected:
     float x;
     float y;

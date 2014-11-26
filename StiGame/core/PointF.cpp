@@ -50,4 +50,12 @@ MPoint PointF::toMPoint(void)
     return MPoint((int)x, (int)y);
 }
 
+Math::Matrix PointF::homogenousMatrix(void)
+{
+    Math::Matrix matrix (1, 3, 1.0f);
+    matrix.set(0, 0, x);
+    matrix.set(0, 1, y);
+    return matrix;
+}
+
 }

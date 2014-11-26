@@ -1,6 +1,6 @@
 #include "Point.h"
 #include "MathTK.h"
-
+#include "PointF.h"
 namespace StiGame
 {
 
@@ -102,6 +102,19 @@ Point Point::diffPoint(Point *pt)
 double Point::distanceWith(Point *pt)
 {
     return Math::TK::DistanceBetween(this, pt);
+}
+
+PointF Point::toPointF()
+{
+    return PointF(x, y);
+}
+
+Math::Matrix Point::homogenousMatrix(void)
+{
+    Math::Matrix matrix (1, 3, 1.0f);
+    matrix.set(0, 0, x);
+    matrix.set(0, 1, y);
+    return matrix;
 }
 
 }

@@ -34,6 +34,19 @@ std::string VarFile::BoolToString(bool b_val)
 	}
 }
 
+
+bool VarFile::getBool(std::string varname)
+{
+    std::string var = getValue(varname);
+
+    if(var == "true")
+    {
+        return true;
+    }
+
+    return false;
+}
+
 bool VarFile::ParseBool(std::string b_str)
 {
 	if(b_str == "True")

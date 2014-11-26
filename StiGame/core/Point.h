@@ -3,9 +3,13 @@
 
 #include "SDL.h"
 #include <string>
+#include "Matrix.h"
+
 
 namespace StiGame
 {
+
+class PointF;
 
 struct PointStruct
 {
@@ -56,6 +60,9 @@ public:
 
     virtual Point diffPoint(Point *pt);
     virtual double distanceWith(Point *pt);
+
+    PointF toPointF(void);
+    Math::Matrix homogenousMatrix(void);
 
 };
 

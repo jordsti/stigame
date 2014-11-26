@@ -99,3 +99,6 @@ Tested on Linux (Ubuntu 14.04-64bit) with g++ and SDL2, SDL2-image, SDL2-ttf and
 and things that don't come to my mind at the moment...
 
 
+### Nigthly Builds
+
+Nightly builds are currently available at : http://ci.sticode.org/

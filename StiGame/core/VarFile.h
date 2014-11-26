@@ -29,6 +29,8 @@ class VarFile
 
         int getInt(std::string varname);
 
+        bool getBool(std::string varname);
+
 		/// \brief Put a new variable into VarFile
 		/// \param varname Variable name
 		/// \param value Variable value
