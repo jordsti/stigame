@@ -128,28 +128,35 @@ void DirectionSprite::parseDirection(std::string dir_prefix, SDirection pdirecti
 
 Texture* DirectionSprite::getCurrentTexture(void)
 {
+    return getTexture(direction, _tick);
+}
+
+Texture* DirectionSprite::getTexture(SDirection m_direction, int m_frameTick)
+{
     int i = 0;
-    switch(direction)
+    switch(m_direction)
     {
     case SD_UP:
-        i = tick % frame_up;
+        i = m_frameTick % frame_up;
         return textures_up[i];
     case SD_DOWN:
-        i = tick % frame_down;
+        i = m_frameTick % frame_down;
         return textures_down[i];
     case SD_LEFT:
-        i = tick % frame_left;
+        i = m_frameTick % frame_left;
         return textures_left[i];
     case SD_RIGHT:
-        i = tick % frame_right;
+        i = m_frameTick % frame_right;
         return textures_right[i];
     case SD_IDLE:
-        i = tick % frame_idle;
+        i = m_frameTick % frame_idle;
         return textures_idle[i];
     default:
-        i = tick % frame_right;
+        i = m_frameTick % frame_right;
         return textures_right[i];
     }
+
+    return nullptr;
 }
 
 void DirectionSprite::loadTexture(SDirection direction, std::string path)
@@ -195,7 +202,7 @@ void DirectionSprite::initialize()
     y = 0;
     width = 0;
     height = 0;
-    tick = 0;
+    _tick = 0;
     renderer = 0;
     frame_up = 0;
     frame_down = 0;
@@ -214,6 +221,7 @@ void DirectionSprite::render(void)
 {
     Texture *tx = getCurrentTexture();
 
+    //todo refactor this to use point inheritance
     SDL_Rect *src = getSDLRect();
     SDL_Rect *dst = getSDLRect();
 
@@ -225,7 +233,21 @@ void DirectionSprite::render(void)
     delete src;
     delete dst;
 
-    tick++;
+    //tick++;
+}
+
+void DirectionSprite::render(SDirection m_direction, int m_frameTick)
+{
+    Texture *tx = getTexture(m_direction, m_frameTick);
+    if(tx != nullptr)
+    {
+        tx->renderCopy(this);
+    }
+}
+
+void DirectionSprite::tick(void)
+{
+    _tick++;
 }
 
 }

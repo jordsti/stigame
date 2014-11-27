@@ -1,6 +1,13 @@
 #include "DirectionSpriteFile.h"
 #include <iostream>
 #include <fstream>
+
+/*
+ * Todo
+ * Rework direction sprite, remove idle state
+ * and just not tick while this is idle
+ */
+
 namespace StiGame
 {
 		const std::string DirectionSpriteFile::FILE_EXTENSION = ".bdspr";

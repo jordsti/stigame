@@ -122,10 +122,13 @@ set(SOURCE_FILES
     files/File.cpp
     files/FileSystem.cpp
 
+    sprites/ClonedDirectionSprite.cpp
     sprites/ClonedSprite.cpp
     sprites/DirectionSprite.cpp
+    sprites/DirectionSpriteLibrary.cpp
     sprites/DirectionSpriteFile.cpp
     sprites/DirectionSpriteFileCreator.cpp
+    sprites/IDirectionSprite.cpp
     sprites/ISprite.cpp
     sprites/Sprite.cpp
     sprites/SpriteFile.cpp

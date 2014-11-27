@@ -1,18 +1,16 @@
 #ifndef DIRECTIONSPRITE_H
 #define DIRECTIONSPRITE_H
 #include <vector>
-#include "ISprite.h"
+#include "IDirectionSprite.h"
 #include "Texture.h"
 #include "VarFile.h"
 
 namespace StiGame {
 
-enum SDirection { SD_UP = 1, SD_DOWN = 2, SD_LEFT = 4, SD_RIGHT = 8, SD_IDLE = 16 }    ;
-
 class DirectionSpriteFile;
 
 class DirectionSprite :
-    public ISprite
+    public IDirectionSprite
 {
     public:
         const static std::string FILE_EXTENSION;
@@ -22,9 +20,14 @@ class DirectionSprite :
         DirectionSprite(DirectionSpriteFile *sprite_file, SDL_Renderer *m_renderer);
         virtual ~DirectionSprite();
         void render(void);
+        void render(SDirection m_direction, int m_frameTick);
         SDirection getDirection(void);
         void setDirection(SDirection m_direction);
         Texture* getCurrentTexture(void);
+        Texture* getTexture(SDirection m_direction, int m_frameTick);
+
+        void tick(void);
+
     protected:
         void fromFile(DirectionSpriteFile *sprite_file);
         void loadTexture(SDirection direction, std::string path);
@@ -42,7 +45,7 @@ class DirectionSprite :
         std::vector<Texture*> textures_left;
         std::vector<Texture*> textures_right;
         std::vector<Texture*> textures_idle;
-        int tick;
+        int _tick;
         SDirection direction;
     private:
 };

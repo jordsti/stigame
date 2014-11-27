@@ -23,6 +23,11 @@ SpriteLibrary::SpriteLibrary(SDL_Renderer *m_renderer)
     }
 }
 
+void SpriteLibrary::setRenderer(SDL_Renderer *m_renderer)
+{
+    renderer = m_renderer;
+}
+
 void SpriteLibrary::load(std::string name, SpriteType s_type)
 {
     if(s_type == ST_VARFILE)
