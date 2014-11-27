@@ -202,7 +202,7 @@ void DirectionSprite::initialize()
     y = 0;
     width = 0;
     height = 0;
-    _tick = 0;
+    _tick = 1;
     renderer = 0;
     frame_up = 0;
     frame_down = 0;

@@ -215,7 +215,10 @@ void Viewport::tick(void)
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	SDL_RenderClear(renderer);
 
+    //long long stamp = Time::GetMsTimestamp();
 	currentState->onPaint(renderer);
+
+    //std::cout << "paint time : " << Time::GetMsTimestamp() - stamp << std::endl;
 
 	SDL_RenderPresent(renderer);
 	//int rs = SDL_Flip(screen);
@@ -250,13 +253,19 @@ void Viewport::startLoop(void)
                     tick();
                     lastTick = Time::GetMsTimestamp();
                 }
-
-                current_fps = 1000 / diff;
+                if(diff > 0)
+                {
+                    current_fps = 1000 / diff;
+                }
             }
 
 			//ending time
 			//SDL_Delay(diff);
-			SDL_Delay(1);
+            /*int delay = diff - 10;
+            if(delay < 0)
+                delay = 1;
+
+            SDL_Delay(delay);*/
 
             //pending state verification
 

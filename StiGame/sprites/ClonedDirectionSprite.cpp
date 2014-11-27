@@ -5,7 +5,7 @@ namespace StiGame {
 ClonedDirectionSprite::ClonedDirectionSprite(DirectionSprite *m_sprite)
 {
     sprite = m_sprite;
-    _tick = 0;
+    _tick = 1;
     width = m_sprite->getWidth();
     height = m_sprite->getHeight();
     direction = SD_IDLE;
