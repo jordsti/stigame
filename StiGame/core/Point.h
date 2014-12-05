@@ -32,6 +32,8 @@ public:
 
 	Point(PointStruct *pt);
 
+    Point(Point *pt);
+
 	/// \brief Create a point with the specified position
 	/// \param m_x x position (px)
 	/// \param m_y y position (px)

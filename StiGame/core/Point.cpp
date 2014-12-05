@@ -22,6 +22,13 @@ Point::Point(int m_x, int m_y)
 	y = m_y;
 }
 
+Point::Point(Point *pt)
+{
+    x = pt->getX();
+    y = pt->getY();
+}
+
+
 Point::~Point(void)
 {
 }

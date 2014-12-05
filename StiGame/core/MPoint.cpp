@@ -20,6 +20,12 @@ MPoint::MPoint(PointStruct *pt) :
 
 }
 
+MPoint::MPoint(Point *pt) :
+   Point(pt)
+{
+
+}
+
 void MPoint::setPoint(Point *pt)
 {
     x = pt->getX();

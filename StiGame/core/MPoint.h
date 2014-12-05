@@ -18,6 +18,7 @@ class MPoint :
         /// \param m_y y position (px)
         MPoint(int m_x, int m_y);
         MPoint(PointStruct *pt);
+        MPoint(Point *pt);
 
         virtual ~MPoint();
 
