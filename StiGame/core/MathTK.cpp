@@ -93,5 +93,22 @@ namespace StiGame
 
             return Pythagoras(d_x, d_y);
         }
+
+        double TK::round(double nb)
+        {
+            double fl = floor(nb);
+            double cl = ceil(nb);
+
+            double left = nb - fl;
+
+            if(left >= 0.5000000)
+            {
+                return cl;
+            }
+            else
+            {
+                return fl;
+            }
+        }
     }
 }

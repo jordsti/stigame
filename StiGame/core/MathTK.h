@@ -35,6 +35,7 @@ namespace StiGame
             static double DistanceBetween(Point *pt1, Point *pt2);
             static double DistanceBetween(int x1, int y1, int x2, int y2);
             static double DistanceBetween(Dimension *dim);
+            static double round(double nb);
         };
 
     }

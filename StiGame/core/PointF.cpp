@@ -1,5 +1,5 @@
 #include "PointF.h"
-
+#include "MathTK.h"
 namespace StiGame
 {
 
@@ -42,12 +42,12 @@ bool PointF::equals(PointF *pt)
 
 Point PointF::toPoint(void)
 {
-    return Point((int)x, (int)y);
+    return Point(Math::TK::round(x), Math::TK::round(y));
 }
 
 MPoint PointF::toMPoint(void)
 {
-    return MPoint((int)x, (int)y);
+    return MPoint(Math::TK::round(x), Math::TK::round(y));
 }
 
 Math::Matrix PointF::homogenousMatrix(void)
