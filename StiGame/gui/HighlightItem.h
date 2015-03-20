@@ -16,30 +16,31 @@ class HighlightItem :
     public Item
 {
     public:
-		/// \brief Create a new Highlight Item
+	/// \brief Create a new Highlight Item
         HighlightItem();
+	/// \brief Create a new Highlight Item with his name
+	/// \param i_name Item Name
+	HighlightItem(std::string i_name);
 		
-		HighlightItem(std::string i_name);
-		
-		/// \brief Destructor
+	/// \brief Destructor
         virtual ~HighlightItem();
-		/// \brief Set highlight Foreground Color
-		/// \param color Color
+	/// \brief Set highlight Foreground Color
+	/// \param color Color
         void setHighlightForeground(Color *color);
-		/// \brief Set highlight Background Color
-		/// \param color Color
+	/// \brief Set highlight Background Color
+	/// \param color Color
         void setHighlightBackground(Color *color);
-		/// \brief Get highlight Foreground Color
-		/// \return Foreground Color
+	/// \brief Get highlight Foreground Color
+	/// \return Foreground Color
         Color *getHighlightForeground(void);
-		/// \brief Get highlight Background Color
-		/// \return Background Color
+	/// \brief Get highlight Background Color
+	/// \return Background Color
         Color *getHighlightBackground(void);
 
     protected:
-		/// \brief Highlight Foreground Color
+	/// \brief Highlight Foreground Color
         Color *highlightForeground;
-		/// \brief Highlight Background Color
+	/// \brief Highlight Background Color
         Color *highlightBackground;
     private:
 };

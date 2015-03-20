@@ -37,16 +37,20 @@ public:
 	/// \brief Get the label transparency value
 	/// \return Transparency
 	bool getTransparent(void);
-	
+	/// \brief Get Draw Border value
+	/// \return Border drawed or not
 	bool getDrawBorder(void);
+	/// \brief Set Draw Border value
+	/// \param m_drawBorder Draw Border
 	void setDrawBorder(bool m_drawBorder);
 
-    virtual void setForeground(Color *m_foreground);
+	virtual void setForeground(Color *m_foreground);
 
 protected:
 	/// \brief Render the caption text
 	void renderCaption(void);
 	
+	/// \brief Drawing Border to the buffer Surface
 	void _drawBorder(Surface *buffer);
 	
 	/// \brief Transparency
@@ -57,7 +61,7 @@ protected:
 	Font *font;
 	/// \brief Caption Text
 	std::string caption;
-	
+	/// \brief Draw Border
 	bool drawBorder;
 };
 

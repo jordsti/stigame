@@ -7,13 +7,17 @@ namespace StiGame
 {
 namespace Gui
 {
-
+/// \class VerticalBoxLayout
+/// \brief Vertical Layout implementation
 class VerticalBoxLayout :
     public Layout
 {
     public:
+        /// \brief Constructor
         VerticalBoxLayout();
+	/// \brief Destructor
         virtual ~VerticalBoxLayout();
+	
         void setChildsPosition(void);
     protected:
     private:

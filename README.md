@@ -52,17 +52,24 @@ At the moment the only test is to run the Sample coming with the library. This s
 
 We currently compile StiGame using mingw32-TDM-GCC-4.8.1 (Coming with Code::Blocks).
 
-Windows 7 is the only tested Operating System at the moment.
+Windows 7 and Linux are the only tested Operating System at the moment.
 
 You need to first retrieve the extern files like SDL2 header and libraries.
 
-A Python script is included for this.
+A Python script is included for this. (Windows Only)
 
 After you can compile using Code::Blocks IDE.
 
 #### Linux
 
 Tested on Linux (Ubuntu 14.04-64bit) with g++ and SDL2, SDL2-image, SDL2-ttf and SDL2-gfx
+
+You just need to fetch the depencies
+- SDL2
+- SDL2-image
+- SDL2-ttf
+- SDL2-net
+- SDL2-gfx
 
 ### TO DO
 
@@ -102,3 +109,5 @@ and things that don't come to my mind at the moment...
 ### Nigthly Builds
 
 Nightly builds are currently available at : http://ci.sticode.org/
+
+Current API documention can be found at : http://ci.sticode.org/stigamedoc/

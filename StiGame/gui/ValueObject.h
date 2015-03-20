@@ -9,7 +9,7 @@ namespace Gui
 {
 
 /// \class ValueObject
-/// \brief Class for GuiItem list
+/// \brief Class for Value contained into Items like List and ComboBox
 class ValueObject
 {
     public:

@@ -14,26 +14,26 @@ namespace Gui
 class RadioGroup
 {
     public:
-		/// \brief Create a new Radio Group
+	/// \brief Create a new Radio Group
         RadioGroup();
-		/// \brief Destructor
+	/// \brief Destructor
         virtual ~RadioGroup();
-		/// \brief Add an item to the group
-		/// \param radio Radio Button
+	/// \brief Add an item to the group
+	/// \param radio Radio Button
         void addItem(RadioButton *radio);
-		/// \brief Remove an item from the group
-		/// \param radio Radio Button
+	/// \brief Remove an item from the group
+	/// \param radio Radio Button
         void removeItem(RadioButton *radio);
-		/// \brief Set the specified Radio Button active
-		/// \param radio Radio Button to set active
+	/// \brief Set the specified Radio Button active
+	/// \param radio Radio Button to set active
         void setActive(RadioButton *radio);
-		/// \brief Get the active Radio Button
-		/// \return Radio button
+	/// \brief Get the active Radio Button
+	/// \return Radio button
         RadioButton *getActive(void);
     protected:
-		/// \brief Radio Button of this group
+	/// \brief Radio Button of this group
         std::list<Gui::RadioButton*> radioButtons;
-		/// \brief Current active Radio Button
+	/// \brief Current active Radio Button
         RadioButton *active;
     private:
 };

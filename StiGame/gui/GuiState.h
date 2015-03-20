@@ -41,10 +41,11 @@ public:
 	/// \brief Get mouse x position
 	/// \return mouse x (px)
 	int getMouseX(void);
-    /// \brief Get mouse y position
+	/// \brief Get mouse y position
 	/// \return mouse y (px)
 	int getMouseY(void);
-
+	/// \brief Render the GuiState into a new Surface
+	/// \return Surface Pointer
 	StiGame::Surface* render(void);
 
 protected:

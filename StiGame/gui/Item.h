@@ -53,42 +53,79 @@ public:
 	/// \brief Set mouse over
 	virtual void setMouseOver(bool);
 	/// \brief Virtual method to override, provide mouse position, only over the GuiItem region
-	/// \param relp Relative position over the GuiItem
+	/// \param relp Relative position over the Item
 	virtual void onMouseMotion(Point *relp);
 	/// \brief Virtual method to override, called when the item is clicked
+	/// \param relp Relative position of the click
 	virtual void onClick(Point *relp);
-
+	/// \brief Text Input Event Handling
+	/// \param text New Char to append
 	virtual void onTextInput(char* text);
-
+	/// \brief On Key Up Event handling
+	/// \param evt SDL_KeyboardEvent Pointer
 	virtual void onKeyUp(SDL_KeyboardEvent *evt);
-
+	/// \brief Set the Item Rectangle (Position and dimension)
+	/// \param m_x X Position (px)
+	/// \param m_y Y Position (px)
+	/// \param m_width Width (px)
+	/// \param m_height Height (px)
 	virtual void setRectangle(int m_x, int m_y, int m_width, int m_height);
+    
+	/// \brief Set current width of the Item
+	/// \param m_width Width (px)
+	void setWidth(int m_width);
+	
+	/// \brief Set current height of the Item
+	/// \param m_height Height (px)
+	void setHeight(int m_height);
+	
+	/// \brief Set Item Current Dimension
+	/// \param m_width Width (px)
+	/// \param m_height Height (px)
+	void setDimension(int m_width, int m_height);
 
-    void setWidth(int m_width);
+	/// \brief Is the Key Event Handled by this Item
+	/// \return Handled or not
+	bool isHandleKey(void);
+	
+	/// \brief Is the Item has focus
+	/// \return Focused or not
+	virtual bool isFocus(void);
+	
+	/// \brief Set the Focus of the Item
+	/// \param m_focus New Focus value
+	virtual void setFocus(bool m_focus);
+	
+	/// \brief Set the minimum size of the Item, for Layout placement
+	/// \param m_width Minimum Width (px)
+	/// \param m_height Minimum Height (px)
+	void setMinimumSize(int m_width, int m_height);
+	
+	/// \brief Set the maximum size of the Item, for Layout placement
+	/// \param m_width Maximum Width (px)
+	/// \param m_height Maximum Height (px)
+	void setMaximumSize(int m_width, int m_height);
 
-    void setHeight(int m_height);
+	/// \brief Set the maximum, minimum and current Size of the Item
+	/// \param m_width Fixed Width (px)
+	/// \param m_height Fixed Height (px)
+	void setFixedSize(int m_width, int m_height);
 
-    void setDimension(int m_width, int m_height);
+	/// \brief Get Current Minimum Size
+	/// \return Dimension Pointer of the minimum size
+	Dimension* getMinimumSize(void);
+	
+	/// \brief Get Current Maximum Size
+	/// \return Dimension Pointer of the minimum size
+	Dimension* getMaximumSize(void);
 
-    bool isHandleKey(void);
-
-    virtual bool isFocus(void);
-
-    virtual void setFocus(bool m_focus);
-
-    void setMinimumSize(int m_width, int m_height);
-
-    void setMaximumSize(int m_width, int m_height);
-
-    void setFixedSize(int m_width, int m_height);
-
-    Dimension* getMinimumSize(void);
-
-    Dimension* getMaximumSize(void);
-
-    bool isVisible(void);
-
-    void setVisible(bool m_visible);
+	/// \brief Is the Item Visible
+	/// \return Visible or not
+	bool isVisible(void);
+	
+	/// \brief Set the new visibility
+	/// \param m_visible Visible or not
+	void setVisible(bool m_visible);
 
 protected:
 	/// \brief Name of the item
@@ -101,19 +138,24 @@ protected:
 	Style *style;
 	/// \brief is mouse over
 	bool mouseOver;
-
+	/// \brief Event Key Handled
 	bool handleKey;
 
-    virtual void resized(void);
+	/// \brief Resize callback
+	virtual void resized(void);
 
-    bool focus;
-
-    bool visible;
-
-    MDimension minimumSize;
-    MDimension maximumSize;
+	/// \brief Current Focus value
+	bool focus;
+	
+	/// \brief Visibility
+	bool visible;
+	
+	/// \brief Minimum Size
+	MDimension minimumSize;
+	/// \brief Maximum Size
+	MDimension maximumSize;
 private:
-	/// \brief initialization
+	/// \brief Initialization
 	void init(void);
 };
 
