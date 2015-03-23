@@ -36,9 +36,9 @@ public:
 	///	Empty surface constructor
 	Surface(void);
 	/// \brief Constructor
-	///	Create a surface with specified size
-	///	\param m_width : width (px)
-	///	\param m_height : height (px)
+	/// 	Create a surface with specified size
+	/// \param m_width : width (px)
+	/// \param m_height : height (px)
 	Surface(int m_width, int m_height);
 	/// \brief Constructor
 	/// Create a new Surface from a SDL_Surface
@@ -73,9 +73,12 @@ public:
 	void fillRect(SDL_Rect *rect, Uint32 color);
 	/// \brief Fill a region specified by a SDL_Rect
 	/// \param rect Pointer to a SDL_Rect
-	/// \param color Pointer to a SColor
+	/// \param color Pointer to a Color
 	void fillRect(SDL_Rect *rect, Color *color);
-
+    
+	/// \brief Fill a region specified by a SDL_Rect
+	/// \param rect Pointer to a Rectangle
+	/// \param color Pointer to a Color
 	void fillRect(Rectangle *rect, Color *color);
 
 	/// \brief Blit a SDL_Surface on this Surface
@@ -83,19 +86,28 @@ public:
 	/// \param src Pointer to source SDL_Rect
 	/// \param dst Pointer to destination SDL_Rect
 	void blit(SDL_Surface *m_surface, SDL_Rect *src, SDL_Rect *dst);
-	/// \brief Blit a SDL_Surface on this Surface
+	/// \brief Blit a Surface on this Surface
 	/// \param m_surface Pointer to the source Surface
 	/// \param src Pointer to source SDL_Rect
 	/// \param dst Pointer to destination SDL_Rect
 	void blit(Surface *m_surface, SDL_Rect *src, SDL_Rect *dst);
-
+  	/// \brief Blit a Surface on this Surface
+	/// \param m_surface Pointer to the source Surface
+	/// \param src Pointer to source Rectangle
+	/// \param dst Pointer to destination Rectangle
 	void blit(Surface *m_surface, Rectangle *src, Rectangle *dst);
-
+  	/// \brief Blit a Surface on this Surface
+	/// \param m_surface Pointer to the source Surface
+	/// \param dst Pointer to destination Rectangle
 	void blit(Surface *m_surface, Rectangle *dst);
-
+  	/// \brief Blit a Surface on this Surface
+	/// \param m_surface Pointer to the source Surface
+	/// \param dst Pointer to destination SDL_Rect
 	void blit(Surface *m_surface, SDL_Rect *dst);
-
-    void blit(Surface *m_surface, Point *pt);
+	 /// \brief Blit a SDL_Surface on this Surface
+	/// \param m_surface Pointer to the source Surface
+	/// \param pt Starting Point
+	void blit(Surface *m_surface, Point *pt);
 
 	/// \brief Draw a primitive object to this Surface
 	/// \param prim Pointer to primitive to draw
@@ -123,16 +135,16 @@ public:
 	SDL_Rect *getRect(void);
 	/// \brief Get a Pointer to a SDL_Rect who contains surface dimension
 	/// IMPORTANT : You must free this SDL_Rect after it has been used.
-	/// /param m_x Value to add to width
-	/// /param m_y Value to add to height
+	/// \param m_x Value to add to width
+	/// \param m_y Value to add to height
 	SDL_Rect *getRect(int m_x,int m_y);
-    /// \brief Get a Pointer to a SRect who contains surface dimension
+	/// \brief Get a Pointer to a SRect who contains surface dimension
 	/// IMPORTANT : You must free this SRect after it has been used.
 	Rectangle *getRectangle(void);
-    /// \brief Get a Pointer to a SRect who contains surface dimension
+	/// \brief Get a Pointer to a SRect who contains surface dimension
 	/// IMPORTANT : You must free this SRect after it has been used.
-	/// /param m_x Value to add to width
-	/// /param m_y Value to add to height
+	/// \param m_x Value to add to width
+	/// \param m_y Value to add to height
 	Rectangle *getRectangle(int m_x, int m_y);
 	/// \brief Lock the surface
 	void lock(void);
@@ -142,30 +154,47 @@ public:
 	virtual ~Surface(void);
 	/// \brief Load a image file
 	/// \param m_path Path to image
-    void loadFromFile(const char *m_path);
-
+	void loadFromFile(const char *m_path);
+	/// \brief Get Pixel Color located at
+	/// \param p_x Pixel X
+	/// \param p_y Pixel Y
+	/// \return Pixel Value
 	Uint32 getPixelInt(int p_x, int p_y);
+	/// \brief Get Pixel Color located at
+	/// \param pt Point
+	/// \return Pixel Value
 	Pixel* getPixel(Point *pt);
-    Pixel* getPixel(int p_x, int p_y);
-
+	/// \brief Get Pixel Color located at
+	/// \param p_x Pixel X
+	/// \param p_y Pixel Y
+	/// \return Pixel Value
+	Pixel* getPixel(int p_x, int p_y);
+	/// \brief Update a Rectangle with Surface Dimension
+	/// \param rect SDL_Rect to update
 	void updateSDLRect(SDL_Rect *rect);
+	/// \brief Update a Rectangle with Surface Dimension
+	/// \param rect SDL_Rect to update
 	void updateSDLRect(SDL_Rect *rect, int m_x, int m_y);
+	/// \brief Update a Rectangle with Surface Dimension
+	/// \param rect SDL_Rect to update
+	/// \param m_x Rectangle X
+	/// \param m_y Rectangle Y
 	void updateSDLRect(SDL_Rect *rect, Point *pt);
-
+	
 	void setClipRect(SDL_Rect *rect);
 	void updateClipRect(SDL_Rect *rect);
 
 	void saveBmp(std::string dest);
 
-    void setBlendMode(SDL_BlendMode mode);
-    SDL_BlendMode getBlendMode(void);
+	void setBlendMode(SDL_BlendMode mode);
+	SDL_BlendMode getBlendMode(void);
 
-    void setAlphaMod(Uint8 alpha);
-    Uint8 getAlphaMod(void);
+	void setAlphaMod(Uint8 alpha);
+	Uint8 getAlphaMod(void);
 
-    void setColorMod(Uint8 r, Uint8 g, Uint8 b);
-    void setColorMod(Color *color);
-    Color getColotMod(void);
+	void setColorMod(Uint8 r, Uint8 g, Uint8 b);
+	void setColorMod(Color *color);
+	Color getColotMod(void);
 };
 
 }

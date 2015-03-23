@@ -134,6 +134,6 @@ StiGame Header List, for Doxygen Doc Review
 ./core/MultiRect.h
 ./core/Angle.h
 ./core/TimeTools.h
-./core/Surface.h
-./core/Rectangle.h
+./core/Surface.h -> DONE
+./core/Rectangle.h -> DONE
 ./core/Point.h -> DONE
