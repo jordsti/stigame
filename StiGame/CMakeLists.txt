@@ -61,6 +61,9 @@ set(SOURCE_FILES
     gui/Image.cpp
     gui/ImageButton.cpp
     gui/Item.cpp
+    gui/ItemContainer.cpp
+    gui/ItemNode.cpp
+    gui/ItemIterator.cpp
     gui/Label.cpp
     gui/Layout.cpp
     gui/List.cpp

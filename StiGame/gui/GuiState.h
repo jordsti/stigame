@@ -3,6 +3,12 @@
 #include "Runtime.h"
 #include "Item.h"
 #include <list>
+
+#ifdef FUTURE
+#include "ItemContainer.h"
+#endif
+
+
 namespace StiGame
 {
 
@@ -61,6 +67,9 @@ protected:
 	int mouse_y;
 	/// \brief Gui Style
 	Style *style;
+#ifdef FUTURE
+    _future::ItemContainer container;
+#endif
 };
 
 }

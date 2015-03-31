@@ -23,12 +23,12 @@ StiGame Header List, for Doxygen Doc Review
 ./gui/HighlightItem.h -> DONE
 ./gui/ProgressBar.h -> DONE
 ./gui/MStyle.h -> DONE
-./gui/ImageButton.h 
-./gui/TabItem.h
-./gui/Runtime.h
-./gui/TabPanel.h
+./gui/ImageButton.h -> DONE
+./gui/TabItem.h -> DONE
+./gui/Runtime.h -> DONE
+./gui/TabPanel.h -> DONE
 ./gui/Table.h -> DONE
-./gui/Image.h
+./gui/Image.h -> DONE
 ./gui/Button.h
 ./gui/CheckBox.h
 ./gui/Style.h

@@ -36,14 +36,18 @@ public:
 	/// \brief Get Gui Style
 	/// \return Gui Style
 	Style *getStyle(void);
-
+    
+    /// \brief Force the applying of a style
+    /// \param m_style Style to apply
     void ForceStyle(Style *m_style)
     {
         Style *oldstyle = style;
         style = m_style;
         delete oldstyle;
     }
-
+    
+    /// \brief Is this a Debug version ?
+    /// \return Debug or not
     bool isDebug(void)
     {
         #if DEBUG

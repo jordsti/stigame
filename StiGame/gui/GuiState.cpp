@@ -41,7 +41,11 @@ int GuiState::getMouseY(void)
 
 void GuiState::add(Item *n_item)
 {
-	items.push_back(n_item);
+#ifdef FUTURE
+    container.add(n_item);
+#else
+    items.push_back(n_item);
+#endif
 }
 
 void GuiState::onStart(void)
@@ -60,10 +64,33 @@ Surface* GuiState::render()
 
 	//rendering items
 	sBuffer->fill(style->getBackground());
-
-	std::list<Item*>::iterator lit (items.begin()), lend(items.end());
-
     MPoint *relp = new MPoint();
+#ifdef FUTURE
+    for(_future::ItemIterator it = container.iterator(); it.next();)
+    {
+        Item *item = it.item();
+
+        if(item->contains(mouse_x, mouse_y))
+        {
+            relp->setPoint(mouse_x - item->getX(), mouse_y - item->getY());
+            item->setMouseOver(true);
+            item->onMouseMotion(relp);
+        }
+        else
+        {
+            item->setMouseOver(false);
+        }
+
+        if(item->isVisible())
+        {
+            Surface *itemBuffer = item->render();
+            sBuffer->blit(itemBuffer, item);
+            delete itemBuffer;
+        }
+    }
+
+#else
+    std::list<Item*>::iterator lit (items.begin()), lend(items.end());
 
 	for(;lit!=lend;++lit)
 	{
@@ -95,6 +122,7 @@ Surface* GuiState::render()
         }
 	}
 
+#endif
 	delete relp;
 
     return sBuffer;
@@ -113,9 +141,35 @@ void GuiState::onPaint(SDL_Renderer *renderer)
 	//rendering items
 	sBuffer->fill(style->getBackground());
 
-	std::list<Item*>::iterator lit (items.begin()), lend(items.end());
-
     MPoint *relp = new MPoint();
+
+#ifdef FUTURE
+    for(_future::ItemIterator it = container.iterator(); it.next();)
+    {
+        Item *item = it.item();
+        if(item->contains(mouse_x, mouse_y))
+        {
+            relp->setPoint(mouse_x - item->getX(), mouse_y - item->getY());
+            item->setMouseOver(true);
+            item->onMouseMotion(relp);
+        }
+        else
+        {
+            item->setMouseOver(false);
+        }
+
+        if(item->isVisible())
+        {
+            Surface *itemBuffer = item->render();
+            sBuffer->blit(itemBuffer, item);
+            delete itemBuffer;
+        }
+    }
+
+#else
+    std::list<Item*>::iterator lit (items.begin()), lend(items.end());
+
+
 
 	for(;lit!=lend;++lit)
 	{
@@ -146,6 +200,8 @@ void GuiState::onPaint(SDL_Renderer *renderer)
             delete dst;
         }
 	}
+
+#endif
 
 	delete relp;
 
@@ -195,7 +251,10 @@ void GuiState::onEvent(SDL_Event* evt)
 	{
 		mouse_x = evt->button.x;
 		mouse_y = evt->button.y;
-
+#ifdef FUTURE
+        _future::ItemIterator it = container.iterator();
+        it.publishOnClick(mouse_x, mouse_y);
+#else
 		std::list<Item*>::iterator lit (items.begin()), lend(items.end());
 
 		for(;lit!=lend;++lit)
@@ -213,9 +272,14 @@ void GuiState::onEvent(SDL_Event* evt)
                 (*lit)->setFocus(false);
             }
 		}
+#endif
 	}
 	else if(evt->type == SDL_TEXTINPUT)
     {
+#ifdef FUTURE
+        _future::ItemIterator it = container.iterator();
+        it.publishTextInput(evt->edit.text);
+#else
         std::list<Item*>::iterator lit (items.begin()), lend(items.end());
 
 		for(;lit!=lend;++lit)
@@ -225,9 +289,14 @@ void GuiState::onEvent(SDL_Event* evt)
 				(*lit)->onTextInput(evt->edit.text);
 			}
 		}
+#endif
     }
     else if(evt->type == SDL_KEYUP)
     {
+#ifdef FUTURE
+        _future::ItemIterator it = container.iterator();
+        it.publishOnKeyUp(&evt->key);
+#else
         std::list<Item*>::iterator lit (items.begin()), lend(items.end());
 
 		for(;lit!=lend;++lit)
@@ -237,18 +306,20 @@ void GuiState::onEvent(SDL_Event* evt)
 				(*lit)->onKeyUp(&evt->key);
 			}
 		}
+#endif
     }
 }
 
 void GuiState::unload(void)
 {
+#ifndef FUTURE
 	std::list<Item*>::iterator lit (items.begin()), lend(items.end());
 
 	for(;lit!=lend;++lit)
 	{
 		(*lit)->clear();
 	}
-
+#endif
     if(sBuffer != nullptr)
     {
         delete sBuffer;
