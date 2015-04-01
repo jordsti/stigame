@@ -17,6 +17,7 @@ public:
     bool nextWithClear(void);
     ItemNode *node(void);
     //publish event methods
+    void publishOnMouseMotion(int mouse_x, int mouse_y);
     void publishOnClick(int mouse_x, int mouse_y);
     void publishTextInput(char *text);
     void publishOnKeyUp(SDL_KeyboardEvent *evt);

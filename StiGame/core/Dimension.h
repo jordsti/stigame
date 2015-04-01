@@ -26,8 +26,11 @@ namespace StiGame
 		Dimension(DimensionStruct *dim);
 
 		/// \brief Create a new dimension with specified size
-		Dimension(int m_width,int m_height);
-		virtual ~Dimension(void);
+
+        Dimension(int m_width, int m_height);
+        /// \brief Destructor
+
+        virtual ~Dimension();
 		/// \brief Get the width of the dimension
 		/// \return width (px)
 		int getWidth(void);

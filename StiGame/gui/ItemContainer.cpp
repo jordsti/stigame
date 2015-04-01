@@ -1,4 +1,5 @@
 #include "ItemContainer.h"
+#include <iostream>
 namespace StiGame {
 
 namespace Gui {
@@ -8,7 +9,7 @@ namespace _future {
 ItemContainer::ItemContainer()
 {
     _start = nullptr;
-    clearItems = true;
+    clearItems = false;
 }
 
 ItemContainer::ItemContainer(bool m_clearItems)
@@ -194,23 +195,26 @@ ItemNode* ItemContainer::nodeAt(unsigned int index)
 
 void ItemContainer::insert(Item *m_item, unsigned int index)
 {
+    //need to test this method !!
     //at the item after the index
     //if the index is higher than the number of item, it's added to the end
     ItemNode *current = _start;
+    ItemNode *prev = _start;
     unsigned int i=0;
     while(current != nullptr)
     {
         if(i == index)
         {
             //adding the item in between those items
-            ItemNode *next = current->next();
+            ItemNode *next = current;
             ItemNode *newNode = new ItemNode(m_item);
-            current->setNext(newNode);
+            prev->setNext(newNode);
             newNode->setNext(next);
             return;
         }
 
         //advance
+        prev = current;
         current = current->next();
         i++;
     }

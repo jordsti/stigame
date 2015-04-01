@@ -45,7 +45,7 @@ namespace StiGame
 	    return dim;
 	}
 
-	Dimension::~Dimension(void)
+    Dimension::~Dimension()
 	{
 
 	}

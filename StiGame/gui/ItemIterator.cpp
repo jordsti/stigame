@@ -125,6 +125,25 @@ void ItemIterator::publishOnKeyUp(SDL_KeyboardEvent *evt)
     _current = nullptr;
 }
 
+void ItemIterator::publishOnMouseMotion(int mouse_x, int mouse_y)
+{
+    Point mousePt (mouse_x, mouse_y);
+    MPoint relpt (0, 0);
+    for(;next();)
+    {
+        if(item()->contains(&mousePt))
+        {
+            relpt.setPoint(mouse_x - item()->getX(), mouse_y - item()->getY());
+            item()->setMouseOver(true);
+            item()->onMouseMotion(&relpt);
+        }
+        else
+        {
+            item()->setMouseOver(false);
+        }
+    }
+}
+
 }
 }
 }

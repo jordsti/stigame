@@ -32,20 +32,30 @@ void Layout::setDrawBorder(bool m_drawBorder)
 
 void Layout::addChild(Item *item)
 {
+#ifdef FUTURE
+    container.add(item);
+#else
     childs.push_back(item);
-    childsChanged = true;
+#endif
 
+    childsChanged = true;
 }
 
 void Layout::removeChild(Item *item)
 {
+#ifdef FUTURE
+    container.remove(item);
+#else
     childs.remove(item);
+#endif
     childsChanged = true;
 }
 
 Item* Layout::getChildAt(int index)
 {
-
+#ifdef FUTURE
+    return container.itemAt(index);
+#else
     if(index < childsCount())
     {
         int i=0;
@@ -69,17 +79,26 @@ Item* Layout::getChildAt(int index)
     {
         return nullptr;
     }
+#endif
 }
 
 unsigned int Layout::childsCount()
 {
+#ifdef FUTURE
+    return container.size();
+#else
     return childs.size();
+#endif
 }
 
 void Layout::onClick(Point *relpt)
 {
     mouse.setPoint(relpt);
 
+#ifdef FUTURE
+    _future::ItemIterator it = container.iterator();
+    it.publishOnClick(relpt->getX(), relpt->getY());
+#else
     std::list<Item*>::iterator lit (childs.begin()), lend (childs.end());
     for(;lit!=lend;++lit)
     {
@@ -96,13 +115,17 @@ void Layout::onClick(Point *relpt)
             (*lit)->setMouseOver(false);
         }
     }
+#endif
 }
 
 void Layout::onMouseMotion(Point *relpt)
 {
     mouse.setPoint(relpt);
 
-
+#ifdef FUTURE
+    _future::ItemIterator it = container.iterator();
+    it.publishOnMouseMotion(relpt->getX(), relpt->getY());
+#else
     std::list<Item*>::iterator lit (childs.begin()), lend (childs.end());
     for(;lit!=lend;++lit)
     {
@@ -119,6 +142,7 @@ void Layout::onMouseMotion(Point *relpt)
             (*lit)->setMouseOver(false);
         }
     }
+#endif
 }
 
 void Layout::resized()
@@ -128,6 +152,10 @@ void Layout::resized()
 
 void Layout::onKeyUp(SDL_KeyboardEvent *evt)
 {
+#ifdef FUTURE
+    _future::ItemIterator it = container.iterator();
+    it.publishOnKeyUp(evt);
+#else
     std::list<Item*>::iterator lit(childs.begin()), lend(childs.end());
     for(;lit!=lend;++lit)
     {
@@ -136,6 +164,7 @@ void Layout::onKeyUp(SDL_KeyboardEvent *evt)
             (*lit)->onKeyUp(evt);
         }
     }
+#endif
 }
 
 Surface *Layout::render()
@@ -150,7 +179,14 @@ Surface *Layout::render()
     Surface *buffer = new Surface(width, height);
     buffer->fill(background);
 
-
+#ifdef FUTURE
+    for(_future::ItemIterator it = container.iterator(); it.next();)
+    {
+        Surface *itemBuffer = it.item()->render();
+        buffer->blit(itemBuffer, it.item());
+        delete itemBuffer;
+    }
+#else
     std::list<Item*>::iterator lit(childs.begin()), lend(childs.end());
 
     SDL_Rect *dst = new SDL_Rect();
@@ -170,6 +206,7 @@ Surface *Layout::render()
 
     delete src;
     delete dst;
+#endif
 
     if(drawBorder)
     {
@@ -185,6 +222,9 @@ Surface *Layout::render()
 
 void Layout::onTextInput(char *text)
 {
+#ifdef FUTURE
+    container.iterator().publishTextInput(text);
+#else
     std::list<Item*>::iterator lit(childs.begin()), lend(childs.end());
     for(;lit!=lend;++lit)
     {
@@ -193,6 +233,7 @@ void Layout::onTextInput(char *text)
             (*lit)->onTextInput(text);
         }
     }
+#endif
 }
 
 void Layout::setVerticalAlign(LayoutVerticalAlign m_verticalAlign)

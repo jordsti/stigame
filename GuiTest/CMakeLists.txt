@@ -2,6 +2,7 @@ project(GuiTest)
 cmake_minimum_required(VERSION 2.8)
 
 set(SOURCE_FILES main.cpp
+                 DumbGuiItem.cpp
                  TestGui.cpp
                  TestTabItem.cpp
 )
