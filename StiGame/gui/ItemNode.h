@@ -7,6 +7,8 @@ namespace Gui {
 
 namespace _future {
 
+class ItemIterator;
+
 class ItemNode {
 public:
     ItemNode(Item *m_item);
@@ -14,6 +16,7 @@ public:
 
     Item* item(void);
     ItemNode* next(void);
+    ItemIterator iterator(void);
 
     void setNext(ItemNode *m_node);
     bool hasNext(void);

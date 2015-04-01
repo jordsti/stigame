@@ -1,4 +1,6 @@
 #include "ItemNode.h"
+#include "ItemIterator.h"
+
 namespace StiGame {
 
 namespace Gui {
@@ -34,6 +36,11 @@ void ItemNode::setNext(ItemNode *m_node)
 bool ItemNode::hasNext(void)
 {
     return _next != nullptr;
+}
+
+ItemIterator ItemNode::iterator(void)
+{
+    return ItemIterator(this);
 }
 
 }

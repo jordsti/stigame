@@ -4,9 +4,9 @@ namespace StiGame {
 namespace Gui {
 
 namespace _future {
-ItemIterator::ItemIterator(ItemNode *m_firstItem)
+ItemIterator::ItemIterator(ItemNode *m_firstNode)
 {
-    _start = m_firstItem;
+    _start = m_firstNode;
     _current = nullptr;
 }
 
@@ -20,6 +20,10 @@ ItemNode *ItemIterator::node(void)
     return _current;
 }
 
+void ItemIterator::reset(void)
+{
+    _current = nullptr;
+}
 
 Item *ItemIterator::item(void)
 {

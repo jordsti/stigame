@@ -6,6 +6,8 @@ namespace Gui {
 
 namespace _future {
 
+const int ItemContainer::ITEM_NOT_FOUND = -1;
+
 ItemContainer::ItemContainer()
 {
     _start = nullptr;
@@ -28,6 +30,65 @@ ItemContainer::~ItemContainer()
             delete it.item();
         }
     }
+}
+
+
+int ItemContainer::indexOf(Item *m_item)
+{
+    ItemNode *current = _start;
+    int i=0;
+    while(current != nullptr)
+    {
+        if(current->item() == m_item)
+        {
+            return i;
+        }
+
+        current = current->next();
+        i++;
+    }
+
+    return ITEM_NOT_FOUND;
+}
+
+bool ItemContainer::replace(Item *old_item, Item *new_item)
+{
+    replace(old_item, new_item, false);
+}
+
+bool ItemContainer::replace(Item *old_item, Item *new_item, bool clearItem)
+{
+    ItemNode *current = _start;
+    ItemNode *prev = nullptr;
+    while(current != nullptr)
+    {
+        if(current->item() == old_item)
+        {
+            ItemNode *newNode = new ItemNode(new_item);
+            newNode->setNext(current->next());
+            if(prev == nullptr)
+            {
+                _start = newNode;
+            }
+            else
+            {
+                prev->setNext(newNode);
+            }
+
+            if(clearItem)
+            {
+                delete current->item();
+            }
+
+            delete current;
+            return true;
+        }
+
+        prev = current;
+        current = current->next();
+    }
+
+    return false;
 }
 
 void ItemContainer::clear(void)
