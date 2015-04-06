@@ -1,9 +1,8 @@
 #ifndef OVERLAYMENU_H
 #define OVERLAYMENU_H
 
-#include "Item.h"
 #include "KeyEventListener.h"
-#include <list>
+#include "ItemContainer.h"
 
 namespace StiGame
 {
@@ -29,15 +28,15 @@ class OverlayMenu :
 	/// \brief Default Offset between menu items
 	static const int DEFAULT_OFFSET;
 	/// \brief Constructor
-        OverlayMenu();
+    OverlayMenu();
 	/// \brief Destructor
-        virtual ~OverlayMenu();
-	
-        virtual void onMouseMotion(Point *relp);
-        virtual void onClick(Point *relp);
-        virtual Surface* render(void);
-        bool isVisible(void);
-        void setVisible(bool m_visible);
+    virtual ~OverlayMenu();
+
+    virtual void onMouseMotion(Point *relp);
+    virtual void onClick(Point *relp);
+    virtual Surface* render(void);
+    bool isVisible(void);
+    void setVisible(bool m_visible);
 	/// \brief Get the overlay position value
 	/// \return Overlay Position
 	OverlayPosition getPosition(void);
@@ -59,9 +58,9 @@ class OverlayMenu :
 	/// \brief Overlay Position
 	OverlayPosition position;
 	/// \brief Menu items
-        std::list<Item*> items;
+    ItemContainer container;
 	/// \brief Visibility
-        bool visible;
+    bool visible;
 	/// \brief Auto Size
 	bool autosize;
 	/// \brief Render Tick

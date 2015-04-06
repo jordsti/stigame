@@ -23,12 +23,12 @@ TabItem::~TabItem()
 
 void TabItem::add(Item *item)
 {
-	items.push_back(item);
+    container.add(item);
 }
 
 void TabItem::remove(Item *item)
 {
-	items.remove(item);
+    container.remove(item);
 }
 
 std::string TabItem::getTabName(void)
@@ -38,50 +38,21 @@ std::string TabItem::getTabName(void)
 
 void TabItem::onClick(Point *relpt)
 {
-	std::list<Item*>::iterator lit(items.begin()), lend(items.end());
-	for(;lit!=lend;++lit)
-	{
-		MPoint pt = MPoint();
-
-		if((*lit)->contains(relpt))
-		{
-			pt.setX(relpt->getX() - (*lit)->getX());
-			pt.setY(relpt->getY() - (*lit)->getY());
-
-			(*lit)->onClick(&pt);
-		}
-	}
+    container.iterator().publishOnClick(relpt);
 }
 
 void TabItem::onMouseMotion(Point *relpt)
 {
-	std::list<Item*>::iterator lit(items.begin()), lend(items.end());
-	for(;lit!=lend;++lit)
-	{
-		MPoint pt = MPoint();
-
-		if((*lit)->contains(relpt))
-		{
-			pt.setX(relpt->getX() - (*lit)->getX());
-			pt.setY(relpt->getY() - (*lit)->getY());
-            (*lit)->setMouseOver(true);
-			(*lit)->onMouseMotion(&pt);
-		}
-		else
-        {
-            (*lit)->setMouseOver(false);
-        }
-	}
+    container.iterator().publishOnMouseMotion(relpt);
 }
 
 void TabItem::setMouseOver(bool m_mouseOver)
 {
     if(!m_mouseOver)
     {
-        std::list<Item*>::iterator lit(items.begin()), lend(items.end());
-        for(;lit!=lend;++lit)
+        for(ItemIterator it = container.iterator(); it.next();)
         {
-            (*lit)->setMouseOver(false);
+            it.item()->setMouseOver(false);
         }
     }
 }
@@ -90,21 +61,20 @@ Surface* TabItem::render(void)
 {
 	Surface *buffer = new Surface(width, height);
 	buffer->fill(background);
-	std::list<Item*>::iterator lit(items.begin()), lend(items.end());
-
 	SDL_Rect src = SDL_Rect();
 	SDL_Rect dst = SDL_Rect();
 
-	for(;lit!=lend;++lit)
+    for(ItemIterator it = container.iterator(); it.next();)
 	{
-		src.w = (*lit)->getWidth();
-		src.h = (*lit)->getHeight();
+        Item *item = it.item();
+        src.w = item->getWidth();
+        src.h = item->getHeight();
 		dst.w = src.w;
 		dst.h = src.h;
-		dst.x = (*lit)->getX();
-		dst.y = (*lit)->getY();
+        dst.x = item->getX();
+        dst.y = item->getY();
 
-		Surface *ibuf = (*lit)->render();
+        Surface *ibuf = item->render();
 
 		buffer->blit(ibuf, &src, &dst);
 
@@ -114,10 +84,7 @@ Surface* TabItem::render(void)
 	return buffer;
 }
 
-/* Members
-std::string tabName;
-std::list<Item*> items;
-*/
+
 }
 
 }

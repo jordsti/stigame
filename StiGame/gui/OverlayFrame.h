@@ -2,7 +2,7 @@
 #define OVERLAYFRAME_H
 
 #include "Item.h"
-#include <list>
+#include "ItemContainer.h"
 
 
 namespace StiGame
@@ -37,7 +37,7 @@ protected:
 	/// \brief Is the overlay visible
 	bool visible;
 	/// \brief Childs
-	std::list<Item*> items;
+    ItemContainer container;
 };
 
 }

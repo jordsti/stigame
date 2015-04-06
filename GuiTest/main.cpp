@@ -22,7 +22,7 @@ int main(int argc, char ** argv)
     DumbGuiItem *i6 = new DumbGuiItem("6");
     DumbGuiItem *i7 = new DumbGuiItem("7");
 
-    StiGame::Gui::_future::ItemContainer container;
+    StiGame::Gui::ItemContainer container;
     std::cout << "Clear Items : " << container.isClearItems() << std::endl;
     container.add(i1);
     container.add(i2);
@@ -37,7 +37,7 @@ int main(int argc, char ** argv)
 
     container.remove(i6);
 
-    for(StiGame::Gui::_future::ItemIterator it = container.iterator(); it.next();)
+    for(StiGame::Gui::ItemIterator it = container.iterator(); it.next();)
     {
         std::cout << (dynamic_cast<DumbGuiItem*>(it.item()))->getValue() << std::endl;
     }

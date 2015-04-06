@@ -41,11 +41,7 @@ int GuiState::getMouseY(void)
 
 void GuiState::add(Item *n_item)
 {
-#ifdef FUTURE
     container.add(n_item);
-#else
-    items.push_back(n_item);
-#endif
 }
 
 void GuiState::onStart(void)
@@ -64,10 +60,13 @@ Surface* GuiState::render()
 
 	//rendering items
 	sBuffer->fill(style->getBackground());
-    MPoint *relp = new MPoint();
-#ifdef FUTURE
-    for(_future::ItemIterator it = container.iterator(); it.next();)
+    //MPoint *relp = new MPoint();
+
+    container.iterator().publishOnMouseMotion(mouse_x, mouse_y);
+
+    /*for(ItemIterator it = container.iterator(); it.next();)
     {
+        it.
         Item *item = it.item();
 
         if(item->contains(mouse_x, mouse_y))
@@ -89,41 +88,7 @@ Surface* GuiState::render()
         }
     }
 
-#else
-    std::list<Item*>::iterator lit (items.begin()), lend(items.end());
-
-	for(;lit!=lend;++lit)
-	{
-	    if( (*lit)->contains(mouse_x, mouse_y) )
-        {
-            //assigning value to the relative point
-            relp->setPoint( mouse_x - (*lit)->getX(),
-                       mouse_y - (*lit)->getY() );
-            (*lit)->setMouseOver(true);
-            (*lit)->onMouseMotion(relp);
-        }
-        else
-        {
-            (*lit)->setMouseOver(false);
-        }
-
-        if((*lit)->isVisible())
-        {
-            Surface *igfx = (*lit)->render();
-
-            SDL_Rect *src = igfx->getRect();
-            SDL_Rect *dst = igfx->getRect((*lit)->getX(), (*lit)->getY());
-
-            sBuffer->blit(igfx, src, dst);
-
-            delete igfx;
-            delete src;
-            delete dst;
-        }
-	}
-
-#endif
-	delete relp;
+    delete relp;*/
 
     return sBuffer;
 
@@ -143,8 +108,7 @@ void GuiState::onPaint(SDL_Renderer *renderer)
 
     MPoint *relp = new MPoint();
 
-#ifdef FUTURE
-    for(_future::ItemIterator it = container.iterator(); it.next();)
+    for(ItemIterator it = container.iterator(); it.next();)
     {
         Item *item = it.item();
         if(item->contains(mouse_x, mouse_y))
@@ -166,42 +130,6 @@ void GuiState::onPaint(SDL_Renderer *renderer)
         }
     }
 
-#else
-    std::list<Item*>::iterator lit (items.begin()), lend(items.end());
-
-
-
-	for(;lit!=lend;++lit)
-	{
-	    if( (*lit)->contains(mouse_x, mouse_y) )
-        {
-            //assigning value to the relative point
-            relp->setPoint( mouse_x - (*lit)->getX(),
-                       mouse_y - (*lit)->getY() );
-            (*lit)->setMouseOver(true);
-            (*lit)->onMouseMotion(relp);
-        }
-        else
-        {
-            (*lit)->setMouseOver(false);
-        }
-
-        if((*lit)->isVisible())
-        {
-            Surface *igfx = (*lit)->render();
-
-            SDL_Rect *src = igfx->getRect();
-            SDL_Rect *dst = igfx->getRect((*lit)->getX(), (*lit)->getY());
-
-            sBuffer->blit(igfx, src, dst);
-
-            delete igfx;
-            delete src;
-            delete dst;
-        }
-	}
-
-#endif
 
 	delete relp;
 
@@ -251,75 +179,25 @@ void GuiState::onEvent(SDL_Event* evt)
 	{
 		mouse_x = evt->button.x;
 		mouse_y = evt->button.y;
-#ifdef FUTURE
-        _future::ItemIterator it = container.iterator();
+
+        ItemIterator it = container.iterator();
         it.publishOnClick(mouse_x, mouse_y);
-#else
-		std::list<Item*>::iterator lit (items.begin()), lend(items.end());
-
-		for(;lit!=lend;++lit)
-		{
-			if((*lit)->contains(mouse_x, mouse_y))
-			{
-			    Point *relp = new Point(mouse_x - (*lit)->getX(), mouse_y - (*lit)->getY());
-
-				(*lit)->onClick(relp);
-
-				delete relp;
-			}
-			else
-            {
-                (*lit)->setFocus(false);
-            }
-		}
-#endif
 	}
 	else if(evt->type == SDL_TEXTINPUT)
     {
-#ifdef FUTURE
-        _future::ItemIterator it = container.iterator();
-        it.publishTextInput(evt->edit.text);
-#else
-        std::list<Item*>::iterator lit (items.begin()), lend(items.end());
 
-		for(;lit!=lend;++lit)
-		{
-			if((*lit)->isHandleKey())
-			{
-				(*lit)->onTextInput(evt->edit.text);
-			}
-		}
-#endif
+        ItemIterator it = container.iterator();
+        it.publishTextInput(evt->edit.text);
     }
     else if(evt->type == SDL_KEYUP)
     {
-#ifdef FUTURE
-        _future::ItemIterator it = container.iterator();
+        ItemIterator it = container.iterator();
         it.publishOnKeyUp(&evt->key);
-#else
-        std::list<Item*>::iterator lit (items.begin()), lend(items.end());
-
-		for(;lit!=lend;++lit)
-		{
-			if((*lit)->isHandleKey())
-			{
-				(*lit)->onKeyUp(&evt->key);
-			}
-		}
-#endif
     }
 }
 
 void GuiState::unload(void)
 {
-#ifndef FUTURE
-	std::list<Item*>::iterator lit (items.begin()), lend(items.end());
-
-	for(;lit!=lend;++lit)
-	{
-		(*lit)->clear();
-	}
-#endif
     if(sBuffer != nullptr)
     {
         delete sBuffer;

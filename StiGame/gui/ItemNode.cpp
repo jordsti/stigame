@@ -5,8 +5,6 @@ namespace StiGame {
 
 namespace Gui {
 
-namespace _future {
-
 ItemNode::ItemNode(Item *m_item)
 {
     _item = m_item;
@@ -45,5 +43,4 @@ ItemIterator ItemNode::iterator(void)
 
 }
 
-}
 }

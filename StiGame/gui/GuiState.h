@@ -2,12 +2,7 @@
 #include "Viewport.h"
 #include "Runtime.h"
 #include "Item.h"
-#include <list>
-
-#ifdef FUTURE
 #include "ItemContainer.h"
-#endif
-
 
 namespace StiGame
 {
@@ -55,8 +50,6 @@ public:
 	StiGame::Surface* render(void);
 
 protected:
-	/// \brief GuiItem list
-	std::list<Item*> items;
 	/// \brief Is rendering
 	bool rendering;
 	/// \brief Surface Buffer
@@ -67,9 +60,9 @@ protected:
 	int mouse_y;
 	/// \brief Gui Style
 	Style *style;
-#ifdef FUTURE
-    _future::ItemContainer container;
-#endif
+    /// \brief Item Container
+    ItemContainer container;
+
 };
 
 }

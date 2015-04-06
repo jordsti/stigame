@@ -37,23 +37,24 @@ void OverlayMenu::setPosition(OverlayPosition m_position)
 void OverlayMenu::fixPosition(int m_width, int m_height)
 {
 	int n_height = DEFAULT_OFFSET;
-	std::list<Item*>::iterator lit(items.begin()), lend(items.end());
-	for(;lit!=lend;++lit)
+
+    for(ItemIterator it = container.iterator(); it.next();)
 	{
-		if((*lit)->getWidth() == 0 && (*lit)->getHeight() == 0)
+        Item *item = it.item();
+        if(item->getWidth() == 0 && item->getHeight() == 0)
 		{
-			delete (*lit)->render();
+            delete item->render();
 		}
 
 		if(width == 0)
 		{
-			width = (*lit)->getWidth() + DEFAULT_OFFSET*2;
+            width = item->getWidth() + DEFAULT_OFFSET*2;
 		}
 
-		(*lit)->setX( (width - (*lit)->getWidth()) / 2 );
-		(*lit)->setY(n_height);
+        item->setX( (width - item->getWidth()) / 2 );
+        item->setY(n_height);
 
-		n_height += ((*lit)->getHeight() + DEFAULT_OFFSET);
+        n_height += (item->getHeight() + DEFAULT_OFFSET);
 	}
 
 	height = n_height;
@@ -90,22 +91,20 @@ void OverlayMenu::fixPosition(int m_width, int m_height)
 
 void OverlayMenu::add(Item *item)
 {
-	items.push_back(item);
+    container.add(item);
 }
 
 Item* OverlayMenu::getLastItem(void)
 {
 	int y = -1;
-	Item *item = 0;
+    Item *item = nullptr;
 
-	std::list<Item*>::iterator lit(items.begin()), lend(items.end());
-
-	for(;lit!=lend;++lit)
+    for(ItemIterator it = container.iterator(); it.next();)
 	{
-		if((*lit)->getY() > y)
+        if(it.item()->getY() > y)
 		{
-			y = (*lit)->getY();
-			item = (*lit);
+            y = it.item()->getY();
+            item = it.item();
 		}
 	}
 
@@ -114,44 +113,12 @@ Item* OverlayMenu::getLastItem(void)
 
 void OverlayMenu::onMouseMotion(Point *relp)
 {
-    std::list<Item*>::iterator lit(items.begin()), lend(items.end());
-
-    for(;lit!=lend;++lit)
-    {
-        if((*lit)->contains(relp))
-        {
-            Point *pt = new Point(relp->getX() - (*lit)->getX(), relp->getY() - (*lit)->getY());
-
-            (*lit)->onMouseMotion(pt);
-			(*lit)->setMouseOver(true);
-
-            delete pt;
-        }
-		else
-		{
-			if((*lit)->getMouseOver())
-			{
-				(*lit)->setMouseOver(false);
-			}
-		}
-    }
+    container.iterator().publishOnMouseMotion(relp);
 }
 
 void OverlayMenu::onClick(Point *relp)
 {
-    std::list<Item*>::iterator lit(items.begin()), lend(items.end());
-
-    for(;lit!=lend;++lit)
-    {
-        if((*lit)->contains(relp))
-        {
-            Point *pt = new Point(relp->getX() - (*lit)->getX(), relp->getY() - (*lit)->getY());
-
-            (*lit)->onClick(pt);
-
-            delete pt;
-        }
-    }
+    container.iterator().publishOnClick(relp);
 }
 
 bool OverlayMenu::isVisible(void)
@@ -181,15 +148,15 @@ Surface* OverlayMenu::render(void)
     _tick++;
     Surface *buffer = new Surface(width, height);
     buffer->fill(background);
-    std::list<Item*>::iterator lit(items.begin()), lend(items.end());
 
     SDL_Rect *src = new SDL_Rect();
     SDL_Rect *dst = new SDL_Rect();
-    for(;lit!=lend;++lit)
+    for(ItemIterator it = container.iterator(); it.next();)
     {
-        Surface *ibuf = (*lit)->render();
+        Item *item = it.item();
+        Surface *ibuf = item->render();
         ibuf->updateSDLRect(src);
-        ibuf->updateSDLRect(dst, (*lit)->getX(), (*lit)->getY());
+        ibuf->updateSDLRect(dst, item->getX(), item->getY());
 
         buffer->blit(ibuf, src, dst);
 

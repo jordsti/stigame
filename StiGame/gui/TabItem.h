@@ -1,8 +1,7 @@
 #ifndef TABITEM_H
 #define TABITEM_H
 
-#include "Item.h"
-#include <list>
+#include "ItemContainer.h"
 
 namespace StiGame
 {
@@ -43,7 +42,7 @@ protected:
 	/// \brief Tab Name
 	std::string tabName;
 	/// \brief Items Container
-	std::list<Item*> items;
+    ItemContainer container;
 };
 
 

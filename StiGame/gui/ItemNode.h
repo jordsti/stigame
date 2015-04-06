@@ -5,8 +5,6 @@ namespace StiGame {
 
 namespace Gui {
 
-namespace _future {
-
 class ItemIterator;
 /// \class ItemNode
 /// \brief Forward Item Node
@@ -43,6 +41,5 @@ private:
 
 }
 
-}
 
 #endif // ITEMNODE_H

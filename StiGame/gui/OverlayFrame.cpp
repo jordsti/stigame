@@ -19,28 +19,12 @@ OverlayFrame::~OverlayFrame()
 
 void OverlayFrame::onMouseMotion(Point *relp)
 {
-	std::list<Item*>::iterator lit(items.begin()), lend(items.end());
-	for(;lit!=lend;++lit)
-	{
-		if((*lit)->contains(relp))
-		{
-			Point relpt = Point(relp->getX() - (*lit)->getX(), relp->getY() - (*lit)->getY());
-			(*lit)->onMouseMotion(&relpt);
-		}
-	}
+    container.iterator().publishOnMouseMotion(relp->getX(), relp->getY());
 }
 
 void OverlayFrame::onClick(Point *relp)
 {
-	std::list<Item*>::iterator lit(items.begin()), lend(items.end());
-	for(;lit!=lend;++lit)
-	{
-		if((*lit)->contains(relp))
-		{
-			Point relpt = Point(relp->getX() - (*lit)->getX(), relp->getY() - (*lit)->getY());
-			(*lit)->onClick(&relpt);
-		}
-	}
+    container.iterator().publishOnClick(relp->getX(), relp->getY());
 }
 
 void OverlayFrame::tick(void)
@@ -59,15 +43,14 @@ Surface* OverlayFrame::render(void)
 	SDL_Rect *src = new SDL_Rect();
 	SDL_Rect *dst = new SDL_Rect();
 
-	std::list<Item*>::iterator lit(items.begin()), lend(items.end());
-	for(;lit!=lend;++lit)
+    for(ItemIterator it = container.iterator(); it.next();)
 	{
-	    Item *item = (*lit);
+        Item *item = it.item();
 
 		Surface *ibuf = item->render();
 
 		ibuf->updateSDLRect(src);
-		ibuf->updateSDLRect(dst, (*lit));
+        ibuf->updateSDLRect(dst, item);
 
 		buffer->blit(ibuf, src, dst);
 
@@ -92,7 +75,7 @@ void OverlayFrame::setVisible(bool m_visible)
 
 void OverlayFrame::add(Item *item)
 {
-	items.push_back(item);
+    container.add(item);
 }
 
 

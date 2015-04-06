@@ -18,21 +18,21 @@ HorizontalBoxLayout::~HorizontalBoxLayout()
 
 void HorizontalBoxLayout::setChildsPosition()
 {
-    if(childs.size() == 0)
+    if(container.size() == 0)
     {
         return;
     }
 
-    std::list<Item*>::iterator lit(childs.begin()), lend(childs.end());
     int cur_x = 0;
-    for(;lit!=lend;++lit)
+    for(ItemIterator it = container.iterator(); it.next();)
     {
-        int i_width = (*lit)->getMinimumSize()->getWidth();
-        int i_height = (*lit)->getMinimumSize()->getHeight();
+        Item *item = it.item();
+        int i_width = item->getMinimumSize()->getWidth();
+        int i_height = item->getMinimumSize()->getHeight();
         int i_x = cur_x;
         int i_y = 0;
 
-        (*lit)->setDimension(i_width, i_height);
+        item->setDimension(i_width, i_height);
 
         if(verticalAlign == LVA_Middle)
         {
@@ -48,7 +48,7 @@ void HorizontalBoxLayout::setChildsPosition()
             i_y = 0;
         }
 
-        (*lit)->setPoint(i_x, i_y);
+        item->setPoint(i_x, i_y);
 
         cur_x += i_width;
     }
@@ -57,21 +57,20 @@ void HorizontalBoxLayout::setChildsPosition()
     {
         //redisitribute free space
         int free_space = width - cur_x;
-        int to_add = free_space / childs.size();
+        int to_add = free_space / container.size();
 
-        lit = childs.begin();
-        lend = childs.end();
         int i=0;
-        for(;lit!=lend;++lit)
+        for(ItemIterator it = container.iterator(); it.next();)
         {
-            int i_width = (*lit)->getWidth();
+            Item *item = it.item();
+            int i_width = item->getWidth();
             i_width += to_add;
 
-            (*lit)->setWidth(i_width);
+            item->setWidth(i_width);
 
-            int i_x = (*lit)->getX();
+            int i_x = item->getX();
 
-            (*lit)->setX(i_x + i * to_add);
+            item->setX(i_x + i * to_add);
 
             i++;
         }

@@ -3,7 +3,6 @@ namespace StiGame {
 
 namespace Gui {
 
-namespace _future {
 ItemIterator::ItemIterator(ItemNode *m_firstNode)
 {
     _start = m_firstNode;
@@ -103,6 +102,11 @@ void ItemIterator::publishOnClick(int mouse_x, int mouse_y)
     _current = nullptr;
 }
 
+void ItemIterator::publishOnClick(Point *pt)
+{
+    publishOnClick(pt->getX(), pt->getY());
+}
+
 void ItemIterator::publishTextInput(char *text)
 {
     for(;next();)
@@ -148,6 +152,10 @@ void ItemIterator::publishOnMouseMotion(int mouse_x, int mouse_y)
     }
 }
 
+void ItemIterator::publishOnMouseMotion(Point *pt)
+{
+    publishOnMouseMotion(pt->getX(), pt->getY());
 }
+
 }
 }

@@ -5,7 +5,6 @@ namespace StiGame {
 
 namespace Gui {
 
-namespace _future {
 /// \class ItemIterator
 /// \brief Iterator to go through a starting node until the end is hit
 class ItemIterator {
@@ -32,9 +31,15 @@ public:
     /// \param mouse_x Mouse X (px)
     /// \param mouse_y Mouse Y (px)
     void publishOnMouseMotion(int mouse_x, int mouse_y);
+    /// \brief Publish Mouse Motion Event through the nodes
+    /// \param pt Mouse Position (px)
+    void publishOnMouseMotion(Point *pt);
     /// \brief Publish On Click Event through the nodes
     /// \param mouse_x Mouse X (px)
     /// \param mouse_y Mouse Y (px)
+    void publishOnClick(Point *pt);
+    /// \brief Publish On Click Event through the nodes
+    /// \param pt Click Position (px)
     void publishOnClick(int mouse_x, int mouse_y);
     /// \brief Publish Text Input Event through the nodes
     /// \param text Character(s)
@@ -51,7 +56,6 @@ private:
     ItemNode *_current;
 };
 
-}
 }
 }
 

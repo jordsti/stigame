@@ -4,8 +4,6 @@ namespace StiGame {
 
 namespace Gui {
 
-namespace _future {
-
 const int ItemContainer::ITEM_NOT_FOUND = -1;
 
 ItemContainer::ItemContainer()
@@ -307,4 +305,3 @@ unsigned int ItemContainer::size(void)
 
 }
 
-}

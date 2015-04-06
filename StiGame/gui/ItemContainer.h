@@ -5,7 +5,6 @@ namespace StiGame {
 
 namespace Gui {
 
-namespace _future {
 /// \class ItemContainer
 /// \brief List Data Structure for the Gui Item (Will be replace list<Item*>)
 class ItemContainer
@@ -90,7 +89,6 @@ private:
 };
 
 
-}
 }
 }
 

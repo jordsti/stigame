@@ -2,10 +2,8 @@
 #define LAYOUT_H
 
 #include "Item.h"
-#include <list>
-#ifdef FUTURE
 #include "ItemContainer.h"
-#endif
+
 
 namespace StiGame
 {
@@ -83,8 +81,6 @@ protected:
     virtual void setChildsPosition(void) = 0;
 	/// \brief Current mouse position
     MPoint mouse;
-	/// \brief Childs Item
-    std::list<Item*> childs;
 	/// \brief Vertical Alignment
     LayoutVerticalAlign verticalAlign;
 	/// \brief Horizontal Alignment
@@ -93,10 +89,9 @@ protected:
     bool childsChanged;
 	/// \brief Draw border or not
     bool drawBorder;
-#ifdef FUTURE
     /// \brief Items Container
-    _future::ItemContainer container;
-#endif
+    ItemContainer container;
+
 
 private:
 
