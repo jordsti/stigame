@@ -29,18 +29,18 @@ StiGame Header List, for Doxygen Doc Review
 ./gui/TabPanel.h -> DONE
 ./gui/Table.h -> DONE
 ./gui/Image.h -> DONE
-./gui/Button.h
-./gui/CheckBox.h
-./gui/Style.h
+./gui/Button.h -> DONE
+./gui/CheckBox.h -> DONE
+./gui/Style.h -> DONE
 ./gui/ItemContainer.h -> DONE
 ./gui/ItemNode.h -> DONE
 ./gui/ItemIterator.h -> DONE
-./StiGameVersion.h
-./GamePath.h
-./files/Entry.h
-./files/Directory.h
-./files/FileSystem.h
-./files/File.h
+./StiGameVersion.h -> DONE
+./GamePath.h -> DONE
+./files/Entry.h -> DONE
+./files/Directory.h -> DONE
+./files/FileSystem.h -> DONE
+./files/File.h -> DONE
 ./network/PacketBuffer.h
 ./network/UdpSocket.h
 ./network/TcpSocket.h

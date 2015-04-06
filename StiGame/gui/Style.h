@@ -34,22 +34,22 @@ protected:
 	Surface *radio;
 	/// \brief Checked Radio Button Image
 	Surface *radioChecked;
-
+	/// \brief Button Left Graphic
 	Surface *buttonLeft;
-
+	/// \brief Button Right Graphic
 	Surface *buttonRight;
-
+	/// \brief Button Background Graphic
 	Surface *buttonBackground;
-
+	/// \brief  Button Highlighted Left Graphic
 	Surface *buttonHighlightLeft;
-
+	/// \brief Button Highlighted Right Graphic
 	Surface *buttonHighlightRight;
-
+	/// \brief Button Highlighted Background Graphic
 	Surface *buttonHighlightBackground;
 
 	/// \brief Normal Font
 	Font *normalFont;
-
+	/// \brief Big Size Font
 	Font *bigFont;
 public:
 	/// \brief Create a new GuiStyle
@@ -78,22 +78,21 @@ public:
 	Surface *getRadio(void);
 	/// \brief Get Check Radio Button Pointer
 	Surface *getRadioChecked(void);
-	/// \brief Get Normal Font Pointer
-
+	/// \brief Get Button Left Graphic Pointer
 	Surface *getButtonLeft(void);
-
+	/// \brief Get Button Right Graphic Pointer
 	Surface *getButtonRight(void);
-
+	/// \brief Get Button Background Graphic Pointer
 	Surface *getButtonBackground(void);
-
-    Surface *getHighlightButtonLeft(void);
-
+	/// \brief Get Button Highlighted Left Graphic Pointer
+	Surface *getHighlightButtonLeft(void);
+	/// \brief Get Button Highlighted Right Graphic Pointer
 	Surface *getHighlightButtonRight(void);
-
+	/// \brief Get Button Highlighted Background Graphic Pointer
 	Surface *getHighlightButtonBackground(void);
-
+	/// \brief Get Normal Font Pointer
 	Font *getNormalFont(void);
-
+	/// \brief Get the Big Font Pointer
 	Font *getBigFont(void);
 	/// \brief Unload Ressources
 	void unload(void);
