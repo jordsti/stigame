@@ -31,7 +31,8 @@ class SelectionEventThrower
 		/// \param source Thrower
 		/// \param args Selection Event Args
         virtual void publish(SelectionEventThrower *source, SelectionEventArgs *args);
-
+        /// \brief If the thrower contains at least one listener
+        /// \return contains or not
         bool containListeners(void);
     private:
 };
