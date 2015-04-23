@@ -47,9 +47,12 @@ class KeyBind :
 		/// \brief Set SDL Keycode
 		/// \param m_key Key Code
         void setKey(SDL_Keycode m_key);
-		
+        /// \brief Create the Key Action Map from this KeyBind
+        /// \param a_name Action Name
+        /// \return Key Action Map
 		KeyActionMap* createKeyActionMap(std::string a_name);
-		
+        /// \brief Set the field of this Key Bind from a Key Action Map
+        /// \param amap Key Action Map
 		void fromActionMap(ActionMap *amap);
     protected:
 		/// \brief Keycode String Buffer

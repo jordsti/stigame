@@ -82,16 +82,16 @@ StiGame Header List, for Doxygen Doc Review
 ./primitives/PCircle.h
 ./primitives/PLine.h
 ./primitives/PEllipse.h
-./bindings/OverlayGameAction.h
-./bindings/BaseGameAction.h
-./bindings/ActionBinding.h
-./bindings/TimedGameAction.h
-./bindings/KeyActionMap.h
-./bindings/CompActionMap.h
-./bindings/MouseActionMap.h
-./bindings/ActionMap.h
-./bindings/KeyBind.h
-./bindings/ActionBind.h
+./bindings/OverlayGameAction.h -> DONE
+./bindings/BaseGameAction.h -> DONE
+./bindings/ActionBinding.h -> DONE
+./bindings/TimedGameAction.h -> DONE
+./bindings/KeyActionMap.h -> DONE
+./bindings/CompActionMap.h -> 
+./bindings/MouseActionMap.h ->
+./bindings/ActionMap.h -> DONE
+./bindings/KeyBind.h -> DONE
+./bindings/ActionBind.h -> DONE
 ./sprites/ClonedSprite.h
 ./sprites/DirectionSpriteFile.h
 ./sprites/DirectionSpriteLibrary.h
