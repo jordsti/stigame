@@ -33,9 +33,6 @@ class DirectionSprite :
         virtual ~DirectionSprite();
 
         void render(void);
-        /// \brief Render Direction Sprite
-        /// \param m_direction Sprite Direction
-        /// \param m_frameTick Frame Tick
         void render(SDirection m_direction, int m_frameTick);
         /// \brief Get Current Direction
         /// \return Sprite Direction
