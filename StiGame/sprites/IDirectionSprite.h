@@ -20,6 +20,9 @@ public:
     virtual void setDirection(SDirection m_direction) = 0;
 
     virtual void render(void) = 0;
+    /// \brief Render Direction Sprite
+    /// \param m_direction Sprite Direction
+    /// \param m_frameTick Frame Tick
     virtual void render(SDirection m_direction, int m_frameTick) = 0;
 
     virtual void tick(void) = 0;

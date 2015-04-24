@@ -174,7 +174,7 @@ void Viewport::handleWindowEvent(SDL_Event *evt)
 void Viewport::tick(void)
 {
 	//checking event
-    Sprite::tickSprites();
+    //Sprite::tickSprites();
 
 	SDL_Event evt;
 

@@ -3,12 +3,16 @@
 #include "Primitive.h"
 namespace StiGame
 {
-	/// \class PCircle
-	/// \brief Circle primitive class
+/// \class PCircle
+/// \brief Circle primitive class
 class PCircle : public Primitive
 {
 private:
-	int x,y;
+    /// \brief Center X (px)
+    int x;
+    /// \brief Center Y (px)
+    int y;
+    /// \brief Radius (px)
 	double radius;
 
 public:
@@ -25,20 +29,36 @@ public:
 	PCircle(int m_x,int m_y, double m_radius);
 	/// \brief Destructor
 	~PCircle(void);
+
+
 	void fill(SDL_Surface *surface, Color *color);
 	void draw(SDL_Surface *surface, Color *color);
 
     void draw(SDL_Renderer *renderer, Color *color);
     void fill(SDL_Renderer *renderer, Color *color);
 
+    /// \brief Get Center X
+    /// \return X (px)
 	int getX(void);
+    /// \brief Set Center C
+    /// \param m_x X (px)
 	void setX(int m_x);
+    /// \brief Get Center Y
+    /// \return Y (px)
 	int getY(void);
-	void setY(int m_y);
-	void setMiddle(int,int);
-
+    /// \brief Set Center Y
+    /// \param m_y Y (px)
+    void setY(int m_y);
+    /// \brief Set Center Point
+    /// \param m_x X (px)
+    /// \param m_y Y (px)
+    void setMiddle(int m_x, int m_y);
+    /// \brief Get Radius
+    /// \return Radius (px)
 	double getRadius(void);
-	void setRadius(double);
+    /// \brief Set Radius
+    /// \param m_radius Radius (px)
+    void setRadius(double m_radius);
 };
 }
 

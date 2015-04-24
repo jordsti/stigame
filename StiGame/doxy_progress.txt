@@ -77,30 +77,30 @@ StiGame Header List, for Doxygen Doc Review
 ./events/MouseMotionEventListener.h -> DONE
 ./events/ControllerButtonEventListener.h -> DONE
 ./events/CheckEventListener.h -> DONE
-./primitives/PRect.h
-./primitives/Primitive.h
-./primitives/PCircle.h
-./primitives/PLine.h
-./primitives/PEllipse.h
+./primitives/PRect.h -> DONE
+./primitives/Primitive.h -> DONE
+./primitives/PCircle.h -> DONE
+./primitives/PLine.h -> DONE
+./primitives/PEllipse.h -> DONE
 ./bindings/OverlayGameAction.h -> DONE
 ./bindings/BaseGameAction.h -> DONE
 ./bindings/ActionBinding.h -> DONE
 ./bindings/TimedGameAction.h -> DONE
 ./bindings/KeyActionMap.h -> DONE
-./bindings/CompActionMap.h -> 
-./bindings/MouseActionMap.h ->
+./bindings/CompActionMap.h -> DONE
+./bindings/MouseActionMap.h -> DONE
 ./bindings/ActionMap.h -> DONE
 ./bindings/KeyBind.h -> DONE
 ./bindings/ActionBind.h -> DONE
-./sprites/ClonedSprite.h
-./sprites/DirectionSpriteFile.h
-./sprites/DirectionSpriteLibrary.h
-./sprites/SpriteFile.h
-./sprites/Sprite.h
-./sprites/ISprite.h
-./sprites/DirectionSprite.h
-./sprites/SpriteLibrary.h
-./sprites/ClonedDirectionSprite.h
+./sprites/ClonedSprite.h -> DONE
+./sprites/DirectionSpriteFile.h -> DONE
+./sprites/DirectionSpriteLibrary.h -> DONE
+./sprites/SpriteFile.h -> DONE
+./sprites/Sprite.h -> DONE
+./sprites/ISprite.h -> DONE
+./sprites/DirectionSprite.h -> DONE
+./sprites/SpriteLibrary.h -> DONE
+./sprites/ClonedDirectionSprite.h -> DONE
 ./sprites/IDirectionSprite.h
 ./sprites/SpriteFileCreator.h
 ./sprites/DirectionSpriteFileCreator.h

@@ -25,13 +25,14 @@ void ClonedSprite::initialize(void)
     y = 0;
     width = 0;
     height = 0;
+    _tick = 0;
 }
 
 void ClonedSprite::render(void)
 {
     if(baseSprite != 0)
     {
-        Texture *tx = baseSprite->getCurrentTexture();
+        Texture *tx = baseSprite->getTexture(_tick);
         SDL_Rect *src = getSDLRect();
         src->x = 0;
         src->y = 0;
@@ -48,6 +49,11 @@ void ClonedSprite::render(void)
 Sprite* ClonedSprite::getBaseSprite(void)
 {
     return baseSprite;
+}
+
+void ClonedSprite::tick()
+{
+    _tick++;
 }
 
 ClonedSprite::~ClonedSprite()

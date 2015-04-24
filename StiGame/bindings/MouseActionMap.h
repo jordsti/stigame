@@ -46,15 +46,29 @@ namespace StiGame
 			bool inputEquals(InputType it, int input);
             bool inputMouseEquals(MouseButtonEventArgs *mbEvt);
 
+            /// \brief Set X Position
+            /// \param r_x X (px)
 			void setX(int r_x);
+            /// \brief Set Y Position
+            /// \param r_y Y (px)
 			void setY(int r_y);
+            /// \brief Set Width
+            /// \param r_w Width (px)
 			void setWidth(int r_w);
+            /// \brief Set Height
+            /// \param r_h Height (px)
 			void setHeight(int r_h);
-
+            /// \brief Set the rectangle attributes
+            /// \param r_x X (px)
+            /// \param r_y Y (px)
+            /// \param r_w Width (px)
+            /// \param r_h Height (px)
 			void setRect(int r_x, int r_y, int r_w, int r_h);
-
+            /// \brief Set Position Checked
+            /// \param m_positionChecked Position Checked
 			void setPositionChecked(bool m_positionChecked);
-
+            /// \brief Is Position Checked
+            /// \return checked or not
 			bool isPositionChecked(void);
 
             int getIntValue(void);
@@ -64,7 +78,9 @@ namespace StiGame
 		protected:
 			/// \brief Mouse Button
 			Uint8 button;
+            /// \brief Position rectangle
 			Rectangle rect;
+            /// \brief Position Check
             bool positionChecked;
 	};
 }

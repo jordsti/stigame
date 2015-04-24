@@ -47,7 +47,8 @@ class SpriteLibrary
 		/// \param sprite_name Sprite Name
 		/// \return Cloned Sprite pointer
         ClonedSprite* clone(std::string sprite_name);
-
+        /// \brief Set the SDL Renderer
+        /// \param m_renderer SDL Renderer
         void setRenderer(SDL_Renderer *m_renderer);
     protected:
 		/// \brief Sprites map

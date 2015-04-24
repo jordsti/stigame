@@ -40,6 +40,8 @@ class ISprite :
 		/// \brief Get the center point of the sprite
 		/// \return Center SPoint
 		Point* getCenter(void);
+        /// \brief Tick the Sprite
+        virtual void tick(void) = 0;
     protected:
     private:
 };

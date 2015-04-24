@@ -7,20 +7,8 @@
 
 namespace StiGame
 {
-//inital tick value
-unsigned long Sprite::tick = 0;
 
 const std::string Sprite::FILE_EXTENSION = ".spr";
-
-void Sprite::tickSprites(void)
-{
-    tick++;
-
-    if(tick == ULONG_MAX)
-    {
-        tick = 0;
-    }
-}
 
 Sprite::Sprite(void)
 {
@@ -57,6 +45,12 @@ void Sprite::initialize(void)
     width = 0;
     height = 0;
     frame_count = 0;
+    _tick = 0;
+}
+
+void Sprite::tick()
+{
+    _tick++;
 }
 
 
@@ -132,17 +126,30 @@ void Sprite::loadImages()
 
 Texture* Sprite::getCurrentTexture(void)
 {
-    int id = (tick % frame_count);
+    int id = (_tick % frame_count);
 
+    return frame_textures[id];
+}
+
+Texture* Sprite::getTexture(unsigned int index)
+{
+    //Index safety
+    unsigned int id = (index % frame_count);
     return frame_textures[id];
 }
 
 Surface* Sprite::getCurrentSurface(void)
 {
-    int id = (tick % frame_count);
+    int id = (_tick % frame_count);
 
     return frame_surfaces[id];
 
+}
+
+Surface* Sprite::getSurface(unsigned int index)
+{
+    unsigned int id = (index % frame_count);
+    return frame_surfaces[id];
 }
 
 void Sprite::render(void)

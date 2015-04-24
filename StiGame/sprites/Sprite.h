@@ -43,14 +43,20 @@ class Sprite :
 		/// \brief Sprite destructor
         virtual ~Sprite();
 
-		/// \brief Increment tick of all sprite
-        static void tickSprites(void);
-
 		/// \brief Get current Texture
 		/// \return Texture pointer
         Texture* getCurrentTexture(void);
-
+        /// \brief Get texture with specified index
+        /// \return Texture
+        Texture* getTexture(unsigned int index);
+        /// \brief Get current Surface
+        /// \return Surface Pointer
         Surface* getCurrentSurface(void);
+        /// \brief Get Surface with specified index
+        /// \return Surface Pointer
+        Surface* getSurface(unsigned int index);
+        /// \brief Increment the Tick number
+        void tick(void);
 
 		/// \brief render sprite
         void render(void);
@@ -69,15 +75,15 @@ class Sprite :
         std::list<std::string> frame_images;
 		/// \brief frame textures
         std::vector<Texture*> frame_textures;
-
+        /// \brief frame surfaces
         std::vector<Surface*> frame_surfaces;
 
         //Texture frame_textures[];
 		/// \brief number of frames
         int frame_count;
     private:
-	   /// \brief Sprite tick
-       static unsigned long tick;
+       /// \brief Sprite tick
+       unsigned long _tick;
 	   /// \brief SDL_Renderer
        SDL_Renderer *renderer;
 
