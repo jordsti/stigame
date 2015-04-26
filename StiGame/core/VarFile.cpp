@@ -47,6 +47,24 @@ bool VarFile::getBool(std::string varname)
     return false;
 }
 
+ bool VarFile::getBool(std::string varname, bool defaultValue)
+ {
+     std::string var = getValue(varname, "not found");
+     if(var == "not found")
+     {
+         return defaultValue;
+     }
+     else
+     {
+         if(var == "true")
+         {
+             return true;
+         }
+
+         return false;
+     }
+ }
+
 bool VarFile::ParseBool(std::string b_str)
 {
 	if(b_str == "True")
@@ -106,7 +124,25 @@ std::string VarFile::getValue(std::string varname)
     }
     catch(std::exception& e)
     {
+#ifdef DEBUG
         std::cout << varname << " wasn't found !" << std::endl;
+#endif
+    }
+
+    return value;
+}
+
+std::string VarFile::getValue(std::string varname, std::string defaultValue)
+{
+    std::string value = "";
+
+    try
+    {
+        value = variables.at(varname);
+    }
+    catch(std::exception& e)
+    {
+        return defaultValue;
     }
 
     return value;
@@ -117,6 +153,20 @@ int VarFile::getInt(std::string varname)
     std::string val = getValue(varname);
     int i = atoi(val.c_str());
     return i;
+}
+
+int VarFile::getInt(std::string varname, int defaultValue)
+{
+    std::string val = getValue(varname);
+    if(val.length() > 0)
+    {
+        int i = atoi(val.c_str());
+        return i;
+    }
+    else
+    {
+        return defaultValue;
+    }
 }
 
 bool VarFile::isVarExists(std::string varname)

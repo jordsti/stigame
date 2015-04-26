@@ -27,9 +27,15 @@ class VarFile
 		/// \return Variable value
         std::string getValue(std::string varname);
 
+        std::string getValue(std::string varname, std::string defaultValue);
+
         int getInt(std::string varname);
 
+        int getInt(std::string varname, int defaultValue);
+
         bool getBool(std::string varname);
+
+        bool getBool(std::string varname, bool defaultValue);
 
 		/// \brief Put a new variable into VarFile
 		/// \param varname Variable name

@@ -240,6 +240,15 @@ void ComboBox::renderDroplist(Surface *buffer)
 
     std::list<ValueObject*>::iterator lit (items.begin()), lend(items.end());
     int i=0;
+
+    //fill droplist background
+    SDL_Rect bgRect;
+    bgRect.y = closedHeight;
+    bgRect.x = 0;
+    bgRect.h = height - closedHeight;
+    bgRect.w = width;
+    buffer->fillRect(&bgRect, background);
+
     for(;lit!=lend;++lit)
     {
         SDL_Rect *src,*dst,*bgfill;
