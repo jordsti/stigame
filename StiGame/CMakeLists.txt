@@ -5,6 +5,7 @@ set(SOURCE_FILES
     core/Angle.cpp
     core/BaseGameState.cpp
     core/Color.cpp
+    core/ColorIndex.cpp
     core/Computer.cpp
     core/Controller.cpp
     core/Cursor.cpp
@@ -87,6 +88,10 @@ set(SOURCE_FILES
     gui/TextBox.cpp
     gui/ValueObject.cpp
     gui/VerticalBoxLayout.cpp
+
+    gui/ItemEquation.cpp
+    gui/ItemAttribute.cpp
+    gui/ItemDefinition.cpp
 
     gui/effects/ItemEffect.cpp
     gui/effects/MovingItem.cpp

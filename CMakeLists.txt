@@ -75,6 +75,8 @@ add_subdirectory(Sample)
 
 add_subdirectory(GuiTest)
 
+add_subdirectory(FrameTest)
+
 add_subdirectory(sgrc)
 
 if(WIN32)

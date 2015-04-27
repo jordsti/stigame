@@ -20,6 +20,8 @@ public:
     virtual ~GuiFrameState();
 
     virtual void onStart(void);
+protected:
+    virtual void initItems(void) = 0;
 };
 
 }

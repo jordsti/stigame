@@ -35,6 +35,11 @@ Color::~Color(void)
 {
 }
 
+bool Color::equals(Color *color)
+{
+    return (color->getRed() == red && color->getGreen() == green && color->getBlue() == blue && color->getAlpha() == alpha);
+}
+
 bool Color::isMapped(void)
 {
 	return mapped;

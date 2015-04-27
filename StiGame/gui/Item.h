@@ -127,6 +127,8 @@ public:
 	/// \param m_visible Visible or not
 	void setVisible(bool m_visible);
 
+    int getId(void);
+
 protected:
 	/// \brief Name of the item
 	std::string name;
@@ -155,6 +157,9 @@ protected:
 	/// \brief Maximum Size
 	MDimension maximumSize;
 private:
+    static int incrementId(void);
+    static int _currentId;
+    int _id;
 	/// \brief Initialization
 	void init(void);
 };

@@ -80,6 +80,11 @@ public:
     /// \brief Is Items get cleared by the container
     /// \return Cleared or not by the container
     bool isClearItems(void);
+    /// \brief Get Item with specified Id
+    /// \param item_id Item Id
+    /// \return Item pointer or nullptr if not found
+    Item* id(int item_id);
+
 private:
     /// \brief Starting Node
     ItemNode *_start;

@@ -2,324 +2,12 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include "Label.h"
-#include "Button.h"
 
 namespace StiGame
 {
 
 namespace Gui
 {
-
-ItemEquation::ItemEquation(std::string m_equation, std::map<std::string, int> m_variables)
-{
-    equation = m_equation;
-    variables = m_variables;
-    result = 0;
-}
-
-ItemEquation::~ItemEquation()
-{
-
-}
-
-std::string ItemEquation::getEquation(void)
-{
-    return equation;
-}
-
-void ItemEquation::replaceVars(void)
-{
-    //vars must not have the same prefix
-    //vars char is '$' so looking for that chars
-    auto lit(variables.begin()), lend(variables.end());
-    for(;lit!=lend;++lit)
-    {
-        std::string var_name = lit->first;
-        std::string value = std::to_string(lit->second);
-
-        size_t pos = equation.find('$');
-        while(pos != std::string::npos)
-        {
-            if(pos + var_name.length() <= equation.length())
-            {
-                //finding the end with the op_symbol
-                size_t end_var = equation.find_first_of("-+*/", pos);
-
-                if(end_var == std::string::npos)
-                {
-                    end_var = equation.size();
-                }
-
-                std::string eq_var_name = equation.substr(pos + 1, end_var - (pos+1));
-                if(eq_var_name == var_name)
-                {
-                    if(pos == 0)
-                    {
-                        equation = value + equation.substr(pos + 1 + var_name.length());
-                    }
-                    else
-                    {
-                        //replacing
-                        equation = equation.substr(0, pos) + value + equation.substr(pos + 1 + var_name.length());
-                    }
-                }
-            }
-
-            pos = equation.find('$', pos + 1);
-        }
-    }
-
-}
-
-void ItemEquation::evaluate(void)
-{
-    //replace the var by their value
-    replaceVars();
-    //do the equation
-    //only -,+,*,/ supported
-    int _result = 0;
-    std::string _equation = equation;
-    size_t index = _equation.find_first_of("-+*/");
-    int i = 0;
-    while(index != std::string::npos)
-    {
-        if(i == 0)
-        {
-            //getting the first value
-            std::string init_int = _equation.substr(0, index);
-            std::cout << init_int << std::endl;
-            _result = atoi(init_int.c_str());
-        }
-
-        char op_symbol = _equation[index];
-        _equation = _equation.substr(0, index) + '!' + _equation.substr(index + 1);
-        std::cout << op_symbol << std::endl;
-        size_t end_value = _equation.find_first_of("-+*/");
-        if(end_value == std::string::npos)
-        {
-            end_value = _equation.size();
-        }
-
-        std::string str_int = _equation.substr(index+1, end_value - (index + 1));
-
-        if(op_symbol == '+')
-        {
-            _result += atoi(str_int.c_str());
-        }
-        else if(op_symbol == '-')
-        {
-            _result -= atoi(str_int.c_str());
-        }
-        else if(op_symbol == '*')
-        {
-            _result *= atoi(str_int.c_str());
-        }
-        else if(op_symbol == '/')
-        {
-            _result /= atoi(str_int.c_str());
-        }
-
-        //replacing the symbol
-
-        std::cout << "Eq : " << _equation << std::endl;
-        index = _equation.find_first_of("-+*/");
-        i++;
-    }
-    result = _result;
-    //store the result
-}
-
-int ItemEquation::getResult(void)
-{
-    return result;
-}
-
-ItemAttribute::ItemAttribute(std::string m_name, std::string m_value)
-{
-    name = m_name;
-    value = m_value;
-}
-
-ItemAttribute::~ItemAttribute()
-{
-
-}
-
-std::string ItemAttribute::getName(void)
-{
-    return name;
-}
-
-std::string ItemAttribute::getValue(void)
-{
-    return value;
-}
-
-int ItemAttribute::getInt(void)
-{
-    return atoi(value.c_str());
-}
-
-int ItemAttribute::getInt(std::map<std::string, int> variables)
-{
-    if(isEquation())
-    {
-        ItemEquation eq (value.substr(1), variables);
-        eq.evaluate();
-        return eq.getResult();
-    }
-    else
-    {
-        return getInt();
-    }
-}
-
-void ItemAttribute::setName(std::string m_name)
-{
-    name = m_name;
-}
-
-void ItemAttribute::setValue(std::string m_value)
-{
-    value = m_value;
-}
-
-bool ItemAttribute::isEquation(void)
-{
-    if(value.length() > 0)
-    {
-        return value[0] == '=';
-    }
-
-    return false;
-}
-
-ItemDefinition::ItemDefinition(std::string m_type)
-{
-    type = m_type;
-    name = "not set";
-}
-
-ItemAttribute* ItemDefinition::findAttribute(std::string m_name)
-{
-    auto lit(attributes.begin()), lend(attributes.end());
-    for(;lit!=lend;++lit)
-    {
-        ItemAttribute *attr = (*lit);
-        if(attr->getName() == m_name)
-        {
-            return attr;
-        }
-    }
-
-    return nullptr;
-}
-
-Item* ItemDefinition::create(std::map<std::string, int> variables)
-{
-    if(name != "not set")
-    {
-        Item *item = nullptr;
-
-        if(type == "Label")
-        {
-            Label *lbl = new Label();
-            // trying to set label attribute, caption here
-            ItemAttribute *attr = findAttribute("caption");
-            if(attr != nullptr)
-            {
-                lbl->setCaption(attr->getValue());
-            }
-
-            item = lbl;
-        }
-        else if(type == "Button")
-        {
-            Button *btn = new Button();
-            ItemAttribute *attr = findAttribute("caption");
-            if(attr != nullptr)
-            {
-                btn->setCaption(attr->getValue());
-            }
-            item = btn;
-        }
-
-        //generic attributes
-        if(item != nullptr)
-        {
-            applyGenericAttributes(item, variables);
-        }
-
-        return item;
-    }
-    else
-    {
-        //todo
-        //error message here
-        return nullptr;
-    }
-}
-
-void ItemDefinition::applyGenericAttributes(Item *item, std::map<std::string, int> variables)
-{
-    auto lit(attributes.begin()), lend(attributes.end());
-    for(;lit!=lend;++lit)
-    {
-        ItemAttribute *attr = (*lit);
-
-        if(attr->getName() == "x")
-        {
-            item->setX(attr->getInt(variables));
-        }
-        else if(attr->getName() == "y")
-        {
-            item->setY(attr->getInt(variables));
-        }
-        else if(attr->getName() == "width")
-        {
-            item->setWidth(attr->getInt(variables));
-        }
-        else if(attr->getName() == "height")
-        {
-            item->setHeight(attr->getInt(variables));
-        }
-        else if(attr->getName() == "visible")
-        {
-            item->setVisible(attr->getValue() == "true");
-        }
-    }
-}
-
-std::string ItemDefinition::getName(void)
-{
-    return name;
-}
-
-ItemDefinition::~ItemDefinition()
-{
-    //todo
-    //delete attributes
-}
-
-std::string ItemDefinition::getType(void)
-{
-    return type;
-}
-
-void ItemDefinition::setAttribute(std::string m_name, std::string m_value)
-{
-    if(m_name == "name")
-    {
-        name = m_value;
-    }
-    else
-    {
-        ItemAttribute *attr = new ItemAttribute(m_name, m_value);
-        attributes.push_back(attr);
-    }
-}
-
 
 FrameFile::FrameFile(std::string m_path)
 {
@@ -394,6 +82,7 @@ void FrameFile::readFile(void)
                     //item type
                     //new definition
                     current = new ItemDefinition(line);
+                    current->setColorIndex(&colorIndex);
                     definitions.push_back(current);
                 }
             }
@@ -422,7 +111,18 @@ void FrameFile::createItems(Viewport *viewport)
     }
 }
 
-Item* FrameFile::operator[](const std::string key)
+Item* FrameFile::operator[](std::string key)
+{
+    return items[key];
+}
+
+Item* FrameFile::operator[](const char* key)
+{
+    std::string _key (key);
+    return items[_key];
+}
+
+Item* FrameFile::getItemByKey(std::string key)
 {
     return items[key];
 }

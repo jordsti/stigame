@@ -30,6 +30,8 @@ void GuiFrameState::onStart(void)
     {
         add(lit->second);
     }
+
+    initItems();
 }
 
 }

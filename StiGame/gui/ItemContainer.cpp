@@ -283,6 +283,19 @@ void ItemContainer::insert(Item *m_item, unsigned int index)
 
 }
 
+Item* ItemContainer::id(int item_id)
+{
+    for(ItemIterator it = iterator();it.next();)
+    {
+        if(it.item()->getId() == item_id)
+        {
+            return it.item();
+        }
+    }
+
+    return nullptr;
+}
+
 ItemIterator ItemContainer::iterator(void)
 {
     return ItemIterator(_start);

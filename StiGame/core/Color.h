@@ -51,6 +51,8 @@ public:
 
     void setRGBA(Uint8 m_r, Uint8 m_g, Uint8 m_b, Uint8 m_a);
     void setRGB(Uint8 m_r, Uint8 m_g, Uint8 m_b);
+
+    bool equals(Color *color);
 protected:
 	/// \brief Red byte value
 	Uint8 red;

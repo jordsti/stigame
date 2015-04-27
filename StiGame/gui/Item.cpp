@@ -12,10 +12,20 @@ namespace Gui
 const int Item::MAX_WIDTH = 2048;
 const int Item::MAX_HEIGHT = 2048;
 
+int Item::_currentId = 0;
+
+int Item::incrementId()
+{
+    int _id = _currentId;
+    _currentId++;
+    return _id;
+}
+
 Item::Item(void)
 {
 	style = Runtime::getInstance()->getStyle();
 	name = "GuiItem";
+    _id = incrementId();
 	init();
 }
 
@@ -23,6 +33,7 @@ Item::Item(std::string iname)
 {
 	style = Runtime::getInstance()->getStyle();
 	name = iname;
+    _id = incrementId();
 	init();
 }
 
@@ -30,6 +41,11 @@ Item::Item(std::string iname)
 Item::~Item(void)
 {
 
+}
+
+int Item::getId(void)
+{
+    return _id;
 }
 
 void Item::init(void)

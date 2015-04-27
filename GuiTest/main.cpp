@@ -19,6 +19,8 @@ int main(int argc, char ** argv)
     StiGame::Gui::FrameFile ff (StiGame::GamePath::getFilepath(StiGame::AssetRoot, "frame_test.gui"));
     ff.createItems(vpt);
 
+    StiGame::Gui::ItemAttribute colorT ("test", "10,0,200");
+    colorT.getColor();
     //item container test here
     DumbGuiItem *i1 = new DumbGuiItem("1");
     DumbGuiItem *i2 = new DumbGuiItem("2");
