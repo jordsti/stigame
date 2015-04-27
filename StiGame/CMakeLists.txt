@@ -50,12 +50,14 @@ set(SOURCE_FILES
     bindings/KeyActionMap.cpp
     bindings/KeyBind.cpp
 
+    gui/FrameFile.cpp
     gui/Button.cpp
     gui/CheckBox.cpp
     gui/Clipboard.cpp
     gui/ComboBox.cpp
     gui/DecoratedButton.cpp
     gui/GuiState.cpp
+    gui/GuiFrameState.cpp
     gui/HighlightItem.cpp
     gui/HorizontalBoxLayout.cpp
     gui/Image.cpp
@@ -85,6 +87,9 @@ set(SOURCE_FILES
     gui/TextBox.cpp
     gui/ValueObject.cpp
     gui/VerticalBoxLayout.cpp
+
+    gui/effects/ItemEffect.cpp
+    gui/effects/MovingItem.cpp
 
     events/CheckEventArgs.cpp
     events/CheckEventListener.cpp

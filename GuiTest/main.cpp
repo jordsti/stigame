@@ -3,6 +3,9 @@
 #include "DumbGuiItem.h"
 #include "ItemContainer.h"
 #include <iostream>
+#include "FrameFile.h"
+#include "GamePath.h"
+
 using namespace StiGame;
 
 int main(int argc, char ** argv)
@@ -12,6 +15,9 @@ int main(int argc, char ** argv)
     vpt->setTitle("Gui Test");
 
     vpt->setFps(50);
+
+    StiGame::Gui::FrameFile ff (StiGame::GamePath::getFilepath(StiGame::AssetRoot, "frame_test.gui"));
+    ff.createItems(vpt);
 
     //item container test here
     DumbGuiItem *i1 = new DumbGuiItem("1");

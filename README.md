@@ -75,7 +75,7 @@ You just need to fetch the depencies
 
 
 - Gui Test Project, to test all Gui Element
-	- Table
+	- Table -> to be tested and finished
 	- Decorated Button *Python wrapper w/ (M)Style*
 		- Highlight button, graphics are there
 	- Progress Bar test
@@ -85,9 +85,10 @@ You just need to fetch the depencies
 		- Form Layout
 		- ~~Item Minimum Size and MaxSize ?~~
 	- Normalize all *.setCaption method ; std::string text or const char* , to be determined!
-	
+	- Gui Item Appereance effect and dispearring effects
 - Viewport
-  -	Save resolution information, to persist configuration
+  - Save resolution information, to persist configuration
+  - Viewport Setttings ?
  
 - Controller Support
   - Map Controller and handle event
@@ -103,6 +104,7 @@ You just need to fetch the depencies
 
 - Network Code (TcpSocket, UdpSocket, Socket Base Class, Packet, ...) all into Net namespace
 
+- FrameFile ( equation evaluation (+, -) with vars (state_width, state_height,etc... )
 and things that don't come to my mind at the moment...
 
 
