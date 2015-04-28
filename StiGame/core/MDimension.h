@@ -15,6 +15,7 @@ class MDimension :
         virtual void setHeight(int m_height);
 
         virtual void setDimension(int m_width, int m_height);
+        virtual void setDimension(Dimension *m_dimension);
 
         virtual ~MDimension();
     protected:

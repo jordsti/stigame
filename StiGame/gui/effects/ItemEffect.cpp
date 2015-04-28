@@ -57,6 +57,11 @@ void ItemEffect::onTextInput(char* text)
 }
 
 
+bool ItemEffect::isHandleKey(void)
+{
+    return item->isHandleKey();
+}
+
 bool ItemEffect::isTerminated(void)
 {
     return terminated;
@@ -66,6 +71,16 @@ bool ItemEffect::isTerminated(void)
 void ItemEffect::setTerminated(bool m_terminated)
 {
     terminated = m_terminated;
+}
+
+Item* ItemEffect::getItem(void)
+{
+    return item;
+}
+
+BaseGameState* ItemEffect::getState(void)
+{
+    return state;
 }
 
 Surface* ItemEffect::render(void)

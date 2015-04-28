@@ -3,7 +3,7 @@
 
 #include "Item.h"
 #include "ItemContainer.h"
-
+#include "BaseChildSupport.h"
 
 namespace StiGame
 {
@@ -28,7 +28,8 @@ enum LayoutHorizontalAlign
 /// \class Layout
 /// \brief Base class for layout handling, provide horizontal and vertical alignment
 class Layout :
-    public Item
+    public Item,
+    public BaseChildSupport
 {
     public:
 	/// \brief Constructor
@@ -37,18 +38,18 @@ class Layout :
 	/// \brief Destructor
     virtual ~Layout();
 	
-	/// \brief Get Item located at this index
-	/// \param index Item Index
-	/// \return Item Pointer
+    /// \brief Get Item located at this index
+    /// \param index Item Index
+    /// \return Item Pointer
     Item* getChildAt(int index);
-	/// \brief Add Child Item to the Layout
-	/// \param child Item to add
+    /// \brief Add Child Item to the Layout
+    /// \param child Item to add
     virtual void addChild(Item *child);
-	/// \brief Remove an Item from the Layout
-	/// \param to_remove Item to remove
+    /// \brief Remove an Item from the Layout
+    /// \param to_remove Item to remove
     virtual void removeChild(Item *to_remove);
-	/// \brief Get the Childs Item count
-	/// \return Childs count
+    /// \brief Get the Childs Item count
+    /// \return Childs count
     unsigned int childsCount();
 	/// \brief Set the Vertical Alignment
 	/// \param m_verticalAlign Vertical Alignment
@@ -89,8 +90,6 @@ protected:
     bool childsChanged;
 	/// \brief Draw border or not
     bool drawBorder;
-    /// \brief Items Container
-    ItemContainer container;
 
 
 private:

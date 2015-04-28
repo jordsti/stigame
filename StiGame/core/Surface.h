@@ -195,6 +195,8 @@ public:
 	void setColorMod(Uint8 r, Uint8 g, Uint8 b);
 	void setColorMod(Color *color);
 	Color getColotMod(void);
+
+    Surface* shrink(int factor_x, int factor_y);
 };
 
 }

@@ -86,7 +86,7 @@ public:
 
 	/// \brief Is the Key Event Handled by this Item
 	/// \return Handled or not
-	bool isHandleKey(void);
+    virtual bool isHandleKey(void);
 	
 	/// \brief Is the Item has focus
 	/// \return Focused or not

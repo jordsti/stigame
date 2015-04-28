@@ -11,7 +11,6 @@ int main(int argc, char ** argv)
     viewport->setTitle("Frame Test");
     viewport->setFps(50);
     StiGame::Gui::ItemDefinition::AppendCreator(new CustomItemCreator());
-
     std::string path = StiGame::GamePath::getFilepath(StiGame::AssetRoot, "frame_test.gui");
     Frame fr (path);
 

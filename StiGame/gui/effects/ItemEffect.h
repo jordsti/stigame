@@ -28,6 +28,10 @@ public:
     virtual void setMouseOver(bool m_mouseOver);
     virtual void onMouseMotion(Point *relp);
     virtual void onTextInput(char* text);
+    virtual bool isHandleKey(void);
+
+    Item* getItem(void);
+    BaseGameState* getState(void);
 
 protected:
     bool terminated;

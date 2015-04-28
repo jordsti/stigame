@@ -6,12 +6,12 @@ namespace Gui {
 
 namespace Effects {
 
-MovingItem::MovingItem(Item *m_item, BaseGameState *m_state, int m_speed, Point m_startPoint, Point m_endPoint) :
+MovingItem::MovingItem(Item *m_item, BaseGameState *m_state, int m_speed, Point m_startPoint) :
     ItemEffect(m_item, m_state)
 {
     speed = m_speed;
-    startPoint = m_startPoint;
-    endPoint = m_endPoint;
+    startPoint.setPoint(&m_startPoint);
+    endPoint.setPoint(m_item);
 }
 
 MovingItem::~MovingItem()
@@ -41,12 +41,12 @@ void MovingItem::setSpeed(int m_speed)
 
 void MovingItem::setStartPoint(int x, int y)
 {
-    startPoint = Point(x, y);
+    startPoint.setPoint(x, y);
 }
 
 void MovingItem::setEndPoint(int x, int y)
 {
-    endPoint = Point(x, y);
+    endPoint.setPoint(x, y);
 }
 
 Surface* MovingItem::renderWithEffect(void)

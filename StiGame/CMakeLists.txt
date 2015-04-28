@@ -89,14 +89,17 @@ set(SOURCE_FILES
     gui/TextBox.cpp
     gui/ValueObject.cpp
     gui/VerticalBoxLayout.cpp
-
+    gui/ChildSupport.cpp
+    gui/BaseChildSupport.cpp
     gui/ItemEquation.cpp
     gui/ItemAttribute.cpp
     gui/ItemDefinition.cpp
     gui/ItemCreatorChain.cpp
     gui/StartingCreator.cpp
+
     gui/effects/ItemEffect.cpp
     gui/effects/MovingItem.cpp
+    gui/effects/ExpandItem.cpp
 
     events/CheckEventArgs.cpp
     events/CheckEventListener.cpp

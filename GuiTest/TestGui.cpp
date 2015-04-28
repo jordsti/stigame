@@ -2,6 +2,8 @@
 #include <ValueObject.h>
 #include <iostream>
 #include <StiGameVersion.h>
+#include "MovingItem.h"
+#include "ExpandItem.h"
 using namespace StiGame;
 using namespace Gui;
 
@@ -41,7 +43,8 @@ void TestGui::initComponents()
     cb1.setPoint(10, 500);
 
     //tab init
-
+    Effects::MovingItem *mi = new Effects::MovingItem(&cb1, this, 2, Point(0, 0));
+    //Effects::ExpandItem *ei = new Effects::ExpandItem(&cb1, this, 0.0, Dimension(2,2));
     tabPanel = TabPanel();
     tabPanel.setWidth(300);
     tabPanel.setHeight(400);
@@ -66,8 +69,8 @@ void TestGui::initComponents()
 
     tab1Btn.subscribe(this);
 
-    tab1.add(&tab1Label);
-    tab1.add(&tab1Btn);
+    tab1.addChild(&tab1Label);
+    tab1.addChild(&tab1Btn);
 
     tbName = TextBox();
     tbName.setPoint(10, 200);
@@ -99,7 +102,8 @@ void TestGui::initComponents()
     dbtn1.subscribe(this);
 
     add(&guiList);
-    add(&cb1);
+    //add(&cb1);
+    add(mi);
     add(&tabPanel);
     add(&tbName);
     add(&vlayout);

@@ -21,16 +21,6 @@ TabItem::~TabItem()
 
 }
 
-void TabItem::add(Item *item)
-{
-    container.add(item);
-}
-
-void TabItem::remove(Item *item)
-{
-    container.remove(item);
-}
-
 std::string TabItem::getTabName(void)
 {
 	return tabName;

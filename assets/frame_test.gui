@@ -26,13 +26,6 @@ CustomItem
 	height:50
 	name:josh
 	background:0,0,0
-ComboBox
-	name:comboTest
-	x:5
-	y:5
-	width:200
-	height:22
-	values:item1,item2,item3,item4,item5
 List
 	name:listTest
 	x:5
@@ -40,5 +33,25 @@ List
 	width:200
 	height:80
 	values:li1,li2,li3,li4,li5,li6,li7
-
-
+ComboBox
+	name:zcomboTest
+	x:5
+	y:5
+	width:200
+	height:22
+	values:item1,item2,item3,item4,item5
+VerticalBoxLayout
+	name:vbox
+	x:100
+	y:100
+	width:300
+	height:250
++Label
+	name:lbl2
+	caption:allo
++Label
+	name:lbl3
+	caption:al2lo
++Label
+	name:lbl4
+	caption:al3lo

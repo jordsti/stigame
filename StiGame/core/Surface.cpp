@@ -7,6 +7,7 @@
 #include <string>
 #include <iostream>
 #include "Logger.h"
+#include "SDL2_rotozoom.h"
 
 namespace StiGame {
 
@@ -468,6 +469,13 @@ namespace StiGame {
             Logger::Error(SDL_GetError());
         }
         return Color(r, g, b);
+    }
+
+    Surface* Surface::shrink(int factor_x, int factor_y)
+    {
+        Surface *shrinked = new Surface(shrinkSurface(sdlSurface, factor_x, factor_y));
+        shrinked->setReleaseSurface(true);
+        return shrinked;
     }
 
 	Surface::~Surface(void)

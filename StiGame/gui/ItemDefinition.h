@@ -7,6 +7,8 @@
 #include "ColorIndex.h"
 #include "StartingCreator.h"
 #include "HighlightItem.h"
+#include "ChildSupport.h"
+
 namespace StiGame
 {
 
@@ -33,6 +35,9 @@ public:
 
     void applyHighlightColors(HighlightItem *hItem);
 
+    void addChild(ItemDefinition *childDef);
+    void fillParent(ChildSupport *parent, std::map<std::string, int> variables);
+
 private:
     static ItemCreatorChain *externalCreator;
 
@@ -40,6 +45,7 @@ private:
     ColorIndex *colorIndex;
     std::string name;
     std::vector<ItemAttribute*> attributes;
+    std::vector<ItemDefinition*> innerChilds;
     std::string type;
 };
 

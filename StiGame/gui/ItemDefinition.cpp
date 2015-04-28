@@ -1,4 +1,5 @@
 #include "ItemDefinition.h"
+#include "GamePath.h"
 #include "Label.h"
 #include "Button.h"
 #include "ImageButton.h"
@@ -10,6 +11,9 @@
 #include "ProgressBar.h"
 #include "RadioButton.h"
 #include "TextBox.h"
+#include "VerticalBoxLayout.h"
+#include "HorizontalBoxLayout.h"
+#include "TabPanel.h"
 #include "SGString.h"
 #include <iostream>
 namespace StiGame
@@ -101,6 +105,12 @@ void ItemDefinition::applyHighlightColors(HighlightItem *hItem)
     }
 }
 
+
+void ItemDefinition::addChild(ItemDefinition *childDef)
+{
+    innerChilds.push_back(childDef);
+}
+
 Item* ItemDefinition::create(std::map<std::string, int> variables)
 {
     if(name != "not set")
@@ -174,7 +184,8 @@ Item* ItemDefinition::create(std::map<std::string, int> variables)
             ItemAttribute *attr = findAttribute("image");
             if(attr != nullptr)
             {
-                img->setImage(attr->getValue());
+                std::string img_path = GamePath::getFilepath(AssetRoot, attr->getValue());
+                img->setImage(img_path);
             }
             item = img;
         }
@@ -260,6 +271,23 @@ Item* ItemDefinition::create(std::map<std::string, int> variables)
             applyHighlightColors(tbox);
             item = tbox;
         }
+        else if(type == "VerticalBoxLayout")
+        {
+            VerticalBoxLayout *layout = new VerticalBoxLayout();
+            fillParent(layout, variables);
+            item = layout;
+        }
+        else if(type == "HorizontalBoxLayout")
+        {
+            HorizontalBoxLayout *layout = new HorizontalBoxLayout();
+            fillParent(layout, variables);
+            item = layout;
+        }
+        else if(type == "TabPanel")
+        {
+            TabPanel *tPanel = new TabPanel();
+            item = tPanel;
+        }
         else
         {
             //we delay this to this external creator chain
@@ -284,6 +312,20 @@ Item* ItemDefinition::create(std::map<std::string, int> variables)
         //todo
         //error message here
         return nullptr;
+    }
+}
+
+void ItemDefinition::fillParent(ChildSupport *parent, std::map<std::string, int> variables)
+{
+    auto lit(innerChilds.begin()), lend(innerChilds.end());
+    for(;lit!=lend;++lit)
+    {
+        ItemDefinition *innerDef = (*lit);
+        Item *item = innerDef->create(variables);
+        if(item != nullptr)
+        {
+            parent->addChild(item);
+        }
     }
 }
 
@@ -340,6 +382,19 @@ void ItemDefinition::applyGenericAttributes(Item *item, std::map<std::string, in
                 item->setMaximumSize(width, height);
             }
         }
+        else if(attr->getName() == "fixedSize")
+        {
+            std::string value = attr->getValue();
+            //no equation here
+            size_t sep_pos = value.find_first_of(',');
+            if(sep_pos != std::string::npos)
+            {
+                int width = atoi(value.substr(0, sep_pos).c_str());
+                int height = atoi(value.substr(sep_pos + 1).c_str());
+
+                item->setFixedSize(width, height);
+            }
+        }
         else if(attr->getName() == "background")
         {
             Color *color = attr->getColor();
@@ -378,6 +433,17 @@ ItemDefinition::~ItemDefinition()
 {
     //todo
     //delete attributes
+    auto lit(innerChilds.begin()), lend(innerChilds.end());
+    for(;lit!=lend;++lit)
+    {
+        delete (*lit);
+    }
+
+    auto ait(attributes.begin()), aend(attributes.end());
+    for(;ait!=aend;++ait)
+    {
+        delete (*ait);
+    }
 }
 
 std::string ItemDefinition::getType(void)

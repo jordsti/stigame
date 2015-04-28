@@ -37,6 +37,12 @@ void MDimension::setDimension(int m_width, int m_height)
     height = m_height;
 }
 
+void MDimension::setDimension(Dimension *m_dimension)
+{
+    width = m_dimension->getWidth();
+    height = m_dimension->getHeight();
+}
+
 MDimension::~MDimension()
 {
     //dtor

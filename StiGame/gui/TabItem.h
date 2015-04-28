@@ -2,6 +2,7 @@
 #define TABITEM_H
 
 #include "ItemContainer.h"
+#include "BaseChildSupport.h"
 
 namespace StiGame
 {
@@ -12,7 +13,8 @@ namespace Gui
 /// \class TabItem
 /// \brief Container Tab Item
 class TabItem :
-	public Item
+    public Item,
+    public BaseChildSupport
 {
 public:
 	/// \brief Constructor
@@ -22,12 +24,7 @@ public:
 	TabItem(std::string m_tabName);
 	/// \brief Destructor
 	virtual ~TabItem();
-	/// \brief Add an Item to the panel
-	/// \param item Item Pointer
-	void add(Item *item);
-	/// \brief Remove and Item from the panel
-	/// \param item Item to remove
-	void remove(Item *item);
+
 	/// \brief Get the tab name
 	/// \return Tab name
 	std::string getTabName(void);
@@ -41,8 +38,6 @@ public:
 protected:
 	/// \brief Tab Name
 	std::string tabName;
-	/// \brief Items Container
-    ItemContainer container;
 };
 
 

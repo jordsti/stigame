@@ -26,7 +26,8 @@ void FrameFile::readFile(void)
     std::ifstream infile (path.c_str());
     std::string line;
     ItemDefinition *current = nullptr;
-
+    bool isInner=false;
+    ItemDefinition *inner = nullptr;
     if(infile.is_open())
     {
         while(std::getline(infile, line))
@@ -48,7 +49,7 @@ void FrameFile::readFile(void)
             if(line.length() > 1)
             {
 
-                if(line[0] == '\t' && line[0] != '#')
+                if(line[0] == '\t')
                 {
                     //item attributes
                     if(current != nullptr)
@@ -61,7 +62,15 @@ void FrameFile::readFile(void)
                         {
                             std::string attr_name = attr.substr(0, index);
                             std::string attr_val = attr.substr(index + 1, line.length() - index - 2);
-                            current->setAttribute(attr_name, attr_val);
+
+                            if(isInner && inner != nullptr)
+                            {
+                                inner->setAttribute(attr_name, attr_val);
+                            }
+                            else
+                            {
+                                current->setAttribute(attr_name, attr_val);
+                            }
                         }
                         else
                         {
@@ -71,10 +80,30 @@ void FrameFile::readFile(void)
                                 //equation
                                 std::string attr_name = attr.substr(0, index);
                                 std::string attr_val = attr.substr(index, line.length() - index - 1);
-                                current->setAttribute(attr_name, attr_val);
+
+                                if(isInner && inner != nullptr)
+                                {
+                                    inner->setAttribute(attr_name, attr_val);
+                                }
+                                else
+                                {
+                                    current->setAttribute(attr_name, attr_val);
+                                }
                             }
                         }
 
+                    }
+                }
+                else if(line[0] == '+')
+                {
+                    //+ for inner childs item, for container type like Layout
+                    std::string type = line.substr(1);
+                    if(current != nullptr)
+                    {
+                        isInner = true;
+                        inner = new ItemDefinition(type);
+                        inner->setColorIndex(&colorIndex);
+                        current->addChild(inner);
                     }
                 }
                 else if(line[0] == '$')
@@ -98,6 +127,7 @@ void FrameFile::readFile(void)
                 }
                 else if(line[0] != '#')
                 {
+                    isInner = false;
                     //item type
                     //new definition
                     current = new ItemDefinition(line);

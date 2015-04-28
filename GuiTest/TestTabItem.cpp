@@ -35,9 +35,9 @@ void TestTabItem::initComponents(void)
     listOptions->add(vo_3);
     listOptions->add(vo_4);
 
-    add(btnOk);
-    add(btnCancel);
-    add(listOptions);
+    addChild(btnOk);
+    addChild(btnCancel);
+    addChild(listOptions);
 }
 
 bool TestTabItem::handleEvent(StiGame::EventThrower *src, StiGame::EventArgs *args)

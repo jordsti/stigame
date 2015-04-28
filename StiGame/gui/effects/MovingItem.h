@@ -11,7 +11,7 @@ class MovingItem :
         public ItemEffect
 {
 public:
-    MovingItem(Item *m_item, BaseGameState *m_state, int m_speed, Point m_startPoint, Point m_endPoint);
+    MovingItem(Item *m_item, BaseGameState *m_state, int m_speed, Point m_startPoint);
     virtual ~MovingItem();
 
     Point* getStartPoint(void);
@@ -25,8 +25,8 @@ protected:
     virtual Surface *renderWithEffect(void);
     virtual void tickEffect(void);
 private:
-    Point startPoint;
-    Point endPoint;
+    MPoint startPoint;
+    MPoint endPoint;
     int speed;
 };
 

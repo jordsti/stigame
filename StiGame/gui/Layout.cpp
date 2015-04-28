@@ -33,7 +33,6 @@ void Layout::setDrawBorder(bool m_drawBorder)
 void Layout::addChild(Item *item)
 {
     container.add(item);
-
     childsChanged = true;
 }
 
