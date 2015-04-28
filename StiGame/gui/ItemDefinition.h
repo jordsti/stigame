@@ -5,7 +5,8 @@
 #include <vector>
 #include "Item.h"
 #include "ColorIndex.h"
-
+#include "StartingCreator.h"
+#include "HighlightItem.h"
 namespace StiGame
 {
 
@@ -26,7 +27,15 @@ public:
     std::string getType(void);
     Item *create(std::map<std::string, int> variables);
     std::string getName(void);
+
+    static ItemCreatorChain* GetExternalCreator(void);
+    static void AppendCreator(ItemCreatorChain *chain);
+
+    void applyHighlightColors(HighlightItem *hItem);
+
 private:
+    static ItemCreatorChain *externalCreator;
+
     void applyGenericAttributes(Item *item, std::map<std::string, int> variables);
     ColorIndex *colorIndex;
     std::string name;

@@ -25,7 +25,7 @@ public:
     Item* operator[](std::string key);
     Item* operator[](const char* key);
     Item* getItemByKey(std::string key);
-    std::vector<std::string>& getItemNames(void);
+    std::vector<std::string> getItemNames(void);
 
     template <typename T>
     T* getItem(std::string name)
@@ -43,7 +43,7 @@ protected:
     ColorIndex colorIndex;
     std::string path;
     void readFile(void);
-
+    std::map<std::string, int> globalVariables;
     std::map<std::string, Item*> items;
     std::vector<ItemDefinition*> definitions;
 };

@@ -1,6 +1,5 @@
 #include "ItemAttribute.h"
 #include "ItemEquation.h"
-#include <vector>
 
 #include <iostream>
 

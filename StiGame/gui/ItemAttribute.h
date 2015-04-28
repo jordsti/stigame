@@ -3,6 +3,7 @@
 #include <string>
 #include <map>
 #include "Color.h"
+#include <vector>
 namespace StiGame
 {
 
@@ -19,6 +20,9 @@ public:
     std::string getValue(void);
     int getInt(void);
     int getInt(std::map<std::string, int> variables);
+
+    std::vector<std::string> splitValues(std::string separator);
+
     bool isEquation(void);
     Color* getColor(void);
     void setName(std::string m_name);

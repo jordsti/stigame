@@ -1,7 +1,8 @@
 #frame file test
+$ALLO=20
 Label
 	name:lbl_1
-	x:200
+	x=$ALLO
 	y:200
 	width:100
 	height:20
@@ -10,11 +11,34 @@ Label
 	caption:Label test
 Button
 	name:btn_1
-	x=$VIEWPORT_WIDTH-200
-	y:300
+	x=$lbl_1_X
+	y=$lbl_1_Y+$lbl_1_HEIGHT+2
 	width:120
 	height:22
 	caption:Button1
 	background:0,0,200
 	highlightBackground=250,0,0
+	highlightForeground=0,250,0
+CustomItem
+	x=$VIEWPORT_WIDTH-50
+	y=$VIEWPORT_HEIGHT-50
+	width:50
+	height:50
+	name:josh
+	background:0,0,0
+ComboBox
+	name:comboTest
+	x:5
+	y:5
+	width:200
+	height:22
+	values:item1,item2,item3,item4,item5
+List
+	name:listTest
+	x:5
+	y:50
+	width:200
+	height:80
+	values:li1,li2,li3,li4,li5,li6,li7
+
 

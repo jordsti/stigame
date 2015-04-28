@@ -5,6 +5,15 @@ namespace StiGame {
 namespace Gui
 {
 
+int ValueObject::_currentId = 0;
+
+int ValueObject::incrementId()
+{
+    int _id = _currentId;
+    _currentId++;
+    return _id;
+}
+
 ValueObject::ValueObject()
 {
     id = 0;
@@ -14,6 +23,12 @@ ValueObject::ValueObject()
 ValueObject::ValueObject(int m_id, std::string m_text)
 {
     id = m_id;
+    text = m_text;
+}
+
+ValueObject::ValueObject(std::string m_text)
+{
+    id = incrementId();
     text = m_text;
 }
 

@@ -20,6 +20,9 @@ class ValueObject
         /// \param m_id Value Id
         /// \param m_text Value Text
         ValueObject(int m_id, std::string m_text);
+
+        ValueObject(std::string m_text);
+
         /// \brief Destructor
         virtual ~ValueObject();
         /// \brief Get the value text
@@ -34,6 +37,8 @@ class ValueObject
         /// \brief Value Text
         std::string text;
     private:
+        static int _currentId;
+        int incrementId(void);
 };
 
 }

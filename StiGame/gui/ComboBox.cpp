@@ -257,7 +257,7 @@ void ComboBox::renderDroplist(Surface *buffer)
             int rely = i - currentItem;
             Surface *txt = stringsBuffer[(*lit)->getId()];
             src = txt->getRect();
-            dst = txt->getRect(0,rely*itemSize + closedHeight);
+            dst = txt->getRect(textOffset, rely*itemSize + closedHeight);
 
             if(i == itemHover)
             {

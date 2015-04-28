@@ -28,31 +28,31 @@ ItemEffect::~ItemEffect()
 
 void ItemEffect::onClick(Point *relp)
 {
-    if(eventDuringEffect)
+    if(eventDuringEffect || terminated)
         item->onClick(relp);
 }
 
 void ItemEffect::onKeyUp(SDL_KeyboardEvent *evt)
 {
-    if(eventDuringEffect)
+    if(eventDuringEffect || terminated)
         item->onKeyUp(evt);
 }
 
 void ItemEffect::setMouseOver(bool m_mouseOver)
 {
-    if(eventDuringEffect)
+    if(eventDuringEffect || terminated)
         item->setMouseOver(m_mouseOver);
 }
 
 void ItemEffect::onMouseMotion(Point *relp)
 {
-    if(eventDuringEffect)
+    if(eventDuringEffect || terminated)
         item->onMouseMotion(relp);
 }
 
 void ItemEffect::onTextInput(char* text)
 {
-    if(eventDuringEffect)
+    if(eventDuringEffect || terminated)
         item->onTextInput(text);
 }
 

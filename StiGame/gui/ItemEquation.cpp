@@ -81,6 +81,12 @@ void ItemEquation::evaluate(void)
     std::string _equation = equation;
     size_t index = _equation.find_first_of("-+*/");
     int i = 0;
+
+    if(index == std::string::npos)
+    {
+        _result = atoi(_equation.c_str());
+    }
+
     while(index != std::string::npos)
     {
         if(i == 0)

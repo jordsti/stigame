@@ -10,12 +10,31 @@
 #include "ProgressBar.h"
 #include "RadioButton.h"
 #include "TextBox.h"
-
+#include "SGString.h"
+#include <iostream>
 namespace StiGame
 {
 
 namespace Gui
 {
+
+ItemCreatorChain* ItemDefinition::externalCreator = new StartingCreator();
+
+ItemCreatorChain* ItemDefinition::GetExternalCreator(void)
+{
+    return externalCreator;
+}
+
+void ItemDefinition::AppendCreator(ItemCreatorChain *chain)
+{
+    ItemCreatorChain *current = externalCreator;
+    while(current->hasNext())
+    {
+        current = current->next();
+    }
+
+    current->setNext(chain);
+}
 
 ItemDefinition::ItemDefinition(std::string m_type)
 {
@@ -49,6 +68,39 @@ ColorIndex* ItemDefinition::getColorIndex(void)
     return colorIndex;
 }
 
+void ItemDefinition::applyHighlightColors(HighlightItem *hItem)
+{
+    ItemAttribute *attr = findAttribute("highlightForeground");
+    if(attr != nullptr)
+    {
+        Color *color = attr->getColor();
+        if(color != nullptr)
+        {
+            if(colorIndex != nullptr)
+            {
+                colorIndex->add(color);
+            }
+
+            hItem->setHighlightForeground(color);
+        }
+    }
+
+    attr = findAttribute("highlightBackground");
+    if(attr != nullptr)
+    {
+        Color *color = attr->getColor();
+        if(color != nullptr)
+        {
+            if(colorIndex != nullptr)
+            {
+                colorIndex->add(color);
+            }
+
+            hItem->setHighlightBackground(color);
+        }
+    }
+}
+
 Item* ItemDefinition::create(std::map<std::string, int> variables)
 {
     if(name != "not set")
@@ -75,6 +127,9 @@ Item* ItemDefinition::create(std::map<std::string, int> variables)
             {
                 btn->setCaption(attr->getValue());
             }
+
+            applyHighlightColors(btn);
+
             item = btn;
         }
         else if(type == "CheckBox")
@@ -96,6 +151,21 @@ Item* ItemDefinition::create(std::map<std::string, int> variables)
         else if(type == "ComboBox")
         {
             ComboBox *cb = new ComboBox();
+
+            ItemAttribute *attr = findAttribute("values");
+            if(attr != nullptr)
+            {
+                SGString vals (attr->getValue());
+                std::vector<SGString> values = vals.split(',');
+                auto lit(values.begin()), lend(values.end());
+                for(;lit!=lend;++lit)
+                {
+                    ValueObject *vo = new ValueObject((*lit).getStdString());
+                    cb->add(vo);
+                }
+            }
+
+            applyHighlightColors(cb);
             item = cb;
         }
         else if(type == "Image")
@@ -117,6 +187,21 @@ Item* ItemDefinition::create(std::map<std::string, int> variables)
         else if(type == "List")
         {
             List *list = new List();
+            applyHighlightColors(list);
+
+            ItemAttribute *attr = findAttribute("values");
+            if(attr != nullptr)
+            {
+                SGString vals (attr->getValue());
+                std::vector<SGString> values = vals.split(',');
+                auto lit(values.begin()), lend(values.end());
+                for(;lit!=lend;++lit)
+                {
+                    ValueObject *vo = new ValueObject((*lit).getStdString());
+                    list->add(vo);
+                }
+            }
+
             item = list;
         }
         else if(type == "DecoratedButton")
@@ -172,15 +257,24 @@ Item* ItemDefinition::create(std::map<std::string, int> variables)
             {
                 tbox->setText(attr->getValue());
             }
-
+            applyHighlightColors(tbox);
             item = tbox;
         }
-
+        else
+        {
+            //we delay this to this external creator chain
+            item = externalCreator->create(type, variables);
+        }
 
         //generic attributes
         if(item != nullptr)
         {
             applyGenericAttributes(item, variables);
+        }
+        else
+        {
+            //todo make a better logger
+            std::cout << "Error while trying to create a Gui::Item from a FrameFile : " << type << " type not supported" << std::endl;
         }
 
         return item;
@@ -270,36 +364,6 @@ void ItemDefinition::applyGenericAttributes(Item *item, std::map<std::string, in
                 }
 
                 item->setForeground(color);
-            }
-        }
-
-        if(HighlightItem *hItem = dynamic_cast<HighlightItem*>(item))
-        {
-            if(attr->getName() == "highlightBackground")
-            {
-                Color *color = attr->getColor();
-                if(color != nullptr)
-                {
-                    if(colorIndex != nullptr)
-                    {
-                        colorIndex->add(color);
-                    }
-
-                    hItem->setHighlightBackground(color);
-                }
-            }
-            else if(attr->getName() == "highlightForeground")
-            {
-                Color *color = attr->getColor();
-                if(color != nullptr)
-                {
-                    if(colorIndex != nullptr)
-                    {
-                        colorIndex->add(color);
-                    }
-
-                    hItem->setHighlightForeground(color);
-                }
             }
         }
     }

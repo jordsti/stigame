@@ -9,14 +9,12 @@ namespace StiGame
 namespace Gui
 {
 
-Button::Button(void) : Item("button")
+Button::Button(void) : HighlightItem("button")
 {
 	offsetWidth = DEFAULT_OFFSET;
 	offsetHeight = DEFAULT_OFFSET;
 	caption = " ";
 	stringBuffer = nullptr;
-	highlightForeground = style->getHighlightForeground();
-	highlightBackground = style->getHighlightBackground();
 }
 
 void Button::setCaption(std::string m_caption)

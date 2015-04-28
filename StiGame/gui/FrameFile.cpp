@@ -77,6 +77,25 @@ void FrameFile::readFile(void)
 
                     }
                 }
+                else if(line[0] == '$')
+                {
+                    //global variables
+                    std::string workset = line.substr(1);
+                    size_t pos = workset.find_first_of('=');
+                    if(pos != std::string::npos)
+                    {
+                        if(pos + 1 <= workset.length())
+                        {
+                            std::string var_name = workset.substr(0, pos);
+                            std::string var_value = workset.substr(pos + 1);
+
+                            if(var_value.length() > 0)
+                            {
+                                globalVariables.insert(std::make_pair(var_name, atoi(var_value.c_str())));
+                            }
+                        }
+                    }
+                }
                 else if(line[0] != '#')
                 {
                     //item type
@@ -95,8 +114,17 @@ void FrameFile::readFile(void)
 void FrameFile::createItems(Viewport *viewport)
 {
     std::map<std::string, int> variables;
+
+    //adding global vars
+    auto mit(globalVariables.begin()), mend(globalVariables.end());
+    for(;mit!=mend;++mit)
+    {
+        variables.insert(std::make_pair(mit->first, mit->second));
+    }
+
     variables.insert(std::make_pair("VIEWPORT_WIDTH", viewport->getWidth()));
     variables.insert(std::make_pair("VIEWPORT_HEIGHT", viewport->getHeight()));
+
 
     auto lit(definitions.begin()), lend(definitions.end());
     for(;lit!=lend;++lit)
@@ -107,6 +135,12 @@ void FrameFile::createItems(Viewport *viewport)
         if(item != nullptr)
         {
             items.insert(std::make_pair(def->getName(), item));
+            //adding new var to variables %ITEM_NAME%_%ITEM_FIELD%
+            //adding x,y,width and height
+            variables.insert(std::make_pair(def->getName()+"_X", item->getX()));
+            variables.insert(std::make_pair(def->getName()+"_Y", item->getY()));
+            variables.insert(std::make_pair(def->getName()+"_WIDTH", item->getWidth()));
+            variables.insert(std::make_pair(def->getName()+"_HEIGHT", item->getHeight()));
         }
     }
 }
@@ -127,7 +161,7 @@ Item* FrameFile::getItemByKey(std::string key)
     return items[key];
 }
 
-std::vector<std::string>& FrameFile::getItemNames(void)
+std::vector<std::string> FrameFile::getItemNames(void)
 {
     std::vector<std::string> names;
     auto lit(items.begin()), lend(items.end());

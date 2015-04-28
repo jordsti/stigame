@@ -39,6 +39,7 @@ set(SOURCE_FILES
     core/Viewport.cpp
     core/ViewportArea.cpp
     core/Window.cpp
+    core/SGString.cpp
 
     bindings/ActionBind.cpp
     bindings/ActionBinding.cpp
@@ -92,7 +93,8 @@ set(SOURCE_FILES
     gui/ItemEquation.cpp
     gui/ItemAttribute.cpp
     gui/ItemDefinition.cpp
-
+    gui/ItemCreatorChain.cpp
+    gui/StartingCreator.cpp
     gui/effects/ItemEffect.cpp
     gui/effects/MovingItem.cpp
 

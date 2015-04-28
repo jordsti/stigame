@@ -1,5 +1,5 @@
 #pragma once
-#include "Item.h"
+#include "HighlightItem.h"
 #include "EventThrower.h"
 namespace StiGame
 {
@@ -10,7 +10,7 @@ namespace Gui
 /// \class Button
 /// \brief Classic button that throw an event on clicking
 class Button :
-	public Item,
+    public HighlightItem,
 	public EventThrower
 {
 public:
@@ -47,10 +47,6 @@ protected:
 	int offsetWidth;
 	/// \brief Offset Height
 	int offsetHeight;
-	/// \brief Highlight Foreground Color
-	Color *highlightForeground;
-	/// \brief Highlight Background Color
-	Color *highlightBackground;
 };
 
 }
