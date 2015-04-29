@@ -32,12 +32,32 @@ void SampleState::initComponents(void)
     add(&lblTitle);
 }
 
+void SampleState::onPaint(SDL_Renderer *renderer)
+{
+
+
+    GuiState::onPaint(renderer);
+
+    Sprite *spr = sprites.getSprite("test");
+    spr->setPoint(10, 10);
+    spr->tick();
+    spr->render();
+}
+
 bool SampleState::handleEvent(EventThrower *src, EventArgs *evt)
 {
     if(src == &btnQuit)
     {
         running = false;
     }
+}
+
+void SampleState::onStart()
+{
+    sprites.setRenderer(viewport->getRenderer());
+    sprites.loadVarFile("test");
+
+    running = true;
 }
 
 }
