@@ -12,6 +12,7 @@ namespace Math
 //Vector 2 Dimension, with Floating number (double)
 
 class Vector2;
+class MVector2F;
 
 class Vector2F
 {
@@ -24,6 +25,7 @@ public:
     virtual ~Vector2F();
 
     Vector2 toVector2();
+    MVector2F toMVector2F();
 
 
     Angle* getAngle(void);

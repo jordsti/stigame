@@ -84,7 +84,7 @@ bool Point::equals(SDL_Point *pt)
 	);
 }
 
-Point& Point::operator+(Point& pt)
+Point Point::operator+(Point& pt)
 {
     Point _pt(this->x + pt.getX(),
              this->y + pt.getY());
@@ -92,12 +92,18 @@ Point& Point::operator+(Point& pt)
     return _pt;
 }
 
-Point& Point::operator-(Point& pt)
+Point Point::operator-(Point& pt)
 {
     Point _pt(this->x - pt.getX(),
              this->y - pt.getY());
 
     return _pt;
+}
+
+Point Point::operator*(double scalar)
+{
+    Point pt(this->x * scalar, this->y * scalar);
+    return pt;
 }
 
 Point Point::diffPoint(Point *pt)

@@ -2,6 +2,7 @@
 #include <cmath>
 #include "MathTK.h"
 #include "Vector2F.h"
+#include "MVector2.h"
 namespace StiGame
 {
 
@@ -50,6 +51,12 @@ Vector2::Vector2(Point *start, Point *end)
 Vector2F Vector2::toVector2F(void)
 {
     Vector2F v (x, y);
+    return v;
+}
+
+MVector2 Vector2::toMVector2(void)
+{
+    MVector2 v (x, y);
     return v;
 }
 

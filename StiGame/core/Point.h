@@ -60,9 +60,11 @@ public:
 	void updateSDLPoint(SDL_Point *sdlPt);
 
 	/// \brief Point addition
-	Point& operator+(Point& pt);
+    Point operator+(Point& pt);
 	/// \brief Point substract
-	Point& operator-(Point& pt);
+    Point operator-(Point& pt);
+
+    Point operator*(double scalar);
 	
 	/// \brief Point equals coord
 	/// \param m_x X coord

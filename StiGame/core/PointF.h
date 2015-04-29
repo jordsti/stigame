@@ -23,6 +23,10 @@ public:
     virtual Point toPoint(void);
     virtual MPoint toMPoint(void);
 
+    PointF operator+(PointF& pt);
+    PointF operator-(PointF& pt);
+    PointF operator*(double scalar);
+
     Math::Matrix homogenousMatrix(void);
 
 protected:

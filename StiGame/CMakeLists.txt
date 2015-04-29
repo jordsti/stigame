@@ -34,8 +34,9 @@ set(SOURCE_FILES
     core/VarFile.cpp
 
     core/Vector2.cpp
-    #core/MVector2.cpp
+    core/MVector2.cpp
     core/Vector2F.cpp
+    core/MVector2F.cpp
     core/VideoConfig.cpp
     core/Viewport.cpp
     core/ViewportArea.cpp

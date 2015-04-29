@@ -13,10 +13,10 @@ class MVector2 :
 	public Vector2
 {
 public:
-	MVector2();
-	MVector2(int m_x, int m_y);
-	MVector2(int m_length, Angle *m_angle);
-	//MVector2(int m_length, double m_angle);
+    MVector2();
+    MVector2(int m_x, int m_y);
+    MVector2(Point *start, Point *end);
+    MVector2(int m_length, Angle *m_angle);
 	virtual ~MVector2();
 	
 	void setX(int m_x);

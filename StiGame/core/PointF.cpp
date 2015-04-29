@@ -58,4 +58,22 @@ Math::Matrix PointF::homogenousMatrix(void)
     return matrix;
 }
 
+PointF PointF::operator+(PointF& pt)
+{
+    PointF _pt (this->x + pt.getX(), this->y + pt.getY());
+    return _pt;
+}
+
+PointF PointF::operator-(PointF& pt)
+{
+    PointF _pt (this->x - pt.getX(), this->y - pt.getY());
+    return _pt;
+}
+
+PointF PointF::operator*(double scalar)
+{
+    PointF _pt (this->x * scalar, this->y * scalar);
+    return _pt;
+}
+
 }

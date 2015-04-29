@@ -11,6 +11,7 @@ namespace Math
 //Vector 2 Dimension
 
 class Vector2F;
+class MVector2;
 
 class Vector2
 {
@@ -23,6 +24,7 @@ public:
 	virtual ~Vector2();
 	
     Vector2F toVector2F(void);
+    MVector2 toMVector2(void);
 
 	Angle* getAngle(void);
 	int getX(void);

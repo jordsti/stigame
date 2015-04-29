@@ -4,6 +4,7 @@
 #include "GamePath.h"
 #include "ItemDefinition.h"
 #include "CustomItem.h"
+
 int main(int argc, char ** argv)
 {
     StiGame::Viewport *viewport = new StiGame::Viewport(600, 600);
@@ -13,7 +14,6 @@ int main(int argc, char ** argv)
     StiGame::Gui::ItemDefinition::AppendCreator(new CustomItemCreator());
     std::string path = StiGame::GamePath::getFilepath(StiGame::AssetRoot, "frame_test.gui");
     Frame fr (path);
-
 
     viewport->push(&fr);
 
