@@ -17,11 +17,10 @@ set(SOURCE_FILES
     core/Matrix.cpp
     core/MDimension.cpp
     core/MDimensionF.cpp
-    core/Motion.cpp
     core/MPoint.cpp
     core/MPointF.cpp
     core/MultiRect.cpp
-    core/MVector2.cpp
+
     core/Pixel.cpp
     core/Point.cpp
     core/PointF.cpp
@@ -33,8 +32,10 @@ set(SOURCE_FILES
     core/Texture.cpp
     core/TimeTools.cpp
     core/VarFile.cpp
-    core/Vector.cpp
+
     core/Vector2.cpp
+    #core/MVector2.cpp
+    core/Vector2F.cpp
     core/VideoConfig.cpp
     core/Viewport.cpp
     core/ViewportArea.cpp

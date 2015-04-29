@@ -1,7 +1,6 @@
 #ifndef ISPRITE_H
 #define ISPRITE_H
 #include <string>
-#include "Vector.h"
 #include "Dimension.h"
 #include "MPoint.h"
 
@@ -29,7 +28,7 @@ class ISprite :
         void move(int dx, int dy);
 		/// \brief Move Sprite
 		/// \param d_vector Vector
-        void move(Math::Vector *d_vector);
+        //void move(Math::Vector *d_vector);
 		/// \brief Get SDL_Rect of the Sprite
 		/// \return SDL_Rect
         SDL_Rect* getSDLRect(void);

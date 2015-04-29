@@ -23,11 +23,11 @@ void ISprite::move(int dx, int dy)
     y += dy;
 }
 
-void ISprite::move(Math::Vector *d_vector)
+/*void ISprite::move(Math::Vector *d_vector)
 {
     x += d_vector->getX();
     y += d_vector->getY();
-}
+}*/
 
 SDL_Rect* ISprite::getSDLRect(void)
 {

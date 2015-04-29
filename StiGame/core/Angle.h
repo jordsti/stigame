@@ -21,6 +21,7 @@ namespace StiGame
 				/// \param au Angle Unit
 				/// \return Angle
                 virtual double getAngle(AngleUnit au) = 0;
+
 				/// \brief Set angle in the specified unit
 				/// \param au Angle Unit
 				/// \param m_angle Angle

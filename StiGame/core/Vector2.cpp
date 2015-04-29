@@ -1,7 +1,7 @@
 #include "Vector2.h"
 #include <cmath>
 #include "MathTK.h"
-
+#include "Vector2F.h"
 namespace StiGame
 {
 
@@ -25,38 +25,42 @@ Vector2::Vector2(int m_x, int m_y)
 	
 	length = TK::Pythagoras(x, y);
 	
-	angle = TK::CreateAngle(AU_RADIAN, m_angle);
+    angle = RadianAngle(m_angle);
 }
 
 Vector2::Vector2(int m_length, Angle *m_angle)
 {
 	length = m_length;
-	angle = m_angle;
-
-	x = length*cos(angle->getAngle(AU_RADIAN));
-	y = length*sin(angle->getAngle(AU_RADIAN));
+    angle = RadianAngle(m_angle->getAngle(AU_RADIAN));
+    x = length*cos(angle.getAngle(AU_RADIAN));
+    y = length*sin(angle.getAngle(AU_RADIAN));
 }
 
-/*Vector2::Vector2(int m_length, double m_angle)
+Vector2::Vector2(Point *start, Point *end)
 {
-	angle = MathTK::CreateAngle(AU_RADIAN, m_angle);
-	length = m_length;
-	
-	x = length*cos(m_angle);
-	y = length*sin(m_angle);
-}*/
+    x = end->getX() - start->getX();
+    y = end->getY() - start->getY();
+    length = TK::Pythagoras(x, y);
+
+    double m_angle = atan2(x, y);
+    angle = RadianAngle(m_angle);
+}
+
+
+Vector2F Vector2::toVector2F(void)
+{
+    Vector2F v (x, y);
+    return v;
+}
 
 Vector2::~Vector2()
 {
-	if(angle != 0)
-	{
-		delete angle;
-	}
+
 }
 
 Angle* Vector2::getAngle(void)
 {
-	return angle;
+    return &angle;
 }
 
 int Vector2::getX(void)
@@ -72,6 +76,24 @@ int Vector2::getY(void)
 int Vector2::getLength(void)
 {
 	return length;
+}
+
+Vector2 Vector2::operator+(Vector2& vec)
+{
+    Vector2 v (this->x + vec.getX(), this->y + vec.getY());
+    return v;
+}
+
+Vector2 Vector2::operator-(Vector2& vec)
+{
+    Vector2 v (this->x - vec.getX(), this->y - vec.getY());
+    return v;
+}
+
+Vector2 Vector2::operator*(double scalar)
+{
+    Vector2 v (this->x * scalar, this->y * scalar);
+    return v;
 }
 
 }
