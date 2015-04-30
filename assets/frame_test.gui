@@ -55,3 +55,11 @@ VerticalBoxLayout
 +Label
 	name:lbl4
 	caption:al3lo
+TabItem
+	name:tab1
++Label>tab1
+	x:10
+	y:10
+	name:lbl5
+	caption:inner tab!
+

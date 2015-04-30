@@ -39,6 +39,9 @@ void Frame::initItems()
 
     cb = getItem<StiGame::Gui::ComboBox>("zcomboTest");
     cb->subscribe(this);
+
+    tab1 = getItem<StiGame::Gui::TabItem>("tab1");
+    std::cout << tab1->childsCount() << std::endl;
 }
 
 Frame::~Frame()

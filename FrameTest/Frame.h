@@ -8,6 +8,7 @@
 #include "Button.h"
 #include "List.h"
 #include "ComboBox.h"
+#include "TabItem.h"
 class Frame :
         public StiGame::Gui::GuiFrameState,
         public StiGame::EventListener,
@@ -25,6 +26,7 @@ private:
     StiGame::Gui::Button *btn1;
     StiGame::Gui::List *list;
     StiGame::Gui::ComboBox *cb;
+    StiGame::Gui::TabItem *tab1;
 
 };
 

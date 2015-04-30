@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-
+#include "SGString.h"
 namespace StiGame
 {
 
@@ -98,12 +98,38 @@ void FrameFile::readFile(void)
                 {
                     //+ for inner childs item, for container type like Layout
                     std::string type = line.substr(1);
-                    if(current != nullptr)
+
+                    //trying to find absolute insertion (with name)
+                    SGString _str (type);
+                    std::vector<SGString> strings = _str.split('>');
+
+                    if(strings.size() == 2)
                     {
-                        isInner = true;
-                        inner = new ItemDefinition(type);
-                        inner->setColorIndex(&colorIndex);
-                        current->addChild(inner);
+                        //we got a absolute insertion
+                        //0 -> Type
+                        //1 -> ItemName
+                        ItemDefinition *parent = getDefinition(strings[1].getStdString());
+                        if(parent != nullptr)
+                        {
+                            isInner = false;
+                            current = new ItemDefinition(strings[0].getStdString());
+                            current->setColorIndex(&colorIndex);
+                            parent->addChild(current);
+                        }
+                        else
+                        {
+                            std::cout << "Item With Name " << strings[1].getStdString() << " not found" << std::endl;
+                        }
+                    }
+                    else
+                    {
+                        if(current != nullptr)
+                        {
+                            isInner = true;
+                            inner = new ItemDefinition(type);
+                            inner->setColorIndex(&colorIndex);
+                            current->addChild(inner);
+                        }
                     }
                 }
                 else if(line[0] == '$')
@@ -139,6 +165,21 @@ void FrameFile::readFile(void)
 
         infile.close();
     }
+}
+
+ItemDefinition* FrameFile::getDefinition(std::string name)
+{
+    auto lit(definitions.begin()), lend(definitions.end());
+    for(;lit!=lend;++lit)
+    {
+        ItemDefinition *def = (*lit);
+        if(def->getName() == name)
+        {
+            return def;
+        }
+    }
+
+    return nullptr;
 }
 
 void FrameFile::createItems(Viewport *viewport)

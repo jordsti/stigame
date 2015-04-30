@@ -39,6 +39,8 @@ public:
         return nullptr;
     }
 
+    ItemDefinition* getDefinition(std::string name);
+
 protected:
     ColorIndex colorIndex;
     std::string path;

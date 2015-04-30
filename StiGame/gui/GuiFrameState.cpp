@@ -28,7 +28,11 @@ void GuiFrameState::onStart(void)
     auto lit(items.begin()), lend(items.end());
     for(;lit!=lend;++lit)
     {
-        add(lit->second);
+        Item *item = lit->second;
+        if(item->getName() != "TabItem")
+        {
+            add(lit->second);
+        }
     }
 
     initItems();

@@ -14,6 +14,7 @@
 #include "VerticalBoxLayout.h"
 #include "HorizontalBoxLayout.h"
 #include "TabPanel.h"
+#include "TabItem.h"
 #include "SGString.h"
 #include <iostream>
 namespace StiGame
@@ -287,6 +288,12 @@ Item* ItemDefinition::create(std::map<std::string, int> variables)
         {
             TabPanel *tPanel = new TabPanel();
             item = tPanel;
+        }
+        else if(type == "TabItem")
+        {
+            TabItem *tItem = new TabItem();
+            fillParent(tItem, variables);
+            item = tItem;
         }
         else
         {
