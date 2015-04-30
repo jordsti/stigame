@@ -23,6 +23,8 @@ public:
 	/// \param item GuiItem to add
 	void add(Item *item);
 	/// \brief Starting the state
+
+    void removeItem(Item *item);
 	void onStart(void);
 	/// \brief Paint Event
 	/// \param renderer SDL_Renderer

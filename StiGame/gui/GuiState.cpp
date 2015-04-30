@@ -206,6 +206,11 @@ void GuiState::unload(void)
 
 }
 
+void GuiState::removeItem(Item *item)
+{
+    container.remove(item);
+}
+
 }
 
 }

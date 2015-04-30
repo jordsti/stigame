@@ -12,11 +12,12 @@
 #include <TextBox.h>
 #include <VerticalBoxLayout.h>
 #include "TestTabItem.h"
-
+#include "EffectUnwrapper.h"
 class TestGui :
     public StiGame::Gui::GuiState,
     public StiGame::EventListener,
-    public StiGame::Gui::SelectionEventListener
+    public StiGame::Gui::SelectionEventListener,
+    public StiGame::Gui::Effects::EffectUnwrapper
 {
     public:
         TestGui();

@@ -37,6 +37,7 @@ set(SOURCE_FILES
     core/MVector2.cpp
     core/Vector2F.cpp
     core/MVector2F.cpp
+    core/Motion.cpp
     core/VideoConfig.cpp
     core/Viewport.cpp
     core/ViewportArea.cpp
@@ -102,6 +103,12 @@ set(SOURCE_FILES
     gui/effects/ItemEffect.cpp
     gui/effects/MovingItem.cpp
     gui/effects/ExpandItem.cpp
+    gui/effects/FadeInItem.cpp
+    gui/effects/FadeOutItem.cpp
+    gui/effects/EffectListener.cpp
+    gui/effects/EffectEventArgs.cpp
+    gui/effects/EffectEventThrower.cpp
+    gui/effects/EffectUnwrapper.cpp
 
     events/CheckEventArgs.cpp
     events/CheckEventListener.cpp

@@ -4,10 +4,14 @@
 #include <StiGameVersion.h>
 #include "MovingItem.h"
 #include "ExpandItem.h"
+#include "FadeInItem.h"
+#include "FadeOutItem.h"
+
 using namespace StiGame;
 using namespace Gui;
 
-TestGui::TestGui() : GuiState()
+TestGui::TestGui() : GuiState(),
+    Effects::EffectUnwrapper(this)
 {
     //ctor
     initComponents();
@@ -43,7 +47,8 @@ void TestGui::initComponents()
     cb1.setPoint(10, 500);
 
     //tab init
-    Effects::MovingItem *mi = new Effects::MovingItem(&cb1, this, 2, Point(0, 0));
+    Effects::FadeOutItem *fi = new Effects::FadeOutItem(&cb1, this, 5, 255);
+    fi->subscribe(this);
     //Effects::ExpandItem *ei = new Effects::ExpandItem(&cb1, this, 0.0, Dimension(2,2));
     tabPanel = TabPanel();
     tabPanel.setWidth(300);
@@ -103,7 +108,7 @@ void TestGui::initComponents()
 
     add(&guiList);
     //add(&cb1);
-    add(mi);
+    add(fi);
     add(&tabPanel);
     add(&tbName);
     add(&vlayout);

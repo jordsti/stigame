@@ -72,7 +72,7 @@ void MovingItem::tickEffect(void)
     }
     else
     {
-        terminated = true;
+        setTerminated(true);
     }
 }
 

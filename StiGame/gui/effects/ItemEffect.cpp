@@ -1,4 +1,5 @@
 #include "ItemEffect.h"
+
 namespace StiGame {
 
 namespace Gui {
@@ -15,6 +16,7 @@ ItemEffect::ItemEffect(Item *m_item, BaseGameState *m_state) :
     eventDuringEffect = false;
     width = m_item->getWidth();
     height = m_item->getHeight();
+    redrawAtEachFrame = false;
 }
 
 ItemEffect::~ItemEffect()
@@ -68,11 +70,6 @@ bool ItemEffect::isTerminated(void)
 }
 
 
-void ItemEffect::setTerminated(bool m_terminated)
-{
-    terminated = m_terminated;
-}
-
 Item* ItemEffect::getItem(void)
 {
     return item;
@@ -87,6 +84,22 @@ Surface* ItemEffect::render(void)
 {
     if(effectBuffer == nullptr)
     {
+        EffectEventArgs args (this, EET_Started);
+        publish(&args);
+    }
+
+    if(redrawAtEachFrame)
+    {
+        if(effectBuffer != nullptr)
+        {
+            delete effectBuffer;
+        }
+
+        effectBuffer = item->render();
+    }
+
+    if(effectBuffer == nullptr)
+    {
         effectBuffer = item->render();
     }
 
@@ -95,11 +108,24 @@ Surface* ItemEffect::render(void)
         if(!terminated)
         {
             tickEffect();
+            EffectEventArgs args (this, EET_Ticking);
+            publish(&args);
             return renderWithEffect();
         }
     }
 
     return item->render();
+}
+
+void ItemEffect::setTerminated(bool m_terminated)
+{
+    if(m_terminated)
+    {
+        EffectEventArgs args (this, EET_Terminated);
+        publish(&args);
+    }
+
+    terminated = m_terminated;
 }
 
 

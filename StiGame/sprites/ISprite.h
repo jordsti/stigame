@@ -3,7 +3,6 @@
 #include <string>
 #include "Dimension.h"
 #include "MPoint.h"
-
 #include "SDL.h"
 
 
@@ -26,9 +25,6 @@ class ISprite :
 		/// \param dx Delta X
 		/// \param dy Delta Y
         void move(int dx, int dy);
-		/// \brief Move Sprite
-		/// \param d_vector Vector
-        //void move(Math::Vector *d_vector);
 		/// \brief Get SDL_Rect of the Sprite
 		/// \return SDL_Rect
         SDL_Rect* getSDLRect(void);

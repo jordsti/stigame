@@ -2,7 +2,7 @@
 #define ITEMEFFECT_H
 #include "Item.h"
 #include "BaseGameState.h"
-
+#include "EffectEventThrower.h"
 namespace StiGame {
 
 namespace Gui {
@@ -11,7 +11,8 @@ namespace Effects {
 
 
 class ItemEffect :
-        public Item
+        public Item,
+        public EffectEventThrower
 {
 public:
     ItemEffect(Item *m_item, BaseGameState *m_state);
@@ -20,8 +21,6 @@ public:
     virtual Surface* render(void);
 
     bool isTerminated(void);
-
-    void setTerminated(bool m_terminated);
 
     virtual void onClick(Point *relp);
     virtual void onKeyUp(SDL_KeyboardEvent *evt);
@@ -34,8 +33,10 @@ public:
     BaseGameState* getState(void);
 
 protected:
-    bool terminated;
+    void setTerminated(bool m_terminated);
+
     bool eventDuringEffect;
+    bool redrawAtEachFrame;
 
     virtual Surface *renderWithEffect(void) = 0;
 
@@ -44,6 +45,8 @@ protected:
     Item *item;
     BaseGameState *state;
     Surface *effectBuffer;
+private:
+    bool terminated;
 };
 
 }
