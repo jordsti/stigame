@@ -20,6 +20,7 @@ set(SOURCE_FILES
     core/MPoint.cpp
     core/MPointF.cpp
     core/MultiRect.cpp
+    core/Thread.cpp
 
     core/Pixel.cpp
     core/Point.cpp
