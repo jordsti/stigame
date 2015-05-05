@@ -3,6 +3,7 @@
 #include "Server.h"
 #include "Client.h"
 #include "SDL_net.h"
+#include "HTTPTest.h"
 int main(int argc, char ** argv)
 {
     SDL_Init(0);
@@ -27,6 +28,10 @@ int main(int argc, char ** argv)
             else if(arg == "client")
             {
                 task = new Client();
+            }
+            else if(arg == "http")
+            {
+                task = new HTTPTest();
             }
         }
 

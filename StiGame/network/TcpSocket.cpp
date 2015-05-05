@@ -24,7 +24,7 @@ TcpSocket::TcpSocket(char *hostname, int port)
     }
 }
 
-void TcpSocket::Open()
+void TcpSocket::open()
 {
     tcpSocket = SDLNet_TCP_Open(&address);
     if(!tcpSocket)
@@ -33,7 +33,7 @@ void TcpSocket::Open()
     }
 }
 
-void TcpSocket::Send(char *data, int length)
+void TcpSocket::send(char *data, int length)
 {
     if(SDLNet_TCP_Send(tcpSocket, data, length) < length)
     {
@@ -41,13 +41,20 @@ void TcpSocket::Send(char *data, int length)
     }
 }
 
-void TcpSocket::Recv(char *data, int length)
+int TcpSocket::recv(char *data, int length)
 {
     int rs = SDLNet_TCP_Recv(tcpSocket, data, length);
-    if(rs == 1 || rs == 0)
+    if(rs == -1 || rs == 0)
     {
         std::cout << "Error while receiving..." << std::endl;
     }
+
+    return rs;
+}
+
+void TcpSocket::close()
+{
+    SDLNet_TCP_Close(tcpSocket);
 }
 
 TcpSocket::~TcpSocket()

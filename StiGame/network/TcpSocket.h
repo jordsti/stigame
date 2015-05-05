@@ -14,9 +14,10 @@ class TcpSocket
     public:
         TcpSocket(int port);
         TcpSocket(char *hostname, int port);
-        void Send(char *data, int length);
-        void Recv(char *data, int length);
-        void Open(void);
+        void send(char *data, int length);
+        int recv(char *data, int length);
+        void open(void);
+        void close(void);
         virtual ~TcpSocket();
     protected:
     private:
