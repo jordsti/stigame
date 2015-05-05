@@ -166,6 +166,9 @@ set(SOURCE_FILES
     network/PacketBuffer.cpp
     network/TcpSocket.cpp
     network/UdpSocket.cpp
+    network/UdpPacket.cpp
+    network/IPacket.cpp
+    network/PacketStream.cpp
 
     primitives/PCircle.cpp
     primitives/PEllipse.cpp

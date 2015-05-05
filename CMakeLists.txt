@@ -3,7 +3,7 @@ project(StiGameRoot)
 
 set(STIGAME_MAJOR 0)
 set(STIGAME_MINOR 0)
-set(STIGAME_RELEASE 2)
+set(STIGAME_RELEASE 3)
 
 if(NOT STIGAME_BUILD)
     set(STIGAME_BUILD 0)
@@ -78,6 +78,8 @@ add_subdirectory(GuiTest)
 add_subdirectory(FrameTest)
 
 add_subdirectory(sgrc)
+
+add_subdirectory(NetMessage)
 
 if(WIN32)
     #need some dll
