@@ -1,6 +1,6 @@
 #ifndef IPACKET_H
 #define IPACKET_H
-
+#include "SDL_net.h"
 namespace StiGame
 {
 
@@ -27,6 +27,8 @@ public:
     virtual char* read(int index, int length) = 0;
 
     virtual PacketStream stream(void);
+
+    virtual void copyAddress(IPaddress *dst) = 0;
 };
 
 }

@@ -168,6 +168,18 @@ void UdpPacket::setLen(int m_len)
     _packet->len = m_len;
 }
 
+void UdpPacket::copyAddress(IPaddress *dst)
+{
+    dst->host = _packet->address.host;
+    dst->port = _packet->address.port;
+}
+
+void UdpPacket::applyAddress(IPaddress *address)
+{
+    _packet->address.host = address->host;
+    _packet->address.port = address->port;
+}
+
 }
 
 }

@@ -25,9 +25,9 @@ void Server::execute()
         {
             StiGame::Net::PacketStream stream = packet->stream();
             std::cout << "Message Received : " << stream.readString() << std::endl;
+            std::cout << stream.readInt32() << std::endl;
             IPaddress remote;
-            remote.host = packet->ipAddress()->host;
-            remote.port = packet->ipAddress()->port;
+            packet->copyAddress(&remote);
 
             StiGame::Net::UdpPacket resp;
             StiGame::Net::PacketStream respStream = resp.stream();
@@ -42,10 +42,7 @@ void Server::execute()
 
             delete packet;
         }
-        /*else
-        {
-            std::cout << "No packet received" << std::endl;
-        }*/
+
         SDL_Delay(5);
     }
 }

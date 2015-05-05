@@ -1,5 +1,5 @@
 #include "PacketStream.h"
-
+#include <iostream>
 namespace StiGame {
 
 namespace Net
@@ -38,9 +38,28 @@ void PacketStream::writeString(std::string m_string)
 
 void PacketStream::writeInt32(int m_int)
 {
-    packet->write(static_cast<char*>(static_cast<void*>(&m_int)), currentIndex, sizeof(m_int));
-    currentIndex += sizeof(m_int);
+    unsigned int size = 4;
 
+    char* bytes = reinterpret_cast<char*>(&m_int);
+    for(int i=0; i<size; i++)
+    {
+        packet->write(bytes[i], currentIndex + i);
+    }
+
+    currentIndex += size;
+    packet->setLen(currentIndex);
+}
+
+void PacketStream::writeUInt32(unsigned int m_int)
+{
+    unsigned int size = 4;
+    char* bytes = reinterpret_cast<char*>(&m_int);
+    for(int i=0; i<size; i++)
+    {
+        packet->write(bytes[i], currentIndex + i);
+    }
+
+    currentIndex += size;
     packet->setLen(currentIndex);
 }
 
@@ -50,7 +69,7 @@ std::string PacketStream::readString(void)
     while(true)
     {
         char c = packet->read(currentIndex);
-
+        currentIndex++;
         if(c == '\0')
         {
             break;
@@ -59,8 +78,6 @@ std::string PacketStream::readString(void)
         {
             m_string += c;
         }
-
-        currentIndex++;
     }
 
     return m_string;
@@ -68,6 +85,7 @@ std::string PacketStream::readString(void)
 
 int PacketStream::readInt32(void)
 {
+    int m_int = 0;
     unsigned int size = 4;
     char bytes[size];
 
@@ -77,10 +95,36 @@ int PacketStream::readInt32(void)
         currentIndex++;
     }
 
-    int m_int = (bytes[3] << 24) |
-            (bytes[2] << 16) |
-            (bytes[1] << 8) |
-            (bytes[0]);
+    m_int += (int)bytes[3];
+    m_int <<= 8;
+    m_int += (int)bytes[2];
+    m_int <<= 8;
+    m_int += (int)bytes[1];
+    m_int <<= 8;
+    m_int += (int)bytes[0];
+
+    return m_int;
+}
+
+unsigned int PacketStream::readUInt32(void)
+{
+    unsigned int m_int = 0;
+    unsigned int size = 4;
+    char bytes[size];
+
+    for(unsigned int i=0; i<size; i++)
+    {
+        bytes[i] = packet->read(currentIndex);
+        currentIndex++;
+    }
+
+    m_int += (unsigned int)bytes[3];
+    m_int <<= 8;
+    m_int += (unsigned int)bytes[2];
+    m_int <<= 8;
+    m_int += (unsigned int)bytes[1];
+    m_int <<= 8;
+    m_int += (unsigned int)bytes[0];
 
     return m_int;
 }

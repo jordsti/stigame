@@ -18,9 +18,11 @@ public:
 
     void writeString(std::string m_string);
     void writeInt32(int m_int);
+    void writeUInt32(unsigned int m_int);
 
     std::string readString(void);
     int readInt32(void);
+    unsigned int readUInt32(void);
 private:
     IPacket *packet;
     int currentIndex;

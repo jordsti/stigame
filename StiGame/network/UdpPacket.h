@@ -38,7 +38,8 @@ public:
     char* read(int index, int length);
     char read(int index);
 
-
+    void copyAddress(IPaddress *dst);
+    void applyAddress(IPaddress *address);
 
 private:
     UDPpacket* _packet;

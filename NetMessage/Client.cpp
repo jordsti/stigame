@@ -20,7 +20,7 @@ void Client::execute(void)
     SDLNet_ResolveHost(&addr, "127.0.0.1", 9000);
 
     int channel = socket.bind(-1, &addr);
-
+    int i=0;
     std::cout << "Opening connection on channel : " << channel << std::endl;
 
     while(true)
@@ -31,10 +31,10 @@ void Client::execute(void)
 
         std::string message = "Hello Its me !";
         //packet.setString(message);
-        packet.ipAddress()->host = addr.host;
-        packet.ipAddress()->port = addr.port;
+        packet.applyAddress(&addr);
 
         stream.writeString(message);
+        stream.writeInt32(i);
 
         socket.send(packet.packet(), channel);
         std::cout << "Message sended" << std::endl;
@@ -48,7 +48,7 @@ void Client::execute(void)
             std::cout << resp << std::endl;
             delete answer;
         }
-
+        i++;
         SDL_Delay(2000);
     }
 }
