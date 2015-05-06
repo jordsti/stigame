@@ -41,15 +41,14 @@ void TestGui::initComponents()
 
     guiList.subscribe(this);
 
-    cb1 = CheckBox();
     cb1.setCaption("Check box 1");
 
     cb1.setPoint(10, 500);
 
     //tab init
-    Effects::FadeOutItem *fi = new Effects::FadeOutItem(&cb1, this, 5, 255);
-    fi->subscribe(this);
+    Effects::FadeInItem *fi = new Effects::FadeInItem(&cb1, this, 1, 0);
     //Effects::ExpandItem *ei = new Effects::ExpandItem(&cb1, this, 0.0, Dimension(2,2));
+
     tabPanel = TabPanel();
     tabPanel.setWidth(300);
     tabPanel.setHeight(400);
@@ -72,8 +71,9 @@ void TestGui::initComponents()
 
     tab1Btn.subscribe(this);
 
+    Effects::FadeInItem *fi2 = new Effects::FadeInItem(&tab1Btn, this, 1, 0);
     tab1.addChild(&tab1Label);
-    tab1.addChild(&tab1Btn);
+    tab1.addChild(fi2);
 
     tbName = TextBox();
     tbName.setPoint(10, 200);

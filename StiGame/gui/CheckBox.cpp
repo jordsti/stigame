@@ -9,22 +9,13 @@ namespace Gui
 
 const int CheckBox::DefaultCaptionOffset = 4;
 
-CheckBox::CheckBox() : Item()
+CheckBox::CheckBox() : Item(), CaptionSupport()
 {
     //ctor
     captionOffset = DefaultCaptionOffset;
     surfaceEmpty = style->getCheckbox();
     surfaceChecked = style->getCheckboxChecked();
     checked = false;
-    stringBuffer = 0;
-    font = style->getNormalFont();
-    caption = "";
-}
-
-void CheckBox::setCaption(std::string m_caption)
-{
-    caption = m_caption;
-    renderCaption();
 }
 
 void CheckBox::onClick(Point *relp)
@@ -36,7 +27,7 @@ void CheckBox::onClick(Point *relp)
     {
         checked = !checked;
         //throw event here
-        CheckEventArgs *args = new CheckEventArgs(checked, caption);
+        CheckEventArgs *args = new CheckEventArgs(checked, getCaption());
         publish(this, args);
         delete args;
     }
@@ -44,10 +35,6 @@ void CheckBox::onClick(Point *relp)
     delete cbRect;
 }
 
-std::string CheckBox::getCaption(void)
-{
-    return caption;
-}
 
 void CheckBox::setChecked(bool m_checked)
 {
@@ -59,25 +46,13 @@ bool CheckBox::isChecked(void)
     return checked;
 }
 
-void CheckBox::renderCaption(void)
+Surface *CheckBox::render(void)
 {
-    if(stringBuffer != 0)
-    {
-        delete stringBuffer;
-    }
-
-    stringBuffer = font->renderText(caption.c_str(), foreground);
+    Surface *stringBuffer = stringRenderer.getSurface();
 
     width = stringBuffer->getWidth() + captionOffset + surfaceEmpty->getWidth();
     height = surfaceEmpty->getWidth();
-}
 
-Surface *CheckBox::render(void)
-{
-    if(stringBuffer == 0)
-    {
-        renderCaption();
-    }
 
     Surface *buffer = new Surface(width, height);
 

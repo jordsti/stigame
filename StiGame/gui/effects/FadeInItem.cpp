@@ -56,8 +56,8 @@ Surface* FadeInItem::renderWithEffect(void)
     buffer->blit(effectBuffer, &dst);
 
     buffer->setBlendMode(SDL_BLENDMODE_BLEND);
-    //buffer->setAlpha(alpha);
     buffer->setAlphaMod(alpha);
+    //buffer->setAlphaMod(alpha);
 
     return buffer;
 }

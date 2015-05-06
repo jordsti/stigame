@@ -1,9 +1,8 @@
 #ifndef DECORATEDBUTTON_H
 #define DECORATEDBUTTON_H
 #include "Item.h"
-#include "StringRenderer.h"
 #include "EventThrower.h"
-
+#include "CaptionSupport.h"
 namespace StiGame
 {
 namespace Gui
@@ -12,53 +11,49 @@ namespace Gui
 /// \brief Button with custom graphics
 class DecoratedButton :
     public Item,
-    public EventThrower
+    public EventThrower,
+    public CaptionSupport
 {
     public:
 	/// \brief Constructor
-        DecoratedButton();
+    DecoratedButton();
 	/// \brief Destructor
-        virtual ~DecoratedButton();
+    virtual ~DecoratedButton();
     
-        Surface* render(void);
+    Surface* render(void);
 	
 	/// \brief Get Current Caption value
-        std::string getCaption(void);
+    std::string getCaption(void);
 	/// \brief Set Caption Value
-        void setCaption(std::string m_caption);
+    void setCaption(std::string m_caption);
 	/// \brief On Click event Handling
 	/// \param relp Relative position
-        void onClick(Point *relp);
-
+    void onClick(Point *relp);
+    void setForeground(Color* m_foreground);
     protected:
-        void resized(void);
+    void resized(void);
 	/// \brief Left Graphics
 	Surface *buttonLeft;
 	/// \brief Right Graphics
-        Surface *buttonRight;
+    Surface *buttonRight;
 	/// \brief Background graphics (Repeated)
-        Surface *buttonBackground;
+    Surface *buttonBackground;
 	
 	/// \brief Left Highlight Graphics
-        Surface *buttonHighlightLeft;
+    Surface *buttonHighlightLeft;
 	/// \brief Right Highlight Graphics
-        Surface *buttonHighlightRight;
+    Surface *buttonHighlightRight;
 	/// \brief Background Highlight Graphics (Repeated)
-        Surface *buttonHighlightBackground;
+    Surface *buttonHighlightBackground;
 	
 	/// \brief Button Surface Buffer
-        Surface *surfaceBackground;
+    Surface *surfaceBackground;
 	/// \brief Highlight Button Surface Buffer
-        Surface *surfaceHighlightBackground;
-	/// \brief Caption String Buffer
-        StringRenderer stringBuffer;
-	
+    Surface *surfaceHighlightBackground;
+
 	/// \brief Draw the Button Surface Buffer
-        void drawBackground(void);
-	
-	/// \brief Button Caption
-        std::string caption;
-    private:
+    void drawBackground(void);
+
 };
 
 }

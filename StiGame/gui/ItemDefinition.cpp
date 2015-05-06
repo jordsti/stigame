@@ -122,23 +122,14 @@ Item* ItemDefinition::create(std::map<std::string, int> variables)
         {
             Label *lbl = new Label();
             // trying to set label attribute, caption here
-            ItemAttribute *attr = findAttribute("caption");
-            if(attr != nullptr)
-            {
-                lbl->setCaption(attr->getValue());
-            }
+            applyCaption(lbl);
 
             item = lbl;
         }
         else if(type == "Button")
         {
             Button *btn = new Button();
-            ItemAttribute *attr = findAttribute("caption");
-            if(attr != nullptr)
-            {
-                btn->setCaption(attr->getValue());
-            }
-
+            applyCaption(btn);
             applyHighlightColors(btn);
 
             item = btn;
@@ -146,12 +137,8 @@ Item* ItemDefinition::create(std::map<std::string, int> variables)
         else if(type == "CheckBox")
         {
             CheckBox *cb = new CheckBox();
-            ItemAttribute *attr = findAttribute("caption");
-            if(attr != nullptr)
-            {
-                cb->setCaption(attr->getName());
-            }
-            attr = findAttribute("checked");
+            applyCaption(cb);
+            ItemAttribute *attr = findAttribute("checked");
             if(attr != nullptr)
             {
                 cb->setChecked(attr->getValue() == "true");
@@ -219,11 +206,7 @@ Item* ItemDefinition::create(std::map<std::string, int> variables)
         else if(type == "DecoratedButton")
         {
             DecoratedButton *dbtn = new DecoratedButton();
-            ItemAttribute *attr = findAttribute("caption");
-            if(attr != nullptr)
-            {
-                dbtn->setCaption(attr->getValue());
-            }
+            applyCaption(dbtn);
             item = dbtn;
         }
         else if(type == "ProgressBar")
@@ -319,6 +302,15 @@ Item* ItemDefinition::create(std::map<std::string, int> variables)
         //todo
         //error message here
         return nullptr;
+    }
+}
+
+void ItemDefinition::applyCaption(CaptionSupport *captionItem)
+{
+    ItemAttribute *attr = findAttribute("caption");
+    if(attr != nullptr)
+    {
+        captionItem->setCaption(attr->getValue());
     }
 }
 

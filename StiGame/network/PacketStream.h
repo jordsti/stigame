@@ -20,9 +20,19 @@ public:
     void writeInt32(int m_int);
     void writeUInt32(unsigned int m_int);
 
+    void writeInt16(short m_int);
+    void writeUInt16(unsigned short m_int);
+
+    void writeBool(bool m_bool);
+
     std::string readString(void);
     int readInt32(void);
     unsigned int readUInt32(void);
+
+    short readInt16(void);
+    unsigned short readUInt16(void);
+
+    bool readBool(void);
 private:
     IPacket *packet;
     int currentIndex;

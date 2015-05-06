@@ -17,6 +17,14 @@ ItemEffect::ItemEffect(Item *m_item, BaseGameState *m_state) :
     width = m_item->getWidth();
     height = m_item->getHeight();
     redrawAtEachFrame = false;
+
+    if(width == 0 && height == 0)
+    {
+        //render the effectBuffer and apply new dimension
+        effectBuffer = item->render();
+        width = m_item->getWidth();
+        height = m_item->getHeight();
+    }
 }
 
 ItemEffect::~ItemEffect()

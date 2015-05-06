@@ -6,15 +6,10 @@ namespace Gui
 {
 
 DecoratedButton::DecoratedButton()
-    : Item("DecoratedButton")
+    : Item("DecoratedButton"),
+      CaptionSupport()
 {
     //ctor
-    stringBuffer.setFont(style->getNormalFont());
-    stringBuffer.setColor(style->getForeground());
-
-    caption = "";
-    stringBuffer.setText(caption);
-
     buttonLeft = style->getButtonLeft();
     buttonRight = style->getButtonRight();
     buttonBackground = style->getButtonBackground();
@@ -25,6 +20,12 @@ DecoratedButton::DecoratedButton()
 
     surfaceBackground = nullptr;
     surfaceHighlightBackground = nullptr;
+}
+
+void DecoratedButton::setForeground(Color* m_foreground)
+{
+    Item::setForeground(m_foreground);
+    stringRenderer.setColor(m_foreground);
 }
 
 void DecoratedButton::resized()
@@ -46,7 +47,7 @@ void DecoratedButton::drawBackground()
         delete surfaceHighlightBackground;
     }
 
-    int min_width = stringBuffer.getWidth() + buttonLeft->getWidth() + buttonRight->getWidth();
+    int min_width = stringRenderer.getWidth() + buttonLeft->getWidth() + buttonRight->getWidth();
     height = buttonBackground->getHeight();
 
     minimumSize.setDimension(min_width, height);
@@ -107,13 +108,12 @@ void DecoratedButton::drawBackground()
 
 std::string DecoratedButton::getCaption()
 {
-    return caption;
+    return stringRenderer.getText();
 }
 
 void DecoratedButton::setCaption(std::string m_caption)
 {
-    caption = m_caption;
-    stringBuffer.setText(caption);
+    stringRenderer.setText(m_caption);
     drawBackground();
 }
 
@@ -144,17 +144,17 @@ Surface* DecoratedButton::render()
         buffer->blit(surfaceBackground, &src, &dst);
     }
 
-    src.w = stringBuffer.getWidth();
-    src.h = stringBuffer.getHeight();
+    src.w = stringRenderer.getWidth();
+    src.h = stringRenderer.getHeight();
 
     int text_width = width - buttonLeft->getWidth() - buttonRight->getWidth();
 
-    dst.x = ((text_width - stringBuffer.getWidth())/2) + buttonLeft->getWidth();
-    dst.y = (height - stringBuffer.getHeight())/2;
-    dst.w = stringBuffer.getWidth();
-    dst.h = stringBuffer.getHeight();
+    dst.x = ((text_width - stringRenderer.getWidth())/2) + buttonLeft->getWidth();
+    dst.y = (height - stringRenderer.getHeight())/2;
+    dst.w = stringRenderer.getWidth();
+    dst.h = stringRenderer.getHeight();
 
-    buffer->blit(stringBuffer.getSurface(), &src, &dst);
+    buffer->blit(stringRenderer.getSurface(), &src, &dst);
 
     return buffer;
 
@@ -166,6 +166,11 @@ DecoratedButton::~DecoratedButton()
     if(surfaceBackground != nullptr)
     {
         delete surfaceBackground;
+    }
+
+    if(surfaceHighlightBackground != nullptr)
+    {
+        delete surfaceHighlightBackground;
     }
 }
 

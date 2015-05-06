@@ -8,6 +8,7 @@
 #include "StartingCreator.h"
 #include "HighlightItem.h"
 #include "ChildSupport.h"
+#include "CaptionSupport.h"
 
 namespace StiGame
 {
@@ -34,6 +35,7 @@ public:
     static void AppendCreator(ItemCreatorChain *chain);
 
     void applyHighlightColors(HighlightItem *hItem);
+    void applyCaption(CaptionSupport *captionItem);
 
     void addChild(ItemDefinition *childDef);
     void fillParent(ChildSupport *parent, std::map<std::string, int> variables);

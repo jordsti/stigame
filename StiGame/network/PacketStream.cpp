@@ -23,7 +23,7 @@ IPacket* PacketStream::getPacket(void)
 
 void PacketStream::writeString(std::string m_string)
 {
-    for(int i=0; i<m_string.length(); i++)
+    for(unsigned int i=0; i<m_string.length(); i++)
     {
         packet->write(m_string[i], currentIndex);
         currentIndex++;
@@ -41,7 +41,7 @@ void PacketStream::writeInt32(int m_int)
     unsigned int size = 4;
 
     char* bytes = reinterpret_cast<char*>(&m_int);
-    for(int i=0; i<size; i++)
+    for(unsigned int i=0; i<size; i++)
     {
         packet->write(bytes[i], currentIndex + i);
     }
@@ -54,12 +54,55 @@ void PacketStream::writeUInt32(unsigned int m_int)
 {
     unsigned int size = 4;
     char* bytes = reinterpret_cast<char*>(&m_int);
-    for(int i=0; i<size; i++)
+    for(unsigned int i=0; i<size; i++)
     {
         packet->write(bytes[i], currentIndex + i);
     }
 
     currentIndex += size;
+    packet->setLen(currentIndex);
+}
+
+void PacketStream::writeInt16(short m_int)
+{
+    unsigned int size = 2;
+    char * bytes = reinterpret_cast<char*>(&m_int);
+    for(unsigned int i=0; i<size; i++)
+    {
+        packet->write(bytes[i], currentIndex + i);
+    }
+
+    currentIndex += size;
+    packet->setLen(currentIndex);
+}
+
+void PacketStream::writeUInt16(unsigned short m_int)
+{
+    unsigned int size = 2;
+    char * bytes = reinterpret_cast<char*>(&m_int);
+    for(unsigned int i=0; i<size; i++)
+    {
+        packet->write(bytes[i], currentIndex + i);
+    }
+
+    currentIndex += size;
+    packet->setLen(currentIndex);
+}
+
+void PacketStream::writeBool(bool m_bool)
+{
+    char value = 0;
+    if(m_bool)
+    {
+        value = 1;
+    }
+    else
+    {
+        value = 0;
+    }
+
+    packet->write(value, currentIndex);
+    currentIndex++;
     packet->setLen(currentIndex);
 }
 
@@ -127,6 +170,59 @@ unsigned int PacketStream::readUInt32(void)
     m_int += (unsigned int)bytes[0];
 
     return m_int;
+}
+
+short PacketStream::readInt16(void)
+{
+    short m_int = 0;
+    unsigned int size = 2;
+    char bytes[size];
+
+    for(unsigned int i=0; i<size; i++)
+    {
+        bytes[i] = packet->read(currentIndex);
+        currentIndex++;
+    }
+
+    m_int += (short)bytes[1];
+    m_int <<= 8;
+    m_int += (short)bytes[0];
+
+    return m_int;
+}
+
+unsigned short PacketStream::readUInt16(void)
+{
+    unsigned short m_int = 0;
+    unsigned int size = 2;
+    char bytes[size];
+
+    for(unsigned int i=0; i<size; i++)
+    {
+        bytes[i] = packet->read(currentIndex);
+        currentIndex++;
+    }
+
+    m_int += (unsigned short)bytes[1];
+    m_int <<= 8;
+    m_int += (unsigned short)bytes[0];
+
+    return m_int;
+}
+
+bool PacketStream::readBool()
+{
+    bool value = false;
+
+    char chr_value = packet->read(currentIndex);
+    currentIndex++;
+
+    if(chr_value == 1)
+    {
+        value = true;
+    }
+
+    return value;
 }
 
 }
