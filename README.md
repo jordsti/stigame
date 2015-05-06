@@ -60,6 +60,8 @@ A Python script is included for this. (Windows Only)
 
 After you can compile using Code::Blocks IDE.
 
+__Windows build is broken at the moment because of SDL_Thread (need a windows pc to fix this)__
+
 #### Linux
 
 Tested on Linux (Ubuntu 14.04-64bit) with g++ and SDL2, SDL2-image, SDL2-ttf and SDL2-gfx
@@ -84,11 +86,11 @@ You just need to fetch the depencies
 	- Layout Item
 		- Form Layout
 		- ~~Item Minimum Size and MaxSize ?~~
-	- Normalize all *.setCaption method ; std::string text or const char* , to be determined!
-	- Gui Item Appereance effect and dispearring effects
+	- Normalize all *.setCaption method ; std::string text or const char* , to be determined! __High Priority__
+	- Gui Item Appereance effect and dispearring effects __Working at the moment__
 - Viewport
   - Save resolution information, to persist configuration
-  - Viewport Setttings ?
+  - Viewport Settings ?
  
 - Controller Support
   - Map Controller and handle event
@@ -102,9 +104,14 @@ You just need to fetch the depencies
 
 - float matrix for point transformation
 
-- Network Code (TcpSocket, UdpSocket, Socket Base Class, Packet, ...) all into Net namespace
-
+- Network Code
+    - Udp Socket -> Working with UdpPacket and PacketStream to read content of a packet, still need to implement more data type (Only Int32 and UInt32 are handled)
+    - Need to test between two different environment (Big Endian vs Little Endian)
+    - Tcp Socket seems to work, but still need to do many things, still need to encapsulate all the data into a packet to use PacketStream class
+    - MessageQueue System Base Class with multi-thread (one sending, one receiving)
+    
 - FrameFile ( equation evaluation (+, -) with vars (state_width, state_height,etc... )
+
 and things that don't come to my mind at the moment...
 
 
