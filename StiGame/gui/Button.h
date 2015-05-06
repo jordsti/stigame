@@ -1,6 +1,7 @@
 #pragma once
 #include "HighlightItem.h"
 #include "EventThrower.h"
+#include "CaptionSupport.h"
 namespace StiGame
 {
 
@@ -11,7 +12,8 @@ namespace Gui
 /// \brief Classic button that throw an event on clicking
 class Button :
     public HighlightItem,
-	public EventThrower
+    public EventThrower,
+    public CaptionSupport
 {
 public:
 	/// \brief Default Text Offset
@@ -29,18 +31,18 @@ public:
 	/// \brief Render the Button
 	/// \return Rendered Button
 	virtual Surface* render(void);
-	/// \brief Clear memory
-	void clear(void);
+
 	/// \brief On Click Event
 	/// \param relp Relative mouse position
 	void onClick(Point *relp);
+
+    void setFont(Font *m_font);
+
+    void setHighlightForeground(Color *m_highlightForeground);
 protected:
 	/// \brief Auto Size Button Dimension
 	void autosize(void);
-	/// \brief Render Text Caption
-	void renderCaption(void);
-	/// \brief Caption Buffer
-	Surface *stringBuffer;
+    StringRenderer highlightRenderer;
 	/// \brief Text Caption
 	std::string caption;
 	/// \brief Offset Width

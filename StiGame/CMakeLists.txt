@@ -100,6 +100,8 @@ set(SOURCE_FILES
     gui/ItemDefinition.cpp
     gui/ItemCreatorChain.cpp
     gui/StartingCreator.cpp
+    gui/FontSupport.cpp
+    gui/CaptionSupport.cpp
 
     gui/effects/ItemEffect.cpp
     gui/effects/MovingItem.cpp

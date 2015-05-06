@@ -1,6 +1,7 @@
 #pragma once
 #include "Item.h"
 #include <string>
+#include "CaptionSupport.h"
 namespace StiGame
 {
 
@@ -10,7 +11,8 @@ namespace Gui
 /// \class Label
 /// \brief Text Label
 class Label :
-	public Item
+    public Item,
+    public CaptionSupport
 {
 public:
 	/// \brief Create a new Label
@@ -20,15 +22,15 @@ public:
 	/// \brief Render the Label
 	/// \return Rendered Label
 	Surface* render(void);
-	/// \brief Set the caption text
+    /*/// \brief Set the caption text
 	/// \param m_caption Text
-	void setCaption(std::string m_caption);
+    void setCaption(std::string m_caption);
 	/// \brief Get the current caption text
 	/// \return Caption text
-	std::string getCaption(void);
+    std::string getCaption(void);
 	/// \brief Set the Label Font
 	/// \param m_font Font
-	void setFont(Font *m_font);
+    void setFont(Font *m_font);*/
 	/// \brief Autosize the label with caption text
 	void doAutosize(void);
 	/// \brief Set the label transparent
@@ -47,8 +49,8 @@ public:
 	virtual void setForeground(Color *m_foreground);
 
 protected:
-	/// \brief Render the caption text
-	void renderCaption(void);
+    /*/// \brief Render the caption text
+    void renderCaption(void);*/
 	
 	/// \brief Drawing Border to the buffer Surface
 	void _drawBorder(Surface *buffer);
@@ -56,11 +58,11 @@ protected:
 	/// \brief Transparency
 	bool transparent;
 	/// \brief Caption text buffer
-	Surface *stringBuffer;
+    /*Surface *stringBuffer;
 	/// \brief Caption font
 	Font *font;
 	/// \brief Caption Text
-	std::string caption;
+    std::string caption;*/
 	/// \brief Draw Border
 	bool drawBorder;
 };

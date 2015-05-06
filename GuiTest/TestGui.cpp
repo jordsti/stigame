@@ -65,10 +65,8 @@ void TestGui::initComponents()
     tabPanel.addTab(&tab2);
     tabPanel.addTab(tab3);
 
-    tab1Label = Label();
     tab1Label.setCaption("This is this tab1!");
 
-    tab1Btn = Button();
     tab1Btn.setCaption("Test Button");
     tab1Btn.setPoint(0, 20);
 
@@ -85,13 +83,11 @@ void TestGui::initComponents()
     vlayout.setPoint(520, 20);
     vlayout.setDimension(250, 400);
 
-    lbl_vlayout = Label();
     lbl_vlayout.setCaption("test layout");
     lbl_vlayout2.setCaption("layout 2");
     lbl_vlayout3.setCaption("layout 3");
     lbl_vlayout4.setCaption("layout 4");
     lbl_vlayout5.setCaption(StiGameVersion::CurrentVersion().getVersionString());
-
 
     vlayout.addChild(&lbl_vlayout);
     vlayout.addChild(&lbl_vlayout2);

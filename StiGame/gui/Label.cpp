@@ -7,12 +7,9 @@ namespace StiGame
 namespace Gui
 {
 
-Label::Label(void)  : Item("Label")
+Label::Label(void)  : Item("Label"), CaptionSupport()
 {
-	caption = " ";
-	font = style->getNormalFont();
 	transparent = true;
-    stringBuffer = nullptr;
 	x = 0;
 	y = 0;
 	width = 0;
@@ -24,10 +21,10 @@ Label::Label(void)  : Item("Label")
 
 Label::~Label(void)
 {
-    if(stringBuffer != nullptr)
+    /*if(stringBuffer != nullptr)
     {
         delete stringBuffer;
-    }
+    }*/
 }
 
 bool Label::getDrawBorder(void)
@@ -60,45 +57,11 @@ void Label::_drawBorder(Surface *buffer)
 	line.draw(buffer->getSDLSurface(), foreground);
 }
 
-void Label::setCaption(std::string m_caption)
-{
-	caption = m_caption;
-	renderCaption();
-}
-
-std::string Label::getCaption(void)
-{
-	return caption;
-}
-
-void Label::setFont(Font *m_font)
-{
-    if(font != m_font)
-    {
-        font = m_font;
-        renderCaption();
-    }
-}
-
-void Label::renderCaption(void)
-{
-    if(stringBuffer != nullptr)
-	{
-		delete stringBuffer;
-	}
-
-	stringBuffer = font->renderText(caption, foreground);
-}
-
 void Label::doAutosize(void)
 {
-    if(stringBuffer == nullptr)
-	{
-		renderCaption();
-	}
 
-	width = stringBuffer->getWidth();
-	height = stringBuffer->getHeight();
+    width = stringRenderer.getWidth();
+    height = stringRenderer.getHeight();
 
 	minimumSize.setDimension(width, height);
 }
@@ -106,7 +69,7 @@ void Label::doAutosize(void)
 void Label::setForeground(Color *m_foreground)
 {
     foreground = m_foreground;
-    renderCaption();
+    stringRenderer.setColor(foreground);
 }
 
 void Label::setTransparent(bool m_transparent)
@@ -126,10 +89,7 @@ Surface* Label::render(void)
 		doAutosize();
 	}
 
-    if(stringBuffer == nullptr)
-	{
-		renderCaption();
-	}
+    Surface *stringBuffer = stringRenderer.getSurface();
 
     if(width != stringBuffer->getWidth() || height != stringBuffer->getHeight())
     {

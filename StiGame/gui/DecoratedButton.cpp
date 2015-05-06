@@ -9,7 +9,6 @@ DecoratedButton::DecoratedButton()
     : Item("DecoratedButton")
 {
     //ctor
-    stringBuffer = StringRenderer();
     stringBuffer.setFont(style->getNormalFont());
     stringBuffer.setColor(style->getForeground());
 

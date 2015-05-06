@@ -15,6 +15,8 @@ namespace StiGame
 
 bool Viewport::_sdlInitied = false;
 
+const std::string Viewport::VIDEO_CONFIG_FILE = "video.conf";
+
 void Viewport::initSDL(void)
 {
     if(!_sdlInitied)
@@ -79,6 +81,8 @@ Viewport::Viewport(void)
 	height = 480;
 	fullscreen = false;
 	title = "StiGame::Viewport";
+    config = nullptr;
+    configFile = VIDEO_CONFIG_FILE;
 	initialize();
 }
 
@@ -96,6 +100,8 @@ Viewport::Viewport(int v_width, int v_height)
 	height = v_height;
 	fullscreen = false;
 	title = "StiGame::Viewport";
+    config = nullptr;
+    configFile = VIDEO_CONFIG_FILE;
 	initialize();
 }
 
@@ -114,6 +120,8 @@ Viewport::Viewport(int v_width, int v_height, bool v_fullscreen)
 	height = v_height;
 	fullscreen = v_fullscreen;
 	title = "StiGame::Viewport";
+    config = nullptr;
+    configFile = VIDEO_CONFIG_FILE;
 	initialize();
 }
 
@@ -169,6 +177,42 @@ void Viewport::handleWindowEvent(SDL_Event *evt)
 	WindowEventArgs wargs = WindowEventArgs(evt);
 	publish(this, &wargs);
 
+}
+
+void Viewport::loadVideoConfig()
+{
+    config = new VideoConfig(configFile.c_str());
+    config->read();
+    if(config->getCount() == 0)
+    {
+        //config file is empty, creating one with values used for resolution
+        config->setWidth(width);
+        config->setHeight(height);
+        config->setFullscreen(fullscreen);
+        config->write();
+    }
+    else
+    {
+        //fetching vars from VideoConfig
+        width = config->getWidth();
+        height = config->getHeight();
+        fullscreen = config->isFullscreen();
+    }
+}
+
+std::string Viewport::getConfigFile(void)
+{
+    return configFile;
+}
+
+void Viewport::setConfigFile(std::string m_configFile)
+{
+    configFile = m_configFile;
+}
+
+VideoConfig* Viewport::getVideoConfig(void)
+{
+    return config;
 }
 
 void Viewport::tick(void)
@@ -413,6 +457,8 @@ void Viewport::initialize(void)
     currentState = nullptr;
     pendingState = nullptr;
     stateWaiting = false;
+
+    loadVideoConfig();
 
     initSDL();
 

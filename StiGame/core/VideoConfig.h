@@ -20,6 +20,10 @@ public:
 	int getWidth(void);
 	int getHeight(void);
 	bool isFullscreen(void);
+
+    void setWidth(int m_width);
+    void setHeight(int m_height);
+    void setFullscreen(bool m_fullscreen);
 	
 protected:
 	int width;

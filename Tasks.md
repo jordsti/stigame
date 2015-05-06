@@ -7,15 +7,20 @@ This are the tasks that are need to be done for the first minor release of StiGa
 
 - [ ] Write a Table Test Program and find the issues with the current Table Class
 - [ ] Progress Bar Test and fixes
-- [ ] BaseClass for Font rendering Item
-- [ ] BaseClass for Caption Item
+- [x] BaseClass for Font rendering Item
+- [x] BaseClass for Caption Item
+- [x] Rework Label Class to use CaptionSupport
+- [x] Rework Button Class to use CaptionSupport
+- [ ] Rework Decorated Button Class to use CaptionSupport
+- [ ] Rework RadioButton Class to use CaptionSupport
+- [ ] Rework CheckBox Class to use CaptionSupport
 - [ ] Form Layout Implementation
 - [ ] GuiItem Effect (Fade In & Out, Shrink, movement)
-- [ ] Frame File more robust testing
+- [ ] Frame File more robust testing __WIP__
 
 ### Core Module
 
-- [ ] Viewport resolution and settings to be saved into a configuration file
+- [x] Viewport resolution and settings to be saved into a configuration file
 - [ ] Float Matrix Operation
 
 ### Network Module
@@ -29,4 +34,9 @@ This are the tasks that are need to be done for the first minor release of StiGa
 
 ### Build Generation
 - [ ] Fix Windows Build (probably need to include winpthread)
+
+### Documentation
+- [ ] Generate a more recent Doxy API Documentation
+- [ ] Write some little tutorials on GameState and Event Handling
+- [ ] Website
 

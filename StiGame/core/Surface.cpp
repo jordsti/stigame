@@ -64,7 +64,7 @@ namespace StiGame {
 
     void Surface::setTransparentColor(Uint8 r, Uint8 g, Uint8 b)
     {
-        if(sdlSurface != 0)
+        if(sdlSurface != nullptr)
         {
             Uint32 colorkey =  SDL_MapRGBA(sdlSurface->format, r, g, b, 0);
             SDL_SetColorKey(sdlSurface, SDL_TRUE, colorkey);
@@ -73,7 +73,7 @@ namespace StiGame {
 
 	void Surface::makeTransparent(void)
 	{
-		if(sdlSurface != 0)
+        if(sdlSurface != nullptr)
 		{
 			Uint32 colorkey = SDL_MapRGBA(sdlSurface->format, 0, 0, 0, 0);
 			SDL_Rect *src = getRect();
@@ -87,7 +87,7 @@ namespace StiGame {
 	{
 		releaseSurface = false;
 
-		if(sur != 0)
+        if(sur != nullptr)
 		{
 			sdlSurface = sur;
 			empty = false;
@@ -177,13 +177,13 @@ namespace StiGame {
 
 	void Surface::freeSurface(void)
 	{
-		if(releaseSurface && sdlSurface != 0)
+        if(releaseSurface && sdlSurface != nullptr && width > 0 && height > 0)
 		{
 			SDL_FreeSurface(sdlSurface);
 			width = 0;
 			height = 0;
 			empty = true;
-			sdlSurface = 0;
+            sdlSurface = nullptr;
 		}
 	}
 
@@ -250,8 +250,8 @@ namespace StiGame {
 
 	void Surface::updatePointer(SDL_Surface *surface)
 	{
-		if((sdlSurface != surface && surface != 0) ||
-			(sdlSurface == surface && surface != 0 && (sdlSurface->w != width || sdlSurface->h != height)))
+        if((sdlSurface != surface && surface != nullptr) ||
+            (sdlSurface == surface && surface != nullptr && (sdlSurface->w != width || sdlSurface->h != height)))
 		{
 			width = surface->w;
 			height = surface->h;

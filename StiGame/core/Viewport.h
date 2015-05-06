@@ -6,6 +6,7 @@
 #include "Cursor.h"
 #include "WindowEventThrower.h"
 #include "Window.h"
+#include "VideoConfig.h"
 
 namespace StiGame
 {
@@ -25,6 +26,8 @@ private:
 
 protected:
     std::list<BaseGameState*> oldStates;
+
+    void loadVideoConfig(void);
 
     static void initSDL(void);
 
@@ -94,9 +97,13 @@ protected:
 	/// \param evt SDL_WindowEvent
 	void handleWindowEvent(SDL_Event *evt);
 
+    std::string configFile;
+
     Cursor* cursor;
+    VideoConfig* config;
 public:
     const int DEFAULT_MS_TRESHOLD = 4;
+    static const std::string VIDEO_CONFIG_FILE;
 
     //static method
     static std::list<Dimension> GetSupportedResolution(void);
@@ -124,6 +131,11 @@ public:
 	/// \brief Get the lowest video mode available
 	/// \return SDL_Rect pointer
 	SDL_Rect* getLowestMode(void);
+
+    VideoConfig* getVideoConfig(void);
+
+    std::string getConfigFile(void);
+    void setConfigFile(std::string m_configFile);
 
 	/// \brief Get target fps
 	/// \return fps

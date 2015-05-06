@@ -6,20 +6,25 @@ namespace StiGame
 StringRenderer::StringRenderer()
 	: Dimension()
 {
-	text = "";
-	renderedString = 0;
+    text = " ";
+    renderedString = nullptr;
 	font = Gui::Runtime::getInstance()->getStyle()->getNormalFont();
 	color = Gui::Runtime::getInstance()->getStyle()->getForeground();
+    renderSurface();
 }
 
 StringRenderer::~StringRenderer()
 {
-
+    if(renderedString != nullptr)
+    {
+        delete renderedString;
+    }
 }
 
 void StringRenderer::setColor(Color *m_color)
 {
 	color = m_color;
+    renderSurface();
 }
 
 Color* StringRenderer::getColor(void)
@@ -30,6 +35,7 @@ Color* StringRenderer::getColor(void)
 void StringRenderer::setFont(Font *m_font)
 {
 	font = m_font;
+    renderSurface();
 }
 
 Font* StringRenderer::getFont(void)
@@ -55,7 +61,7 @@ std::string StringRenderer::getText(void)
 
 Surface* StringRenderer::getSurface(void)
 {
-	if(renderedString != 0)
+    if(renderedString != nullptr)
 	{
 		return renderedString;
 	}
@@ -69,7 +75,7 @@ Surface* StringRenderer::getSurface(void)
 
 void StringRenderer::renderSurface(void)
 {
-	if(renderedString != 0)
+    if(renderedString != nullptr)
 	{
 		delete renderedString;
 	}

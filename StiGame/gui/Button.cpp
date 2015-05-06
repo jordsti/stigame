@@ -9,23 +9,36 @@ namespace StiGame
 namespace Gui
 {
 
-Button::Button(void) : HighlightItem("button")
+Button::Button(void) : HighlightItem("button"), CaptionSupport()
 {
 	offsetWidth = DEFAULT_OFFSET;
 	offsetHeight = DEFAULT_OFFSET;
 	caption = " ";
-	stringBuffer = nullptr;
+
+    stringRenderer.setText(caption);
+
+    highlightRenderer.setColor(highlightForeground);
+    highlightRenderer.setFont(font);
+    highlightRenderer.setText(caption);
+
 }
 
 void Button::setCaption(std::string m_caption)
 {
 	caption = m_caption;
-	renderCaption();
+    stringRenderer.setText(caption);
+    highlightRenderer.setText(caption);
 }
 
 std::string Button::getCaption(void)
 {
 	return caption;
+}
+
+void Button::setHighlightForeground(Color *m_highlightForeground)
+{
+    highlightForeground = m_highlightForeground;
+    highlightRenderer.setColor(m_highlightForeground);
 }
 
 Surface* Button::render(void)
@@ -35,17 +48,11 @@ Surface* Button::render(void)
 		autosize();
 	}
 
-	if(stringBuffer == 0)
-	{
-		renderCaption();
-	}
-
 	Surface *buffer = new Surface(width, height);
 	Color *bg;
 	Color *fg;
 
 	Surface *_str = nullptr;
-	bool clean_str = false;
 
 	PLine l1 = PLine();
 	l1.set1(0,0);
@@ -68,8 +75,8 @@ Surface* Button::render(void)
 		bg = highlightBackground;
 		fg = highlightForeground;
 		//need to use another caption
-		clean_str = true;
-		_str = style->getNormalFont()->renderText(caption, highlightForeground);
+
+        _str = highlightRenderer.getSurface();
 		//_str->setTransparentColor(0, 0, 0);
 		//_str->makeTransparent();
 
@@ -78,7 +85,7 @@ Surface* Button::render(void)
 	{
 		bg = background;
 		fg = foreground;
-		_str = stringBuffer;
+        _str = stringRenderer.getSurface();
 	}
 
 	buffer->fill(bg);
@@ -98,11 +105,6 @@ Surface* Button::render(void)
 	delete src;
 	delete dst;
 
-	if(clean_str)
-    {
-        delete _str;
-    }
-
 	return buffer;
 }
 
@@ -113,45 +115,24 @@ void Button::onClick(Point *relp)
 	publish(this, &se);
 }
 
-void Button::clear(void)
+void Button::setFont(Font *m_font)
 {
-	if(stringBuffer != nullptr)
-	{
-		delete stringBuffer;
-		stringBuffer = nullptr;
-	}
+    font = m_font;
+    stringRenderer.setFont(font);
+    highlightRenderer.setFont(font);
 }
+
 
 void Button::autosize(void)
 {
-	if(stringBuffer == nullptr)
-	{
-		renderCaption();
-	}
 
-	width = offsetWidth*2 + stringBuffer->getSDLSurface()->w;
-	height = offsetHeight*2 + stringBuffer->getSDLSurface()->h;
+    width = offsetWidth*2 + stringRenderer.getWidth();
+    height = offsetHeight*2 + stringRenderer.getHeight();
 }
-
-void Button::renderCaption(void)
-{
-    if(stringBuffer != nullptr)
-	{
-		delete stringBuffer;
-	}
-
-	stringBuffer = style->getNormalFont()->renderText(caption, foreground);
-
-	if(width == 0 && height == 0)
-    {
-        autosize();
-    }
-}
-
 
 Button::~Button(void)
 {
-	clear();
+
 }
 
 }
