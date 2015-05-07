@@ -102,6 +102,7 @@ set(SOURCE_FILES
     gui/StartingCreator.cpp
     gui/FontSupport.cpp
     gui/CaptionSupport.cpp
+    gui/FormLayout.cpp
 
     gui/effects/ItemEffect.cpp
     gui/effects/MovingItem.cpp
@@ -174,6 +175,7 @@ set(SOURCE_FILES
     network/MessageDispatcher.cpp
     network/MessageHandler.cpp
     network/DefaultMessageHandler.cpp
+    network/TcpPacket.cpp
 
     primitives/PCircle.cpp
     primitives/PEllipse.cpp

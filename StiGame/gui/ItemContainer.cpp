@@ -30,6 +30,20 @@ ItemContainer::~ItemContainer()
     }
 }
 
+bool ItemContainer::contains(Item *m_item)
+{
+    ItemIterator it = iterator();
+    for(;it.next();)
+    {
+        if(it.item() == m_item)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 
 int ItemContainer::indexOf(Item *m_item)
 {

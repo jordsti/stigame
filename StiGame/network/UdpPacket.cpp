@@ -180,6 +180,11 @@ void UdpPacket::applyAddress(IPaddress *address)
     _packet->address.port = address->port;
 }
 
+PacketType UdpPacket::type(void)
+{
+    return PT_Udp;
+}
+
 }
 
 }

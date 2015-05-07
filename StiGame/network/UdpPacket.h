@@ -41,6 +41,8 @@ public:
     void copyAddress(IPaddress *dst);
     void applyAddress(IPaddress *address);
 
+    PacketType type(void);
+
 private:
     UDPpacket* _packet;
     int size;

@@ -85,6 +85,8 @@ public:
     /// \return Item pointer or nullptr if not found
     Item* id(int item_id);
 
+    bool contains(Item *m_item);
+
 private:
     /// \brief Starting Node
     ItemNode *_start;

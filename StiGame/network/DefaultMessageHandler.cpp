@@ -30,6 +30,7 @@ void DefaultMessageHandler::readPacket(UdpPacket *packet)
         if(dispatcher != nullptr)
         {
             dispatcher->stop();
+            return;
         }
     }
 

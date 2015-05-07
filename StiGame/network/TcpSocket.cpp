@@ -52,6 +52,19 @@ int TcpSocket::recv(char *data, int length)
     return rs;
 }
 
+void TcpSocket::send(TcpPacket *packet)
+{
+    send(packet->data(), packet->len());
+}
+
+TcpPacket* TcpSocket::recv(int maxLength)
+{
+    char * data = new char[maxLength];
+    int _recv = recv(data, maxLength);
+    TcpPacket *packet = new TcpPacket(data, _recv);
+    return packet;
+}
+
 void TcpSocket::close()
 {
     SDLNet_TCP_Close(tcpSocket);

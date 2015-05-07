@@ -23,9 +23,25 @@ MessageDispatcher::MessageDispatcher()
     lockSendQueue = false;
 }
 
+MessageDispatcher::MessageDispatcher(unsigned int m_listeningPort)
+{
+    running = false;
+    delay = DEFAULT_DELAY;
+    sendingThread = nullptr;
+    receivingThread = nullptr;
+    listeningPort = m_listeningPort;
+    handler = DEFAULT_HANDLER;
+    lockSendQueue = false;
+}
+
 MessageDispatcher::~MessageDispatcher()
 {
 
+}
+
+void MessageDispatcher::setListeningPort(unsigned int m_listeningPort)
+{
+    listeningPort = m_listeningPort;
 }
 
 void MessageDispatcher::start(void)
@@ -33,8 +49,7 @@ void MessageDispatcher::start(void)
     if(!running)
     {
         running = true;
-        receivingThread = new Thread(&StiGame_Net_ReceiveMessage, "receiving thread", this);
-        sendingThread = new Thread(&StiGame_Net_SendMessage, "sending thread", this);
+        createThreads();
     }
 }
 
@@ -49,6 +64,11 @@ void MessageDispatcher::stop(void)
 bool MessageDispatcher::isRunning(void)
 {
     return running;
+}
+
+void MessageDispatcher::setDelay(int m_delay)
+{
+    delay = m_delay;
 }
 
 int MessageDispatcher::getDelay(void)
@@ -109,6 +129,12 @@ UdpPacket* MessageDispatcher::popToSend(void)
     }
 
     return nullptr;
+}
+
+void MessageDispatcher::createThreads(void)
+{
+    receivingThread = new Thread(&StiGame_Net_ReceiveMessage, "receiving thread", this);
+    sendingThread = new Thread(&StiGame_Net_SendMessage, "sending thread", this);
 }
 
 }

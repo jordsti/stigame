@@ -8,6 +8,11 @@ namespace Net
 {
 class PacketStream;
 
+enum PacketType {
+    PT_Tcp,
+    PT_Udp
+};
+
 class IPacket
 {
 public:
@@ -28,7 +33,8 @@ public:
 
     virtual PacketStream stream(void);
 
-    virtual void copyAddress(IPaddress *dst) = 0;
+    virtual PacketType type(void) = 0;
+
 };
 
 }

@@ -15,29 +15,34 @@ public:
     const static int DEFAULT_DELAY = 5;
     const static unsigned short DEFAULT_LISTENING_PORT = 7070;
     static MessageHandler * DEFAULT_HANDLER;
+    MessageDispatcher(unsigned int m_listeningPort);
     MessageDispatcher();
     virtual ~MessageDispatcher();
 
-    void start(void);
+    virtual void start(void);
 
-    void stop(void);
+    virtual void stop(void);
 
     bool isRunning(void);
 
     int getDelay(void);
+    void setDelay(int m_delay);
 
     unsigned short getListeningPort(void);
+    void setListeningPort(unsigned int m_listeningPort);
 
-    void setHandler(MessageHandler *m_handler);
-    MessageHandler* getHandler(void);
+    virtual void setHandler(MessageHandler *m_handler);
+    virtual MessageHandler* getHandler(void);
 
-    void sendPacket(UdpPacket *packet);
+    virtual void sendPacket(UdpPacket *packet);
 
-    void lockSend(void);
-    void unlockSend(void);
+    virtual void lockSend(void);
+    virtual void unlockSend(void);
 
-    UdpPacket* popToSend(void);
+    virtual UdpPacket* popToSend(void);
 private:
+    virtual void createThreads(void);
+
     bool lockSendQueue;
     std::queue<UdpPacket*> toSend;
     MessageHandler *handler;
