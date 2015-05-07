@@ -4,6 +4,8 @@
 #include "Client.h"
 #include "SDL_net.h"
 #include "HTTPTest.h"
+#include "MessageDispatch.h"
+#include "CloseDispatcher.h"
 int main(int argc, char ** argv)
 {
     SDL_Init(0);
@@ -32,6 +34,14 @@ int main(int argc, char ** argv)
             else if(arg == "http")
             {
                 task = new HTTPTest();
+            }
+            else if(arg == "dispatch")
+            {
+                task = new MessageDispatch();
+            }
+            else if(arg == "closedispatcher")
+            {
+                task = new CloseDispatcher();
             }
         }
 

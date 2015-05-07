@@ -12,13 +12,13 @@ This are the tasks that are need to be done for the first minor release of StiGa
 - [x] Rework Label Class to use CaptionSupport
 - [x] Rework Button Class to use CaptionSupport
 - [x] Rework Decorated Button Class to use CaptionSupport
-- [ ] Rework RadioButton Class to use CaptionSupport
+- [x] Rework RadioButton Class to use CaptionSupport
 - [x] Rework CheckBox Class to use CaptionSupport
 - [ ] Form Layout Implementation
 - [ ] GuiItem Effect (Fade In & Out, Shrink, movement)
 - [ ] Frame File more robust testing __WIP__
 - [x] ItemDefinition modification to apply CaptionSupport changes
-- [ ] Investigate Effect problem with new CaptionSupport
+- [x] Investigate Effect problem with new CaptionSupport
 
 ### Core Module
 
@@ -28,12 +28,12 @@ This are the tasks that are need to be done for the first minor release of StiGa
 ### Network Module
 
 - [x] PacketStream Short and UShort data type
-- [ ] PacketStream Long and ULong data type
+- [x] PacketStream Long and ULong data type
 - [x] PacketStream Bool type
 - [ ] Need to test packet transfert little endian vs big endian
 - [ ] TcpSocket Implementation
 - [ ] Packet Implementation for TcpSocket
-- [ ] MessageQueue System Base Class with multi-thread, sending and receiving thread
+- [ ] MessageQueue System Base Class with multi-thread, sending and receiving thread __WIP__
 
 ### Build Generation
 - [ ] Fix Windows Build (probably need to include winpthread)

@@ -25,12 +25,18 @@ public:
 
     void writeBool(bool m_bool);
 
+    void writeInt64(long m_long);
+    void writeUInt64(unsigned long m_long);
+
     std::string readString(void);
     int readInt32(void);
     unsigned int readUInt32(void);
 
     short readInt16(void);
     unsigned short readUInt16(void);
+
+    long readInt64(void);
+    unsigned long readUInt64(void);
 
     bool readBool(void);
 private:

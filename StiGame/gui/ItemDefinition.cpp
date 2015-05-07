@@ -230,13 +230,8 @@ Item* ItemDefinition::create(std::map<std::string, int> variables)
         else if(type == "RadioButton")
         {
             RadioButton *rbtn = new RadioButton();
-            ItemAttribute *attr = findAttribute("caption");
-            if(attr != nullptr)
-            {
-                rbtn->setCaption(attr->getValue());
-            }
-
-            attr = findAttribute("checked");
+            applyCaption(rbtn);
+            ItemAttribute *attr = findAttribute("checked");
             if(attr != nullptr)
             {
                 rbtn->setChecked(attr->getValue() == "true");

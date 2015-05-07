@@ -11,29 +11,16 @@ const int RadioButton::DefaultCaptionOffset = 4;
 
 RadioButton::RadioButton() : Item()
 {
-    font = style->getNormalFont();
     surfaceEmpty = style->getRadio();
     surfaceChecked = style->getRadioChecked();
     captionOffset = DefaultCaptionOffset;
     checked = false;
-    stringBuffer = 0;
     group = 0;
 }
 
 void RadioButton::setGroup(RadioGroup *m_group)
 {
     group = m_group;
-}
-
-void RadioButton::setCaption(std::string m_caption)
-{
-    caption = m_caption;
-    renderCaption();
-}
-
-std::string RadioButton::getCaption(void)
-{
-    return caption;
 }
 
 void RadioButton::setChecked(bool m_checked)
@@ -46,16 +33,16 @@ bool RadioButton::isChecked(void)
     return checked;
 }
 
-void RadioButton::renderCaption(void)
+void RadioButton::setForeground(Color *m_foreground)
 {
-    if(stringBuffer != 0)
-    {
-        delete stringBuffer;
-    }
+    foreground = m_foreground;
+    stringRenderer.setColor(foreground);
+}
 
-    stringBuffer = font->renderText(caption, foreground);
-    width = stringBuffer->getWidth() + captionOffset + surfaceEmpty->getWidth();
-    height = surfaceEmpty->getHeight();
+void RadioButton::setFont(Font *m_font)
+{
+    font = m_font;
+    stringRenderer.setFont(m_font);
 }
 
 void RadioButton::onClick(Point *relp)
@@ -76,7 +63,7 @@ void RadioButton::onClick(Point *relp)
         }
 
         //throw event here
-        CheckEventArgs *args = new CheckEventArgs(checked, caption);
+        CheckEventArgs *args = new CheckEventArgs(checked, stringRenderer.getText());
         publish(this, args);
         delete args;
     }
@@ -85,10 +72,8 @@ void RadioButton::onClick(Point *relp)
 
 Surface *RadioButton::render(void)
 {
-    if(stringBuffer == 0)
-    {
-        renderCaption();
-    }
+    width = stringRenderer.getWidth() + captionOffset + surfaceEmpty->getWidth();
+    height = surfaceEmpty->getHeight();
 
     Surface *buffer = new Surface(width, height);
     buffer->fill(background);
@@ -96,7 +81,7 @@ Surface *RadioButton::render(void)
     //caption drawing
 
     SDL_Rect *src,*dst;
-
+    Surface *stringBuffer = stringRenderer.getSurface();
     src = stringBuffer->getRect();
     dst = stringBuffer->getRect(0, height / 2 - stringBuffer->getHeight()/2);
 

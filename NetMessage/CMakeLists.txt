@@ -6,6 +6,8 @@ set(SOURCE_FILES main.cpp
         Server.cpp
         Client.cpp
         HTTPTest.cpp
+        MessageDispatch.cpp
+        CloseDispatcher.cpp
         )
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})

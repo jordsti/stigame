@@ -171,6 +171,9 @@ set(SOURCE_FILES
     network/UdpPacket.cpp
     network/IPacket.cpp
     network/PacketStream.cpp
+    network/MessageDispatcher.cpp
+    network/MessageHandler.cpp
+    network/DefaultMessageHandler.cpp
 
     primitives/PCircle.cpp
     primitives/PEllipse.cpp

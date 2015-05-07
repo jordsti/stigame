@@ -17,7 +17,7 @@ void Client::execute(void)
     StiGame::Net::UdpSocket socket;
     IPaddress addr;
     socket.open(0);
-    SDLNet_ResolveHost(&addr, "127.0.0.1", 9000);
+    SDLNet_ResolveHost(&addr, "127.0.0.1", 7070);
 
     int channel = socket.bind(-1, &addr);
     int i=0;
