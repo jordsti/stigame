@@ -2,6 +2,7 @@
 #include "Vector2.h"
 #include "MathTK.h"
 #include "MVector2F.h"
+#include <cmath>
 namespace StiGame
 {
 

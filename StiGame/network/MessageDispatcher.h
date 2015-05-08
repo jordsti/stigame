@@ -1,6 +1,6 @@
 #ifndef MESSAGEDISPATCHER_H
 #define MESSAGEDISPATCHER_H
-#include "Thread.h"
+#include "SGThread.h"
 #include "MessageHandler.h"
 #include <queue>
 namespace StiGame

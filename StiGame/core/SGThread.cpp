@@ -1,4 +1,4 @@
-#include "Thread.h"
+#include "SGThread.h"
 namespace StiGame {
 
 Thread::Thread(SDL_ThreadFunction fn, std::string m_name, void *m_data_ptr)
@@ -36,7 +36,9 @@ int Thread::wait(void)
 
 void Thread::detach(void)
 {
+#ifndef __MINGW32__
     SDL_DetachThread(_thread);
+#endif
 }
 
 void Thread::setPriority(SDL_ThreadPriority m_priority)

@@ -1,5 +1,6 @@
 #include "MVector2F.h"
 #include "MathTK.h"
+#include <cmath>
 namespace StiGame
 {
 

@@ -37,7 +37,7 @@ This are the tasks that are need to be done for the first minor release of StiGa
 - [ ] MessageQueue System Base Class with multi-thread, sending and receiving thread __WIP__
 
 ### Build Generation
-- [ ] Fix Windows Build (probably need to include winpthread)
+- [x] Fix Windows Build (probably need to include winpthread)
 
 ### Documentation
 - [ ] Generate a more recent Doxy API Documentation
