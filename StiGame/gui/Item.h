@@ -129,6 +129,8 @@ public:
 
     int getId(void);
 
+    virtual void prerender(void);
+
 protected:
 	/// \brief Name of the item
 	std::string name;

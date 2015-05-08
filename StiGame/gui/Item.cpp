@@ -234,6 +234,11 @@ Dimension* Item::getMaximumSize()
     return &maximumSize;
 }
 
+void Item::prerender(void)
+{
+    delete render();
+}
+
 }
 
 }
