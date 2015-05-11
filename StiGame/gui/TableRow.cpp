@@ -13,7 +13,11 @@ TableRow::TableRow()
 
 TableRow::~TableRow()
 {
-
+    auto cit(cells.begin()), cend(cells.end());
+    for(;cit!=cend;++cit)
+    {
+        delete (*cit);
+    }
 }
 
 void TableRow::addCell(TableCell *cell)

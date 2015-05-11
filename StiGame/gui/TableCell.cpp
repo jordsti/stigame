@@ -8,9 +8,7 @@ namespace Gui
 
 TableCell::TableCell()
 {
-	value = " ";
-	str_renderer = StringRenderer();
-	str_renderer.setText(value);
+    value = str_renderer.getText();
 }
 
 TableCell::~TableCell()

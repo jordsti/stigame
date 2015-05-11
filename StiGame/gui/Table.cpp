@@ -11,15 +11,27 @@ namespace Gui
 const int Table::DEFAULT_COL_WIDTH = 50;
 const int Table::DEFAULT_ROW_HEIGHT = 20;
 
-Table::Table() : Item("Table")
+Table::Table() : HighlightItem("Table")
 {
 	nbColumns = 0;
-	rowHeight = DEFAULT_ROW_HEIGHT;
+    rowHeight = DEFAULT_ROW_HEIGHT;
+    font = style->getNormalFont();
 }
 
 Table::~Table()
 {
+    auto rit(rows.begin()), rend(rows.end());
+    for(;rit!=rend;++rit)
+    {
+        TableRow *row = (*rit);
+        delete row;
+    }
 
+    auto cit(columns.begin()), cend(columns.end());
+    for(;cit!=cend;++cit)
+    {
+        delete (*cit);
+    }
 }
 
 Surface* Table::render(void)
@@ -30,13 +42,20 @@ Surface* Table::render(void)
 	//drawing columns
 
 	std::vector<TableColumn*>::iterator cit(columns.begin()), cend(columns.end());
-	SDL_Rect *src = new SDL_Rect();
-	SDL_Rect *dst = new SDL_Rect();
+    SDL_Rect *src = new SDL_Rect();
+    SDL_Rect *dst = new SDL_Rect();
 	PLine line = PLine();
 	int dx = 0;
 	int dy = 0;
 
 	int colwidths[nbColumns];
+
+    //mouse hover row
+    int m_row = -1;
+    if(mouseOver)
+    {
+        m_row = (mousePosition.getY() / rowHeight) -1;
+    }
 
 	//colwidths = new int[nbColumns];
 
@@ -46,19 +65,19 @@ Surface* Table::render(void)
 		TableColumn *col = (*cit);
 
 		Surface *csur = col->surface;
-		csur->updateSDLRect(src);
+        csur->updateSDLRect(src);
 
-		dst->w = MinWidth(col->width, csur->getWidth());
-		dst->h = csur->getHeight();
-		dst->x = dx + ( col->width - csur->getWidth() ) / 2;
-		dst->y = dy + ( rowHeight - csur->getHeight() ) / 2;
+        dst->w = col->width;
+        dst->h = csur->getHeight();
+        dst->x = dx + ( col->width - csur->getWidth() ) / 2;
+        dst->y = dy + ( rowHeight - csur->getHeight() ) / 2;
 
-		buffer->blit(csur, src, dst);
+        buffer->blit(csur, src, dst);
 
-		line.set1(col->width - 1, 0);
-		line.set2(col->width - 1, rowHeight - 1);
+        line.set1(dx + col->width - 1, 0);
+        line.set2(dx + col->width - 1, rowHeight - 1);
 
-		line.draw(buffer->getSDLSurface(), foreground);
+        line.draw(buffer->getSDLSurface(), foreground);
 		colwidths[ic] = col->width;
 		dx += col->width;
 		ic++;
@@ -69,10 +88,10 @@ Surface* Table::render(void)
 	line.set1(0, rowHeight);
 	line.set2(width - 1, rowHeight);
 
-	line.draw(buffer->getSDLSurface(), foreground);
+    line.draw(buffer->getSDLSurface(), foreground);
 
 	//drawing rows
-
+    int i_r = 0;
 	std::vector<TableRow*>::iterator rit(rows.begin()), rend(rows.end());
 	for(;rit!=rend;++rit)
 	{
@@ -82,28 +101,48 @@ Surface* Table::render(void)
 		}
 
 		TableRow *row = (*rit);
-		Surface *rbuf = new Surface(width, rowHeight);
-		rbuf->fill(background);
+
+        if(i_r == m_row)
+        {
+            Rectangle rect (0, dy, width, rowHeight);
+            buffer->fillRect(&rect, highlightBackground);
+        }
+
+
+
+        int row_x = 0;
 
 		for(int i=0; i<nbColumns; i++)
 		{
-			TableCell *cell = row->getCell(i);
-			Surface *str_sur = cell->getSurface();
+            TableCell *cell = row->getCell(i);
+            Surface *str_sur = cell->getSurface();
 
-			str_sur->updateSDLRect(src);
+            if(i_r == m_row)
+            {
+                //render a new String Surface with highlight foreground color
+                str_sur = font->renderText(cell->getValue(), highlightForeground);
+            }
 
-			dst->x = dx + (colwidths[i] - str_sur->getWidth()) / 2;
-			dst->y = dy + (rowHeight - str_sur->getHeight()) / 2;
-			dst->w = MinWidth(colwidths[i], str_sur->getWidth());
-			dst->h = str_sur->getHeight();
+            str_sur->updateSDLRect(src);
+            dst->x = row_x + ((colwidths[i] - str_sur->getWidth()) / 2);
+            //dst->x = row_x;
+            dst->y = dy + ((rowHeight - str_sur->getHeight()) / 2);
+            dst->w = str_sur->getWidth();
+            dst->h = str_sur->getHeight();
+            buffer->blit(str_sur, src, dst);
 
-			buffer->blit(str_sur, src, dst);
+            line.set1(row_x + colwidths[i] - 1, dy);
+            line.set2(row_x + colwidths[i] - 1, dy + rowHeight - 1);
 
-			line.set1(dx + colwidths[i] - 1, dy);
-			line.set2(dx + colwidths[i] - 1, dy + rowHeight - 1);
+            line.draw(buffer->getSDLSurface(), foreground);
+            //todo
 
-			line.draw(buffer->getSDLSurface(), foreground);
-			//todo
+            row_x += colwidths[i];
+
+            if(i_r == m_row)
+            {
+                delete str_sur;
+            }
 		}
 
 		line.set1(0, dy + rowHeight - 1);
@@ -111,13 +150,16 @@ Surface* Table::render(void)
 
 		line.draw(buffer->getSDLSurface(), foreground);
 
-		delete rbuf;
+        dy += rowHeight;
+
+        i_r++;
 	}
 
 	//border drawing
 
-	delete src;
-	delete dst;
+
+    delete src;
+    delete dst;
 
 	return buffer;
 }
@@ -139,6 +181,38 @@ int Table::MinWidth(int w1, int w2)
 TableRow* Table::getRow(int index)
 {
 	return rows[index];
+}
+
+void Table::removeRow(int index)
+{
+    auto rit(rows.begin()), rend(rows.end());
+    int id=0;
+    for(;rit!=rend;++rit)
+    {
+        if(index == id)
+        {
+            TableRow *row = (*rit);
+            rows.erase(rit);
+            delete row;
+            break;
+        }
+        id++;
+    }
+}
+
+void Table::removeRow(TableRow *row)
+{
+    auto rit(rows.begin()), rend(rows.end());
+    for(;rit!=rend;++rit)
+    {
+        TableRow *_row = (*rit);
+        if(_row == row)
+        {
+            delete _row;
+            rows.erase(rit);
+            break;
+        }
+    }
 }
 
 void Table::setForeground(Color* m_foreground)
@@ -229,6 +303,49 @@ TableRow* Table::newRow(void)
 
 	rows.push_back(row);
 	return row;
+}
+
+void Table::onClick(Point *relp)
+{
+    int rowIndex = (relp->getY() / rowHeight) - 1;
+    int colIndex = -1;
+    if(rowIndex < rows.size() || rowIndex == -1)
+    {
+        auto cit(columns.begin()), cend(columns.end());
+        int cur_x = 0;
+        int index = 0;
+        for(;cit!=cend;++cit)
+        {
+            TableColumn *col = (*cit);
+            if(relp->getX() > cur_x && relp->getX() < cur_x + col->width)
+            {
+                colIndex = index;
+            }
+
+            cur_x += col->width;
+            index++;
+        }
+
+        if(colIndex >= 0 && rowIndex >= 0)
+        {
+            TableRow *row = rows[rowIndex];
+            TableCell *cell = row->getCell(colIndex);
+
+            TableClickEventArgs args (this, row, cell, rowIndex, colIndex);
+            publish(this, &args);
+        }
+        else if(colIndex >= 0 && rowIndex == -1)
+        {
+            //header clicked
+            TableClickEventArgs args (this, nullptr, nullptr, rowIndex, colIndex);
+            publish(this, &args);
+        }
+    }
+}
+
+void Table::onMouseMotion(Point *relp)
+{
+    mousePosition.setPoint(relp);
 }
 
 

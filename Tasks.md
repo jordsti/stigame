@@ -5,7 +5,7 @@ This are the tasks that are need to be done for the first minor release of StiGa
 
 ### Gui Module
 
-- [ ] Write a Table Test Program and find the issues with the current Table Class
+- [ ] Write a Table Test Program and find the issues with the current Table Class __WIP__
 - [ ] Progress Bar Test and fixes
 - [x] BaseClass for Font rendering Item
 - [x] BaseClass for Caption Item
@@ -20,6 +20,7 @@ This are the tasks that are need to be done for the first minor release of StiGa
 - [ ] Frame File more robust testing __WIP__
 - [x] ItemDefinition modification to apply CaptionSupport changes
 - [x] Investigate Effect problem with new CaptionSupport
+- [ ] Table Event (ClickCellEvent and maybe other event type) __WIP__
 
 ### Core Module
 

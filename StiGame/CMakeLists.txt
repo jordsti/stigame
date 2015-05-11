@@ -147,6 +147,9 @@ set(SOURCE_FILES
     events/WindowEventArgs.cpp
     events/WindowEventListener.cpp
     events/WindowEventThrower.cpp
+    events/TableClickEventArgs.cpp
+    events/TableClickEventListener.cpp
+    events/TableClickEventThrower.cpp
 
     files/Entry.cpp
     files/Directory.cpp

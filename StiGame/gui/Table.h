@@ -1,9 +1,10 @@
 #ifndef TABLE_H
 #define TABLE_H
 
-#include "Item.h"
-#include "TableRow.h"
+#include "HighlightItem.h"
 #include <vector>
+#include "TableClickEventThrower.h"
+#include "TableRow.h"
 
 namespace StiGame
 {
@@ -24,11 +25,13 @@ struct TableColumn
 };
 
 //WIP : maybe a namespace for wip class can be interesting
+//todo event handling
 
 /// \class Table
 /// \brief Item that draw a Table [WIP]
 class Table :
-	public Item
+    public HighlightItem,
+    public TableClickEventThrower
 {
 public:
 	/// \brief Default Column Width (px)
@@ -68,6 +71,9 @@ public:
 	/// \param index Row Indow
 	/// \return Row Pointer
 	TableRow* getRow(int index);
+
+    void removeRow(int index);
+    void removeRow(TableRow *row);
 	
 	virtual void setForeground(Color* m_foreground);
 	
@@ -77,6 +83,10 @@ public:
 	/// \brief Set Row Height
 	/// \param m_rowHeight Height (px)
 	void setRowHeight(int m_rowHeight);
+
+    void onClick(Point *relp);
+
+    void onMouseMotion(Point *relp);
 	
 protected:
 	/// \brief Rows
@@ -93,6 +103,9 @@ protected:
 	/// \param w1 Width 1
 	/// \param w2 Width 2
 	static int MinWidth(int w1, int w2);
+
+    MPoint mousePosition;
+
 };
 
 }
