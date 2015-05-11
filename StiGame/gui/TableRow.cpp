@@ -30,7 +30,7 @@ TableCell* TableRow::getCell(int index)
 	return cells[index];
 }
 
-int TableRow::countCells(void)
+int TableRow::cellsCount(void)
 {
 	return cells.size();
 }

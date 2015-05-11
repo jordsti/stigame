@@ -46,7 +46,7 @@ public:
 	Surface* render(void);
 	/// \brief Get Rows Count (need to rename this method)
 	/// \return Rows Count
-	int countRows(void);
+    int rowsCount(void);
 	
 	/// \brief Add a column
 	/// \param c_name Column Name

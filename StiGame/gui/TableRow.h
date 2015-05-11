@@ -27,7 +27,7 @@ public:
 	TableCell* getCell(int index);
 	/// \brief Get the Cells Count (Need to rename this method to cellsCount)
 	/// \return Cell Count
-	int countCells(void);
+    int cellsCount(void);
 protected:
 	/// \brief Cells of this row
 	std::vector<TableCell*> cells;

@@ -232,7 +232,7 @@ void Table::setForeground(Color* m_foreground)
 
 }
 
-int Table::countRows(void)
+int Table::rowsCount(void)
 {
 	return rows.size();
 }
