@@ -9,7 +9,7 @@ namespace StiGame
 namespace Gui
 {
 
-Button::Button(void) : HighlightItem("button"), CaptionSupport()
+Button::Button(void) : HighlightItem("Button"), CaptionSupport()
 {
 	offsetWidth = DEFAULT_OFFSET;
 	offsetHeight = DEFAULT_OFFSET;

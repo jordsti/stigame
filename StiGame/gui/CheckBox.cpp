@@ -9,7 +9,7 @@ namespace Gui
 
 const int CheckBox::DefaultCaptionOffset = 4;
 
-CheckBox::CheckBox() : Item(), CaptionSupport()
+CheckBox::CheckBox() : Item("CheckBox"), CaptionSupport()
 {
     //ctor
     captionOffset = DefaultCaptionOffset;

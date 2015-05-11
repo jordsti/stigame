@@ -10,7 +10,7 @@ namespace Gui
 const int List::DEFAULT_LINE_HEIGHT = 20;
 
 List::List()
-	: HighlightItem("SelectionList")
+    : HighlightItem("List")
 {
 	selectedIndex = -1;
 	viewIndex = 0;

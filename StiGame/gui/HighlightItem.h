@@ -17,7 +17,7 @@ class HighlightItem :
 {
     public:
 	/// \brief Create a new Highlight Item
-        HighlightItem();
+    HighlightItem();
 	/// \brief Create a new Highlight Item with his name
 	/// \param i_name Item Name
 	HighlightItem(std::string i_name);

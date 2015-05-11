@@ -55,6 +55,12 @@ public:
 	/// \param c_name Column Name
 	/// \param width Column Width (px)
 	void addColumn(std::string c_name, int width);
+
+    int columnsCount(void);
+
+    int getColumnIndex(std::string c_name);
+
+    TableColumn* getColumn(int index);
 	
 	/// \brief Create a new row with table data (columns)
 	/// \return New Row Pointer

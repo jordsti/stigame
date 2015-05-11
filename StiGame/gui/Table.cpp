@@ -230,6 +230,15 @@ void Table::setForeground(Color* m_foreground)
 		}
 	}
 
+    auto cit(columns.begin()), cend(columns.end());
+    for(;cit!=cend;++cit)
+    {
+        TableColumn *col = (*cit);
+
+        delete col->surface;
+        col->surface = font->renderText(col->name, foreground);
+    }
+
 }
 
 int Table::rowsCount(void)
@@ -250,6 +259,33 @@ void Table::addColumn(std::string c_name, int width)
 	col->surface = font->renderText(c_name, foreground);
 	columns.push_back(col);
 	nbColumns++;
+}
+
+int Table::columnsCount(void)
+{
+    return columns.size();
+}
+
+int Table::getColumnIndex(std::string c_name)
+{
+    int index = 0;
+    auto cit(columns.begin()), cend(columns.end());
+    for(;cit!=cend;++cit)
+    {
+        if((*cit)->name == c_name)
+        {
+            return index;
+        }
+
+        index++;
+    }
+
+    return -1;
+}
+
+TableColumn* Table::getColumn(int index)
+{
+    return columns[index];
 }
 
 Font* Table::getFont(void)

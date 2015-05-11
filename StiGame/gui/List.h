@@ -51,7 +51,7 @@ public:
 	/// \brief Get the rendering Font
 	/// \return Font
 	Font* getFont(void);
-        /// \brief Get the current Line height
+    /// \brief Get the current Line height
 	/// \return Height (px)
 	int getLineHeight(void);
 	/// \brief Set the line height

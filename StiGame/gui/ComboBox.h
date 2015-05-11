@@ -17,83 +17,83 @@ class ComboBox :
     public HighlightItem,
     public SelectionEventThrower
 {
-    public:
+public:
 	/// \brief Create a new Combo Box
-        ComboBox();
+    ComboBox();
 	/// \brief Destructor
-        virtual ~ComboBox();
+    virtual ~ComboBox();
 	/// \brief Get Selected Item
 	/// \return Selected Value Object
-        ValueObject *getSelectedItem(void);
+    ValueObject *getSelectedItem(void);
 	/// \brief Get Selected Item Index
 	/// \return Index
-        int getSelectedIndex(void);
+    int getSelectedIndex(void);
 	/// \brief Set Selected Item Index
 	/// \param m_selectionIndex Index
-        void setSelectedIndex(int m_selectedIndex);
+    void setSelectedIndex(int m_selectedIndex);
 	/// \brief Set Selected Item
 	/// \param selectedItem Item
-        void setSelectedItem(ValueObject *selectedItem);
+    void setSelectedItem(ValueObject *selectedItem);
 	/// \brief Add a Value Object to the Combo Box
 	/// \param vo Value Object to add
-        void add(ValueObject *vo);
+    void add(ValueObject *vo);
 	/// \brief Remove a Value Object of the Combo Box
 	/// \param vo Value Object to remove
-        void remove(ValueObject *vo);
+    void remove(ValueObject *vo);
 	/// \brief Set Text font
 	/// \param m_font Font
-        void setFont(Font *m_font);
+    void setFont(Font *m_font);
 	/// \brief On Click Event
 	/// \param relp Relative mouse position
-        void onClick(Point *relp);
+    void onClick(Point *relp);
 	/// \brief Render the Gui Item
 	/// \return Rendered Combo Box
-        Surface *render(void);
+    Surface *render(void);
 	/// \brief Mouse Motion Event
 	/// \param relp Relative Mouse position
-        void onMouseMotion(Point *relp);
+    void onMouseMotion(Point *relp);
 
-    protected:
+protected:
 	/// \brief Render Drop List
 	/// \param buffer Item Buffer
-        void renderDroplist(Surface *buffer);
+    void renderDroplist(Surface *buffer);
 	/// \brief Show the Drop List
-        void showDroplist(void);
+    void showDroplist(void);
 	/// \brief Close the Drop List
-        void closeDroplist(void);
+    void closeDroplist(void);
 	/// \brief Current Item
-        int currentItem;
+    int currentItem;
 	/// \brief Item Size
-        int itemSize;
+    int itemSize;
 	/// \brief Closed Combo Box Height
-        int closedHeight;
+    int closedHeight;
 	/// \brief Selected Item Id
-        int selectedId;
+    int selectedId;
 	/// \brief Text Offset
-        int textOffset;
+    int textOffset;
 	/// \brief Item Hover
-        int itemHover;
+    int itemHover;
 	/// \brief Text Font
-        Font *font;
+    Font *font;
 	/// \brief Value Object List
-        std::list<ValueObject*> items;
+    std::list<ValueObject*> items;
 	/// \brief Value Object String Buffer
-        std::map<int, Surface*> stringsBuffer;
+    std::map<int, Surface*> stringsBuffer;
 	/// \brief Drop Arrow Image
-        Surface *dropArrow;
+    Surface *dropArrow;
 	/// \brief Drop List Up Arrow
-        Surface *upArrow;
+    Surface *upArrow;
 	/// \brief Drop List Down Arrow
-        Surface *downArrow;
+    Surface *downArrow;
 	/// \brief Numbers of item to show in the Drop List
-        int nbItemsToShow;
+    int nbItemsToShow;
 	/// \brief Draw Drop List
-        bool drawDroplist;
+    bool drawDroplist;
 	/// \brief Default Number of items to show
 	static const int DefaultNbItems;
 	/// \brief Default Text Offset
 	static const int DefaultTextOffset;
-    private:
+private:
 };
 
 }
