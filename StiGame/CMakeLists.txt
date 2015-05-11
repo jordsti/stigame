@@ -150,6 +150,9 @@ set(SOURCE_FILES
     events/TableClickEventArgs.cpp
     events/TableClickEventListener.cpp
     events/TableClickEventThrower.cpp
+    events/CellValueChangedEventArgs.cpp
+    events/CellValueChangedEventListener.cpp
+    events/CellValueChangedEventThrower.cpp
 
     files/Entry.cpp
     files/Directory.cpp

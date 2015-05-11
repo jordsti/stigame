@@ -58,37 +58,9 @@ Surface* GuiState::render()
         sBuffer = new Surface(width, height);
     }
 
-	//rendering items
 	sBuffer->fill(style->getBackground());
-    //MPoint *relp = new MPoint();
 
     container.iterator().publishOnMouseMotion(mouse_x, mouse_y);
-
-    /*for(ItemIterator it = container.iterator(); it.next();)
-    {
-        it.
-        Item *item = it.item();
-
-        if(item->contains(mouse_x, mouse_y))
-        {
-            relp->setPoint(mouse_x - item->getX(), mouse_y - item->getY());
-            item->setMouseOver(true);
-            item->onMouseMotion(relp);
-        }
-        else
-        {
-            item->setMouseOver(false);
-        }
-
-        if(item->isVisible())
-        {
-            Surface *itemBuffer = item->render();
-            sBuffer->blit(itemBuffer, item);
-            delete itemBuffer;
-        }
-    }
-
-    delete relp;*/
 
     return sBuffer;
 

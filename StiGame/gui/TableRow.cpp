@@ -35,6 +35,33 @@ int TableRow::cellsCount(void)
 	return cells.size();
 }
 
+void TableRow::subscribeCells(CellValueChangedEventListener *listener)
+{
+    auto cit(cells.begin()), cend(cells.end());
+    for(;cit!=cend;++cit)
+    {
+        TableCell *cell = (*cit);
+        cell->subscribe(listener);
+    }
+}
+
+int TableRow::getCellIndex(TableCell *cell)
+{
+    int i=0;
+    auto cit(cells.begin()), cend(cells.end());
+    for(;cit!=cend;++cit)
+    {
+        if((*cit) == cell)
+        {
+            return i;
+        }
+
+        i++;
+    }
+
+    return -1;
+}
+
 }
 
 }

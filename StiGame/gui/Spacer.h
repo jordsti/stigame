@@ -14,11 +14,11 @@ class Spacer :
 {
     public:
 	/// \brief Constructor
-        Spacer();
+    Spacer();
 	/// \brief Destructor
-        virtual ~Spacer();
+    virtual ~Spacer();
 	
-        Surface* render(void);
+    Surface* render(void);
     protected:
     private:
 };

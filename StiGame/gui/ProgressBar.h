@@ -50,6 +50,8 @@ public:
 	/// \brief Set bar Color
 	/// \param m_barColor Bar Color
 	void setBarColor(Color *m_barColor);
+
+    void increment(int step);
 	
 protected:
 	/// \brief Maximum

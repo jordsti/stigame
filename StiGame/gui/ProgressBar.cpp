@@ -93,6 +93,19 @@ void ProgressBar::setCurrent(int m_current)
 	current = m_current;
 }
 
+void ProgressBar::increment(int step)
+{
+    if(current < max)
+    {
+        current += step;
+    }
+
+    if(current > max)
+    {
+        current = max;
+    }
+}
+
 }
 
 }

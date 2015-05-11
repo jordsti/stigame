@@ -24,6 +24,12 @@ struct TableColumn
 	Surface* surface;
 };
 
+struct CellCoord
+{
+    int row;
+    int col;
+};
+
 //WIP : maybe a namespace for wip class can be interesting
 //todo event handling
 
@@ -93,7 +99,13 @@ public:
     void onClick(Point *relp);
 
     void onMouseMotion(Point *relp);
-	
+
+    TableCell* getCell(int row, int col);
+
+    void subscribeCells(CellValueChangedEventListener *listener);
+
+    CellCoord getCellCoord(TableCell *cell);
+
 protected:
 	/// \brief Rows
 	std::vector<TableRow*> rows;

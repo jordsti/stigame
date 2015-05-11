@@ -341,6 +341,21 @@ TableRow* Table::newRow(void)
 	return row;
 }
 
+TableCell* Table::getCell(int row, int col)
+{
+    if(row < rows.size())
+    {
+        TableRow *_row = rows[row];
+
+        if(col < columns.size())
+        {
+            return _row->getCell(col);
+        }
+    }
+
+    return nullptr;
+}
+
 void Table::onClick(Point *relp)
 {
     int rowIndex = (relp->getY() / rowHeight) - 1;
@@ -382,6 +397,42 @@ void Table::onClick(Point *relp)
 void Table::onMouseMotion(Point *relp)
 {
     mousePosition.setPoint(relp);
+}
+
+void Table::subscribeCells(CellValueChangedEventListener *listener)
+{
+    auto rit(rows.begin()), rend(rows.end());
+    for(;rit!=rend;++rit)
+    {
+        TableRow *row = (*rit);
+        row->subscribeCells(listener);
+    }
+}
+
+CellCoord Table::getCellCoord(TableCell *cell)
+{
+    auto rit(rows.begin()), rend(rows.end());
+    int r_i = 0;
+    for(;rit!=rend;++rit)
+    {
+        TableRow *row = (*rit);
+        int c_i = row->getCellIndex(cell);
+
+        if(c_i != -1)
+        {
+            CellCoord coord;
+            coord.row = r_i;
+            coord.col = c_i;
+            return coord;
+        }
+
+        r_i++;
+    }
+
+    CellCoord coord;
+    coord.col = -1;
+    coord.row = -1;
+    return coord;
 }
 
 

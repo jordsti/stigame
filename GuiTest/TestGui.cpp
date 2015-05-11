@@ -102,6 +102,13 @@ void TestGui::initComponents()
     dbtn1.setPoint(220, 500);
     dbtn1.subscribe(this);
 
+
+    //progress bar
+    pbar.setPoint(50, 400);
+    pbar.setDimension(175, 20);
+    pbar.setMax(500);
+    pbar.setCurrent(0);
+
     add(&guiList);
     //add(&cb1);
     add(fi);
@@ -109,6 +116,7 @@ void TestGui::initComponents()
     add(&tbName);
     add(&vlayout);
     add(&dbtn1);
+    add(&pbar);
 }
 
 void TestGui::handleEvent(StiGame::Gui::SelectionEventThrower *src, StiGame::Gui::SelectionEventArgs *args)
@@ -119,6 +127,17 @@ void TestGui::handleEvent(StiGame::Gui::SelectionEventThrower *src, StiGame::Gui
     }
 
 
+}
+
+void TestGui::onPaint(SDL_Renderer *renderer)
+{
+
+    if(pbar.getCurrent() < pbar.getMax())
+    {
+        pbar.increment(1);
+    }
+
+    GuiState::onPaint(renderer);
 }
 
 bool TestGui::handleEvent(EventThrower *src, EventArgs *evt)

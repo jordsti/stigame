@@ -28,6 +28,11 @@ public:
 	/// \brief Get the Cells Count (Need to rename this method to cellsCount)
 	/// \return Cell Count
     int cellsCount(void);
+
+    int getCellIndex(TableCell *cell);
+
+    void subscribeCells(CellValueChangedEventListener *listener);
+
 protected:
 	/// \brief Cells of this row
 	std::vector<TableCell*> cells;

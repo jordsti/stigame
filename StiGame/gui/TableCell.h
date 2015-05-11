@@ -3,7 +3,7 @@
 
 #include <string>
 #include "StringRenderer.h"
-
+#include "CellValueChangedEventThrower.h"
 namespace StiGame
 {
 
@@ -12,7 +12,8 @@ namespace Gui
 
 /// \class TableCell
 /// \brief A Cell in the table
-class TableCell
+class TableCell :
+        public CellValueChangedEventThrower
 {
 public:
 	/// \brief Constructor

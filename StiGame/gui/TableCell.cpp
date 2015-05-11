@@ -35,8 +35,15 @@ std::string TableCell::getValue(void)
 
 void TableCell::setValue(std::string m_value)
 {
-	value = m_value;
-	str_renderer.setText(value);
+    if(value != m_value)
+    {
+        CellValueChangedEventArgs args (this, value);
+        value = m_value;
+        str_renderer.setText(value);
+
+        publish(this, &args);
+    }
+
 }
 
 

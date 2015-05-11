@@ -10,6 +10,7 @@
 #include <Button.h>
 #include <DecoratedButton.h>
 #include <TextBox.h>
+#include <ProgressBar.h>
 #include <VerticalBoxLayout.h>
 #include "TestTabItem.h"
 #include "EffectUnwrapper.h"
@@ -24,6 +25,8 @@ class TestGui :
         virtual ~TestGui();
         bool handleEvent(StiGame::EventThrower *src, StiGame::EventArgs *evt);
         void handleEvent(StiGame::Gui::SelectionEventThrower *src, StiGame::Gui::SelectionEventArgs *args);
+
+        void onPaint(SDL_Renderer *renderer);
     protected:
         StiGame::Gui::List guiList;
         StiGame::Gui::CheckBox cb1;
@@ -41,6 +44,7 @@ class TestGui :
         StiGame::Gui::Label lbl_vlayout4;
         StiGame::Gui::Label lbl_vlayout5;
         StiGame::Gui::DecoratedButton dbtn1;
+        StiGame::Gui::ProgressBar pbar;
     private:
         void initComponents(void);
 };

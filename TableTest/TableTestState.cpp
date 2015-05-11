@@ -42,6 +42,27 @@ void TableTestState::initComponents(void)
     row->getCell(1)->setValue("Josh Limit");
     row->getCell(2)->setValue("131313");
 
+
+    row = table.newRow();
+
+    row->getCell(0)->setValue("3");
+    row->getCell(1)->setValue("Josh Limit");
+    row->getCell(2)->setValue("131313");
+
+
+    row = table.newRow();
+
+    row->getCell(0)->setValue("3");
+    row->getCell(1)->setValue("Josh Limit");
+    row->getCell(2)->setValue("131313");
+
+
+    row = table.newRow();
+
+    row->getCell(0)->setValue("3");
+    row->getCell(1)->setValue("Josh Limit");
+    row->getCell(2)->setValue("131313");
+
     table.subscribe(this);
 }
 
@@ -55,6 +76,6 @@ void TableTestState::handleEvent(StiGame::Gui::TableClickEventThrower *src, StiG
     else
     {
         std::cout << "Table Click Event : " << args->getRowIndex() << ", " << args->getColumnIndex() << ", " << args->getCell()->getValue() << std::endl;
-        table.removeRow(args->getRowIndex());
+        table.removeRow(args->getRow());
     }
 }
