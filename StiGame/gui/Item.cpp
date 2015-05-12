@@ -34,12 +34,6 @@ Item::Item(std::string iname)
 	style = Runtime::getInstance()->getStyle();
 	name = iname;
     _id = incrementId();
-
-    if(Runtime::getInstance()->isDebug())
-    {
-        std::cout << "[DEBUG] New GuiItem Created : " << name << " #" << _id << std::endl;
-    }
-
 	init();
 }
 

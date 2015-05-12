@@ -147,6 +147,7 @@ public:
     void setConfigFile(std::string m_configFile);
 
     void addProfiler(ViewportProfiler *m_profiler);
+    void clearProfilers(void);
 
 	/// \brief Get target fps
 	/// \return fps

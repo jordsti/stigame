@@ -83,6 +83,8 @@ add_subdirectory(NetMessage)
 
 add_subdirectory(TableTest)
 
+add_subdirectory(Benchmark)
+
 if(WIN32)
     #need some dll
     get_filename_component(MINGW32_ROOT ${CMAKE_CXX_COMPILER} DIRECTORY)

@@ -316,6 +316,11 @@ void Viewport::publishStateCleaned(void)
     }
 }
 
+void Viewport::clearProfilers(void)
+{
+    profilers.clear();
+}
+
 void Viewport::startLoop(void)
 {
 	if(currentState != 0)
@@ -332,7 +337,7 @@ void Viewport::startLoop(void)
             else
             {
                 long long diff = Time::GetMsTimestamp() - lastTick;
-                publishFrameRenderTime(diff);
+
                 if(diff >= msWaitTime)
                 {
                     long long over = diff - msWaitTime;
@@ -343,6 +348,8 @@ void Viewport::startLoop(void)
                         std::cout << "Treshold : " << msTreshold << "ms" << std::endl;
                     }
                     tick();
+                    long long frame_time = Time::GetMsTimestamp() - lastTick;
+                    publishFrameRenderTime(frame_time);
                     lastTick = Time::GetMsTimestamp();
                 }
                 if(diff > 0)
