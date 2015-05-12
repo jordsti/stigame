@@ -71,6 +71,8 @@ public:
 	/// \brief Create a new row with table data (columns)
 	/// \return New Row Pointer
 	TableRow* newRow(void);
+
+    TableRow* addRow(std::initializer_list<std::string> values);
 	
 	/// \brief Get the current rendering font
 	/// \return Rendering Font
@@ -106,6 +108,9 @@ public:
 
     CellCoord getCellCoord(TableCell *cell);
 
+    bool getHighlightRow(void);
+    void setHighlightRow(bool m_highlightRow);
+
 protected:
 	/// \brief Rows
 	std::vector<TableRow*> rows;
@@ -124,6 +129,7 @@ protected:
 
     MPoint mousePosition;
 
+    bool highlightRow;
 };
 
 }

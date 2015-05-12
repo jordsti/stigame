@@ -21,6 +21,9 @@ set(SOURCE_FILES
     core/MPointF.cpp
     core/MultiRect.cpp
     core/SGThread.cpp
+    core/FontLibrary.cpp
+    core/ViewportProfiler.cpp
+    core/OutputProfiler.cpp
 
     core/Pixel.cpp
     core/Point.cpp
@@ -44,6 +47,7 @@ set(SOURCE_FILES
     core/ViewportArea.cpp
     core/Window.cpp
     core/SGString.cpp
+    core/RectangleF.cpp
 
     bindings/ActionBind.cpp
     bindings/ActionBinding.cpp

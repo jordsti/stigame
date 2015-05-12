@@ -12,6 +12,7 @@ class PointF
 public:
     PointF();
     PointF(float m_x, float m_y);
+    PointF(PointF *pt);
     virtual ~PointF();
 
     float getX(void);

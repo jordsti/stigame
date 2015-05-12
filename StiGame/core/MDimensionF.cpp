@@ -15,6 +15,12 @@ MDimensionF::MDimensionF(float m_width, float m_height) :
 
 }
 
+MDimensionF::MDimensionF(DimensionF *dim) :
+    DimensionF(dim)
+{
+
+}
+
 MDimensionF::~MDimensionF()
 {
 

@@ -15,6 +15,12 @@ PointF::PointF(float m_x, float m_y)
     y = m_y;
 }
 
+PointF::PointF(PointF *pt)
+{
+    x = pt->getX();
+    y = pt->getY();
+}
+
 PointF::~PointF()
 {
 

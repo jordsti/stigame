@@ -12,6 +12,7 @@ class MDimensionF :
 public:
     MDimensionF();
     MDimensionF(float m_width, float m_height);
+    MDimensionF(DimensionF *dim);
 
     virtual ~MDimensionF();
 

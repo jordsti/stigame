@@ -12,6 +12,7 @@ class MPointF :
 public:
     MPointF();
     MPointF(float m_x, float m_y);
+    MPointF(PointF *pt);
     virtual ~MPointF();
 
     virtual void setX(float m_x);

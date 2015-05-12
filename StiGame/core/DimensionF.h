@@ -11,6 +11,7 @@ class DimensionF
 public:
     DimensionF();
     DimensionF(float m_width, float m_height);
+    DimensionF(DimensionF *dim);
     virtual ~DimensionF();
 
     virtual bool isEmpty(void);

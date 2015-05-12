@@ -9,6 +9,7 @@ Thread::Thread(SDL_ThreadFunction fn, std::string m_name, void *m_data_ptr)
 
 Thread::~Thread()
 {
+    //todo, on windows seems bogus
     delete _thread;
 }
 

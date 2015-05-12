@@ -17,6 +17,14 @@ public:
     /// \brief Get the current item
     /// \return Current Item Pointer
     Item *item(void);
+
+    template <class T>
+    T *item(void)
+    {
+        T *_item = dynamic_cast<T*>(_current->item());
+        return _item;
+    }
+
     /// \brief Try to advance to the next node
     /// \return Success or the end is hitted
     bool next(void);

@@ -20,26 +20,20 @@ void HTTPTest::execute(void)
     int len = strlen(req);
     char buffer[bufferSize];
 
+    StiGame::Net::TcpPacket *packet = new StiGame::Net::TcpPacket(req, len);
+
     socket.open();
 
-    socket.send(req, len);
-    SDL_Delay(50);
-    int recv = socket.recv(buffer, bufferSize);
+    socket.send(packet);
+    SDL_Delay(100);
+    StiGame::Net::TcpPacket *recvPacket = socket.recv(14096);
+
+    std::cout << recvPacket->data() << std::endl;
 
     //recv = socket.recv(buffer, bufferSize);
     //std::cout << buffer << std::endl;
 
-    std::string body;
-    for(int i=0; i<recv; i++)
-    {
-        if(buffer[i] == '\0')
-        {
-            break;
-        }
 
-        body += buffer[i];
-    }
-    std::cout << body << std::endl;
-    //socket.close();
+    socket.close();
 
 }

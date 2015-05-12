@@ -15,6 +15,12 @@ MPointF::MPointF(float m_x, float m_y) :
 
 }
 
+MPointF::MPointF(PointF *pt) :
+    PointF(pt)
+{
+
+}
+
 MPointF::~MPointF()
 {
 

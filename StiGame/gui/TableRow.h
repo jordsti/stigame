@@ -33,6 +33,11 @@ public:
 
     void subscribeCells(CellValueChangedEventListener *listener);
 
+    void setValue(int index, std::string m_value);
+
+    void setForeground(Color *m_foreground);
+    void setFont(Font *m_font);
+
 protected:
 	/// \brief Cells of this row
 	std::vector<TableCell*> cells;

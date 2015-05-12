@@ -7,7 +7,7 @@
 #include "WindowEventThrower.h"
 #include "Window.h"
 #include "VideoConfig.h"
-
+#include "ViewportProfiler.h"
 namespace StiGame
 {
 
@@ -23,6 +23,8 @@ private:
     void listDimensions(void);
 
     static bool _sdlInitied;
+
+    std::list<ViewportProfiler*> profilers;
 
 protected:
     std::list<BaseGameState*> oldStates;
@@ -101,6 +103,13 @@ protected:
 
     Cursor* cursor;
     VideoConfig* config;
+
+    //profiler method
+
+    void publishFrameRenderTime(long long frame_time);
+    void publishStateChanged(BaseGameState *new_state);
+    void publishResolutionChanged(int m_width, int m_height);
+    void publishStateCleaned(void);
 public:
     const int DEFAULT_MS_TRESHOLD = 4;
     static const std::string VIDEO_CONFIG_FILE;
@@ -136,6 +145,8 @@ public:
 
     std::string getConfigFile(void);
     void setConfigFile(std::string m_configFile);
+
+    void addProfiler(ViewportProfiler *m_profiler);
 
 	/// \brief Get target fps
 	/// \return fps

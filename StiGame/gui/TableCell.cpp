@@ -47,6 +47,37 @@ void TableCell::setValue(std::string m_value)
 }
 
 
+Color* TableCell::getForeground(void)
+{
+    return str_renderer.getColor();
+}
+
+void TableCell::setForeground(Color *m_foreground)
+{
+    str_renderer.setColor(m_foreground);
+}
+
+Font* TableCell::getFont(void)
+{
+    return str_renderer.getFont();
+}
+
+void TableCell::setFont(Font *m_font)
+{
+    str_renderer.setFont(m_font);
+}
+
+int TableCell::getWidth(void)
+{
+    return str_renderer.getWidth();
+}
+
+int TableCell::getHeight(void)
+{
+    return str_renderer.getHeight();
+}
+
+
 }
 
 }

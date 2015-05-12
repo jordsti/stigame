@@ -15,6 +15,12 @@ DimensionF::DimensionF(float m_width, float m_height)
     height = m_height;
 }
 
+DimensionF::DimensionF(DimensionF *dim)
+{
+    width = dim->getWidth();
+    height = dim->getHeight();
+}
+
 DimensionF::~DimensionF()
 {
 

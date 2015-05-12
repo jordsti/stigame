@@ -3,20 +3,17 @@
 namespace StiGame
 {
 
-Rectangle::Rectangle(void)
+Rectangle::Rectangle(void) :
+    MPoint(),
+    MDimension()
 {
-	width = 0;
-	height = 0;
-	x = 0;
-	y = 0;
+
 }
 
-Rectangle::Rectangle(int m_x, int m_y, int m_width, int m_height)
+Rectangle::Rectangle(int m_x, int m_y, int m_width, int m_height) :
+    MPoint(m_x, m_y),
+    MDimension(m_width, m_height)
 {
-	x = m_x;
-	y = m_y;
-	width = m_width;
-	height = m_height;
 
 }
 
@@ -151,6 +148,12 @@ void Rectangle::setRectangle(int m_x, int m_y, int m_width, int m_height)
     y = m_y;
     width = m_width;
     height = m_height;
+}
+
+RectangleF Rectangle::toRectangleF(void)
+{
+    RectangleF rect (x, y, width, height);
+    return rect;
 }
 
 

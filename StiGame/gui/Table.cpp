@@ -102,7 +102,7 @@ Surface* Table::render(void)
 
 		TableRow *row = (*rit);
 
-        if(i_r == m_row)
+        if(i_r == m_row && highlightRow)
         {
             Rectangle rect (0, dy, width, rowHeight);
             buffer->fillRect(&rect, highlightBackground);
@@ -117,7 +117,7 @@ Surface* Table::render(void)
             TableCell *cell = row->getCell(i);
             Surface *str_sur = cell->getSurface();
 
-            if(i_r == m_row)
+            if(i_r == m_row && highlightRow)
             {
                 //render a new String Surface with highlight foreground color
                 str_sur = font->renderText(cell->getValue(), highlightForeground);
@@ -139,7 +139,7 @@ Surface* Table::render(void)
 
             row_x += colwidths[i];
 
-            if(i_r == m_row)
+            if(i_r == m_row && highlightRow)
             {
                 delete str_sur;
             }
@@ -327,6 +327,21 @@ void Table::setRowHeight(int m_rowHeight)
 	rowHeight = m_rowHeight;
 }
 
+TableRow* Table::addRow(std::initializer_list<std::string> values)
+{
+    TableRow *row = newRow();
+
+    int i=0;
+    for(auto elem : values)
+    {
+        row->setValue(i, elem);
+        i++;
+    }
+
+    return row;
+}
+
+
 TableRow* Table::newRow(void)
 {
 	TableRow *row = new TableRow();
@@ -354,6 +369,16 @@ TableCell* Table::getCell(int row, int col)
     }
 
     return nullptr;
+}
+
+bool Table::getHighlightRow(void)
+{
+    return highlightRow;
+}
+
+void Table::setHighlightRow(bool m_highlightRow)
+{
+    highlightRow = m_highlightRow;
 }
 
 void Table::onClick(Point *relp)

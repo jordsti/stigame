@@ -15,6 +15,7 @@
 #include "HorizontalBoxLayout.h"
 #include "TabPanel.h"
 #include "TabItem.h"
+#include "Table.h"
 #include "SGString.h"
 #include <iostream>
 namespace StiGame
@@ -212,7 +213,6 @@ Item* ItemDefinition::create(std::map<std::string, int> variables)
         else if(type == "ProgressBar")
         {
             ProgressBar *pb = new ProgressBar();
-
             ItemAttribute *attr = findAttribute("max");
             if(attr != nullptr)
             {
@@ -272,6 +272,31 @@ Item* ItemDefinition::create(std::map<std::string, int> variables)
             TabItem *tItem = new TabItem();
             fillParent(tItem, variables);
             item = tItem;
+        }
+        else if(type == "Table")
+        {
+            Table *table = new Table();
+            //todo
+            //add columns
+            //add rows ?
+
+            int col_i = 0;
+
+            std::string attrName = "column" + std::to_string(col_i);
+            ItemAttribute *attr = findAttribute(attrName);
+
+            while(attr != nullptr)
+            {
+                col_i++;
+                attrName = "column" + std::to_string(col_i);
+                table->addColumn(attr->getValue());
+                attr = findAttribute(attrName);
+            }
+
+            table->addRow({"","",""});
+
+
+            item = table;
         }
         else
         {

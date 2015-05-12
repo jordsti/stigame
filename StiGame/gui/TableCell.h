@@ -33,6 +33,17 @@ public:
 	/// \brief Get the rendered Surface
 	/// \return Surface Pointer
 	Surface* getSurface(void);
+
+    Color* getForeground(void);
+    void setForeground(Color *m_foreground);
+
+    Font* getFont(void);
+    void setFont(Font *m_font);
+
+    int getWidth(void);
+
+    int getHeight(void);
+
 protected:
 	/// \brief Text value
 	std::string value;

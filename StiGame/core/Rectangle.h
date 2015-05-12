@@ -4,13 +4,15 @@
 #include "MDimension.h"
 #include "MPoint.h"
 #include "SDL.h"
+#include "RectangleF.h"
 
 namespace StiGame
 {
 /// \class Rectangle
 /// \brief Rectangle
 class Rectangle :
-	public MDimension, public MPoint
+    public MPoint,
+    public MDimension
 {
 public:
 	/// \brief Empty rectangle
@@ -98,6 +100,8 @@ public:
 	static void Copy(Rectangle *src, Rectangle *copy);
 	static void Copy(Rectangle *src, SDL_Rect *copy);
 	static void Copy(SDL_Rect *src, Rectangle *copy);
+
+    RectangleF toRectangleF(void);
 };
 }
 

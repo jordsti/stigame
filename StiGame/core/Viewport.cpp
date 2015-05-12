@@ -155,6 +155,9 @@ void Viewport::resize(int m_width, int m_height)
          */
 		//screen = SDL_SetVideoMode(width, height, 32, videoFlags);
         //area.setViewDimension(width, height);
+
+        publishResolutionChanged(m_width, m_height);
+
 		if(currentState != 0)
 		{
 			currentState->onResize(width, height);
@@ -268,6 +271,51 @@ void Viewport::tick(void)
 	//int rs = SDL_Flip(screen);
 }
 
+void Viewport::addProfiler(ViewportProfiler *m_profiler)
+{
+    profilers.push_back(m_profiler);
+}
+
+void Viewport::publishFrameRenderTime(long long frame_time)
+{
+    auto pit(profilers.begin()), pend(profilers.end());
+    for(;pit!=pend;++pit)
+    {
+        ViewportProfiler *profiler = (*pit);
+        profiler->frameRenderTime(frame_time);
+    }
+}
+
+void Viewport::publishStateChanged(BaseGameState *new_state)
+{
+    auto pit(profilers.begin()), pend(profilers.end());
+    for(;pit!=pend;++pit)
+    {
+        ViewportProfiler *profiler = (*pit);
+        profiler->stateChanged(new_state);
+    }
+}
+
+void Viewport::publishResolutionChanged(int m_width, int m_height)
+{
+    auto pit(profilers.begin()), pend(profilers.end());
+    for(;pit!=pend;++pit)
+    {
+        ViewportProfiler *profiler = (*pit);
+        profiler->resolutionChanged(m_width, m_height);
+    }
+}
+
+void Viewport::publishStateCleaned(void)
+{
+    auto pit(profilers.begin()), pend(profilers.end());
+    for(;pit!=pend;++pit)
+    {
+        ViewportProfiler *profiler = (*pit);
+        profiler->stateCleaned();
+    }
+}
+
 void Viewport::startLoop(void)
 {
 	if(currentState != 0)
@@ -284,7 +332,7 @@ void Viewport::startLoop(void)
             else
             {
                 long long diff = Time::GetMsTimestamp() - lastTick;
-
+                publishFrameRenderTime(diff);
                 if(diff >= msWaitTime)
                 {
                     long long over = diff - msWaitTime;
@@ -319,6 +367,7 @@ void Viewport::startLoop(void)
                 oldStates.push_back(currentState);
 
                 currentState = pendingState;
+                publishStateChanged(currentState);
 
                 currentState->setViewport(this);
                 currentState->onResize(width, height);
@@ -387,6 +436,7 @@ void Viewport::clearPreviousStates(void)
     {
         delete (*lit);
         //todo debug output
+        publishStateCleaned();
         std::cout << "Deleting state.." << std::endl;
 
     }
