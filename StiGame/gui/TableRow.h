@@ -3,6 +3,7 @@
 
 #include "TableCell.h"
 #include <vector>
+#include "ValueObject.h"
 
 namespace StiGame
 {
@@ -38,7 +39,11 @@ public:
     void setForeground(Color *m_foreground);
     void setFont(Font *m_font);
 
+    ValueObject* getValueObject(void);
+    void setValueObject(ValueObject *m_valueObject);
+
 protected:
+    ValueObject *valueObject;
 	/// \brief Cells of this row
 	std::vector<TableCell*> cells;
 };

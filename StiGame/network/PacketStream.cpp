@@ -39,12 +39,17 @@ void PacketStream::writeString(std::string m_string)
 void PacketStream::writeInt32(int m_int)
 {
     unsigned int size = 4;
+    Uint32 _int = static_cast<Uint32>(m_int);
+    char* bytes = new char[size];
 
-    char* bytes = reinterpret_cast<char*>(&m_int);
-    for(unsigned int i=0; i<size; i++)
+    /*for(unsigned int i=0; i<size; i++)
     {
         packet->write(bytes[i], currentIndex + i);
-    }
+    }*/
+
+    SDLNet_Write32(_int, bytes);
+
+    packet->write(bytes, currentIndex, size);
 
     currentIndex += size;
     packet->setLen(currentIndex);
@@ -164,13 +169,17 @@ int PacketStream::readInt32(void)
         currentIndex++;
     }
 
-    m_int += (int)bytes[3];
+    /*m_int += (int)bytes[3];
     m_int <<= 8;
     m_int += (int)bytes[2];
     m_int <<= 8;
     m_int += (int)bytes[1];
     m_int <<= 8;
-    m_int += (int)bytes[0];
+    m_int += (int)bytes[0];*/
+
+    Uint32 _number = SDLNet_Read32(bytes);
+
+    m_int = static_cast<Uint32>(_number);
 
     return m_int;
 }

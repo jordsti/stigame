@@ -23,6 +23,8 @@ This are the tasks that are need to be done for the first minor release of StiGa
 - [ ] Table Event (ClickCellEvent and maybe other event type) __WIP__
 - [ ] Implement a Spinner, with new arrow (omg need to add attributes to style again..)
 - [ ] Style File using var file
+- [ ] TableRow, attach a ValueObject to a row
+- [ ] Table Clear Rows
 
 ### Core Module
 
@@ -38,6 +40,7 @@ This are the tasks that are need to be done for the first minor release of StiGa
 - [ ] TcpSocket Implementation __WIP__ need testing
 - [ ] Packet Implementation for TcpSocket __WIP__ need testing
 - [x] MessageQueue System Base Class with multi-thread, sending and receiving thread
+- [ ] Converting all stream int read & write with SDLNet_Write|Read
 
 ### Build Generation
 - [x] Fix Windows Build (probably need to include winpthread) (SDL_Detach not defined)

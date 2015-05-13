@@ -23,7 +23,7 @@ void UdpSocket::open(int port)
     udpSocket = SDLNet_UDP_Open(static_cast<Uint16>(port));
     if(!udpSocket)
     {
-        std::cout << "[ERROR] " << SDL_GetError() << std::endl;
+        std::cout << "[ERROR] " << SDL_GetError() << " port=" << port <<std::endl;
     }
 }
 

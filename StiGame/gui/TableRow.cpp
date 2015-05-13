@@ -8,7 +8,7 @@ namespace Gui
 
 TableRow::TableRow()
 {
-
+    valueObject = nullptr;
 }
 
 TableRow::~TableRow()
@@ -18,6 +18,21 @@ TableRow::~TableRow()
     {
         delete (*cit);
     }
+
+    if(valueObject != nullptr)
+    {
+        delete valueObject;
+    }
+}
+
+ValueObject* TableRow::getValueObject(void)
+{
+    return valueObject;
+}
+
+void TableRow::setValueObject(ValueObject *m_valueObject)
+{
+    valueObject = m_valueObject;
 }
 
 void TableRow::addCell(TableCell *cell)
