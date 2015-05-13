@@ -2,7 +2,8 @@
 #define VALUEOBJECT_H
 
 #include <string>
-
+#include <map>
+#include <vector>
 namespace StiGame {
 
 namespace Gui
@@ -31,6 +32,13 @@ class ValueObject
         /// \brief Get he value id
         /// \return value id
         int getId(void);
+
+        std::vector<std::string> getFieldsName(void);
+
+        void put(std::string m_name, std::string m_value);
+
+        std::string get(std::string m_name);
+
     protected:
         /// \brief Value Id
         int id;
@@ -39,6 +47,7 @@ class ValueObject
     private:
         static int _currentId;
         int incrementId(void);
+        std::map<std::string, std::string> fields;
 };
 
 }

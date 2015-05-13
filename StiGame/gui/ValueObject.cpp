@@ -32,6 +32,26 @@ ValueObject::ValueObject(std::string m_text)
     text = m_text;
 }
 
+std::vector<std::string> ValueObject::getFieldsName(void)
+{
+    std::vector<std::string> names;
+    auto mit(fields.begin()), mend(fields.end());
+    for(;mit!=mend;++mit)
+    {
+        names.push_back(mit->first);
+    }
+}
+
+void ValueObject::put(std::string m_name, std::string m_value)
+{
+    fields.insert(std::make_pair(m_name, m_value));
+}
+
+std::string ValueObject::get(std::string m_name)
+{
+    return fields[m_name];
+}
+
 int ValueObject::getId(void)
 {
     return id;

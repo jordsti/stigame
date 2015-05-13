@@ -53,6 +53,10 @@ public:
 	/// \brief Get Rows Count (need to rename this method)
 	/// \return Rows Count
     int rowsCount(void);
+
+    void clearRows(void);
+
+    void clearColumns(void);
 	
 	/// \brief Add a column
 	/// \param c_name Column Name

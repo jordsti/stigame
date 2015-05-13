@@ -14,7 +14,7 @@ This are the tasks that are need to be done for the first minor release of StiGa
 - [x] Rework Decorated Button Class to use CaptionSupport
 - [x] Rework RadioButton Class to use CaptionSupport
 - [x] Rework CheckBox Class to use CaptionSupport
-- [ ] Form Layout Implementation __WIP__
+- [ ] Form Layout Implementation __WIP__ to test
 - [ ] Write a FormLayout Test Apps
 - [ ] GuiItem Effect (Fade In & Out, Shrink, movement) __WIP__ Shrink is bugged
 - [ ] Frame File more robust testing __WIP__ Need to add Table Support
@@ -23,8 +23,8 @@ This are the tasks that are need to be done for the first minor release of StiGa
 - [ ] Table Event (ClickCellEvent and maybe other event type) __WIP__
 - [ ] Implement a Spinner, with new arrow (omg need to add attributes to style again..)
 - [ ] Style File using var file
-- [ ] TableRow, attach a ValueObject to a row
-- [ ] Table Clear Rows
+- [x] TableRow, attach a ValueObject to a row
+- [x] Table Clear Rows w/ clear columns as well
 
 ### Core Module
 

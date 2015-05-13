@@ -34,6 +34,28 @@ Table::~Table()
     }
 }
 
+void Table::clearRows(void)
+{
+    auto rit(rows.begin()), rend(rows.end());
+    for(;rit!=rend;++rit)
+    {
+        delete (*rit);
+    }
+
+    rows.clear();
+}
+
+void Table::clearColumns(void)
+{
+    auto cit(columns.begin()), cend(columns.end());
+    for(;cit!=cend;++cit)
+    {
+        delete (*cit);
+    }
+
+    columns.clear();
+}
+
 Surface* Table::render(void)
 {
 	Surface *buffer = new Surface(width, height);
