@@ -1,7 +1,7 @@
 stigame
 =======
 
-[build]: https://travis-ci.org/jordsti/stigame.svg
+[![Build Status](https://travis-ci.org/jordsti/stigame.svg?branch=master)](https://travis-ci.org/jordsti/stigame)
 
 StiGame is a C++ 2D game library using SDL2.
 You can fork this repository if you want to bootstrap your new game with this library and modify the library for the need of your game
