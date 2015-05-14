@@ -48,9 +48,7 @@ void PacketStream::writeInt32(int m_int)
     }*/
 
     SDLNet_Write32(_int, bytes);
-
     packet->write(bytes, currentIndex, size);
-
     currentIndex += size;
     packet->setLen(currentIndex);
 }
@@ -58,12 +56,11 @@ void PacketStream::writeInt32(int m_int)
 void PacketStream::writeUInt32(unsigned int m_int)
 {
     unsigned int size = 4;
-    char* bytes = reinterpret_cast<char*>(&m_int);
-    for(unsigned int i=0; i<size; i++)
-    {
-        packet->write(bytes[i], currentIndex + i);
-    }
+    Uint32 _int = reinterpret_cast<Uint32>(m_int);
+    char *bytes = new char[size];
 
+    SDLNet_Write32(_int, bytes);
+    packet->write(bytes, currentIndex, size);
     currentIndex += size;
     packet->setLen(currentIndex);
 }
@@ -71,12 +68,10 @@ void PacketStream::writeUInt32(unsigned int m_int)
 void PacketStream::writeInt16(short m_int)
 {
     unsigned int size = 2;
-    char * bytes = reinterpret_cast<char*>(&m_int);
-    for(unsigned int i=0; i<size; i++)
-    {
-        packet->write(bytes[i], currentIndex + i);
-    }
+    char *bytes = new char[size];
 
+    SDLNet_Write16(m_int, bytes);
+    packet->write(bytes, currentIndex, size);
     currentIndex += size;
     packet->setLen(currentIndex);
 }
@@ -84,12 +79,11 @@ void PacketStream::writeInt16(short m_int)
 void PacketStream::writeUInt16(unsigned short m_int)
 {
     unsigned int size = 2;
-    char * bytes = reinterpret_cast<char*>(&m_int);
-    for(unsigned int i=0; i<size; i++)
-    {
-        packet->write(bytes[i], currentIndex + i);
-    }
+    Uint16 _int = reinterpret_cast<Uint16>(m_int);
+    char *bytes = new char[size];
 
+    SDLNet_Write16(_int, bytes);
+    packet->write(bytes, currentIndex, size);
     currentIndex += size;
     packet->setLen(currentIndex);
 }
@@ -159,7 +153,7 @@ std::string PacketStream::readString(void)
 
 int PacketStream::readInt32(void)
 {
-    int m_int = 0;
+    int _int;
     unsigned int size = 4;
     char bytes[size];
 
@@ -169,24 +163,15 @@ int PacketStream::readInt32(void)
         currentIndex++;
     }
 
-    /*m_int += (int)bytes[3];
-    m_int <<= 8;
-    m_int += (int)bytes[2];
-    m_int <<= 8;
-    m_int += (int)bytes[1];
-    m_int <<= 8;
-    m_int += (int)bytes[0];*/
-
     Uint32 _number = SDLNet_Read32(bytes);
 
-    m_int = static_cast<Uint32>(_number);
+    _int = static_cast<int>(_number);
 
-    return m_int;
+    return _int;
 }
 
 unsigned int PacketStream::readUInt32(void)
 {
-    unsigned int m_int = 0;
     unsigned int size = 4;
     char bytes[size];
 
@@ -196,20 +181,14 @@ unsigned int PacketStream::readUInt32(void)
         currentIndex++;
     }
 
-    m_int += (unsigned int)bytes[3];
-    m_int <<= 8;
-    m_int += (unsigned int)bytes[2];
-    m_int <<= 8;
-    m_int += (unsigned int)bytes[1];
-    m_int <<= 8;
-    m_int += (unsigned int)bytes[0];
-
-    return m_int;
+    Uint32 _number = SDLNet_Read32(bytes);
+    int _int = static_cast<unsigned int>(_number);
+    return _int;
 }
 
 short PacketStream::readInt16(void)
 {
-    short m_int = 0;
+    short _int = 0;
     unsigned int size = 2;
     char bytes[size];
 
@@ -219,16 +198,14 @@ short PacketStream::readInt16(void)
         currentIndex++;
     }
 
-    m_int += (short)bytes[1];
-    m_int <<= 8;
-    m_int += (short)bytes[0];
-
-    return m_int;
+    Uint16 _number = SDLNet_Read16(bytes);
+    _int = static_cast<short>(_number);
+    return _int;
 }
 
 unsigned short PacketStream::readUInt16(void)
 {
-    unsigned short m_int = 0;
+    unsigned short _int = 0;
     unsigned int size = 2;
     char bytes[size];
 
@@ -238,15 +215,14 @@ unsigned short PacketStream::readUInt16(void)
         currentIndex++;
     }
 
-    m_int += (unsigned short)bytes[1];
-    m_int <<= 8;
-    m_int += (unsigned short)bytes[0];
-
-    return m_int;
+    Uint16 _number = SDLNet_Read16(bytes);
+    _int = static_cast<unsigned short>(_number);
+    return _int;
 }
 
 long PacketStream::readInt64(void)
 {
+    //rework this to be stored as 2 int32
     long m_long = 0;
     unsigned int size = 8;
     char bytes[size];
@@ -278,6 +254,7 @@ long PacketStream::readInt64(void)
 
 unsigned long PacketStream::readUInt64(void)
 {
+    //rework this to be stored as 2 int32
     unsigned long m_long = 0;
     unsigned int size = 8;
     char bytes[size];

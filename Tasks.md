@@ -40,7 +40,7 @@ This are the tasks that are need to be done for the first minor release of StiGa
 - [ ] TcpSocket Implementation __WIP__ need testing
 - [ ] Packet Implementation for TcpSocket __WIP__ need testing
 - [x] MessageQueue System Base Class with multi-thread, sending and receiving thread
-- [ ] Converting all stream int read & write with SDLNet_Write|Read
+- [ ] Converting all stream int read & write with SDLNet_Write|Read __WIP__
 
 ### Build Generation
 - [x] Fix Windows Build (probably need to include winpthread) (SDL_Detach not defined)
