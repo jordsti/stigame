@@ -30,6 +30,42 @@ ComboBox::ComboBox() : HighlightItem("ComboBox")
     closedHeight = height;
 }
 
+void ComboBox::setSelectedItem(ValueObject *selectedItem)
+{
+    auto vit(items.begin()), vend(items.end());
+    int i=0;
+    for(;vit!=vend;++vit)
+    {
+        if((*vit) == selectedItem)
+        {
+            selectedId = (*vit)->getId();
+            currentItem = i;
+        }
+        i++;
+    }
+}
+
+void ComboBox::clearItems(void)
+{
+    auto vit(items.begin()), vend(items.end());
+    for(;vit!=vend;++vit)
+    {
+        delete (*vit);
+    }
+
+    items.clear();
+
+    currentItem = 0;
+    selectedId = -1;
+    itemHover = -1;
+
+}
+
+void ComboBox::setSelectedIndex(int m_selectedIndex)
+{
+    selectedId = m_selectedIndex;
+}
+
 void ComboBox::add(ValueObject *vo)
 {
     items.push_back(vo);

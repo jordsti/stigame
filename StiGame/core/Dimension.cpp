@@ -25,6 +25,12 @@ namespace StiGame
 		height = h;
 	}
 
+    Dimension::Dimension(Dimension *dim)
+    {
+        width = dim->getWidth();
+        height = dim->getHeight();
+    }
+
 
 	int Dimension::getWidth(void)
 	{

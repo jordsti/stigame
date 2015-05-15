@@ -53,6 +53,8 @@ public:
 	/// \param relp Relative Mouse position
     void onMouseMotion(Point *relp);
 
+    void clearItems(void);
+
 protected:
 	/// \brief Render Drop List
 	/// \param buffer Item Buffer

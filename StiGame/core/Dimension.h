@@ -30,6 +30,8 @@ namespace StiGame
         Dimension(int m_width, int m_height);
         /// \brief Destructor
 
+        Dimension(Dimension *dim);
+
         virtual ~Dimension();
 		/// \brief Get the width of the dimension
 		/// \return width (px)
