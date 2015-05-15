@@ -59,6 +59,13 @@ void ComboBox::clearItems(void)
     selectedId = -1;
     itemHover = -1;
 
+    auto mit(stringsBuffer.begin()), mend(stringsBuffer.end());
+    for(;mit!=mend;++mit)
+    {
+        delete mit->second;
+    }
+
+    stringsBuffer.clear();
 }
 
 void ComboBox::setSelectedIndex(int m_selectedIndex)
@@ -373,9 +380,18 @@ void ComboBox::setFont(Font *m_font)
 
 ComboBox::~ComboBox()
 {
-
-    //TO DO
     //dtor
+    auto vit(items.begin()), vend(items.end());
+    for(;vit!=vend;++vit)
+    {
+        delete (*vit);
+    }
+
+    auto bit(stringsBuffer.begin()), bend(stringsBuffer.end());
+    for(;bit!=bend;++bit)
+    {
+        delete bit->second;
+    }
 }
 
 }
