@@ -21,7 +21,7 @@ This are the tasks that are need to be done for the first minor release of StiGa
 - [x] ItemDefinition modification to apply CaptionSupport changes
 - [x] Investigate Effect problem with new CaptionSupport
 - [ ] Table Event (ClickCellEvent and maybe other event type) __WIP__
-- [ ] Implement a Spinner, with new arrow (omg need to add attributes to style again..)
+- [ ] Implement a Spinner, with new arrow (omg need to add attributes to style again..) __WIP__
 - [ ] Style File using var file
 - [x] TableRow, attach a ValueObject to a row
 - [x] Table Clear Rows w/ clear columns as well
