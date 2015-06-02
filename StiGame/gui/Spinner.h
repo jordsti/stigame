@@ -4,6 +4,7 @@
 #include "Item.h"
 #include "FontSupport.h"
 #include "ValueObject.h"
+#include "SelectionEventThrower.h"
 #include <vector>
 #include <map>
 namespace StiGame
@@ -14,7 +15,8 @@ namespace Gui
 
 class Spinner :
         Item,
-        FontSupport
+        FontSupport,
+        SelectionEventThrower
 {
 public:
     const static int DEFAULT_WIDTH;
@@ -33,7 +35,24 @@ public:
     int getSelectedIndex(void);
     ValueObject* getSelectedItem(void);
 
+    void onClick(Point *relp);
+
+    Surface* getUpArrow(void);
+    Surface* getDownArrow(void);
+
+    void setUpArrow(Surface *m_upArrow);
+    void setDownArrow(Surface *m_downArrow);
+
+    void setSelectedIndex(int index);
+    void setSelectedItem(ValueObject *item);
+
+protected:
+    void onSelectionChanged(void);
+
 private:
+    Surface *upArrow;
+    Surface *downArrow;
+
     void clearBuffer();
 
     int selectedIndex;
