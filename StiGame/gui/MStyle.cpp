@@ -32,6 +32,9 @@ MStyle::MStyle()
     buttonHighlightLeft = nullptr;
     buttonHighlightRight = nullptr;
     buttonHighlightBackground = nullptr;
+
+    spinnerUpArrow = nullptr;
+    spinnerDownArrow = nullptr;
 }
 
 MStyle::~MStyle()
@@ -56,7 +59,7 @@ void MStyle::setHighlightForeground(Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 
 void MStyle::setHighlightBackground(Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 {
-        highlightBackground.setRGBA(r, g, b, a);
+    highlightBackground.setRGBA(r, g, b, a);
 }
 
 void MStyle::setDropListArrow(Surface *surface)
@@ -71,27 +74,27 @@ void MStyle::setUpArrow(Surface *surface)
 
 void MStyle::setDownArrow(Surface *surface)
 {
-        downArrow = surface;
+    downArrow = surface;
 }
 
 void MStyle::setCheckBox(Surface *surface)
 {
-        checkbox = surface;
+    checkbox = surface;
 }
 
 void MStyle::setCheckBoxChecked(Surface *surface)
 {
-        checkboxChecked = surface;
+    checkboxChecked = surface;
 }
 
 void MStyle::setRadio(Surface *surface)
 {
-        radio = surface;
+    radio = surface;
 }
 
 void MStyle::setRadioChecked(Surface *surface)
 {
-        radioChecked = surface;
+    radioChecked = surface;
 }
 
 void MStyle::setNormalFont(Font *font)
@@ -125,6 +128,17 @@ void MStyle::setHighlightButtonRight(Surface *surface)
 void MStyle::setHighlightButtonBackground(Surface *surface)
 {
     buttonHighlightBackground = surface;
+}
+
+
+void MStyle::setSpinnerUpArrow(Surface *m_spinnerUpArrow)
+{
+    spinnerUpArrow = m_spinnerUpArrow;
+}
+
+void MStyle::setSpinnerDownArrow(Surface *m_spinnerDownArrow)
+{
+    spinnerDownArrow = m_spinnerDownArrow;
 }
 
 void MStyle::setBigFont(Font *m_bigFont)

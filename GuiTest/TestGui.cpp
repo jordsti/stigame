@@ -109,6 +109,15 @@ void TestGui::initComponents()
     pbar.setMax(500);
     pbar.setCurrent(0);
 
+    numSpinner.setPoint(300, 200);
+
+    spinner.setPoint(300, 230);
+
+    spinner.addItem(new ValueObject(1, "First"));
+    spinner.addItem(new ValueObject(2, "Second"));
+    spinner.addItem(new ValueObject(3, "Third"));
+    spinner.addItem(new ValueObject(4, "Fourth"));
+
     add(&guiList);
     //add(&cb1);
     add(fi);
@@ -117,6 +126,8 @@ void TestGui::initComponents()
     add(&vlayout);
     add(&dbtn1);
     add(&pbar);
+    add(&numSpinner);
+    add(&spinner);
 }
 
 void TestGui::handleEvent(StiGame::Gui::SelectionEventThrower *src, StiGame::Gui::SelectionEventArgs *args)

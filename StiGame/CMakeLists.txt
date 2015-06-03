@@ -108,6 +108,7 @@ set(SOURCE_FILES
     gui/CaptionSupport.cpp
     gui/FormLayout.cpp
     gui/Spinner.cpp
+    gui/NumericSpinner.cpp
 
     gui/effects/ItemEffect.cpp
     gui/effects/MovingItem.cpp

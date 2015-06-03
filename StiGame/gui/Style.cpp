@@ -34,6 +34,9 @@ Style::Style(void)
 	buttonHighlightLeft = new Surface(GamePath::getFilepath(AssetGui, "hbutton_left.png").c_str());
 	buttonHighlightRight = new Surface(GamePath::getFilepath(AssetGui, "hbutton_right.png").c_str());
 	buttonHighlightBackground = new Surface(GamePath::getFilepath(AssetGui, "hbutton_bg.png").c_str());
+
+    //todo
+    //loading Spinner Arrows
 }
 
 Surface *Style::getRadio(void)
@@ -130,6 +133,18 @@ Surface* Style::getHighlightButtonBackground(void)
 {
     return buttonHighlightBackground;
 }
+
+
+Surface* Style::getSpinnerUpArrow(void)
+{
+    return spinnerUpArrow;
+}
+
+Surface* Style::getSpinnerDownArrow(void)
+{
+    return spinnerDownArrow;
+}
+
 
 Font* Style::getBigFont(void)
 {

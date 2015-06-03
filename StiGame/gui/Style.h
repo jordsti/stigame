@@ -47,6 +47,10 @@ protected:
 	/// \brief Button Highlighted Background Graphic
 	Surface *buttonHighlightBackground;
 
+    Surface *spinnerUpArrow;
+
+    Surface *spinnerDownArrow;
+
 	/// \brief Normal Font
 	Font *normalFont;
 	/// \brief Big Size Font
@@ -90,6 +94,11 @@ public:
 	Surface *getHighlightButtonRight(void);
 	/// \brief Get Button Highlighted Background Graphic Pointer
 	Surface *getHighlightButtonBackground(void);
+
+    Surface *getSpinnerUpArrow(void);
+
+    Surface *getSpinnerDownArrow(void);
+
 	/// \brief Get Normal Font Pointer
 	Font *getNormalFont(void);
 	/// \brief Get the Big Font Pointer

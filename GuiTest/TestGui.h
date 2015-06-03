@@ -14,6 +14,9 @@
 #include <VerticalBoxLayout.h>
 #include "TestTabItem.h"
 #include "EffectUnwrapper.h"
+#include "NumericSpinner.h"
+#include "Spinner.h"
+
 class TestGui :
     public StiGame::Gui::GuiState,
     public StiGame::EventListener,
@@ -45,6 +48,8 @@ class TestGui :
         StiGame::Gui::Label lbl_vlayout5;
         StiGame::Gui::DecoratedButton dbtn1;
         StiGame::Gui::ProgressBar pbar;
+        StiGame::Gui::NumericSpinner numSpinner;
+        StiGame::Gui::Spinner spinner;
     private:
         void initComponents(void);
 };
