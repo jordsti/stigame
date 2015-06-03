@@ -14,9 +14,9 @@ namespace Gui
 {
 
 class Spinner :
-        Item,
-        FontSupport,
-        SelectionEventThrower
+        public Item,
+        public FontSupport,
+        public SelectionEventThrower
 {
 public:
     const static int DEFAULT_WIDTH;
