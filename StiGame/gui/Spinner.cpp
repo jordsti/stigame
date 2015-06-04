@@ -9,20 +9,19 @@ namespace Gui
 const int Spinner::DEFAULT_WIDTH = 120;
 const int Spinner::DEFAULT_HEIGHT = 22;
 
-//todo
-//add down & up for value selection
 
 Spinner::Spinner() :
     Item("Spinner"),
-    FontSupport()
+    FontSupport(),
+    SelectionEventThrower()
 {
     width = DEFAULT_WIDTH;
     height = DEFAULT_HEIGHT;
     selectedItem = nullptr;
     selectedIndex = -1;
-    //todo get arrow from style
-    upArrow = nullptr;
-    downArrow = nullptr;
+
+    upArrow = style->getSpinnerUpArrow();
+    downArrow = style->getSpinnerDownArrow();
 }
 
 Spinner::~Spinner()
@@ -60,8 +59,8 @@ Surface* Spinner::render(void)
         buffer->blit(strBuffer, &dstPt);
     }
 
-    Point upPt (width - upArrow->getWidth(), 0);
-    Point downPt (width - downArrow->getWidth(), height - downArrow->getHeight());
+    Point upPt (width - upArrow->getWidth() - 1, 0);
+    Point downPt (width - downArrow->getWidth() - 1, height - downArrow->getHeight());
 
     buffer->blit(upArrow, &upPt);
     buffer->blit(downArrow, &downPt);
@@ -75,11 +74,11 @@ Surface* Spinner::render(void)
 
 void Spinner::onClick(Point *relp)
 {
-    Rectangle upRect (width - upArrow->getWidth(),
+    Rectangle upRect (width - upArrow->getWidth() - 1,
                       0,
                       upArrow->getWidth(),
                       upArrow->getHeight());
-    Rectangle downRect (width - downArrow->getWidth(),
+    Rectangle downRect (width - downArrow->getWidth() - 1,
                         height - downArrow->getHeight(),
                         downArrow->getWidth(),
                         downArrow->getHeight());

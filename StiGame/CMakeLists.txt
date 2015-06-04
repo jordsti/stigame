@@ -109,6 +109,10 @@ set(SOURCE_FILES
     gui/FormLayout.cpp
     gui/Spinner.cpp
     gui/NumericSpinner.cpp
+    gui/ItemValue.cpp
+    gui/StringItemValue.cpp
+    gui/IntegerItemValue.cpp
+    gui/ValueObjectItemValue.cpp
 
     gui/effects/ItemEffect.cpp
     gui/effects/MovingItem.cpp
@@ -159,6 +163,9 @@ set(SOURCE_FILES
     events/CellValueChangedEventArgs.cpp
     events/CellValueChangedEventListener.cpp
     events/CellValueChangedEventThrower.cpp
+    events/ItemValueChangedEventArgs.cpp
+    events/ItemValueChangedEventListener.cpp
+    events/ItemValueChangedEventThrower.cpp
 
     files/Entry.cpp
     files/Directory.cpp

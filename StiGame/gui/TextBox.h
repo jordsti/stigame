@@ -2,6 +2,7 @@
 #define TEXTBOX_H
 
 #include "HighlightItem.h"
+#include "ItemValueChangedEventThrower.h"
 
 //todo
 //-cursor emplacement
@@ -14,7 +15,8 @@ namespace Gui
 /// \class TextBox
 /// \brief GuiItem that show text and permit the user to change the value by clicking on it. Multi-line text is not supported by this item
 class TextBox :
-	public HighlightItem
+    public HighlightItem,
+    public ItemValueChangedEventThrower
 {
 public:
 	/// \brief Constructor

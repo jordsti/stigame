@@ -4,6 +4,7 @@
 #include "FontSupport.h"
 #include "StringRenderer.h"
 #include "EventThrower.h"
+#include "ItemValueChangedEventThrower.h"
 namespace StiGame {
 
 namespace Gui {
@@ -11,7 +12,8 @@ namespace Gui {
 class NumericSpinner :
         public Item,
         public FontSupport,
-        public EventThrower
+        public EventThrower,
+        public ItemValueChangedEventThrower
 {
 
 public:

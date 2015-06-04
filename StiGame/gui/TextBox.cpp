@@ -1,5 +1,6 @@
 #include "TextBox.h"
 #include "PRect.h"
+#include "StringItemValue.h"
 
 namespace StiGame
 {
@@ -70,6 +71,14 @@ void TextBox::setFocus(bool m_focus)
 
 void TextBox::onTextInput(char *m_text)
 {
+
+    StringItemValue *oldValue = new StringItemValue(this, text);
+    StringItemValue *newValue = new StringItemValue(this, text + m_text);
+
+    ItemValueChangedEventArgs args(oldValue, newValue);
+
+    ItemValueChangedEventThrower::publish(this, &args);
+
     text += m_text;
     renderString();
     //todo unicode support

@@ -1,6 +1,8 @@
 #include "NumericSpinner.h"
 #include "PRect.h"
 #include "EventArgs.h"
+#include "IntegerItemValue.h"
+
 namespace StiGame
 {
 
@@ -26,6 +28,9 @@ NumericSpinner::NumericSpinner() :
     step = DEFAULT_STEP;
     stringBuffer.setFont(font);
     stringBuffer.setText(std::to_string(value));
+
+    upArrow = style->getSpinnerUpArrow();
+    downArrow = style->getSpinnerDownArrow();
 }
 
 NumericSpinner::~NumericSpinner()
@@ -92,9 +97,11 @@ Surface* NumericSpinner::render(void)
     Point dstStr (3, (height - string->getHeight())/2);
     buffer->blit(string, &dstStr);
 
+    Point upPt (width - upArrow->getWidth() - 1, 0);
+    Point downPt (width - downArrow->getWidth() - 1, height - downArrow->getHeight());
 
-    //TODO
-    //draw the arrow, when they will be added into the repository
+    buffer->blit(upArrow, &upPt);
+    buffer->blit(downArrow, &downPt);
 
     PRect border (0, 0, width-1, height-1);
     buffer->draw(&border, foreground);
@@ -104,11 +111,11 @@ Surface* NumericSpinner::render(void)
 
 void NumericSpinner::onClick(Point *relp)
 {
-    Rectangle upRect (width - upArrow->getWidth(),
+    Rectangle upRect (width - upArrow->getWidth() - 1,
                       0,
                       upArrow->getWidth(),
                       upArrow->getHeight());
-    Rectangle downRect (width - downArrow->getWidth(),
+    Rectangle downRect (width - downArrow->getWidth() - 1,
                         height - downArrow->getHeight(),
                         downArrow->getWidth(),
                         downArrow->getHeight());
@@ -118,8 +125,17 @@ void NumericSpinner::onClick(Point *relp)
         if(value + step <= max)
         {
             EventArgs args;
-            publish(this, &args);
+            EventThrower::publish(this, &args);
+
+            //item value changed events
+            ItemValue *oldVal = new IntegerItemValue(this, value);
+            ItemValue *newVal = new IntegerItemValue(this, value + step);
+            ItemValueChangedEventArgs ivArgs(oldVal, newVal);
+
+            ItemValueChangedEventThrower::publish(this, &ivArgs);
+
             value += step;
+            stringBuffer.setText(std::to_string(value));
         }
     }
     else if(downRect.contains(relp))
@@ -127,8 +143,17 @@ void NumericSpinner::onClick(Point *relp)
         if(value - step >= min)
         {
             EventArgs args;
-            publish(this, &args);
+            EventThrower::publish(this, &args);
+
+            //item value changed events
+            ItemValue *oldVal = new IntegerItemValue(this, value);
+            ItemValue *newVal = new IntegerItemValue(this, value + step);
+            ItemValueChangedEventArgs ivArgs(oldVal, newVal);
+
+            ItemValueChangedEventThrower::publish(this, &ivArgs);
+
             value -= step;
+            stringBuffer.setText(std::to_string(value));
         }
     }
 }
