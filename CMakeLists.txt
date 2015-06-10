@@ -85,6 +85,8 @@ add_subdirectory(TableTest)
 
 add_subdirectory(Benchmark)
 
+add_subdirectory(FormTest)
+
 if(WIN32)
     #need some dll
     get_filename_component(MINGW32_ROOT ${CMAKE_CXX_COMPILER} DIRECTORY)
